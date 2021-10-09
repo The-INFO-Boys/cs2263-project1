@@ -11,7 +11,7 @@
 |   |  2. The system checks for adjacent tiles. If no adjacent tile is present, continue to Step 8, if a tile is adjacent, continue to Step 3.|
 |   | 3. If the adjacent tile is not part of a hotel, found a new hotel. If it is part of a current hotel, continue to Step 6.|
 | 4.Choose a hotel to found. |   |
-|   | 5. System creates the hotel consisting of adjacent tile and placed tile, give player 1 free share of the new hotel, continue to step 8 |
+|   | 5. System creates the hotel consisting of adjacent tile and placed tile, give player 1 free share of the new hotel, continue to step 7 |
 |   | 6. If tile is adjacent to an already existing hotel, check if merge will occur, if there is no merge add tile to existing hotel.|
 |7. End tile placement phase|   |
 
