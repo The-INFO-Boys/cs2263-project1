@@ -9,7 +9,7 @@
 |---|---|
 | 1. Selects a tile to play  |   |
 |   |  2. The system checks for adjacent tiles. If no adjacent tile is present, continue to Step 8, if a tile is adjacent, continue to Step 3.|
-|   | 3. If the adjacent tile is not part of a hotel, found a new hotel. If it is part of a current hotel, continue to Step 6.|
+|   | 3. If the adjacent tile is not part of a hotel and a hotel is available, found a new hotel, if a hotel is not available return to step 1 with an error. If it is part of a current hotel, continue to Step 6.|
 | 4.Choose a hotel to found. |   |
 |   | 5. System creates the hotel consisting of adjacent tile and placed tile, give player 1 free share of the new hotel, continue to step 7 |
 |   | 6. If tile is adjacent to an already existing hotel, check if merge will occur, if there is no merge add tile to existing hotel.|
@@ -20,14 +20,14 @@
 |Actor|System|
 |---|---|
 |   |1.If placed tile is adjacent to two or more hotels, begin merge.|
-|   |2.The system checks which hotel is larger, the largest hotel aquires the smaller ones, continue to Step 5. If the hotels are the same size continue to Step 3.   |
-|3. Merging Player: Choose which hotel will be aquired.|   |
+|   |2.The system checks which hotel is larger, the largest hotel acquires the smaller ones, continue to Step 5. If the hotels are the same size continue to Step 3.   |
+|3. Merging Player: Choose which hotel will be acquired.|   |
 |   |4.System merges the hotels according to the user's decision.   |
-|   |5.System determines primary and secondary shareholders of aquired hotel. If a tie occurs for the primary shareholder, continue to step 6, if not continue to Step 7.   |
+|   |5.System determines primary and secondary shareholders of acquired hotel. If a tie occurs for the primary shareholder, continue to step 6, if not continue to Step 7.   |
 |   |6. System adds up the bonus for primary and secondary shareholders and split evenly to the nearest $100 to the two players tied for primary shareholder, continue to Step 9.   |
-|   |7. If a tie occurs for the secondary shareholder, the system splits the bonus for the secondary shareholder between tied players and pay the primary the normal amount, continue to step #, if not continue to Step 9.   |
+|   |7. If a tie occurs for the secondary shareholder, the system splits the bonus for the secondary shareholder between tied players and pay the primary the normal amount, continue to Step 9, if not continue to Step 8.   |
 |   |8. System pays the primary and secondary shareholders according to bonus on the reference sheet, continue to Step 9.   |
-|9. Each Player: Hold, sell, or trade stocks of the aquired hotel.   |   |
+|9. Each Player: Hold, sell, or trade stocks of the acquired hotel.   |   |
 |10. If player chose to sell: enter number of stocks to sell   |   |
 |   |11. System gives player cash per stock they sold according to the reference sheet. If player, has no more stocks continue to step 14, if not  return to step 9   |
 |12. If player chose to trade: enter number of stocks to trade   |   |
