@@ -17,7 +17,7 @@ Summary: CS2263-project1 has the task of creating a digital version of the board
 ## Team Roles 
 * Robert Helmes - Team Leader, UI Build 
 * David Lape - Git, Release 
-* Fernadno Diaz - Development
+* Fernadno Larios - Development
 
 Each group member will be responsible in ensuring the other groups' member fulfill assigned tasks using certain due dates and through frequent meetings seeing the progress of other members
 
