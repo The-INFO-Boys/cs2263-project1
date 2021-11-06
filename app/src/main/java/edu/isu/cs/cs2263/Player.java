@@ -1,5 +1,8 @@
 package edu.isu.cs.cs2263;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Player<string, Stocks, list> {
     public static list<Tiles> Tiles;
 
@@ -7,7 +10,7 @@ public class Player<string, Stocks, list> {
 
     public int Money;
 
-    public list<Stocks> Stocks;
+    public list Stocks;
 
     public static void playTile(Tile) {
 

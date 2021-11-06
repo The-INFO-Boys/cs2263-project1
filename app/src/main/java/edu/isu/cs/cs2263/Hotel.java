@@ -1,5 +1,8 @@
 package edu.isu.cs.cs2263;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Hotel<Tiles, list, string> {
 
     public list<Tiles> = new ArrayList<Tiles>();
