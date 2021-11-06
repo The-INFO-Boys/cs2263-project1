@@ -3,13 +3,13 @@ package edu.isu.cs.cs2263;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Hotel<Tiles, list, string> {
+public class Hotel {
 
     private List<Stock> StockList;
 
     private boolean Founded;
 
-    private string Name;
+    private String Name;
 
     private int TypeID;
 
