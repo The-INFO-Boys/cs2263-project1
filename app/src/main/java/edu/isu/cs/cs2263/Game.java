@@ -3,9 +3,21 @@ package edu.isu.cs.cs2263;
 import java.util.ArrayList;
 import java.util.List;
 
-class TileToReplace{}
+class TileToReplace{
+    public HotelToReplace h;
+
+    public HotelToReplace getH() {
+        return h;
+    }
+}
 class StockToReplace{}
-class HotelToReplace{}
+class HotelToReplace{
+    public boolean founded;
+
+    public boolean placed(){
+        return founded;
+    }
+}
 class PlayerToReplace{}
 
 public class Game implements System {
@@ -40,7 +52,7 @@ public class Game implements System {
         List<HotelToReplace> adjacentHotels = new ArrayList<>();
         List<HotelToReplace> hotelsFoundable = new ArrayList<>();
         for (TileToReplace t:adjacentTiles) {
-            adjacentHotels.add(t.Hotel);
+            adjacentHotels.add(t.getH());
         }
         for (HotelToReplace h: HotelList){
             if(h.placed() == true) {

@@ -9,6 +9,12 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'org.openjfx.javafxplugin' version('0.0.10')
+}
+
+javafx {
+    version = "16"
+    modules = [ 'javafx.controls' ]
 }
 
 repositories {
@@ -22,11 +28,14 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:30.1.1-jre'
+
+    implementation 'com.google.code.gson:gson:2.8.6'
+
 }
 
 application {
     // Define the main class for the application.
-    mainClass = 'cs2263.project1.App'
+    mainClass = 'edu.isu.cs.cs2263.App'
 }
 
 tasks.named('test') {
