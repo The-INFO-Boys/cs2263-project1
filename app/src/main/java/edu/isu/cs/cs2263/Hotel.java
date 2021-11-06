@@ -5,23 +5,28 @@ import java.util.ArrayList;
 
 public class Hotel<Tiles, list, string> {
 
-    public list<Tiles> = new ArrayList<Tiles>();
-    public list<Player> = new ArrayList<Player>();
+    private List<Stock> StockList;
 
-    public string Name;
+    private boolean Founded;
 
-    public int TypeID;
+    private string Name;
 
-    public void bonusPrimary(){
-        System.out.println()
+    private int TypeID;
+
+    public boolean getFounded(){
+        return Founded;
     }
-    public void bonusSecondary(){
-        System.out.println()
+
+    public void found(Player p,List<Tile> Tiles){
+
     }
-    static void primaryTie(){
-        System.out.println()
+
+    public List<Stock> getAvailable(){
+
+        return new ArrayList<Stock>();
     }
-    static void secondaryTie(){
-        System.out.println()
+
+    public void merge(){
+
     }
 }

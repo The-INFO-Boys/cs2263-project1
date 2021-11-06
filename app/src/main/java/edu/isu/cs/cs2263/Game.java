@@ -1,5 +1,6 @@
 package edu.isu.cs.cs2263;
 
+import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,10 +53,10 @@ public class Game implements System {
         List<Hotel> adjacentHotels = new ArrayList<>();
         List<Hotel> hotelsFoundable = new ArrayList<>();
         for (Tile t:adjacentTiles) {
-            adjacentHotels.add(t.getH());
+            adjacentHotels.add(t.getHotel());
         }
         for (Hotel h: HotelList){
-            if(h.placed()) {
+            if(h.getFounded() == true) {
                 hotelsFoundable.add(h);
             }
         }
