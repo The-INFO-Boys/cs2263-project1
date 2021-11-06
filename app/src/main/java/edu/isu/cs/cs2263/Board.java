@@ -29,9 +29,8 @@ public class Board {
     //region Methods
     public List<Tile> checkAdjacent(Tile tile){
         List<Tile> tileList = new ArrayList<>();
-        //if(i=0; i<=1; i++){
-            return tileList;
-        //}
+        if(tile.Row++ == tile.placed || tile.Row--)
+        return tileList
     }
     public void placeTile(){
 
