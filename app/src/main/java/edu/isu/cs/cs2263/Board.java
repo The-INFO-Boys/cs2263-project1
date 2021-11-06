@@ -27,8 +27,8 @@ public class Board {
     }
 
     //region Methods
-    public List<TileToReplace> checkAdjacent(String TileToReplace){
-        List<TileToReplace> tileList = new ArrayList<TileToReplace>();
+    public List<TileToReplace> checkAdjacent(TileToReplace tile){
+        List<TileToReplace> tileList = new ArrayList<>();
         //if(i=0; i<=1; i++){
             return tileList;
         //}
@@ -36,7 +36,7 @@ public class Board {
     public void placeTile(){
 
     }
-    public void updateTile(){
+    public void updateTile(TileToReplace tile){
 
     }
     public List<HotelToReplace> checkPresentHotels(){
@@ -64,7 +64,7 @@ public class Board {
         int size = 0;
         return size;
     }
-    public void mergeHotels(String HotelToReplace1,String HotelToReplace2){
+    public void mergeHotels(String HotelToReplace1,String HotelToReplace2) {
     }
     public int giveBonus(){
         int bonus = 0;
