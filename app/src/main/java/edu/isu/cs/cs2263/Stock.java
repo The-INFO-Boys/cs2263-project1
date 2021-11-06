@@ -6,6 +6,6 @@ public class Stock {
     public int Price;
 
     public static void update(){
-        ;
+
     }
 }

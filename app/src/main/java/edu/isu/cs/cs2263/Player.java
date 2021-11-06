@@ -1,7 +1,7 @@
 package edu.isu.cs.cs2263;
 
-public class Player<string> {
-    public list<Tiles> Tiles;
+public class Player<string, Stocks, list> {
+    public static list<Tiles> Tiles;
 
     public string Name;
 
@@ -9,21 +9,23 @@ public class Player<string> {
 
     public list<Stocks> Stocks;
 
-    public static void playTile(Tile);
-
-    public static void foundHotel(List<Tiles>) {
+    public static void playTile(Tile) {
 
     }
 
-    public static void mergeHotels(List<Hotel>){
+    public static <Tiles> void foundHotel(list<Tiles>) {
 
     }
 
-    public static void sellStock(Hotel, List<Stock>){
+    public static void mergeHotels(list<Hotel>){
 
     }
 
-    public static void tradeStock(Hotel, List<Stock>){
+    public static void sellStock(Hotel, list<Stock>){
+
+    }
+
+    public static void tradeStock(Hotel, list<Stock>){
 
     }
 
