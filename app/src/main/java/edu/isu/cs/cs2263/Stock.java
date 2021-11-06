@@ -1,12 +1,15 @@
 package edu.isu.cs.cs2263;
 
-import java.util.List;
-import java.util.ArrayList;
-
 public class Stock {
-    public Hotel;
+    private int Price;
 
-    public int Price;
+    public void Hotel() {
+
+    }
+
+    public int Price() {
+        return Price;
+    }
 
     public static void update(){
 

@@ -12,7 +12,13 @@ public class Tile<string> {
 
     public Hotel Hotel;
 
+    private boolean Placed;
+
     public Hotel getHotel() {
         return Hotel;
+    }
+
+    private boolean Placed(){
+        return Placed;
     }
 }
