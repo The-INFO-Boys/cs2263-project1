@@ -18,10 +18,10 @@ public class IOManager {
                 f.delete();
             }
             FileWriter fw = new FileWriter(fileLocation, true);
-            for(PlayerToReplace p : game.getPlayerList()){
+            for(Player p : game.getPlayerList()){
                 fw.write(gson.toJson(p) + "\n");
             }
-            for(HotelToReplace h : game.getHotelList()){
+            for(Hotel h : game.getHotelList()){
                 fw.write(gson.toJson(h) + "\n");
             }
             fw.write(gson.toJson(game.getBoard() + "\n"));
@@ -30,8 +30,8 @@ public class IOManager {
     }
 
     public Game loadGame(String fileLocation, Board game){
-        List<HotelToReplace> hList = new ArrayList<>();
-        List<PlayerToReplace> pList = new ArrayList<>();
+        List<Hotel> hList = new ArrayList<>();
+        List<Player> pList = new ArrayList<>();
         Board b = game;
         Gson gson = new Gson();
         File f = new File(fileLocation);
@@ -40,9 +40,9 @@ public class IOManager {
             while(sc.hasNextLine()){
                 String line = sc.nextLine();
                 if(line.contains("Money")){
-                    pList.add(gson.fromJson(line,PlayerToReplace.class));
+                    pList.add(gson.fromJson(line,Player.class));
                 } else if(line.contains("TypeID")){
-                    hList.add(gson.fromJson(line,HotelToReplace.class));
+                    hList.add(gson.fromJson(line,Hotel.class));
                 } else {
                     b = gson.fromJson(line,Board.class);
                 }

@@ -3,30 +3,30 @@ package edu.isu.cs.cs2263;
 import java.util.ArrayList;
 import java.util.List;
 
-class TileToReplace{
-    public HotelToReplace h;
-
-    public HotelToReplace getH() {
-        return h;
-    }
-}
-class StockToReplace{}
-class HotelToReplace{
-    public boolean founded;
-
-    public boolean placed(){
-        return founded;
-    }
-}
-class PlayerToReplace{}
+//class TileToReplace{
+//    public HotelToReplace h;
+//
+//    public HotelToReplace getH() {
+//        return h;
+//    }
+//}
+//class StockToReplace{}
+//class HotelToReplace{
+//    public boolean founded;
+//
+//    public boolean placed(){
+//        return founded;
+//    }
+//}
+//class PlayerToReplace{}
 
 public class Game implements System {
 
-    private List<PlayerToReplace> PlayerList;
+    private List<Player> PlayerList;
     private Board Board;
-    private List<HotelToReplace> HotelList;
+    private List<Hotel> HotelList;
 
-    public Game(List<PlayerToReplace> pList, Board b, List<HotelToReplace> hList){
+    public Game(List<Player> pList, Board b, List<Hotel> hList){
         PlayerList = pList;
         Board = b;
         HotelList = hList;
@@ -34,7 +34,7 @@ public class Game implements System {
 
     public Game(){}
 
-    public List<PlayerToReplace> getPlayerList() {
+    public List<Player> getPlayerList() {
         return PlayerList;
     }
 
@@ -42,19 +42,19 @@ public class Game implements System {
         return  Board;
     }
 
-    public List<HotelToReplace> getHotelList() {
+    public List<Hotel> getHotelList() {
         return HotelList;
     }
 
     @Override
-    public boolean playTile(TileToReplace tile){
-        List<TileToReplace> adjacentTiles = Board.checkAdjacent(tile);
-        List<HotelToReplace> adjacentHotels = new ArrayList<>();
-        List<HotelToReplace> hotelsFoundable = new ArrayList<>();
-        for (TileToReplace t:adjacentTiles) {
+    public boolean playTile(Tile tile){
+        List<Tile> adjacentTiles = Board.checkAdjacent(tile);
+        List<Hotel> adjacentHotels = new ArrayList<>();
+        List<Hotel> hotelsFoundable = new ArrayList<>();
+        for (Tile t:adjacentTiles) {
             adjacentHotels.add(t.getH());
         }
-        for (HotelToReplace h: HotelList){
+        for (Hotel h: HotelList){
             if(h.placed()) {
                 hotelsFoundable.add(h);
             }
@@ -76,12 +76,12 @@ public class Game implements System {
     }
 
     @Override
-    public void getStock(StockToReplace Stock,HotelToReplace Hotel){
+    public void getStock(Stock Stock,Hotel Hotel){
 
     }
 
     @Override
-    public void buyStock(PlayerToReplace Player, List<StockToReplace> sList){
+    public void buyStock(Player Player, List<Stock> sList){
 
     }
 

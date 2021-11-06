@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface System {
 
-    public boolean playTile(TileToReplace Tile);
+    public boolean playTile(Tile Tile);
 
-    public void getStock(StockToReplace Stock,HotelToReplace Hotel);
+    public void getStock(Stock Stock,Hotel Hotel);
 
-    public void buyStock(PlayerToReplace Player, List<StockToReplace> sList);
+    public void buyStock(Player Player, List<Stock> sList);
 
     public void loadGame(String filePath);
 

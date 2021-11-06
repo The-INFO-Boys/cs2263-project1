@@ -27,8 +27,8 @@ public class Board {
     }
 
     //region Methods
-    public List<TileToReplace> checkAdjacent(TileToReplace tile){
-        List<TileToReplace> tileList = new ArrayList<>();
+    public List<Tile> checkAdjacent(Tile tile){
+        List<Tile> tileList = new ArrayList<>();
         //if(i=0; i<=1; i++){
             return tileList;
         //}
@@ -36,23 +36,23 @@ public class Board {
     public void placeTile(){
 
     }
-    public void updateTile(TileToReplace tile){
+    public void updateTile(Tile tile){
 
     }
-    public List<HotelToReplace> checkPresentHotels(){
-        List<HotelToReplace> hotelList = new ArrayList<HotelToReplace>();
+    public List<Hotel> checkPresentHotels(){
+        List<Hotel> hotelList = new ArrayList<Hotel>();
         return hotelList;
     }
-    public List<HotelToReplace> getHotels(){
-        List<HotelToReplace> hotelList = new ArrayList<HotelToReplace>();
+    public List<Hotel> getHotels(){
+        List<Hotel> hotelList = new ArrayList<Hotel>();
         return hotelList;
     }
-    public HotelToReplace getHotel(){
-        HotelToReplace hotel = new HotelToReplace();
+    public Hotel getHotel(){
+        Hotel hotel = new Hotel();
         return hotel;
     }
-    public List<StockToReplace> checkAmount(String HotelToReplace){
-        List<StockToReplace> stockList = new ArrayList<StockToReplace>();
+    public List<Stock> checkAmount(String HotelToReplace){
+        List<Stock> stockList = new ArrayList<Stock>();
         return stockList;
     }
     public void loadSystem(){
@@ -70,7 +70,7 @@ public class Board {
         int bonus = 0;
         return bonus;
     }
-    public void handleStock(int player1,int player2,HotelToReplace Hotel1,HotelToReplace Hotel2){
+    public void handleStock(int player1,int player2,Hotel Hotel1,Hotel Hotel2){
 
     }
     //endregion
