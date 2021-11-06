@@ -27,8 +27,8 @@ public class Board implements System {
     }
 
     //region Methods
-    public List<> checkAdjacent(Tile){
-        List<object> tileList = new List<object>;
+    public List<object> checkAdjacent(String TileToReplace){
+        List<object> tileList = new List<object>();
         if(){
             return tileList;
         }
@@ -40,15 +40,18 @@ public class Board implements System {
 
     }
     public List<Hotel> checkPresentHotels(){
-        return List<Hotel>;
+        List<HotelToReplace> hotelList = new List<HotelToReplace>();
+        return hotelList;
     }
     public List<Hotel> getHotels(){
-        return List<Hotel>;
+        List<HotelToReplace> hotelList = new List<HotelToReplace>();
+        return hotelList;
     }
     public Hotel getHotel(){
         return Hotel;
     }
-    public List<Stock> checkAmount(Hotel){
+    public List<Stock> checkAmount(String HotelToReplace){
+        List<StockToReplace> stockList = new List<StockToReplace>();
         return stockList;
     }
     public System loadSystem(){
@@ -56,15 +59,15 @@ public class Board implements System {
     }
     public void saveSystem(){
     }
-    public int checkHotelSize(Hotel){
+    public int checkHotelSize(String Hotel){
         return size;
     }
-    public void mergeHotels(Hotel,Hotel){
+    public void mergeHotels(String Hotel,String Hotel){
     }
     public int giveBonus(){
         return bonus;
     }
-    public void handleStock(int,int,Hotel,Hotel){
+    public void handleStock(int player1,int player2,HotelToReplace Hotel1,HotelToReplace Hotel2){
 
     }
     //endregion
