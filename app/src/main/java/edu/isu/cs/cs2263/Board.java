@@ -3,8 +3,13 @@ package edu.isu.cs.cs2263;
 import java.util.List;
 import java.util.ArrayList;
 
-//region Singleton
+
 public class Board implements System {
+
+
+    //region Singleton
+    private static volatile Board singleton;
+    private Board(){}
     public Board instance(){
         Board local = singleton;
         if(local==null){
