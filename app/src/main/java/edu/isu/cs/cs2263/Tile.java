@@ -3,22 +3,26 @@ package edu.isu.cs.cs2263;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Tile<string> {
-    public string Name;
+public class Tile {
+    public String name;
 
-    public string Column;
+    public int column;
 
-    public int Row;
+    public int row;
 
-    public Hotel Hotel;
+    public Hotel hotel = null;
 
-    private boolean Placed;
+    public boolean placed = false;
 
     public Hotel getHotel() {
-        return Hotel;
+        Hotel hotel = new Hotel();
+        return hotel;
+    }
+    public String getName(){
+        return name;
     }
 
-    private boolean Placed(){
-        return Placed;
+    private boolean placed(){
+        return placed;
     }
 }

@@ -31,8 +31,11 @@ public class Board {
     //region Methods
     public List<Tile> checkAdjacent(Tile tile){
         List<Tile> tileList = new ArrayList<>();
-        if(tile.Row++ == tile.placed || tile.Row--)
-        return tileList
+        if(tile.placed == true){
+            return tileList;
+        }else{
+            return tileList;
+        }
     }
     public void placeTile(){
 
