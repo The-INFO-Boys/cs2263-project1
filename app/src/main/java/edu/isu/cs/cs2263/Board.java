@@ -1,11 +1,13 @@
 package edu.isu.cs.cs2263;
 
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.ArrayList;
 
 
 public class Board {
 
+    public Tile[][] Grid;
 
     //region Singleton
     private static volatile Board singleton;
