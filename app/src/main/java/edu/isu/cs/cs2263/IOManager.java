@@ -29,10 +29,10 @@ public class IOManager {
         }catch (Exception e){}
     }
 
-    public Game loadGame(String fileLocation){
+    public Game loadGame(String fileLocation, Board game){
         List<HotelToReplace> hList = new ArrayList<>();
         List<PlayerToReplace> pList = new ArrayList<>();
-        BoardToReplace b = new BoardToReplace();
+        Board b = game;
         Gson gson = new Gson();
         File f = new File(fileLocation);
         try{
@@ -44,7 +44,7 @@ public class IOManager {
                 } else if(line.contains("TypeID")){
                     hList.add(gson.fromJson(line,HotelToReplace.class));
                 } else {
-                    b = gson.fromJson(line,BoardToReplace.class);
+                    b = gson.fromJson(line,Board.class);
                 }
             }
             sc.close();

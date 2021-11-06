@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface System {
 
-    public void playTile(TileToReplace Tile);
+    public boolean playTile(TileToReplace Tile);
 
     public void getStock(StockToReplace Stock,HotelToReplace Hotel);
 
     public void buyStock(PlayerToReplace Player, List<StockToReplace> sList);
 
-    public void loadGame();
+    public void loadGame(String filePath);
 
-    public void saveGame();
+    public void saveGame(String filePath);
 
     public void handleStock(int x, int y);
 
-    public int getBonus();
+    public void getBonus();
 }
