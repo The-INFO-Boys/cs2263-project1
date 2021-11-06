@@ -47,15 +47,15 @@ public class Game implements System {
     }
 
     @Override
-    public boolean playTile(TileToReplace Tile){
-        List<TileToReplace> adjacentTiles = Board.checkAdjacent(Tile);
+    public boolean playTile(TileToReplace tile){
+        List<TileToReplace> adjacentTiles = Board.checkAdjacent(tile);
         List<HotelToReplace> adjacentHotels = new ArrayList<>();
         List<HotelToReplace> hotelsFoundable = new ArrayList<>();
         for (TileToReplace t:adjacentTiles) {
             adjacentHotels.add(t.getH());
         }
         for (HotelToReplace h: HotelList){
-            if(h.placed() == true) {
+            if(h.placed()) {
                 hotelsFoundable.add(h);
             }
         }
@@ -70,7 +70,7 @@ public class Game implements System {
         }else if(adjacentHotels.size() > 1){
             //Merge
         }else {
-            Board.updateTile(Tile);
+            Board.updateTile(tile);
         }
         return true;
     }
