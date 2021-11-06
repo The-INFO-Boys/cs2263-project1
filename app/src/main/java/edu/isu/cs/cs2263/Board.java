@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-public class Board implements System {
+public class Board {
 
 
     //region Singleton
@@ -27,11 +27,11 @@ public class Board implements System {
     }
 
     //region Methods
-    public List<object> checkAdjacent(String TileToReplace){
-        List<object> tileList = new List<object>();
-        if(){
+    public List<TileToReplace> checkAdjacent(String TileToReplace){
+        List<TileToReplace> tileList = new ArrayList<TileToReplace>();
+        //if(i=0; i<=1; i++){
             return tileList;
-        }
+        //}
     }
     public void placeTile(){
 
@@ -39,32 +39,35 @@ public class Board implements System {
     public void updateTile(){
 
     }
-    public List<Hotel> checkPresentHotels(){
-        List<HotelToReplace> hotelList = new List<HotelToReplace>();
+    public List<HotelToReplace> checkPresentHotels(){
+        List<HotelToReplace> hotelList = new ArrayList<HotelToReplace>();
         return hotelList;
     }
-    public List<Hotel> getHotels(){
-        List<HotelToReplace> hotelList = new List<HotelToReplace>();
+    public List<HotelToReplace> getHotels(){
+        List<HotelToReplace> hotelList = new ArrayList<HotelToReplace>();
         return hotelList;
     }
-    public Hotel getHotel(){
-        return Hotel;
+    public HotelToReplace getHotel(){
+        HotelToReplace hotel = new HotelToReplace();
+        return hotel;
     }
-    public List<Stock> checkAmount(String HotelToReplace){
-        List<StockToReplace> stockList = new List<StockToReplace>();
+    public List<StockToReplace> checkAmount(String HotelToReplace){
+        List<StockToReplace> stockList = new ArrayList<StockToReplace>();
         return stockList;
     }
-    public System loadSystem(){
-        return System;
+    public void loadSystem(){
+
     }
     public void saveSystem(){
     }
     public int checkHotelSize(String Hotel){
+        int size = 0;
         return size;
     }
-    public void mergeHotels(String Hotel,String Hotel){
+    public void mergeHotels(String HotelToReplace1,String HotelToReplace2){
     }
     public int giveBonus(){
+        int bonus = 0;
         return bonus;
     }
     public void handleStock(int player1,int player2,HotelToReplace Hotel1,HotelToReplace Hotel2){
