@@ -6,4 +6,8 @@ import java.util.ArrayList;
 public class Stock {
     private Hotel hotel;
     private Player player = null;
+
+    public Hotel getHotel(){
+        return hotel;
+    }
 }

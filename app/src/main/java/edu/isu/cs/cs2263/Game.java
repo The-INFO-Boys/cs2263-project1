@@ -78,12 +78,19 @@ public class Game implements System {
 
     @Override
     public void getStock(Stock Stock,Hotel Hotel){
-
+        //Did not find in Use Case
     }
 
     @Override
-    public void buyStock(Player Player, List<Stock> sList){
+    public void buyStock(Player Player, Stock stockToBuy, int numOfStock){
+        List<Stock> stockList = Board.checkAmount(stockToBuy.getHotel());
+        if(stockList.size() >= numOfStock) {
+            for (Player p : getPlayerList()) {
+                if (p == Player) {
 
+                }
+            }
+        }
     }
 
     @Override
@@ -110,6 +117,5 @@ public class Game implements System {
     @Override
     public void getBonus(){
         Board.giveBonus();
-        return;
     }
 }
