@@ -31,7 +31,7 @@ public class Board {
     //region Methods
     public List<Tile> checkAdjacent(Tile tile){
         List<Tile> tileList = new ArrayList<>();
-        if(tile.placed == true){
+        if(tile.placed){
             return tileList;
         }else{
             return tileList;
