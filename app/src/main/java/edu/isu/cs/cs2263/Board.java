@@ -55,10 +55,6 @@ public class Board {
         Hotel hotel = new Hotel();
         return hotel;
     }
-    public List<Stock> checkAmount(Hotel hotel){
-        List<Stock> stockList = new ArrayList<Stock>();
-        return stockList;
-    }
     public void loadSystem(){
 
     }

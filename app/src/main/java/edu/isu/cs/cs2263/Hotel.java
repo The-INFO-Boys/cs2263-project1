@@ -7,7 +7,7 @@ public class Hotel {
 
     private List<Stock> StockList;
 
-    private boolean Founded;
+    private boolean Founded = false;
 
     private String Name;
 
@@ -17,13 +17,22 @@ public class Hotel {
         return Founded;
     }
 
-    public void found(Player p,List<Tile> Tiles){
+    public void found(Player p){
 
     }
 
     public List<Stock> getAvailable(){
+        List<Stock> availableStock = new ArrayList<>();
+        for(Stock s : StockList){
+            if(s.getPlayer() == null){
+                availableStock.add(s);
+            }
+        }
+        return availableStock;
+    }
 
-        return new ArrayList<Stock>();
+    public List<Stock> getStockList(){
+        return StockList;
     }
 
     public void merge(){

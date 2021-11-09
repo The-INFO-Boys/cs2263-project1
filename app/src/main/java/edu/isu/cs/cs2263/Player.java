@@ -8,4 +8,12 @@ public class Player {
     private String Name;
 
     private int Money;
+
+    public int getMoney(){
+        return Money;
+    }
+
+    public void setMoney(int value){
+        Money = value;
+    }
 }

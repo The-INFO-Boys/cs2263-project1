@@ -10,4 +10,6 @@ public class Stock {
     public Hotel getHotel(){
         return hotel;
     }
+    public Player getPlayer(){return  player;}
+    public void setPlayer(Player value){player = value;}
 }

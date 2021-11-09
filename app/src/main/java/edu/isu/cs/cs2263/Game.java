@@ -82,15 +82,33 @@ public class Game implements System {
     }
 
     @Override
-    public void buyStock(Player Player, Stock stockToBuy, int numOfStock){
-        List<Stock> stockList = Board.checkAmount(stockToBuy.getHotel());
-        if(stockList.size() >= numOfStock) {
-            for (Player p : getPlayerList()) {
-                if (p == Player) {
-
+    public boolean buyStock(Player Player, Stock stockToBuy, int numOfStock){
+        List<Stock> stockList = stockToBuy.getHotel().getAvailable();
+        List<Player> pList = getPlayerList();
+        for (Player p : pList) {
+            if (p == Player) {
+                int stockPrice = 50;
+                if(stockList.size() >= numOfStock && p.getMoney() >= numOfStock * stockPrice /*STOCK PRICE*/){
+                    p.setMoney(p.getMoney() - (numOfStock * stockPrice));
+                        for(Hotel h : HotelList){
+                            if(h == stockToBuy.getHotel()){
+                                int count = 0;
+                                while(count < numOfStock){
+                                    for(Stock s : h.getStockList()){
+                                        if(s.getPlayer() == null){
+                                            s.setPlayer(p);
+                                            count++;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                } else {
+                    return false;
                 }
             }
         }
+return true;
     }
 
     @Override
@@ -111,7 +129,7 @@ public class Game implements System {
         // 1 = Trade
         // 2 = Sell
 
-        //Board.handleStock(action,int,Hotel,Hotel)
+        //Needs called when merge occurs?
     }
 
     @Override
