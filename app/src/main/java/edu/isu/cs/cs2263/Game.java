@@ -63,7 +63,7 @@ public class Game implements System {
         if(adjacentTiles.size() > 0 && adjacentHotels.size() < 1 && hotelsFoundable.size() > 0){
             return false;
         }
-        Board.placeTile();
+        Board.placeTile(tile);
         if(adjacentTiles.size() < 1){
             return true;
         }else if(adjacentHotels.size() < 1){

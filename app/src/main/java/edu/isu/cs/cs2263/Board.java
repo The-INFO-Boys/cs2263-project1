@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Board {
 
-    public Tile[][] Grid;
+    public Tile[][] board = new Tile [9][12];
 
     //region Singleton
     private static volatile Board singleton;
@@ -31,14 +31,27 @@ public class Board {
     //region Methods
     public List<Tile> checkAdjacent(Tile tile){
         List<Tile> tileList = new ArrayList<>();
-        if(tile.placed){
-            return tileList;
-        }else{
-            return tileList;
-        }
-    }
-    public void placeTile(){
+        Tile north = board[tile.getRow() + 1][tile.getColumn()];
+        Tile south = board[tile.getRow() - 1][tile.getColumn()];
+        Tile east = board[tile.getRow()][tile.getColumn() + 1];
+        Tile west = board[tile.getRow()][tile.getColumn() - 1];
 
+            if (north.getPlaced() == true) {
+                tileList.add(north);
+            }
+            if (south.getPlaced() == true) {
+                tileList.add(south);
+            }
+            if (east.getPlaced() == true) {
+                tileList.add(east);
+            }
+            if (west.getPlaced() == true) {
+                tileList.add(west);
+            }
+        return tileList;
+    }
+    public void placeTile(Tile tile){
+        tile.setPlaced();
     }
     public void updateTile(Tile tile){
 
