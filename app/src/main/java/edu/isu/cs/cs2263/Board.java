@@ -54,7 +54,7 @@ public class Board {
         tile.setPlaced();
     }
     public void updateTile(Tile tile){
-
+        tile.setHotel(tile.getHotel());
     }
     public List<Hotel> checkPresentHotels(){
         List<Hotel> hotelList = new ArrayList<Hotel>();
