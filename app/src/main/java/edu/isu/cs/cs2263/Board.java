@@ -11,9 +11,7 @@ public class Board {
 
     //region Singleton
     private static volatile Board singleton;
-    private Board(){
-        instance();
-    }
+    private Board(){}
     public Board instance(){
         Board local = singleton;
         if(local==null){
