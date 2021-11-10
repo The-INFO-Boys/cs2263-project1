@@ -1,6 +1,6 @@
 package edu.isu.cs.cs2263;
 
-import java.lang.reflect.Array;
+import java.lang.reflect.*;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -11,7 +11,9 @@ public class Board {
 
     //region Singleton
     private static volatile Board singleton;
-    private Board(){}
+    private Board(){
+        instance();
+    }
     public Board instance(){
         Board local = singleton;
         if(local==null){

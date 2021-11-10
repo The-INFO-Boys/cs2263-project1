@@ -11,7 +11,6 @@ public class Player {
 
     public Player(){
         Money = 6000;
-        
     }
 
     public int getMoney(){

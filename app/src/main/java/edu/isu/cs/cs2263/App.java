@@ -10,8 +10,6 @@ public class App {
 
     public static void main(String[] args) {
         Game g = new Game();
-        for(Tile t : g.getTileBag()){
-
-        };
+        Player p = new Player();
     }
 }

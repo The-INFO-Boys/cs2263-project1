@@ -35,10 +35,10 @@ public class Game implements System {
     }
 
     public Game(){
-        //Board = new Board();
         List<Player> pList = new ArrayList<>();
         pList.add(new Player());
         tileBag = tileInventory();
+        Board.instance();
     }
 
     public List<Tile> getTileBag() {
