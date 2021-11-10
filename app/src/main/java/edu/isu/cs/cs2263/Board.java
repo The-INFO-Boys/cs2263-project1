@@ -25,8 +25,6 @@ public class Board {
         return singleton;
     }
     //endregion
-    public static void main(String[] args){
-    }
 
     //region Methods
     public List<Tile> checkAdjacent(Tile tile){

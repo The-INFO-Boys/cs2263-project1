@@ -9,6 +9,11 @@ public class Player {
 
     private int Money;
 
+    public Player(){
+        Money = 6000;
+        
+    }
+
     public int getMoney(){
         return Money;
     }

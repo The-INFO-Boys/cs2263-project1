@@ -44,5 +44,14 @@ public class Tile {
         placed =true;
     }
     //endregion
+
+    //region Constructor
+
+    public Tile(int vColumn, int vRow){
+        column = vColumn;
+        row = vRow;
+    }
+
+    //endregion
     
 }

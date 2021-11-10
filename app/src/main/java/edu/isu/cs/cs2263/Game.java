@@ -26,6 +26,7 @@ public class Game implements System {
     private List<Player> PlayerList;
     private Board Board;
     private List<Hotel> HotelList;
+    private List<Tile> tileBag;
 
     public Game(List<Player> pList, Board b, List<Hotel> hList){
         PlayerList = pList;
@@ -33,7 +34,26 @@ public class Game implements System {
         HotelList = hList;
     }
 
-    public Game(){}
+    public Game(){
+        //Board = new Board();
+        List<Player> pList = new ArrayList<>();
+        pList.add(new Player());
+        tileBag = tileInventory();
+    }
+
+    public List<Tile> getTileBag() {
+        return tileBag;
+    }
+
+    private List<Tile> tileInventory(){
+        List<Tile> retList = new ArrayList<>();
+        for(int x = 1; x < 13; x++){
+            for(int y = 1; y < 10; y++){
+                retList.add(new Tile(x,y));
+            }
+        }
+        return retList;
+    }
 
     public List<Player> getPlayerList() {
         return PlayerList;
