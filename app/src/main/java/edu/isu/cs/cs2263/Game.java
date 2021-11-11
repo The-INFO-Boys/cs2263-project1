@@ -23,9 +23,9 @@ import java.util.List;
 
 public class Game implements System {
 
-    private List<Player> PlayerList;
+    private List<Player> PlayerList = new ArrayList<>();
     private Board Board;
-    private List<Hotel> HotelList;
+    private List<Hotel> HotelList = new ArrayList<>();
     private List<Tile> tileBag;
 
     public Game(List<Player> pList, Board b, List<Hotel> hList){
@@ -35,10 +35,18 @@ public class Game implements System {
     }
 
     public Game(){
-        List<Player> pList = new ArrayList<>();
-        pList.add(new Player());
+        PlayerList.add(new Player("Player 1"));
+        PlayerList.add(new Player("Player 2"));
         tileBag = tileInventory();
-        Board.instance();
+        Board = edu.isu.cs.cs2263.Board.getInstance();
+        HotelList.add(new Hotel("Hotel 1",1));
+        HotelList.add(new Hotel("Hotel 2",1));
+        HotelList.add(new Hotel("Hotel 3",2));
+        HotelList.add(new Hotel("Hotel 4",2));
+        HotelList.add(new Hotel("Hotel 5",3));
+        HotelList.add(new Hotel("Hotel 6",3));
+        HotelList.add(new Hotel("Hotel 7",4));
+        HotelList.add(new Hotel("Hotel 8",4));
     }
 
     public List<Tile> getTileBag() {

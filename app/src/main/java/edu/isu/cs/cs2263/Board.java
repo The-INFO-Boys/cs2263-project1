@@ -10,9 +10,9 @@ public class Board {
     public Tile[][] board = new Tile [9][12];
 
     //region Singleton
-    private static volatile Board singleton;
-    private Board(){}
-    public Board instance(){
+
+    //private static volatile Board singleton
+    /* public static Board instance(){
         Board local = singleton;
         if(local==null){
             synchronized (this){
@@ -23,6 +23,14 @@ public class Board {
             }
         }
         return singleton;
+    }*/
+    private Board(){}
+    private static Board single_instance = null;
+    public static Board getInstance(){
+        if(single_instance == null){
+            single_instance = new Board();
+        }
+        return single_instance;
     }
     //endregion
 
@@ -63,8 +71,8 @@ public class Board {
         return hotelList;
     }
     public Hotel getHotel(){
-        Hotel hotel = new Hotel();
-        return hotel;
+
+        return new Hotel("To be Implemented",5);
     }
     public void loadSystem(){
 

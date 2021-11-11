@@ -9,8 +9,9 @@ public class Player {
 
     private int Money;
 
-    public Player(){
+    public Player(String name){
         Money = 6000;
+        Name = name;
     }
 
     public int getMoney(){
@@ -19,5 +20,9 @@ public class Player {
 
     public void setMoney(int value){
         Money = value;
+    }
+
+    public void drawTile(Tile e){
+        Tiles.add(e);
     }
 }
