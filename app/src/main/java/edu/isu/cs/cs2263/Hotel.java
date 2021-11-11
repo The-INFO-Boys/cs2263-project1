@@ -6,19 +6,17 @@ import java.util.ArrayList;
 
 public class Hotel {
 
+    private int ID;
     private List<Stock> StockList;
-
     private boolean Founded = false;
-
     private String Name;
-
     private int TypeID;
 
     public boolean getFounded(){
         return Founded;
     }
 
-    public Hotel(String name, int typeID){
+    public Hotel(int id, String name, int typeID){
         Name = name;
         TypeID = typeID;
         StockList = new ArrayList<>();

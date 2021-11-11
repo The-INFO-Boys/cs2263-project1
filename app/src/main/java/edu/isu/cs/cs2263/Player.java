@@ -3,13 +3,14 @@ package edu.isu.cs.cs2263;
 import java.util.List;
 
 public class Player {
+
+    private int ID;
     private List<Tile> Tiles;
-
     private String Name;
-
     private int Money;
 
-    public Player(String name){
+    public Player(int id, String name){
+        ID = id;
         Money = 6000;
         Name = name;
     }

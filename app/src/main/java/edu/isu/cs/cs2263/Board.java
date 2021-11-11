@@ -7,7 +7,11 @@ import java.util.ArrayList;
 
 public class Board {
 
-    public Tile[][] board = new Tile [9][12];
+    //region private variables
+
+    private Tile[][] board = setBoard();
+
+    //endregion
 
     //region Singleton
 
@@ -34,30 +38,57 @@ public class Board {
     }
     //endregion
 
-    //region Methods
+    //region private methods
+
+    private Tile[][] setBoard(){
+        Tile[][] tileBoard = new Tile [12][9];
+        for(int x = 0; x < 12; x++){
+            for(int y = 0; y < 9; y++){
+                tileBoard[x][y] = (new Tile(x + 1,y + 1));
+            }
+        }
+        return tileBoard;
+    }
+
+    //endregion
+
+    //region public methods
+
     public List<Tile> checkAdjacent(Tile tile){
         List<Tile> tileList = new ArrayList<>();
-        Tile north = board[tile.getRow() + 1][tile.getColumn()];
-        Tile south = board[tile.getRow() - 1][tile.getColumn()];
-        Tile east = board[tile.getRow()][tile.getColumn() + 1];
-        Tile west = board[tile.getRow()][tile.getColumn() - 1];
-
-            if (north.getPlaced() == true) {
-                tileList.add(north);
-            }
-            if (south.getPlaced() == true) {
-                tileList.add(south);
-            }
-            if (east.getPlaced() == true) {
-                tileList.add(east);
-            }
-            if (west.getPlaced() == true) {
-                tileList.add(west);
-            }
+        Tile north = null;
+        Tile south = null;
+        Tile east = null;
+        Tile west = null;
+        if(tile.getColumn() + 1 < 9) {
+            north = board[tile.getColumn() + 1][tile.getRow()];
+        }
+        if(tile.getColumn() - 1 > -1) {
+            south = board[tile.getColumn() - 1][tile.getRow()];
+        }
+        if(tile.getRow() + 1 < 12) {
+            east = board[tile.getColumn()][tile.getRow() + 1];
+        }
+        if(tile.getRow() - 1 > -1) {
+            west = board[tile.getColumn()][tile.getRow() - 1];
+        }
+        if (north != null && north.getPlaced() == true) {
+            tileList.add(north);
+        }
+        if (south != null && south.getPlaced() == true) {
+            tileList.add(south);
+        }
+        if (east != null && east.getPlaced() == true) {
+            tileList.add(east);
+        }
+        if (west != null && west.getPlaced() == true) {
+            tileList.add(west);
+        }
         return tileList;
     }
+
     public void placeTile(Tile tile){
-        tile.setPlaced();
+        this.board[tile.getColumn()][tile.getRow()].setPlaced();
     }
     public void updateTile(Tile tile){
         tile.setHotel(tile.getHotel());
@@ -72,7 +103,7 @@ public class Board {
     }
     public Hotel getHotel(){
 
-        return new Hotel("To be Implemented",5);
+        return new Hotel(99,"To be Implemented",5);
     }
     public void loadSystem(){
 

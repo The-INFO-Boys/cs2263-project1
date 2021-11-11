@@ -9,6 +9,12 @@ public class App {
     }
 
     public static void main(String[] args) {
+
+        //Start App
         Game g = new Game();
+        int PlayerID = g.determineFirst();
+
+        //Play a Tile
+
     }
 }
