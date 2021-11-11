@@ -60,13 +60,13 @@ public class Board {
         Tile south = null;
         Tile east = null;
         Tile west = null;
-        if(tile.getColumn() + 1 < 9) {
+        if(tile.getColumn() + 1 < 12) {
             north = board[tile.getColumn() + 1][tile.getRow()];
         }
         if(tile.getColumn() - 1 > -1) {
             south = board[tile.getColumn() - 1][tile.getRow()];
         }
-        if(tile.getRow() + 1 < 12) {
+        if(tile.getRow() + 1 < 9) {
             east = board[tile.getColumn()][tile.getRow() + 1];
         }
         if(tile.getRow() - 1 > -1) {

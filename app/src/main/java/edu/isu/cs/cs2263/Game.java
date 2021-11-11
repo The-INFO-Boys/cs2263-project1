@@ -78,9 +78,9 @@ public class Game implements System {
 
     private List<Tile> tileInventory(){
         List<Tile> retList = new ArrayList<>();
-        for(int x = 1; x < 13; x++){
-            for(int y = 1; y < 10; y++){
-                retList.add(new Tile(x,y));
+        for(int x = 0; x < 12; x++){
+            for(int y = 0; y < 9; y++){
+                retList.add(new Tile(x + 1,y + 1));
             }
         }
         return retList;
@@ -92,50 +92,60 @@ public class Game implements System {
 
     public int determineFirst(){
         Tile player1 = drawTile();
-        playTile(player1);
+        playTile(new Tile(1,1));
         Tile player2 = drawTile();
-        playTile(player2);
+        playTile(new Tile(1,2));
         if(player1.getColumn() + player1.getRow() < player2.getColumn() + player2.getRow()){
             //Player 1 Tile was closer to 1A
             return 1;
         } else if(player1.getColumn() + player1.getRow() > player2.getColumn() + player2.getRow()){
             //Player 2 Tile was closer to 1A
             return 2;
-        } else {
+        } else if(player1.getColumn() + player1.getRow() == player2.getColumn() + player2.getRow()) {
+            //Equal tiles, Player 1 goes first
+            return 1;
+        }else {
             //Should not get here
             return 3;
         }
     }
 
     @Override
-    public boolean playTile(Tile tile){
+    public int playTile(Tile tile){
         List<Tile> adjacentTiles = Board.checkAdjacent(tile);
         List<Hotel> adjacentHotels = new ArrayList<>();
         List<Hotel> hotelsFoundable = new ArrayList<>();
         for (Tile t:adjacentTiles) {
-            adjacentHotels.add(t.getHotel());
+            if(t.getHotel() != null) {
+                adjacentHotels.add(t.getHotel());
+            }
         }
-        if(adjacentTiles.size() < 1 || adjacentHotels.size() >= 1) {
+        if(adjacentTiles.size() > 0 ) {
             for (Hotel h : HotelList) {
                 if (h.getFounded() == false) {
                     hotelsFoundable.add(h);
                 }
             }
         }
-        if(adjacentTiles.size() > 0 && adjacentHotels.size() < 1 && hotelsFoundable.size() > 0){
-            return false;
+        if(adjacentTiles.size() > 0 && adjacentHotels.size() < 1 && hotelsFoundable.size() < 1){
+            //Error
+            return 1;
         }
         Board.placeTile(tile);
         if(adjacentTiles.size() < 1){
-            return true;
+            //Success
+            return 0;
         }else if(adjacentHotels.size() < 1){
             //Found A Hotel
+            return 2;
         }else if(adjacentHotels.size() > 1){
             //Merge
+            return 3;
         }else {
+            //Success
             Board.updateTile(tile);
+            return 0;
         }
-        return true;
     }
 
     @Override

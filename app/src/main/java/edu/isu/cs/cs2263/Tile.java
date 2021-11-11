@@ -1,29 +1,28 @@
 package edu.isu.cs.cs2263;
 
-import java.util.List;
-import java.util.ArrayList;
-
 public class Tile {
+
+    //region Private Variables
+
     private int column;
     private int row;
     private Hotel hotel = null;
     private boolean placed = false;
-    
-    //region Getters
+
+    //endregion
+
+    //region Get & set
+
     public int getColumn(){
-        return column;
+        return column - 1;
     }
     public int getRow(){
-        return row;
+        return row - 1;
     }
-    public Hotel getHotel() {
-        return hotel;
-    }
+    public Hotel getHotel() {return hotel;    }
     public boolean getPlaced(){
         return placed;
     }
-    //endregion
-    //region Setters
     public void setColumn(int column){
         this.column = column;
     }
@@ -33,10 +32,10 @@ public class Tile {
     public void setHotel(Hotel hotel){
         this.hotel = hotel;
     }
-    public void setPlaced(){
-        placed =true;
-    }
+    public void setPlaced(){placed =true;}
+
     //endregion
+
 
     //region Constructor
 
