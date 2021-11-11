@@ -90,6 +90,12 @@ public class Game implements System {
 
     //region public methods
 
+    public void foundHotel(int id, Player currentPlayer){
+        if(HotelList.get(id).found(currentPlayer) == true){
+
+        }
+    }
+
     public int determineFirst(){
         Tile player1 = drawTile();
         playTile(new Tile(1,1));
