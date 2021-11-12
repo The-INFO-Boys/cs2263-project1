@@ -209,16 +209,22 @@ public class Game implements System {
     }
 
     @Override
-    public void handleStock(int action, int amount){
+    public void handleStock(int action, int amount, int playerID){
         // Action Keys
         // 1 = Trade
         // 2 = Sell
 
-        //Needs called when merge occurs?
+        if(action == 1){
+
+        }else if(action == 2){
+
+        }else{
+            //Shouldnt get here
+        }
     }
 
     @Override
     public void getBonus(){
-        Board.giveBonus();
+        //needs reference sheet to be properly put in place
     }
 }
