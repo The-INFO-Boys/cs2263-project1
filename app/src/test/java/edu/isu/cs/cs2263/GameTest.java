@@ -15,11 +15,13 @@ class GameTest {
         Game classUnderTest = new Game();
         assertNotNull(classUnderTest.determineFirst());
     }
+    @Test
     void GameHasAPlayTile(){
         Game classUnderTest = new Game();
 
         assertNotNull(classUnderTest.playTile(tile));
     }
+    @Test
     void GameHasABuyStock() {
         Game classUnderTest = new Game();
         assertTrue(classUnderTest.buyStock(1, 2, 3));
