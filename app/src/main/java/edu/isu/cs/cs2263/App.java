@@ -24,7 +24,14 @@ public class App {
         g.playTile(new Tile(1,2));
 
         //Buy Stock
-        g.buyStock(0,0,3);
+        g.buyStock(1,0,3);
 
+        //Save Game
+        //g.saveGame("test.txt");
+
+        //Load Game
+        g.loadGame("test.txt");
+
+        Player pp = new Player(99,"Free");
     }
 }

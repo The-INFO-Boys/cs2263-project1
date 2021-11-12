@@ -14,7 +14,7 @@ public interface System {
 
     public void saveGame(String filePath);
 
-    public void handleStock(int x, int y);
+    public void handleStock(int x, int y, int z);
 
     public void getBonus();
 }

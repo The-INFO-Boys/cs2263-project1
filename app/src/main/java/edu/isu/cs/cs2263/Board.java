@@ -40,6 +40,11 @@ public class Board {
 
     //region private methods
 
+
+    public Tile[][] getBoard() {
+        return board;
+    }
+
     private Tile[][] setBoard(){
         Tile[][] tileBoard = new Tile [12][9];
         for(int x = 0; x < 12; x++){
