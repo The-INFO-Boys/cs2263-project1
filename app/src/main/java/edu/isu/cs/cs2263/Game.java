@@ -86,6 +86,11 @@ public class Game implements System {
         return retList;
     }
 
+    private int getStockPrice(int hotelID) {
+        //Reference sheet here
+        return 50;
+    }
+
     //endregion
 
     //region public methods
@@ -158,33 +163,26 @@ public class Game implements System {
     }
 
     @Override
-    public boolean buyStock(Player Player, Stock stockToBuy, int numOfStock){
-        List<Stock> stockList = stockToBuy.getHotel().getAvailable();
-        List<Player> pList = getPlayerList();
-        for (Player p : pList) {
-            if (p == Player) {
-                int stockPrice = 50;
-                if(stockList.size() >= numOfStock && p.getMoney() >= numOfStock * stockPrice /*STOCK PRICE*/){
-                    p.setMoney(p.getMoney() - (numOfStock * stockPrice));
-                    for(Hotel h : HotelList){
-                        if(h == stockToBuy.getHotel()){
-                            int count = 0;
-                            while(count < numOfStock){
-                                for(Stock s : h.getStockList()){
-                                    if(s.getPlayer() == null){
-                                        s.setPlayer(p);
-                                        count++;
-                                    }
-                                }
-                            }
-                        }
+    public boolean buyStock(int playerID, int hotelID, int numOfStock){
+        List<Stock> stockList = HotelList.get(hotelID).getAvailable();
+        Player p = PlayerList.get(playerID);
+        int stockPrice = getStockPrice(hotelID);
+        if(stockList.size() >= numOfStock && p.getMoney() >= (stockPrice * numOfStock)) {
+            p.setMoney(p.getMoney() - (numOfStock * stockPrice));
+            int count = 0;
+            for(Stock s : stockList){
+                if(s.getPlayer() == null){
+                    s.setPlayer(p);
+                    HotelList.get(hotelID).UpdateStock(s.getID(),s);
+                    count++;
+                    if(count == numOfStock){
+                        break;
                     }
-                } else {
-                    return false;
                 }
             }
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override

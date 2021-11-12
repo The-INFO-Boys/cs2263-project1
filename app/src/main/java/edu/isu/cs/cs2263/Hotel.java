@@ -60,6 +60,10 @@ public class Hotel {
         return true;
     }
 
+    public void UpdateStock(int stockID, Stock updatedStock){
+        StockList.set(stockID,updatedStock);
+    }
+
     //endregion
 
     //region Private Methods

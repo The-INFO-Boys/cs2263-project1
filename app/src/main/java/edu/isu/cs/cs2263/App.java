@@ -23,5 +23,8 @@ public class App {
         g.foundHotel(0, 0, testFound);
         g.playTile(new Tile(1,2));
 
+        //Buy Stock
+        g.buyStock(0,0,3);
+
     }
 }

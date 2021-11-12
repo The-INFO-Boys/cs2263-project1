@@ -8,7 +8,7 @@ public interface System {
 
     public void getStock(Stock Stock,Hotel Hotel);
 
-    public boolean buyStock(Player Player, Stock stockToBuy, int numOfStock);
+    public boolean buyStock(int playerID, int hotelID, int numOfStock);
 
     public void loadGame(String filePath);
 
