@@ -15,6 +15,8 @@ public class Player {
         Name = name;
     }
 
+    public int getID(){return ID;};
+
     public int getMoney(){
         return Money;
     }

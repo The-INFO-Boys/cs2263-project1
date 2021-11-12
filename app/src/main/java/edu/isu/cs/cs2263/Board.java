@@ -54,6 +54,12 @@ public class Board {
 
     //region public methods
 
+    public void foundHotel(List<Tile> newHotel, Hotel h){
+        for(Tile t: newHotel){
+            board[t.getColumn()][t.getRow()].setHotel(h);
+        }
+    }
+
     public List<Tile> checkAdjacent(Tile tile){
         List<Tile> tileList = new ArrayList<>();
         Tile north = null;
@@ -90,8 +96,8 @@ public class Board {
     public void placeTile(Tile tile){
         this.board[tile.getColumn()][tile.getRow()].setPlaced();
     }
-    public void updateTile(Tile tile){
-        tile.setHotel(tile.getHotel());
+    public void updateTile(Tile tile, Hotel h){
+        tile.setHotel(h);
     }
     public List<Hotel> checkPresentHotels(){
         List<Hotel> hotelList = new ArrayList<Hotel>();

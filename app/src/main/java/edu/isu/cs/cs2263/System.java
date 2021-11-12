@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface System {
 
-    public int playTile(Tile Tile);
+    public List<Tile> playTile(Tile Tile);
 
     public void getStock(Stock Stock,Hotel Hotel);
 

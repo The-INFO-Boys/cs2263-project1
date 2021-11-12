@@ -27,16 +27,16 @@ public class Game implements System {
     public Game(){
         tileBag = tileInventory();
         Board = edu.isu.cs.cs2263.Board.getInstance();
-        PlayerList.add(new Player(1,"Player 1"));
-        PlayerList.add(new Player(2,"Player 2"));
-        HotelList.add(new Hotel(1,"Hotel 1",1));
-        HotelList.add(new Hotel(2,"Hotel 2",1));
-        HotelList.add(new Hotel(3,"Hotel 3",2));
-        HotelList.add(new Hotel(4,"Hotel 4",2));
-        HotelList.add(new Hotel(5,"Hotel 5",3));
-        HotelList.add(new Hotel(6,"Hotel 6",3));
-        HotelList.add(new Hotel(7,"Hotel 7",4));
-        HotelList.add(new Hotel(8,"Hotel 8",4));
+        PlayerList.add(new Player(0,"Player 1"));
+        PlayerList.add(new Player(1,"Player 2"));
+        HotelList.add(new Hotel(0,"Hotel 1",1));
+        HotelList.add(new Hotel(1,"Hotel 2",1));
+        HotelList.add(new Hotel(2,"Hotel 3",2));
+        HotelList.add(new Hotel(3,"Hotel 4",2));
+        HotelList.add(new Hotel(4,"Hotel 5",3));
+        HotelList.add(new Hotel(5,"Hotel 6",3));
+        HotelList.add(new Hotel(6,"Hotel 7",4));
+        HotelList.add(new Hotel(7,"Hotel 8",4));
     }
 
     //endregion
@@ -90,26 +90,26 @@ public class Game implements System {
 
     //region public methods
 
-    public void foundHotel(int id, Player currentPlayer){
-        if(HotelList.get(id).found(currentPlayer) == true){
-
+    public void foundHotel(int idHotel, int idPlayer, List<Tile> newHotel){
+        if(HotelList.get(idHotel).found(PlayerList.get(idPlayer))){
+            Board.foundHotel(newHotel,HotelList.get(idHotel));
         }
     }
 
     public int determineFirst(){
         Tile player1 = drawTile();
-        playTile(new Tile(1,1));
+        playTile(player1);
         Tile player2 = drawTile();
-        playTile(new Tile(1,2));
+        playTile(player2);
         if(player1.getColumn() + player1.getRow() < player2.getColumn() + player2.getRow()){
             //Player 1 Tile was closer to 1A
-            return 1;
+            return PlayerList.get(0).getID();
         } else if(player1.getColumn() + player1.getRow() > player2.getColumn() + player2.getRow()){
             //Player 2 Tile was closer to 1A
-            return 2;
+            return PlayerList.get(1).getID();
         } else if(player1.getColumn() + player1.getRow() == player2.getColumn() + player2.getRow()) {
             //Equal tiles, Player 1 goes first
-            return 1;
+            return PlayerList.get(0).getID();
         }else {
             //Should not get here
             return 3;
@@ -117,40 +117,43 @@ public class Game implements System {
     }
 
     @Override
-    public int playTile(Tile tile){
+    public List<Tile> playTile(Tile tile){
+        List<Tile> tilesToReturn = new ArrayList<>();
         List<Tile> adjacentTiles = Board.checkAdjacent(tile);
         List<Hotel> adjacentHotels = new ArrayList<>();
         List<Hotel> hotelsFoundable = new ArrayList<>();
         for (Tile t:adjacentTiles) {
-            if(t.getHotel() != null) {
+            if(t.getHotel() != null && !adjacentHotels.contains(t.getHotel())) {
                 adjacentHotels.add(t.getHotel());
             }
         }
         if(adjacentTiles.size() > 0 ) {
             for (Hotel h : HotelList) {
-                if (h.getFounded() == false) {
+                if (!h.getFounded()) {
                     hotelsFoundable.add(h);
                 }
             }
         }
         if(adjacentTiles.size() > 0 && adjacentHotels.size() < 1 && hotelsFoundable.size() < 1){
-            //Error
-            return 1;
+            //Error - nothing to return
+            return tilesToReturn;
         }
         Board.placeTile(tile);
         if(adjacentTiles.size() < 1){
-            //Success
-            return 0;
+            //Success - nothing to return
+            return tilesToReturn;
         }else if(adjacentHotels.size() < 1){
             //Found A Hotel
-            return 2;
+            tilesToReturn.addAll(adjacentTiles);
+            tilesToReturn.add(tile);
+            return tilesToReturn;
         }else if(adjacentHotels.size() > 1){
             //Merge
-            return 3;
+            return tilesToReturn;
         }else {
             //Success
-            Board.updateTile(tile);
-            return 0;
+            Board.updateTile(tile,adjacentHotels.get(0));
+            return tilesToReturn;
         }
     }
 

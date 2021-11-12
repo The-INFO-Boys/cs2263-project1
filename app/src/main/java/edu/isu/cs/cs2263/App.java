@@ -3,6 +3,8 @@
  */
 package edu.isu.cs.cs2263;
 
+import java.util.List;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
@@ -15,6 +17,11 @@ public class App {
         int PlayerID = g.determineFirst();
 
         //Play a Tile
+        Player p = new Player(99,"Free");
+        g.playTile(new Tile(1,1));
+        List<Tile> testFound = g.playTile(new Tile(2,1));
+        g.foundHotel(0, 0, testFound);
+        g.playTile(new Tile(1,2));
 
     }
 }
