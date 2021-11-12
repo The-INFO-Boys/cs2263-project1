@@ -188,7 +188,11 @@ public class Game implements System {
     @Override
     public void loadGame(String filePath){
         IOManager ioManager = new IOManager();
-        ioManager.loadGame(filePath,Board);
+        Game temp = ioManager.loadGame(filePath);
+        this.tileBag = temp.tileBag;
+        this.HotelList = temp.HotelList;
+        this.PlayerList = temp.PlayerList;
+        this.Board = temp.Board;
     }
 
     @Override

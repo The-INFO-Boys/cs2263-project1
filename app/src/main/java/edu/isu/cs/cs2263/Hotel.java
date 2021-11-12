@@ -41,11 +41,12 @@ public class Hotel {
     //region Constructor
 
     public Hotel(int id, String name, int typeID){
+        ID = id;
         Name = name;
         TypeID = typeID;
         StockList = new ArrayList<>();
         for(int x = 0; x < 25; x++ ){
-            StockList.add(new Stock(x,this));
+            StockList.add(new Stock(x));
         }
     }
 

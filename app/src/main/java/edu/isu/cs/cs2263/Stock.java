@@ -2,13 +2,13 @@ package edu.isu.cs.cs2263;
 
 import java.util.List;
 import java.util.ArrayList;
+import com.google.gson.*;
 
 public class Stock {
 
     //region Private Variables
 
     private int ID;
-    private Hotel hotel;
     private Player player = null;
 
     //endregion
@@ -16,9 +16,6 @@ public class Stock {
     //region Get & Set
 
     public int getID(){return ID;}
-    public Hotel getHotel(){
-        return hotel;
-    }
     public Player getPlayer(){return  player;}
     public void setPlayer(Player value){player = value;}
 
@@ -26,9 +23,8 @@ public class Stock {
 
     //region Constructor
 
-    public Stock(int id, Hotel h){
+    public Stock(int id){
         ID = id;
-        hotel = h;
     }
 
     //endregion
