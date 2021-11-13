@@ -34,7 +34,7 @@ public class App extends Application {
     }
 
     public void start(Stage stage)throws Exception{
-        Scene sc = new Scene(new GridPane());
+        Scene sc = new Scene(buildGrid(stage));
         stage.setScene(sc);
         stage.show();
     }
