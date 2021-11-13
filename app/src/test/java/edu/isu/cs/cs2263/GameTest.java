@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GameTest {
-    Tile tile;
+    Tile tile = new Tile(1,1);
     @Test
     void GameHasADetermineFirst(){
         Game classUnderTest = new Game();

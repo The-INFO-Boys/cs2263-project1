@@ -5,7 +5,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
-    private Tile tile;
+    private Tile tile = new Tile(1,1);
     private String hotel;
 
     @Test void boardHasACheckAdjacent(){
