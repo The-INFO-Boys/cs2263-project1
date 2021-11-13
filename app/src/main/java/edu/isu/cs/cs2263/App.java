@@ -335,14 +335,16 @@ public class App extends Application {
         gp.add(iElevenLabel,11,9);
         gp.add(iTwelveLabel,12,9);
 
-        gp.add(loadButton,0,16);
-        gp.add(saveButton,1,16);
-        gp.add(tLabel,2,16);
-        gp.add(mLabel,3,16);
-        gp.add(hotelButton,4,16);
-        gp.add(stocksButton,5,16);
-        gp.add(infoButton,6,16);
-        gp.add(pLabel,2,15);
+        GridPane buttonPane = new GridPane();
+        buttonPane.add(loadButton,0,1);
+        buttonPane.add(saveButton,1,1);
+        buttonPane.add(tLabel,2,1);
+        buttonPane.add(mLabel,3,1);
+        buttonPane.add(hotelButton,4,1);
+        buttonPane.add(stocksButton,5,1);
+        buttonPane.add(infoButton,6,1);
+        buttonPane.add(pLabel,2,0);
+        gp.add(buttonPane,0,16,13,2);
 
         return gp;
 
