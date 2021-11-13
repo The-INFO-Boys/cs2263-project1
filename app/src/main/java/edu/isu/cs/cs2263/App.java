@@ -537,7 +537,7 @@ public class App extends Application {
         Button stocksButton = new Button("Stocks");
         Button infoButton = new Button("Info");
         //Player Info
-        Label pLabel = new Label("PLAYER INFO:");
+        Label pLabel = new Label("PLAYER INFO: Player #");
 
         Label tLabel = new Label("TILES: 1.-- 2.-- 3.-- 4.-- 5.-- 6.--");
 
