@@ -3,16 +3,16 @@
  */
 package edu.isu.cs.cs2263;
 
-import java.util.List;
-
-public class App {
+public class App{
     public String getGreeting() {
         return "Hello World!";
     }
 
     public static void main(String[] args) {
 
-        //Start App
+    }
+
+    /*//Start App
         Game g = new Game();
         int PlayerID = g.determineFirst();
 
@@ -32,6 +32,5 @@ public class App {
         //Load Game
         g.loadGame("test.txt");
 
-        Player pp = new Player(99,"Free");
-    }
+        Player pp = new Player(99,"Free");*/
 }
