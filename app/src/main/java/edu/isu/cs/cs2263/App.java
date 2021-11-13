@@ -66,121 +66,446 @@ public class App extends Application {
         Label twelveLabel = new Label ("12");
         //Labels for Literally Everything
         Label aOneLabel = new Label("A1");
+        aOneLabel.setMinSize(25,20);
+        aOneLabel.setAlignment(Pos.CENTER);
+
         Label aTwoLabel = new Label("A2");
+        aTwoLabel.setMinSize(25,20);
+        aTwoLabel.setAlignment(Pos.CENTER);
+
         Label aThreeLabel = new Label("A3");
+        aThreeLabel.setMinSize(25,20);
+        aThreeLabel.setAlignment(Pos.CENTER);
+
         Label aFourLabel = new Label("A4");
+        aFourLabel.setMinSize(25,20);
+        aFourLabel.setAlignment(Pos.CENTER);
+
         Label aFiveLabel = new Label("A5");
+        aFiveLabel.setMinSize(25,20);
+        aFiveLabel.setAlignment(Pos.CENTER);
+
         Label aSixLabel = new Label("A6");
+        aSixLabel.setMinSize(25,20);
+        aSixLabel.setAlignment(Pos.CENTER);
+
         Label aSevenLabel = new Label("A7");
+        aSevenLabel.setMinSize(25,20);
+        aSevenLabel.setAlignment(Pos.CENTER);
+
         Label aEightLabel = new Label("A8");
+        aEightLabel.setMinSize(25,20);
+        aEightLabel.setAlignment(Pos.CENTER);
+
         Label aNineLabel = new Label("A9");
+        aNineLabel.setMinSize(25,20);
+        aNineLabel.setAlignment(Pos.CENTER);
+
         Label aTenLabel = new Label("A10");
+        aTenLabel.setMinSize(25,20);
+        aTenLabel.setAlignment(Pos.CENTER);
+
         Label aElevenLabel = new Label("A11");
+        aElevenLabel.setMinSize(25,20);
+        aElevenLabel.setAlignment(Pos.CENTER);
+
         Label aTwelveLabel = new Label("A12");
+        aTwelveLabel.setMinSize(25,20);
+        aTwelveLabel.setAlignment(Pos.CENTER);
+
 
         Label bOneLabel = new Label("B1");
+        bOneLabel.setMinSize(25,20);
+        bOneLabel.setAlignment(Pos.CENTER);
+
         Label bTwoLabel = new Label("B2");
+        bTwoLabel.setMinSize(25,20);
+        bTwoLabel.setAlignment(Pos.CENTER);
+
         Label bThreeLabel = new Label("B3");
+        bThreeLabel.setMinSize(25,20);
+        bThreeLabel.setAlignment(Pos.CENTER);
+
         Label bFourLabel = new Label("B4");
+        bFourLabel.setMinSize(25,20);
+        bFourLabel.setAlignment(Pos.CENTER);
+
         Label bFiveLabel = new Label("B5");
+        bFiveLabel.setMinSize(25,20);
+        bFiveLabel.setAlignment(Pos.CENTER);
+
         Label bSixLabel = new Label("B6");
+        bSixLabel.setMinSize(25,20);
+        bSixLabel.setAlignment(Pos.CENTER);
+
         Label bSevenLabel = new Label("B7");
+        bSevenLabel.setMinSize(25,20);
+        bSevenLabel.setAlignment(Pos.CENTER);
+
         Label bEightLabel = new Label("B8");
+        bEightLabel.setMinSize(25,20);
+        bEightLabel.setAlignment(Pos.CENTER);
+
         Label bNineLabel = new Label("B9");
+        bNineLabel.setMinSize(25,20);
+        bNineLabel.setAlignment(Pos.CENTER);
+
         Label bTenLabel = new Label("B10");
+        bTenLabel.setMinSize(25,20);
+        bTenLabel.setAlignment(Pos.CENTER);
+
         Label bElevenLabel = new Label("B11");
+        bElevenLabel.setMinSize(25,20);
+        bElevenLabel.setAlignment(Pos.CENTER);
+
         Label bTwelveLabel = new Label("B12");
+        bTwelveLabel.setMinSize(25,20);
+        bTwelveLabel.setAlignment(Pos.CENTER);
+
 
         Label cOneLabel = new Label("C1");
+        cOneLabel.setMinSize(25,20);
+        cOneLabel.setAlignment(Pos.CENTER);
+
         Label cTwoLabel = new Label("C2");
+        cTwoLabel.setMinSize(25,20);
+        cTwoLabel.setAlignment(Pos.CENTER);
+
         Label cThreeLabel = new Label("C3");
+        cThreeLabel.setMinSize(25,20);
+        cThreeLabel.setAlignment(Pos.CENTER);
+
         Label cFourLabel = new Label("C4");
+        cFourLabel.setMinSize(25,20);
+        cFourLabel.setAlignment(Pos.CENTER);
+
         Label cFiveLabel = new Label("C5");
+        cFiveLabel.setMinSize(25,20);
+        cFiveLabel.setAlignment(Pos.CENTER);
+
         Label cSixLabel = new Label("C6");
+        cSixLabel.setMinSize(25,20);
+        cSixLabel.setAlignment(Pos.CENTER);
+
         Label cSevenLabel = new Label("C7");
+        cSevenLabel.setMinSize(25,20);
+        cSevenLabel.setAlignment(Pos.CENTER);
+
         Label cEightLabel = new Label("C8");
+        cEightLabel.setMinSize(25,20);
+        cEightLabel.setAlignment(Pos.CENTER);
+
         Label cNineLabel = new Label("C9");
+        cNineLabel.setMinSize(25,20);
+        cNineLabel.setAlignment(Pos.CENTER);
+
         Label cTenLabel = new Label("C10");
+        cTenLabel.setMinSize(25,20);
+        cTenLabel.setAlignment(Pos.CENTER);
+
         Label cElevenLabel = new Label("C11");
+        cElevenLabel.setMinSize(25,20);
+        cElevenLabel.setAlignment(Pos.CENTER);
+
         Label cTwelveLabel = new Label("C12");
+        cTwelveLabel.setMinSize(25,20);
+        cTwelveLabel.setAlignment(Pos.CENTER);
+
 
         Label dOneLabel = new Label("D1");
+        dOneLabel.setMinSize(25,20);
+        dOneLabel.setAlignment(Pos.CENTER);
+
         Label dTwoLabel = new Label("D2");
+        dTwoLabel.setMinSize(25,20);
+        dTwoLabel.setAlignment(Pos.CENTER);
+
         Label dThreeLabel = new Label("D3");
+        dThreeLabel.setMinSize(25,20);
+        dThreeLabel.setAlignment(Pos.CENTER);
+
         Label dFourLabel = new Label("D4");
+        dFourLabel.setMinSize(25,20);
+        dFourLabel.setAlignment(Pos.CENTER);
+
         Label dFiveLabel = new Label("D5");
+        dFiveLabel.setMinSize(25,20);
+        dFiveLabel.setAlignment(Pos.CENTER);
+
         Label dSixLabel = new Label("D6");
+        dSixLabel.setMinSize(25,20);
+        dSixLabel.setAlignment(Pos.CENTER);
+
         Label dSevenLabel = new Label("D7");
+        dSevenLabel.setMinSize(25,20);
+        dSevenLabel.setAlignment(Pos.CENTER);
+
         Label dEightLabel = new Label("D8");
+        dEightLabel.setMinSize(25,20);
+        dEightLabel.setAlignment(Pos.CENTER);
+
         Label dNineLabel = new Label("D9");
+        dNineLabel.setMinSize(25,20);
+        dNineLabel.setAlignment(Pos.CENTER);
+
         Label dTenLabel = new Label("D10");
+        dTenLabel.setMinSize(25,20);
+        dTenLabel.setAlignment(Pos.CENTER);
+
         Label dElevenLabel = new Label("D11");
+        dElevenLabel.setMinSize(25,20);
+        dElevenLabel.setAlignment(Pos.CENTER);
+
         Label dTwelveLabel = new Label("D12");
+        dTwelveLabel.setMinSize(25,20);
+        dTwelveLabel.setAlignment(Pos.CENTER);
+
 
         Label eOneLabel = new Label("E1");
+        eOneLabel.setMinSize(25,20);
+        eOneLabel.setAlignment(Pos.CENTER);
+
         Label eTwoLabel = new Label("E2");
+        eTwoLabel.setMinSize(25,20);
+        eTwoLabel.setAlignment(Pos.CENTER);
+
         Label eThreeLabel = new Label("E3");
+        eThreeLabel.setMinSize(25,20);
+        eThreeLabel.setAlignment(Pos.CENTER);
+
         Label eFourLabel = new Label("E4");
+        eFourLabel.setMinSize(25,20);
+        eFourLabel.setAlignment(Pos.CENTER);
+
         Label eFiveLabel = new Label("E5");
+        eFiveLabel.setMinSize(25,20);
+        eFiveLabel.setAlignment(Pos.CENTER);
+
         Label eSixLabel = new Label("E6");
+        eSixLabel.setMinSize(25,20);
+        eSixLabel.setAlignment(Pos.CENTER);
+
         Label eSevenLabel = new Label("E7");
+        eSevenLabel.setMinSize(25,20);
+        eSevenLabel.setAlignment(Pos.CENTER);
+
         Label eEightLabel = new Label("E8");
+        eEightLabel.setMinSize(25,20);
+        eEightLabel.setAlignment(Pos.CENTER);
+
         Label eNineLabel = new Label("E9");
+        eNineLabel.setMinSize(25,20);
+        eNineLabel.setAlignment(Pos.CENTER);
+
         Label eTenLabel = new Label("E10");
+        eTenLabel.setMinSize(25,20);
+        eTenLabel.setAlignment(Pos.CENTER);
+
         Label eElevenLabel = new Label("E11");
+        eElevenLabel.setMinSize(25,20);
+        eElevenLabel.setAlignment(Pos.CENTER);
+
         Label eTwelveLabel = new Label("E12");
+        eTwelveLabel.setMinSize(25,20);
+        eTwelveLabel.setAlignment(Pos.CENTER);
+
 
         Label fOneLabel = new Label("F1");
+        fOneLabel.setMinSize(25,20);
+        fOneLabel.setAlignment(Pos.CENTER);
+
         Label fTwoLabel = new Label("F2");
+        fTwoLabel.setMinSize(25,20);
+        fTwoLabel.setAlignment(Pos.CENTER);
+
         Label fThreeLabel = new Label("F3");
+        fThreeLabel.setMinSize(25,20);
+        fThreeLabel.setAlignment(Pos.CENTER);
+
         Label fFourLabel = new Label("F4");
+        fFourLabel.setMinSize(25,20);
+        fFourLabel.setAlignment(Pos.CENTER);
+
         Label fFiveLabel = new Label("F5");
+        fFiveLabel.setMinSize(25,20);
+        fFiveLabel.setAlignment(Pos.CENTER);
+
         Label fSixLabel = new Label("F6");
+        fSixLabel.setMinSize(25,20);
+        fSixLabel.setAlignment(Pos.CENTER);
+
         Label fSevenLabel = new Label("F7");
+        fSevenLabel.setMinSize(25,20);
+        fSevenLabel.setAlignment(Pos.CENTER);
+
         Label fEightLabel = new Label("F8");
+        fEightLabel.setMinSize(25,20);
+        fEightLabel.setAlignment(Pos.CENTER);
+
         Label fNineLabel = new Label("F9");
+        fNineLabel.setMinSize(25,20);
+        fNineLabel.setAlignment(Pos.CENTER);
+
         Label fTenLabel = new Label("F10");
+        fTenLabel.setMinSize(25,20);
+        fTenLabel.setAlignment(Pos.CENTER);
+
         Label fElevenLabel = new Label("F11");
+        fElevenLabel.setMinSize(25,20);
+        fElevenLabel.setAlignment(Pos.CENTER);
+
         Label fTwelveLabel = new Label("F12");
+        fTwelveLabel.setMinSize(25,20);
+        fTwelveLabel.setAlignment(Pos.CENTER);
+
+
 
         Label gOneLabel = new Label("G1");
+        gOneLabel.setMinSize(25,20);
+        gOneLabel.setAlignment(Pos.CENTER);
+
         Label gTwoLabel = new Label("G2");
+        gTwoLabel.setMinSize(25,20);
+        gTwoLabel.setAlignment(Pos.CENTER);
+
         Label gThreeLabel = new Label("G3");
+        gThreeLabel.setMinSize(25,20);
+        gThreeLabel.setAlignment(Pos.CENTER);
+
         Label gFourLabel = new Label("G4");
+        gFourLabel.setMinSize(25,20);
+        gFourLabel.setAlignment(Pos.CENTER);
+
         Label gFiveLabel = new Label("G5");
+        gFiveLabel.setMinSize(25,20);
+        gFiveLabel.setAlignment(Pos.CENTER);
+
         Label gSixLabel = new Label("G6");
+        gSixLabel.setMinSize(25,20);
+        gSixLabel.setAlignment(Pos.CENTER);
+
         Label gSevenLabel = new Label("G7");
+        gSevenLabel.setMinSize(25,20);
+        gSevenLabel.setAlignment(Pos.CENTER);
+
         Label gEightLabel = new Label("G8");
+        gEightLabel.setMinSize(25,20);
+        gEightLabel.setAlignment(Pos.CENTER);
+
         Label gNineLabel = new Label("G9");
+        gNineLabel.setMinSize(25,20);
+        gNineLabel.setAlignment(Pos.CENTER);
+
         Label gTenLabel = new Label("G10");
+        gTenLabel.setMinSize(25,20);
+        gTenLabel.setAlignment(Pos.CENTER);
+
         Label gElevenLabel = new Label("G11");
+        gElevenLabel.setMinSize(25,20);
+        gElevenLabel.setAlignment(Pos.CENTER);
+
         Label gTwelveLabel = new Label("G12");
+        gTwelveLabel.setMinSize(25,20);
+        gTwelveLabel.setAlignment(Pos.CENTER);
+
 
         Label hOneLabel = new Label("H1");
+        hOneLabel.setMinSize(25,20);
+        hOneLabel.setAlignment(Pos.CENTER);
+
         Label hTwoLabel = new Label("H2");
+        hTwoLabel.setMinSize(25,20);
+        hTwoLabel.setAlignment(Pos.CENTER);
+
         Label hThreeLabel = new Label("H3");
+        hThreeLabel.setMinSize(25,20);
+        hThreeLabel.setAlignment(Pos.CENTER);
+
         Label hFourLabel = new Label("H4");
+        hFourLabel.setMinSize(25,20);
+        hFourLabel.setAlignment(Pos.CENTER);
+
         Label hFiveLabel = new Label("H5");
+        hFiveLabel.setMinSize(25,20);
+        hFiveLabel.setAlignment(Pos.CENTER);
+
         Label hSixLabel = new Label("H6");
+        hSixLabel.setMinSize(25,20);
+        hSixLabel.setAlignment(Pos.CENTER);
+
         Label hSevenLabel = new Label("H7");
+        hSevenLabel.setMinSize(25,20);
+        hSevenLabel.setAlignment(Pos.CENTER);
+
         Label hEightLabel = new Label("H8");
+        hEightLabel.setMinSize(25,20);
+        hEightLabel.setAlignment(Pos.CENTER);
+
         Label hNineLabel = new Label("H9");
+        hNineLabel.setMinSize(25,20);
+        hNineLabel.setAlignment(Pos.CENTER);
+
         Label hTenLabel = new Label("H10");
+        hTenLabel.setMinSize(25,20);
+        hTenLabel.setAlignment(Pos.CENTER);
+
         Label hElevenLabel = new Label("H11");
+        hElevenLabel.setMinSize(25,20);
+        hElevenLabel.setAlignment(Pos.CENTER);
+
         Label hTwelveLabel = new Label("H12");
+        hTwelveLabel.setMinSize(25,20);
+        hTwelveLabel.setAlignment(Pos.CENTER);
+
 
         Label iOneLabel = new Label("I1");
+        iOneLabel.setMinSize(25,20);
+        iOneLabel.setAlignment(Pos.CENTER);
+
         Label iTwoLabel = new Label("I2");
+        iTwoLabel.setMinSize(25,20);
+        iTwoLabel.setAlignment(Pos.CENTER);
+
         Label iThreeLabel = new Label("I3");
+        iThreeLabel.setMinSize(25,20);
+        iThreeLabel.setAlignment(Pos.CENTER);
+
         Label iFourLabel = new Label("I4");
+        iFourLabel.setMinSize(25,20);
+        iFourLabel.setAlignment(Pos.CENTER);
+
         Label iFiveLabel = new Label("I5");
+        iFiveLabel.setMinSize(25,20);
+        iFiveLabel.setAlignment(Pos.CENTER);
+
         Label iSixLabel = new Label("I6");
+        iSixLabel.setMinSize(25,20);
+        iSixLabel.setAlignment(Pos.CENTER);
+
         Label iSevenLabel = new Label("I7");
+        iSevenLabel.setMinSize(25,20);
+        iSevenLabel.setAlignment(Pos.CENTER);
+
         Label iEightLabel = new Label("I8");
+        iEightLabel.setMinSize(25,20);
+        iEightLabel.setAlignment(Pos.CENTER);
+
         Label iNineLabel = new Label("I9");
+        iNineLabel.setMinSize(25,20);
+        iNineLabel.setAlignment(Pos.CENTER);
+
         Label iTenLabel = new Label("I10");
+        iTenLabel.setMinSize(25,20);
+        iTenLabel.setAlignment(Pos.CENTER);
+
         Label iElevenLabel = new Label("I11");
+        iElevenLabel.setMinSize(25,20);
+        iElevenLabel.setAlignment(Pos.CENTER);
+
         Label iTwelveLabel = new Label("I12");
+        iTwelveLabel.setMinSize(25,20);
+        iTwelveLabel.setAlignment(Pos.CENTER);
+
         //Buttons
         Button loadButton = new Button("Load Game");
         Button saveButton = new Button("Save Game");
