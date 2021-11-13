@@ -136,3 +136,93 @@ public class Board {
     }
     //endregion
 }
+
+//Some late night stuff that I forgot to push awhile ago
+
+//public class Board {
+    //private Map <String, Hotel> board;
+    //private List <String> row;
+    //private List <String> column;
+    //private Map <String, Set<String>> hotelTiles;
+    //private static Board b;
+
+    //private Board() {
+        //row = Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I");
+        //column = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
+        //board = new HashMap<String, Hotel>();
+        //hotelTiles = new HashMap<String, Set<String>>();
+    //}
+
+    //public static Board getInstance() {
+        //return new Board();
+    //}
+
+//public Board createBoard() {
+        //for (String row: row) {
+            //for (String column: column) {
+                //Tile tile = new Tile();
+                //tile.setColumn(column);
+                //tile.setRow(row);
+                //this.board.put(tile.getTileLabel(row, column), null);
+            //}
+        //}
+        //return board;
+    //}
+
+    //public Map<String, Hotel> getOccupiedTile() {
+        //Map <String, Hotel> occupiedTile = new HashMap<>();
+        //for (String tile : board.keySet()) {
+            //if (board.get(tile) != null) {
+                //occupiedTile.put(tile, board.get(tile));
+            //}
+        //}
+        //return occupiedTile;
+    //}
+
+    //public Map<String, Set<String>> getHotelTile() {
+        //Map <String, Hotel> occupiedTile = getOccupiedTile();
+        //Map <String, List<String>> hotelTile = new HashMap<>();
+        //for (String tile : occupiedTile.keySet()) {
+            //if (!occupiedTile.get(tile).getLabel().equals(Config.Moves.SINGLETON.getMove())) {
+                //if (!hotelTile.containsKey(occupiedTile.get(tile).getLabel())) {
+                    //hotelTile.put(occupiedTile.get(tile).getLabel(), new HashSet<>(Arrays.asList(tile)));
+                //} else {
+                    //Set<String> tiles = hotelTile.get(occupiedTile.get(tile).getLabel());
+                    //tiles.add(tile);
+                    //hotelTile.put(occupiedTile.get(tile).getLabel(), tiles);
+                //}
+
+
+            //}
+        //}
+        //return hotelTile;
+
+    //}
+
+    //public List<String> getRow(){
+        //return row;
+    //}
+
+    //public List<String> getColumn(){
+        //return columns;
+    //}
+
+    //public Map <String, Hotel> getBoard() {
+        //return board;
+    //}
+
+    //public void clear() {
+        //b = null;
+    //}
+
+    //public List<String> getEmptyTile() {
+        //List<String> allTile = new ArrayList<>();
+        //for (String row: row) {
+            //for (String column: column) {
+                //allTile.add(column + row);
+            //}
+        //}
+        //allTile.removeAll(board.keySet());
+        //return allTiles;
+    //}
+//}
