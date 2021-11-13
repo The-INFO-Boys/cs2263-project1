@@ -226,3 +226,23 @@ public class Board {
         //return allTiles;
     //}
 //}
+
+//import javax.swing.*;
+//public class layout extends JFrame {
+    //JButton button1, button2, button3, button4, button5, button6;
+
+    //public layout() {
+        //setLayout(new GridLayout (1, 5));
+        //button1 = new JButton("Load Game");
+        //button2 = new JButton("Save Game");
+        //button3 = new JButton("Hotels");
+        //button4 = new JButton("Stocks");
+        //button5 = new JButton("Info");
+    //}
+    //public static void main(String args[]) {
+        //JFrame = frame = new JFrame("Tile Layout");
+        //frame.setVisible(true);
+        //frame.setSize(1000,1000);
+        //JPanel panel = new JPanel();
+        //panel.setLayout(new GridLayout(12, 9));
+        //JLabel label1 = newJLabel("");    JLabel label2 = new JLabel("");
