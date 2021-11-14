@@ -543,6 +543,7 @@ public class App extends Application {
         Button infoButton = new Button("Info");
         Button playButton = new Button("Play");
         playButton.setStyle("-fx-background-color: #00FF00");
+        playButton.setMinWidth(50);
 
 
         //Player Info
