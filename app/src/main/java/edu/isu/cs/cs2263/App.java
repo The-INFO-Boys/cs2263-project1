@@ -3,6 +3,7 @@
  */
 package edu.isu.cs.cs2263;
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,6 +32,11 @@ public class App extends Application {
 
     public Game g = new Game();
 
+    public static void updateGUI(GridPane gp){
+        for (Object object: gp.getChildren()){
+            String str = object.toString();
+        }
+    }
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -544,7 +550,6 @@ public class App extends Application {
         Button playButton = new Button("Play Game");
         playButton.setStyle("-fx-background-color: #00FF00");
         playButton.setMinWidth(50);
-        playButton.setPadding(new Insets(0,0,0,50));
 
 
         //Player Info
@@ -553,8 +558,29 @@ public class App extends Application {
         Label tLabel = new Label("TILES: 1.-- 2.-- 3.-- 4.-- 5.-- 6.--");
 
         Label mLabel = new Label("MONEY: $----");
-        //grid setup
+
+        Label infoLabel = new Label();
+
         GridPane gp = new  GridPane();
+
+        //Handlers
+        EventHandler<MouseEvent>startClicked = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                int playerId = g.determineFirst();
+                if (playerId == 0){
+                    infoLabel.setText("Player 1 drew a smaller tile, \n Click to continue.");
+                }
+                else if (playerId == 1){
+                    infoLabel.setText("Player 1 drew a smaller tile, \n Click to continue.");
+
+                }
+                gp.add(infoLabel,13,5);
+            }
+        }
+
+
+        //grid setup
         gp.add(oneLabel,1,0);
         gp.add(twoLabel,2,0);
         gp.add(threeLabel,3,0);
