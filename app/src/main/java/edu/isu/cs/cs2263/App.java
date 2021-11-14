@@ -544,6 +544,7 @@ public class App extends Application {
         Button playButton = new Button("Play Game");
         playButton.setStyle("-fx-background-color: #00FF00");
         playButton.setMinWidth(50);
+        playButton.setPadding(new Insets(0,0,0,50));
 
 
         //Player Info
