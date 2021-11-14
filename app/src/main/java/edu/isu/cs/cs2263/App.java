@@ -1033,16 +1033,13 @@ public class App extends Application {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2) {
-                    if (currentChoices == 1) {
-                        if (event.getCode() == KeyCode.DIGIT1) {
-                            playButton.setText("It Worked");
-                        }
-                    } else if (currentChoices == 2) {
-                        if (event.getCode() == KeyCode.DIGIT1) {
-
-                        } else if (event.getCode() == KeyCode.DIGIT2) {
-
-                        }
+                    if (event.getCode() == KeyCode.DIGIT1) {
+                        playButton.setText("It Worked");
+                        g.fillHand(0);
+                        g.fillHand(1);
+                    }
+                    if(event.getCode() == KeyCode.DIGIT2 && currentChoices == 2){
+                        //Handle Buy Stock
                     }
                 }
             }
