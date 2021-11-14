@@ -693,6 +693,8 @@ public class App extends Application {
         gp.add(iElevenLabel,11,9);
         gp.add(iTwelveLabel,12,9);
 
+        gp.add(playButton,13,5);
+
         GridPane buttonPane = new GridPane();
         buttonPane.add(loadButton,0,1);
         buttonPane.add(saveButton,1,1);
