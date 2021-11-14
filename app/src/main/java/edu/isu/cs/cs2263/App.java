@@ -3,6 +3,7 @@
  */
 package edu.isu.cs.cs2263;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -29,6 +31,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import javax.swing.text.LabelView;
+import java.io.File;
 import java.util.List;
 import java.util.Objects;
 
@@ -2026,6 +2029,22 @@ public class App extends Application {
                     }
                 };
                 playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playerSelectionContinueClicked);
+
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Open Save File");
+
+                loadButton.setOnAction(event1 -> {
+                    File file = fileChooser.showOpenDialog(stage);
+                    if (file != null)
+                        g.loadGame(file.getAbsolutePath());
+                });
+                EventHandler<ActionEvent> foundHotel = new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        //if()
+                    }
+                };
+
             }
         };
         playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startClicked);
