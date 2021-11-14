@@ -38,9 +38,119 @@ import java.util.Objects;
 
 public class App extends Application {
 
-    public static Game g = new Game();
-    public int currentPlayer = 0;
-    public int currentChoices = 1;
+    Game g = new Game();
+    int currentPlayer = 0;
+    int currentChoices = 1;
+
+    Label aOneLabel = new Label("A1");
+    Label aTwoLabel = new Label("A2");
+    Label aThreeLabel = new Label("A3");
+    Label aFourLabel = new Label("A4");
+    Label aFiveLabel = new Label("A5");
+    Label aSixLabel = new Label("A6");
+    Label aSevenLabel = new Label("A7");
+    Label aEightLabel = new Label("A8");
+    Label aNineLabel = new Label("A9");
+    Label aTenLabel = new Label("A10");
+    Label aElevenLabel = new Label("A11");
+    Label aTwelveLabel = new Label("A12");
+    Label bOneLabel = new Label("B1");
+    Label bTwoLabel = new Label("B2");
+    Label bThreeLabel = new Label("B3");
+    Label bFourLabel = new Label("B4");
+    Label bFiveLabel = new Label("B5");
+    Label bSixLabel = new Label("B6");
+    Label bSevenLabel = new Label("B7");
+    Label bEightLabel = new Label("B8");
+    Label bNineLabel = new Label("B9");
+    Label bTenLabel = new Label("B10");
+    Label bElevenLabel = new Label("B11");
+    Label bTwelveLabel = new Label("B12");
+    Label cOneLabel = new Label("C1");
+    Label cTwoLabel = new Label("C2");
+    Label cThreeLabel = new Label("C3");
+    Label cFourLabel = new Label("C4");
+    Label cFiveLabel = new Label("C5");
+    Label cSixLabel = new Label("C6");
+    Label cSevenLabel = new Label("C7");
+    Label cEightLabel = new Label("C8");
+    Label cNineLabel = new Label("C9");
+    Label cTenLabel = new Label("C10");
+    Label cElevenLabel = new Label("C11");
+    Label cTwelveLabel = new Label("C12");
+    Label dOneLabel = new Label("D1");
+    Label dTwoLabel = new Label("D2");
+    Label dThreeLabel = new Label("D3");
+    Label dFourLabel = new Label("D4");
+    Label dFiveLabel = new Label("D5");
+    Label dSixLabel = new Label("D6");
+    Label dSevenLabel = new Label("D7");
+    Label dEightLabel = new Label("D8");
+    Label dNineLabel = new Label("D9");
+    Label dTenLabel = new Label("D10");
+    Label dElevenLabel = new Label("D11");
+    Label dTwelveLabel = new Label("D12");
+    Label eOneLabel = new Label("E1");
+    Label eTwoLabel = new Label("E2");
+    Label eThreeLabel = new Label("E3");
+    Label eFourLabel = new Label("E4");
+    Label eFiveLabel = new Label("E5");
+    Label eSixLabel = new Label("E6");
+    Label eSevenLabel = new Label("E7");
+    Label eEightLabel = new Label("E8");
+    Label eNineLabel = new Label("E9");
+    Label eTenLabel = new Label("E10");
+    Label eElevenLabel = new Label("E11");
+    Label eTwelveLabel = new Label("E12");
+    Label fOneLabel = new Label("F1");
+    Label fTwoLabel = new Label("F2");
+    Label fThreeLabel = new Label("F3");
+    Label fFourLabel = new Label("F4");
+    Label fFiveLabel = new Label("F5");
+    Label fSixLabel = new Label("F6");
+    Label fSevenLabel = new Label("F7");
+    Label fEightLabel = new Label("F8");
+    Label fNineLabel = new Label("F9");
+    Label fTenLabel = new Label("F10");
+    Label fElevenLabel = new Label("F11");
+    Label fTwelveLabel = new Label("F12");
+    Label gOneLabel = new Label("G1");
+    Label gTwoLabel = new Label("G2");
+    Label gThreeLabel = new Label("G3");
+    Label gFourLabel = new Label("G4");
+    Label gFiveLabel = new Label("G5");
+    Label gSixLabel = new Label("G6");
+    Label gSevenLabel = new Label("G7");
+    Label gEightLabel = new Label("G8");
+    Label gNineLabel = new Label("G9");
+    Label gTenLabel = new Label("G10");
+    Label gElevenLabel = new Label("G11");
+    Label gTwelveLabel = new Label("G12");
+    Label hOneLabel = new Label("H1");
+    Label hTwoLabel = new Label("H2");
+    Label hThreeLabel = new Label("H3");
+    Label hFourLabel = new Label("H4");
+    Label hFiveLabel = new Label("H5");
+    Label hSixLabel = new Label("H6");
+    Label hSevenLabel = new Label("H7");
+    Label hEightLabel = new Label("H8");
+    Label hNineLabel = new Label("H9");
+    Label hTenLabel = new Label("H10");
+    Label hElevenLabel = new Label("H11");
+    Label hTwelveLabel = new Label("H12");
+    Label iOneLabel = new Label("I1");
+    Label iTwoLabel = new Label("I2");
+    Label iThreeLabel = new Label("I3");
+    Label iFourLabel = new Label("I4");
+    Label iFiveLabel = new Label("I5");
+    Label iSixLabel = new Label("I6");
+    Label iSevenLabel = new Label("I7");
+    Label iEightLabel = new Label("I8");
+    Label iNineLabel = new Label("I9");
+    Label iTenLabel = new Label("I10");
+    Label iElevenLabel = new Label("I11");
+    Label iTwelveLabel = new Label("I12");
+
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -104,746 +214,639 @@ public class App extends Application {
         twelveLabel.setAlignment(Pos.CENTER);
 
         //Labels for Literally Everything
-        Label aOneLabel = new Label("A1");
         aOneLabel.setMinSize(25, 20);
         aOneLabel.setAlignment(Pos.CENTER);
         aOneLabel.setId("A1");
         aOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label aTwoLabel = new Label("A2");
         aTwoLabel.setMinSize(25, 20);
         aTwoLabel.setAlignment(Pos.CENTER);
         aTwoLabel.setId("A2");
         aTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label aThreeLabel = new Label("A3");
         aThreeLabel.setMinSize(25, 20);
         aThreeLabel.setAlignment(Pos.CENTER);
         aThreeLabel.setId("A3");
         aThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
-        Label aFourLabel = new Label("A4");
         aFourLabel.setMinSize(25, 20);
         aFourLabel.setAlignment(Pos.CENTER);
         aFourLabel.setId("A4");
         aFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
-        Label aFiveLabel = new Label("A5");
         aFiveLabel.setMinSize(25, 20);
         aFiveLabel.setAlignment(Pos.CENTER);
         aFiveLabel.setId("A5");
         aFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
-        Label aSixLabel = new Label("A6");
         aSixLabel.setMinSize(25, 20);
         aSixLabel.setAlignment(Pos.CENTER);
         aSixLabel.setId("A6");
         aSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
-        Label aSevenLabel = new Label("A7");
         aSevenLabel.setMinSize(25, 20);
         aSevenLabel.setAlignment(Pos.CENTER);
         aSevenLabel.setId("A7");
         aSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
-        Label aEightLabel = new Label("A8");
         aEightLabel.setMinSize(25, 20);
         aEightLabel.setAlignment(Pos.CENTER);
         aEightLabel.setId("A8");
         aEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
-        Label aNineLabel = new Label("A9");
         aNineLabel.setMinSize(25, 20);
         aNineLabel.setAlignment(Pos.CENTER);
         aNineLabel.setId("A9");
         aNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
-        Label aTenLabel = new Label("A10");
         aTenLabel.setMinSize(25, 20);
         aTenLabel.setAlignment(Pos.CENTER);
         aTenLabel.setId("A10");
         aTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
-        Label aElevenLabel = new Label("A11");
         aElevenLabel.setMinSize(25, 20);
         aElevenLabel.setAlignment(Pos.CENTER);
         aElevenLabel.setId("A11");
         aElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
-        Label aTwelveLabel = new Label("A12");
         aTwelveLabel.setMinSize(25, 20);
         aTwelveLabel.setAlignment(Pos.CENTER);
         aTwelveLabel.setId("A12");
         aTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label bOneLabel = new Label("B1");
         bOneLabel.setMinSize(25, 20);
         bOneLabel.setAlignment(Pos.CENTER);
         bOneLabel.setId("B1");
         bOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label bTwoLabel = new Label("B2");
         bTwoLabel.setMinSize(25, 20);
         bTwoLabel.setAlignment(Pos.CENTER);
         bTwoLabel.setId("B2");
         bTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label bThreeLabel = new Label("B3");
         bThreeLabel.setMinSize(25, 20);
         bThreeLabel.setAlignment(Pos.CENTER);
         bThreeLabel.setId("B3");
         bThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label bFourLabel = new Label("B4");
         bFourLabel.setMinSize(25, 20);
         bFourLabel.setAlignment(Pos.CENTER);
         bFourLabel.setId("B4");
         bFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label bFiveLabel = new Label("B5");
         bFiveLabel.setMinSize(25, 20);
         bFiveLabel.setAlignment(Pos.CENTER);
         bFiveLabel.setId("B5");
         bFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label bSixLabel = new Label("B6");
         bSixLabel.setMinSize(25, 20);
         bSixLabel.setAlignment(Pos.CENTER);
         bSixLabel.setId("B6");
         bSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label bSevenLabel = new Label("B7");
         bSevenLabel.setMinSize(25, 20);
         bSevenLabel.setAlignment(Pos.CENTER);
         bSevenLabel.setId("B7");
         bSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label bEightLabel = new Label("B8");
         bEightLabel.setMinSize(25, 20);
         bEightLabel.setAlignment(Pos.CENTER);
         bEightLabel.setId("B8");
         bEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label bNineLabel = new Label("B9");
         bNineLabel.setMinSize(25, 20);
         bNineLabel.setAlignment(Pos.CENTER);
         bNineLabel.setId("B9");
         bNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label bTenLabel = new Label("B10");
         bTenLabel.setMinSize(25, 20);
         bTenLabel.setAlignment(Pos.CENTER);
         bTenLabel.setId("B10");
         bTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label bElevenLabel = new Label("B11");
         bElevenLabel.setMinSize(25, 20);
         bElevenLabel.setAlignment(Pos.CENTER);
         bElevenLabel.setId("B11");
         bElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label bTwelveLabel = new Label("B12");
         bTwelveLabel.setMinSize(25, 20);
         bTwelveLabel.setAlignment(Pos.CENTER);
         bTwelveLabel.setId("B12");
         bTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label cOneLabel = new Label("C1");
         cOneLabel.setMinSize(25, 20);
         cOneLabel.setAlignment(Pos.CENTER);
         cOneLabel.setId("C1");
         cOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label cTwoLabel = new Label("C2");
         cTwoLabel.setMinSize(25, 20);
         cTwoLabel.setAlignment(Pos.CENTER);
         cTwoLabel.setId("C2");
         cTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label cThreeLabel = new Label("C3");
         cThreeLabel.setMinSize(25, 20);
         cThreeLabel.setAlignment(Pos.CENTER);
         cThreeLabel.setId("C3");
         cThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label cFourLabel = new Label("C4");
         cFourLabel.setMinSize(25, 20);
         cFourLabel.setAlignment(Pos.CENTER);
         cFourLabel.setId("C4");
         cFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label cFiveLabel = new Label("C5");
         cFiveLabel.setMinSize(25, 20);
         cFiveLabel.setAlignment(Pos.CENTER);
         cFiveLabel.setId("C5");
         cFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label cSixLabel = new Label("C6");
         cSixLabel.setMinSize(25, 20);
         cSixLabel.setAlignment(Pos.CENTER);
         cSixLabel.setId("C6");
         cSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label cSevenLabel = new Label("C7");
         cSevenLabel.setMinSize(25, 20);
         cSevenLabel.setAlignment(Pos.CENTER);
         cSevenLabel.setId("C7");
         cSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label cEightLabel = new Label("C8");
         cEightLabel.setMinSize(25, 20);
         cEightLabel.setAlignment(Pos.CENTER);
         cEightLabel.setId("C8");
+        cEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label cNineLabel = new Label("C9");
         cNineLabel.setMinSize(25, 20);
         cNineLabel.setAlignment(Pos.CENTER);
         cNineLabel.setId("C9");
         cNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label cTenLabel = new Label("C10");
         cTenLabel.setMinSize(25, 20);
         cTenLabel.setAlignment(Pos.CENTER);
         cTenLabel.setId("C10");
         cTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label cElevenLabel = new Label("C11");
         cElevenLabel.setMinSize(25, 20);
         cElevenLabel.setAlignment(Pos.CENTER);
         cElevenLabel.setId("C11");
         cElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label cTwelveLabel = new Label("C12");
         cTwelveLabel.setMinSize(25, 20);
         cTwelveLabel.setAlignment(Pos.CENTER);
         cTwelveLabel.setId("C12");
         cTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label dOneLabel = new Label("D1");
         dOneLabel.setMinSize(25, 20);
         dOneLabel.setAlignment(Pos.CENTER);
         dOneLabel.setId("D1");
         dOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label dTwoLabel = new Label("D2");
         dTwoLabel.setMinSize(25, 20);
         dTwoLabel.setAlignment(Pos.CENTER);
         dTwoLabel.setId("D2");
         dTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label dThreeLabel = new Label("D3");
         dThreeLabel.setMinSize(25, 20);
         dThreeLabel.setAlignment(Pos.CENTER);
         dThreeLabel.setId("D3");
         dThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label dFourLabel = new Label("D4");
         dFourLabel.setMinSize(25, 20);
         dFourLabel.setAlignment(Pos.CENTER);
         dFourLabel.setId("D4");
         dFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label dFiveLabel = new Label("D5");
         dFiveLabel.setMinSize(25, 20);
         dFiveLabel.setAlignment(Pos.CENTER);
         dFiveLabel.setId("D5");
         dFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label dSixLabel = new Label("D6");
         dSixLabel.setMinSize(25, 20);
         dSixLabel.setAlignment(Pos.CENTER);
         dSixLabel.setId("D6");
         dSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label dSevenLabel = new Label("D7");
         dSevenLabel.setMinSize(25, 20);
         dSevenLabel.setAlignment(Pos.CENTER);
         dSevenLabel.setId("D7");
         dSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label dEightLabel = new Label("D8");
         dEightLabel.setMinSize(25, 20);
         dEightLabel.setAlignment(Pos.CENTER);
         dEightLabel.setId("D8");
         dEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label dNineLabel = new Label("D9");
         dNineLabel.setMinSize(25, 20);
         dNineLabel.setAlignment(Pos.CENTER);
         dNineLabel.setId("D9");
         dNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label dTenLabel = new Label("D10");
         dTenLabel.setMinSize(25, 20);
         dTenLabel.setAlignment(Pos.CENTER);
         dTenLabel.setId("D10");
         dTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label dElevenLabel = new Label("D11");
         dElevenLabel.setMinSize(25, 20);
         dElevenLabel.setAlignment(Pos.CENTER);
         dElevenLabel.setId("D11");
         dElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label dTwelveLabel = new Label("D12");
         dTwelveLabel.setMinSize(25, 20);
         dTwelveLabel.setAlignment(Pos.CENTER);
         dTwelveLabel.setId("D12");
         dTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label eOneLabel = new Label("E1");
         eOneLabel.setMinSize(25, 20);
         eOneLabel.setAlignment(Pos.CENTER);
         eOneLabel.setId("E1");
         eOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label eTwoLabel = new Label("E2");
         eTwoLabel.setMinSize(25, 20);
         eTwoLabel.setAlignment(Pos.CENTER);
         eTwoLabel.setId("E2");
         eTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label eThreeLabel = new Label("E3");
         eThreeLabel.setMinSize(25, 20);
         eThreeLabel.setAlignment(Pos.CENTER);
         eThreeLabel.setId("E3");
         eThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label eFourLabel = new Label("E4");
         eFourLabel.setMinSize(25, 20);
         eFourLabel.setAlignment(Pos.CENTER);
         eFourLabel.setId("E4");
         eFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label eFiveLabel = new Label("E5");
         eFiveLabel.setMinSize(25, 20);
         eFiveLabel.setAlignment(Pos.CENTER);
         eFiveLabel.setId("E5");
         eFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label eSixLabel = new Label("E6");
         eSixLabel.setMinSize(25, 20);
         eSixLabel.setAlignment(Pos.CENTER);
         eSixLabel.setId("E6");
         eSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label eSevenLabel = new Label("E7");
         eSevenLabel.setMinSize(25, 20);
         eSevenLabel.setAlignment(Pos.CENTER);
         eSevenLabel.setId("E7");
         eSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label eEightLabel = new Label("E8");
         eEightLabel.setMinSize(25, 20);
         eEightLabel.setAlignment(Pos.CENTER);
         eEightLabel.setId("E8");
         eEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label eNineLabel = new Label("E9");
         eNineLabel.setMinSize(25, 20);
         eNineLabel.setAlignment(Pos.CENTER);
         eNineLabel.setId("E9");
         eNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label eTenLabel = new Label("E10");
         eTenLabel.setMinSize(25, 20);
         eTenLabel.setAlignment(Pos.CENTER);
         eTenLabel.setId("E10");
         eTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label eElevenLabel = new Label("E11");
         eElevenLabel.setMinSize(25, 20);
         eElevenLabel.setAlignment(Pos.CENTER);
         eElevenLabel.setId("E11");
         eElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label eTwelveLabel = new Label("E12");
         eTwelveLabel.setMinSize(25, 20);
         eTwelveLabel.setAlignment(Pos.CENTER);
         eTwelveLabel.setId("E12");
         eTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label fOneLabel = new Label("F1");
         fOneLabel.setMinSize(25, 20);
         fOneLabel.setAlignment(Pos.CENTER);
         fOneLabel.setId("F1");
         fOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label fTwoLabel = new Label("F2");
         fTwoLabel.setMinSize(25, 20);
         fTwoLabel.setAlignment(Pos.CENTER);
         fTwoLabel.setId("F2");
         fTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label fThreeLabel = new Label("F3");
         fThreeLabel.setMinSize(25, 20);
         fThreeLabel.setAlignment(Pos.CENTER);
         fThreeLabel.setId("F3");
         fThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label fFourLabel = new Label("F4");
         fFourLabel.setMinSize(25, 20);
         fFourLabel.setAlignment(Pos.CENTER);
         fFourLabel.setId("F4");
         fFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label fFiveLabel = new Label("F5");
         fFiveLabel.setMinSize(25, 20);
         fFiveLabel.setAlignment(Pos.CENTER);
         fFiveLabel.setId("F5");
         fFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label fSixLabel = new Label("F6");
         fSixLabel.setMinSize(25, 20);
         fSixLabel.setAlignment(Pos.CENTER);
         fSixLabel.setId("F6");
         fSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label fSevenLabel = new Label("F7");
         fSevenLabel.setMinSize(25, 20);
         fSevenLabel.setAlignment(Pos.CENTER);
         fSevenLabel.setId("F7");
         fSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label fEightLabel = new Label("F8");
         fEightLabel.setMinSize(25, 20);
         fEightLabel.setAlignment(Pos.CENTER);
         fEightLabel.setId("F8");
         fEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label fNineLabel = new Label("F9");
         fNineLabel.setMinSize(25, 20);
         fNineLabel.setAlignment(Pos.CENTER);
         fNineLabel.setId("F9");
         fNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label fTenLabel = new Label("F10");
         fTenLabel.setMinSize(25, 20);
         fTenLabel.setAlignment(Pos.CENTER);
         fTenLabel.setId("F10");
         fTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label fElevenLabel = new Label("F11");
         fElevenLabel.setMinSize(25, 20);
         fElevenLabel.setAlignment(Pos.CENTER);
         fElevenLabel.setId("F11");
         fElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label fTwelveLabel = new Label("F12");
         fTwelveLabel.setMinSize(25, 20);
         fTwelveLabel.setAlignment(Pos.CENTER);
         fTwelveLabel.setId("F12");
         fTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label gOneLabel = new Label("G1");
         gOneLabel.setMinSize(25, 20);
         gOneLabel.setAlignment(Pos.CENTER);
         gOneLabel.setId("G1");
         gOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label gTwoLabel = new Label("G2");
         gTwoLabel.setMinSize(25, 20);
         gTwoLabel.setAlignment(Pos.CENTER);
         gTwoLabel.setId("G2");
         gTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label gThreeLabel = new Label("G3");
         gThreeLabel.setMinSize(25, 20);
         gThreeLabel.setAlignment(Pos.CENTER);
         gThreeLabel.setId("G3");
         gThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label gFourLabel = new Label("G4");
         gFourLabel.setMinSize(25, 20);
         gFourLabel.setAlignment(Pos.CENTER);
         gFourLabel.setId("G4");
         gFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label gFiveLabel = new Label("G5");
         gFiveLabel.setMinSize(25, 20);
         gFiveLabel.setAlignment(Pos.CENTER);
         gFiveLabel.setId("G5");
         gFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label gSixLabel = new Label("G6");
         gSixLabel.setMinSize(25, 20);
         gSixLabel.setAlignment(Pos.CENTER);
         gSixLabel.setId("G6");
         gSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label gSevenLabel = new Label("G7");
         gSevenLabel.setMinSize(25, 20);
         gSevenLabel.setAlignment(Pos.CENTER);
         gSevenLabel.setId("G7");
         gSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label gEightLabel = new Label("G8");
         gEightLabel.setMinSize(25, 20);
         gEightLabel.setAlignment(Pos.CENTER);
         gEightLabel.setId("G8");
         gEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label gNineLabel = new Label("G9");
         gNineLabel.setMinSize(25, 20);
         gNineLabel.setAlignment(Pos.CENTER);
         gNineLabel.setId("G9");
         gNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label gTenLabel = new Label("G10");
         gTenLabel.setMinSize(25, 20);
         gTenLabel.setAlignment(Pos.CENTER);
         gTenLabel.setId("G10");
         gTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label gElevenLabel = new Label("G11");
         gElevenLabel.setMinSize(25, 20);
         gElevenLabel.setAlignment(Pos.CENTER);
         gElevenLabel.setId("G11");
         gElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label gTwelveLabel = new Label("G12");
         gTwelveLabel.setMinSize(25, 20);
         gTwelveLabel.setAlignment(Pos.CENTER);
         gTwelveLabel.setId("G12");
         gTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label hOneLabel = new Label("H1");
         hOneLabel.setMinSize(25, 20);
         hOneLabel.setAlignment(Pos.CENTER);
         hOneLabel.setId("H1");
         hOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label hTwoLabel = new Label("H2");
         hTwoLabel.setMinSize(25, 20);
         hTwoLabel.setAlignment(Pos.CENTER);
         hTwoLabel.setId("H2");
         hTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label hThreeLabel = new Label("H3");
         hThreeLabel.setMinSize(25, 20);
         hThreeLabel.setAlignment(Pos.CENTER);
         hThreeLabel.setId("H3");
         hThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label hFourLabel = new Label("H4");
         hFourLabel.setMinSize(25, 20);
         hFourLabel.setAlignment(Pos.CENTER);
         hFourLabel.setId("H4");
         hFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label hFiveLabel = new Label("H5");
         hFiveLabel.setMinSize(25, 20);
         hFiveLabel.setAlignment(Pos.CENTER);
         hFiveLabel.setId("H5");
         hFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label hSixLabel = new Label("H6");
         hSixLabel.setMinSize(25, 20);
         hSixLabel.setAlignment(Pos.CENTER);
         hSixLabel.setId("H6");
         hSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label hSevenLabel = new Label("H7");
         hSevenLabel.setMinSize(25, 20);
         hSevenLabel.setAlignment(Pos.CENTER);
         hSevenLabel.setId("H7");
         hSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label hEightLabel = new Label("H8");
         hEightLabel.setMinSize(25, 20);
         hEightLabel.setAlignment(Pos.CENTER);
         hEightLabel.setId("H8");
         hEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label hNineLabel = new Label("H9");
         hNineLabel.setMinSize(25, 20);
         hNineLabel.setAlignment(Pos.CENTER);
         hNineLabel.setId("H9");
         hNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label hTenLabel = new Label("H10");
         hTenLabel.setMinSize(25, 20);
         hTenLabel.setAlignment(Pos.CENTER);
         hTenLabel.setId("H10");
         hTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label hElevenLabel = new Label("H11");
         hElevenLabel.setMinSize(25, 20);
         hElevenLabel.setAlignment(Pos.CENTER);
         hElevenLabel.setId("H11");
         hElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label hTwelveLabel = new Label("H12");
         hTwelveLabel.setMinSize(25, 20);
         hTwelveLabel.setAlignment(Pos.CENTER);
         hTwelveLabel.setId("H12");
         hTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label iOneLabel = new Label("I1");
         iOneLabel.setMinSize(25, 20);
         iOneLabel.setAlignment(Pos.CENTER);
         iOneLabel.setId("I1");
         iOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label iTwoLabel = new Label("I2");
         iTwoLabel.setMinSize(25, 20);
         iTwoLabel.setAlignment(Pos.CENTER);
         iTwoLabel.setId("I2");
         iTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label iThreeLabel = new Label("I3");
         iThreeLabel.setMinSize(25, 20);
         iThreeLabel.setAlignment(Pos.CENTER);
         iThreeLabel.setId("I3");
         iThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label iFourLabel = new Label("I4");
         iFourLabel.setMinSize(25, 20);
         iFourLabel.setAlignment(Pos.CENTER);
         iFourLabel.setId("I4");
         iFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label iFiveLabel = new Label("I5");
         iFiveLabel.setMinSize(25, 20);
         iFiveLabel.setAlignment(Pos.CENTER);
         iFiveLabel.setId("I5");
         iFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label iSixLabel = new Label("I6");
         iSixLabel.setMinSize(25, 20);
         iSixLabel.setAlignment(Pos.CENTER);
         iSixLabel.setId("I6");
         iSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label iSevenLabel = new Label("I7");
         iSevenLabel.setMinSize(25, 20);
         iSevenLabel.setAlignment(Pos.CENTER);
         iSevenLabel.setId("I7");
         iSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label iEightLabel = new Label("I8");
         iEightLabel.setMinSize(25, 20);
         iEightLabel.setAlignment(Pos.CENTER);
         iEightLabel.setId("I8");
         iEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label iNineLabel = new Label("I9");
         iNineLabel.setMinSize(25, 20);
         iNineLabel.setAlignment(Pos.CENTER);
         iNineLabel.setId("I9");
         iNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label iTenLabel = new Label("I10");
         iTenLabel.setMinSize(25, 20);
         iTenLabel.setAlignment(Pos.CENTER);
         iTenLabel.setId("I10");
         iTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label iElevenLabel = new Label("I11");
         iElevenLabel.setMinSize(25, 20);
         iElevenLabel.setAlignment(Pos.CENTER);
         iElevenLabel.setId("I11");
         iElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
-        Label iTwelveLabel = new Label("I12");
         iTwelveLabel.setMinSize(25, 20);
         iTwelveLabel.setAlignment(Pos.CENTER);
         iTwelveLabel.setId("I12");
@@ -1028,15 +1031,31 @@ public class App extends Application {
         gp.add(buttonPane, 0, 16, 14, 2);
 
         //Handlers
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Save File");
+
+        loadButton.setOnAction(event1 -> {
+            File file = fileChooser.showOpenDialog(stage);
+            if (file != null)
+                g.loadGame(file.getAbsolutePath());
+        });
+        EventHandler<ActionEvent> foundHotel = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //if()
+            }
+        };
 
         EventHandler<KeyEvent> endChoice = new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2) {
                     if (event.getCode() == KeyCode.DIGIT1) {
-                        playButton.setText("It Worked");
+                        playButton.setText("Turn Ended\nClick to Continue");
                         g.fillHand(0);
                         g.fillHand(1);
+                        playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                        //playButton.addEventFilter(MouseEvent.MOUSE_CLICKED);
                     }
                     if(event.getCode() == KeyCode.DIGIT2 && currentChoices == 2){
                         //Handle Buy Stock
@@ -1556,21 +1575,6 @@ public class App extends Application {
 
                 playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, KeyPressed);
-            }
-        };
-
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Save File");
-
-        loadButton.setOnAction(event1 -> {
-            File file = fileChooser.showOpenDialog(stage);
-            if (file != null)
-                g.loadGame(file.getAbsolutePath());
-        });
-        EventHandler<ActionEvent> foundHotel = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                //if()
             }
         };
 
