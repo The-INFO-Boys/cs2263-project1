@@ -747,6 +747,438 @@ public class App extends Application {
                     aTwoLabel.setStyle("-fx-background-color: #000000");
                     aTwoLabel.setTextFill(Color.color(1,1,1));
                 }
+                if(player1S.equals("A3") || player2S.equals("A3")){
+                    aThreeLabel.setStyle("-fx-background-color: #000000");
+                    aThreeLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("A4") || player2S.equals("A4")){
+                    aFourLabel.setStyle("-fx-background-color: #000000");
+                    aFourLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("A5") || player2S.equals("A5")){
+                    aFiveLabel.setStyle("-fx-background-color: #000000");
+                    aFiveLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("A6") || player2S.equals("A6")){
+                    aSixLabel.setStyle("-fx-background-color: #000000");
+                    aSixLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("A7") || player2S.equals("A7")){
+                    aSevenLabel.setStyle("-fx-background-color: #000000");
+                    aSevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("A8") || player2S.equals("A8")){
+                    aEightLabel.setStyle("-fx-background-color: #000000");
+                    aEightLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("A9") || player2S.equals("A9")){
+                    aNineLabel.setStyle("-fx-background-color: #000000");
+                    aNineLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("A10") || player2S.equals("A10")){
+                    aTenLabel.setStyle("-fx-background-color: #000000");
+                    aTenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("A11") || player2S.equals("A11")){
+                    aElevenLabel.setStyle("-fx-background-color: #000000");
+                    aElevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("A12") || player2S.equals("A12")){
+                    aTwelveLabel.setStyle("-fx-background-color: #000000");
+                    aTwelveLabel.setTextFill(Color.color(1,1,1));
+                }
+
+                if(player1S.equals("B1") || player2S.equals("B1")){
+                    bOneLabel.setStyle("-fx-background-color: #000000");
+                    bOneLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("B2") || player2S.equals("B2")){
+                    bTwoLabel.setStyle("-fx-background-color: #000000");
+                    bTwoLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("B3") || player2S.equals("B3")){
+                    bThreeLabel.setStyle("-fx-background-color: #000000");
+                    bThreeLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("B4") || player2S.equals("B4")){
+                    bFourLabel.setStyle("-fx-background-color: #000000");
+                    bFourLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("B5") || player2S.equals("B5")){
+                    bFiveLabel.setStyle("-fx-background-color: #000000");
+                    bFiveLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("B6") || player2S.equals("B6")){
+                    bSixLabel.setStyle("-fx-background-color: #000000");
+                    bSixLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("B7") || player2S.equals("B7")){
+                    bSevenLabel.setStyle("-fx-background-color: #000000");
+                    bSevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("B8") || player2S.equals("B8")){
+                    bEightLabel.setStyle("-fx-background-color: #000000");
+                    bEightLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("B9") || player2S.equals("B9")){
+                    bNineLabel.setStyle("-fx-background-color: #000000");
+                    bNineLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("B10") || player2S.equals("B10")){
+                    bTenLabel.setStyle("-fx-background-color: #000000");
+                    bTenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("B11") || player2S.equals("B11")){
+                    bElevenLabel.setStyle("-fx-background-color: #000000");
+                    bElevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("B12") || player2S.equals("B12")){
+                    bTwelveLabel.setStyle("-fx-background-color: #000000");
+                    bTwelveLabel.setTextFill(Color.color(1,1,1));
+                }
+
+                if(player1S.equals("C1") || player2S.equals("C1")){
+                    cOneLabel.setStyle("-fx-background-color: #000000");
+                    cOneLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("C2") || player2S.equals("C2")){
+                    cTwoLabel.setStyle("-fx-background-color: #000000");
+                    cTwoLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("C3") || player2S.equals("C3")){
+                    cThreeLabel.setStyle("-fx-background-color: #000000");
+                    cThreeLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("C4") || player2S.equals("C4")){
+                    cFourLabel.setStyle("-fx-background-color: #000000");
+                    cFourLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("C5") || player2S.equals("C5")){
+                    cFiveLabel.setStyle("-fx-background-color: #000000");
+                    cFiveLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("C6") || player2S.equals("C6")){
+                    cSixLabel.setStyle("-fx-background-color: #000000");
+                    cSixLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("C7") || player2S.equals("C7")){
+                    cSevenLabel.setStyle("-fx-background-color: #000000");
+                    cSevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("C8") || player2S.equals("C8")){
+                    cEightLabel.setStyle("-fx-background-color: #000000");
+                    cEightLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("C9") || player2S.equals("C9")){
+                    cNineLabel.setStyle("-fx-background-color: #000000");
+                    cNineLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("C10") || player2S.equals("C10")){
+                    cTenLabel.setStyle("-fx-background-color: #000000");
+                    cTenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("C11") || player2S.equals("C11")){
+                    cElevenLabel.setStyle("-fx-background-color: #000000");
+                    cElevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("C12") || player2S.equals("C12")){
+                    cTwelveLabel.setStyle("-fx-background-color: #000000");
+                    cTwelveLabel.setTextFill(Color.color(1,1,1));
+                }
+
+                if(player1S.equals("D1") || player2S.equals("D1")){
+                    dOneLabel.setStyle("-fx-background-color: #000000");
+                    dOneLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("D2") || player2S.equals("D2")){
+                    dTwoLabel.setStyle("-fx-background-color: #000000");
+                    dTwoLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("D3") || player2S.equals("D3")){
+                    dThreeLabel.setStyle("-fx-background-color: #000000");
+                    dThreeLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("D4") || player2S.equals("D4")){
+                    dFourLabel.setStyle("-fx-background-color: #000000");
+                    dFourLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("D5") || player2S.equals("D5")){
+                    dFiveLabel.setStyle("-fx-background-color: #000000");
+                    dFiveLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("D6") || player2S.equals("D6")){
+                    dSixLabel.setStyle("-fx-background-color: #000000");
+                    dSixLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("D7") || player2S.equals("D7")){
+                    dSevenLabel.setStyle("-fx-background-color: #000000");
+                    dSevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("D8") || player2S.equals("D8")){
+                    dEightLabel.setStyle("-fx-background-color: #000000");
+                    dEightLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("D9") || player2S.equals("D9")){
+                    dNineLabel.setStyle("-fx-background-color: #000000");
+                    dNineLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("D10") || player2S.equals("D10")){
+                    dTenLabel.setStyle("-fx-background-color: #000000");
+                    dTenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("D11") || player2S.equals("D11")){
+                    dElevenLabel.setStyle("-fx-background-color: #000000");
+                    dElevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("D12") || player2S.equals("D12")){
+                    dTwelveLabel.setStyle("-fx-background-color: #000000");
+                    dTwelveLabel.setTextFill(Color.color(1,1,1));
+                }
+
+                if(player1S.equals("E1") || player2S.equals("E1")){
+                    eOneLabel.setStyle("-fx-background-color: #000000");
+                    eOneLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("E2") || player2S.equals("E2")){
+                    eTwoLabel.setStyle("-fx-background-color: #000000");
+                    eTwoLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("E3") || player2S.equals("E3")){
+                    eThreeLabel.setStyle("-fx-background-color: #000000");
+                    eThreeLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("E4") || player2S.equals("E4")){
+                    eFourLabel.setStyle("-fx-background-color: #000000");
+                    eFourLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("E5") || player2S.equals("E5")){
+                    eFiveLabel.setStyle("-fx-background-color: #000000");
+                    eFiveLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("E6") || player2S.equals("E6")){
+                    eSixLabel.setStyle("-fx-background-color: #000000");
+                    eSixLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("E7") || player2S.equals("E7")){
+                    eSevenLabel.setStyle("-fx-background-color: #000000");
+                    eSevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("E8") || player2S.equals("E8")){
+                    eEightLabel.setStyle("-fx-background-color: #000000");
+                    eEightLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("E9") || player2S.equals("E9")){
+                    eNineLabel.setStyle("-fx-background-color: #000000");
+                    eNineLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("E10") || player2S.equals("E10")){
+                    eTenLabel.setStyle("-fx-background-color: #000000");
+                    eTenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("E11") || player2S.equals("E11")){
+                    eElevenLabel.setStyle("-fx-background-color: #000000");
+                    eElevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("E12") || player2S.equals("E12")){
+                    eTwelveLabel.setStyle("-fx-background-color: #000000");
+                    eTwelveLabel.setTextFill(Color.color(1,1,1));
+                }
+
+                if(player1S.equals("F1") || player2S.equals("F1")){
+                    fOneLabel.setStyle("-fx-background-color: #000000");
+                    fOneLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("F2") || player2S.equals("F2")){
+                    fTwoLabel.setStyle("-fx-background-color: #000000");
+                    fTwoLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("F3") || player2S.equals("F3")){
+                    fThreeLabel.setStyle("-fx-background-color: #000000");
+                    fThreeLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("F4") || player2S.equals("F4")){
+                    fFourLabel.setStyle("-fx-background-color: #000000");
+                    fFourLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("F5") || player2S.equals("F5")){
+                    fFiveLabel.setStyle("-fx-background-color: #000000");
+                    fFiveLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("F6") || player2S.equals("F6")){
+                    fSixLabel.setStyle("-fx-background-color: #000000");
+                    fSixLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("F7") || player2S.equals("F7")){
+                    fSevenLabel.setStyle("-fx-background-color: #000000");
+                    fSevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("F8") || player2S.equals("F8")){
+                    fEightLabel.setStyle("-fx-background-color: #000000");
+                    fEightLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("F9") || player2S.equals("F9")){
+                    fNineLabel.setStyle("-fx-background-color: #000000");
+                    fNineLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("F10") || player2S.equals("F10")){
+                    fTenLabel.setStyle("-fx-background-color: #000000");
+                    fTenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("F11") || player2S.equals("F11")){
+                    fElevenLabel.setStyle("-fx-background-color: #000000");
+                    fElevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("F12") || player2S.equals("F12")){
+                    fTwelveLabel.setStyle("-fx-background-color: #000000");
+                    fTwelveLabel.setTextFill(Color.color(1,1,1));
+                }
+
+                if(player1S.equals("G1") || player2S.equals("G1")){
+                    gOneLabel.setStyle("-fx-background-color: #000000");
+                    gOneLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("G2") || player2S.equals("G2")){
+                    gTwoLabel.setStyle("-fx-background-color: #000000");
+                    gTwoLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("G3") || player2S.equals("G3")){
+                    gThreeLabel.setStyle("-fx-background-color: #000000");
+                    gThreeLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("G4") || player2S.equals("G4")){
+                    gFourLabel.setStyle("-fx-background-color: #000000");
+                    gFourLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("G5") || player2S.equals("G5")){
+                    gFiveLabel.setStyle("-fx-background-color: #000000");
+                    gFiveLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("G6") || player2S.equals("G6")){
+                    gSixLabel.setStyle("-fx-background-color: #000000");
+                    gSixLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("G7") || player2S.equals("G7")){
+                    gSevenLabel.setStyle("-fx-background-color: #000000");
+                    gSevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("G8") || player2S.equals("G8")){
+                    gEightLabel.setStyle("-fx-background-color: #000000");
+                    gEightLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("G9") || player2S.equals("G9")){
+                    gNineLabel.setStyle("-fx-background-color: #000000");
+                    gNineLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("G10") || player2S.equals("G10")){
+                    gTenLabel.setStyle("-fx-background-color: #000000");
+                    gTenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("G11") || player2S.equals("G11")){
+                    gElevenLabel.setStyle("-fx-background-color: #000000");
+                    gElevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("G12") || player2S.equals("G12")){
+                    gTwelveLabel.setStyle("-fx-background-color: #000000");
+                    gTwelveLabel.setTextFill(Color.color(1,1,1));
+                }
+
+                if(player1S.equals("H1") || player2S.equals("H1")){
+                    hOneLabel.setStyle("-fx-background-color: #000000");
+                    hOneLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("H2") || player2S.equals("H2")){
+                    hTwoLabel.setStyle("-fx-background-color: #000000");
+                    hTwoLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("H3") || player2S.equals("H3")){
+                    hThreeLabel.setStyle("-fx-background-color: #000000");
+                    hThreeLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("H4") || player2S.equals("H4")){
+                    hFourLabel.setStyle("-fx-background-color: #000000");
+                    hFourLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("H5") || player2S.equals("H5")){
+                    hFiveLabel.setStyle("-fx-background-color: #000000");
+                    hFiveLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("H6") || player2S.equals("H6")){
+                    hSixLabel.setStyle("-fx-background-color: #000000");
+                    hSixLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("H7") || player2S.equals("H7")){
+                    hSevenLabel.setStyle("-fx-background-color: #000000");
+                    hSevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("H8") || player2S.equals("H8")){
+                    hEightLabel.setStyle("-fx-background-color: #000000");
+                    hEightLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("H9") || player2S.equals("H9")){
+                    hNineLabel.setStyle("-fx-background-color: #000000");
+                    hNineLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("H10") || player2S.equals("H10")){
+                    hTenLabel.setStyle("-fx-background-color: #000000");
+                    hTenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("H11") || player2S.equals("H11")){
+                    hElevenLabel.setStyle("-fx-background-color: #000000");
+                    hElevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("H12") || player2S.equals("H12")){
+                    hTwelveLabel.setStyle("-fx-background-color: #000000");
+                    hTwelveLabel.setTextFill(Color.color(1,1,1));
+                }
+
+                if(player1S.equals("I1") || player2S.equals("I1")){
+                    iOneLabel.setStyle("-fx-background-color: #000000");
+                    iOneLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("I2") || player2S.equals("I2")){
+                    iTwoLabel.setStyle("-fx-background-color: #000000");
+                    iTwoLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("I3") || player2S.equals("I3")){
+                    iThreeLabel.setStyle("-fx-background-color: #000000");
+                    iThreeLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("I4") || player2S.equals("I4")){
+                    iFourLabel.setStyle("-fx-background-color: #000000");
+                    iFourLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("I5") || player2S.equals("I5")){
+                    iFiveLabel.setStyle("-fx-background-color: #000000");
+                    iFiveLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("I6") || player2S.equals("I6")){
+                    iSixLabel.setStyle("-fx-background-color: #000000");
+                    iSixLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("I7") || player2S.equals("I7")){
+                    iSevenLabel.setStyle("-fx-background-color: #000000");
+                    iSevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("I8") || player2S.equals("I8")){
+                    iEightLabel.setStyle("-fx-background-color: #000000");
+                    iEightLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("I9") || player2S.equals("I9")){
+                    iNineLabel.setStyle("-fx-background-color: #000000");
+                    iNineLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("I10") || player2S.equals("I10")){
+                    iTenLabel.setStyle("-fx-background-color: #000000");
+                    iTenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("I11") || player2S.equals("I11")){
+                    iElevenLabel.setStyle("-fx-background-color: #000000");
+                    iElevenLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("I12") || player2S.equals("I12")){
+                    iTwelveLabel.setStyle("-fx-background-color: #000000");
+                    iTwelveLabel.setTextFill(Color.color(1,1,1));
+                }
             }
         };
         playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startClicked);
