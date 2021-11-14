@@ -704,7 +704,7 @@ public class App extends Application {
         buttonPane.add(stocksButton,5,1);
         buttonPane.add(infoButton,6,1);
         buttonPane.add(pLabel,2,0);
-        gp.add(buttonPane,0,16,13,2);
+        gp.add(buttonPane,0,16,14,2);
 
         return gp;
 
