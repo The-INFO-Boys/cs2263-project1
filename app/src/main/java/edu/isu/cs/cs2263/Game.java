@@ -62,7 +62,7 @@ public class Game implements System {
 
     //region private methods
 
-    private Tile drawTile(){
+    public Tile drawTile(){
         Random r = new Random();
         int selection = r.nextInt(this.tileBag.size());
         Tile t = tileBag.get(selection);

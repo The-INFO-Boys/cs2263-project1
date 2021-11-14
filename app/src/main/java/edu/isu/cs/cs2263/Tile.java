@@ -19,6 +19,7 @@ public class Tile {
     public int getRow(){
         return row - 1;
     }
+    public int getRawColumn(){return column;}
     public Hotel getHotel() {return hotel;    }
     public boolean getPlaced(){
         return placed;
@@ -33,6 +34,29 @@ public class Tile {
         this.hotel = hotel;
     }
     public void setPlaced(){placed =true;}
+    public String getRawRow() {
+        String alpha = null;
+        if(row == 1){
+            alpha = "A";
+        } else if(row == 2){
+            alpha = "B";
+        } else if(row == 3){
+            alpha = "C";
+        } else if(row == 4){
+            alpha = "D";
+        } else if(row == 5){
+            alpha = "E";
+        } else if(row == 6){
+            alpha = "F";
+        } else if(row == 7){
+            alpha = "G";
+        } else if(row == 8){
+            alpha = "H";
+        } else if(row == 9){
+            alpha = "I";
+        }
+        return alpha;
+    }
 
     //endregion
 

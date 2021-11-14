@@ -1,6 +1,7 @@
 package edu.isu.cs.cs2263;
 
 import java.lang.reflect.*;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -53,6 +54,14 @@ public class Board {
             }
         }
         return tileBoard;
+    }
+
+    public List<Tile> getTiles(){
+        List<Tile> retList = new ArrayList<>();
+        for(int x = 0; x < 12; x++){
+            retList.addAll(Arrays.asList(board[x]).subList(0, 9));
+        }
+        return retList;
     }
 
     //endregion
@@ -111,28 +120,6 @@ public class Board {
     public List<Hotel> getHotels(){
         List<Hotel> hotelList = new ArrayList<Hotel>();
         return hotelList;
-    }
-    public Hotel getHotel(){
-
-        return new Hotel(99,"To be Implemented",5);
-    }
-    public void loadSystem(){
-
-    }
-    public void saveSystem(){
-    }
-    public int checkHotelSize(String Hotel){
-        int size = 0;
-        return size;
-    }
-    public void mergeHotels(String HotelToReplace1,String HotelToReplace2) {
-    }
-    public int giveBonus(){
-        int bonus = 0;
-        return bonus;
-    }
-    public void handleStock(int player1,int player2,Hotel Hotel1,Hotel Hotel2){
-
     }
     //endregion
 }

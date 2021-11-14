@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -25,18 +26,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import javax.swing.text.LabelView;
+import java.util.Objects;
+
 public class App extends Application {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
-    public Game g = new Game();
-
-    public static void updateGUI(GridPane gp){
-        for (Object object: gp.getChildren()){
-            String str = object.toString();
-        }
-    }
+    public static Game g = new Game();
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -103,10 +98,12 @@ public class App extends Application {
         Label aOneLabel = new Label("A1");
         aOneLabel.setMinSize(25,20);
         aOneLabel.setAlignment(Pos.CENTER);
+        aOneLabel.setId("A1");
 
         Label aTwoLabel = new Label("A2");
         aTwoLabel.setMinSize(25,20);
         aTwoLabel.setAlignment(Pos.CENTER);
+        aTwoLabel.setId("A2");
 
         Label aThreeLabel = new Label("A3");
         aThreeLabel.setMinSize(25,20);
@@ -563,23 +560,6 @@ public class App extends Application {
 
         GridPane gp = new  GridPane();
 
-        //Handlers
-        EventHandler<MouseEvent>startClicked = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                int playerId = g.determineFirst();
-                if (playerId == 0){
-                    infoLabel.setText("Player 1 drew a smaller tile, \n Click to continue.");
-                }
-                else if (playerId == 1){
-                    infoLabel.setText("Player 1 drew a smaller tile, \n Click to continue.");
-
-                }
-                gp.add(infoLabel,13,5);
-            }
-        }
-
-
         //grid setup
         gp.add(oneLabel,1,0);
         gp.add(twoLabel,2,0);
@@ -721,7 +701,7 @@ public class App extends Application {
         gp.add(iElevenLabel,11,9);
         gp.add(iTwelveLabel,12,9);
 
-        gp.add(playButton,13,5);
+        gp.add(playButton,13,0,1,9);
 
         GridPane buttonPane = new GridPane();
         buttonPane.add(loadButton,0,1);
@@ -733,6 +713,43 @@ public class App extends Application {
         buttonPane.add(infoButton,6,1);
         buttonPane.add(pLabel,2,0);
         gp.add(buttonPane,0,16,14,2);
+
+        //Handlers
+        EventHandler<MouseEvent>startClicked = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                //Tile player1 = g.drawTile();
+                Tile player1 = new Tile(1,1);
+                g.playTile(player1);
+                //Tile player2 = g.drawTile();
+                Tile player2 = new Tile(2,1);
+                g.playTile(player2);
+                if(player1.getColumn() + player1.getRow() < player2.getColumn() + player2.getRow()){
+                    //Player 1 Tile was closer to 1A
+                    playButton.setText("Player 1 drew a smaller tile, \n Click to continue.");
+                } else if(player1.getColumn() + player1.getRow() > player2.getColumn() + player2.getRow()){
+                    //Player 2 Tile was closer to 1A
+                    playButton.setText("Player 2 drew a smaller tile, \n Click to continue.");
+                } else if(player1.getColumn() + player1.getRow() == player2.getColumn() + player2.getRow()) {
+                    //Equal tiles, Player 1 goes first
+                    playButton.setText("Player 1 drew a smaller tile, \n Click to continue.");
+                }
+                playButton.setStyle("-fx-background-color: #DDDDDD");
+
+                String player1S = String.valueOf(player1.getRawRow()) + player1.getRawColumn();
+                String player2S = String.valueOf(player2.getRawRow()) + player2.getRawColumn();
+
+                if(player1S.equals("A1") || player2S.equals("A1")){
+                    aOneLabel.setStyle("-fx-background-color: #000000");
+                    aOneLabel.setTextFill(Color.color(1,1,1));
+                }
+                if(player1S.equals("A2") || player2S.equals("A2")){
+                    aTwoLabel.setStyle("-fx-background-color: #000000");
+                    aTwoLabel.setTextFill(Color.color(1,1,1));
+                }
+            }
+        };
+        playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startClicked);
 
         return gp;
 
