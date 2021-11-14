@@ -57,6 +57,9 @@ public class Tile {
         }
         return alpha;
     }
+    public String getTileName(){
+        return (getRawRow()+String.valueOf(getRawColumn()));
+    }
 
     //endregion
 

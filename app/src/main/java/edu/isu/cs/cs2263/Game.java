@@ -70,6 +70,18 @@ public class Game implements System {
         return t;
     }
 
+    public void fillHand(int playerID){
+        List<Tile> playerHand = PlayerList.get(playerID).getHand();
+        while(playerHand.size() != 6){
+            playerHand.add(drawTile());
+        }
+        PlayerList.get(playerID).setHand(playerHand);
+    }
+
+    public List<Tile> getPlayersHand(int playerID){
+        return PlayerList.get(playerID).getHand();
+    }
+
     private List<Tile> countTiles(List<Player> pList, Board b){
         List<Tile> undrawnTiles = new ArrayList<>();
         return undrawnTiles;
