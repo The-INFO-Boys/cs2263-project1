@@ -541,7 +541,7 @@ public class App extends Application {
         Button hotelButton = new Button("Hotels");
         Button stocksButton = new Button("Stocks");
         Button infoButton = new Button("Info");
-        Button playButton = new Button("Play");
+        Button playButton = new Button("Play Game");
         playButton.setStyle("-fx-background-color: #00FF00");
         playButton.setMinWidth(50);
 
