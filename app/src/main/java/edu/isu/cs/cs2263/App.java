@@ -29,6 +29,9 @@ public class App extends Application {
         return "Hello World!";
     }
 
+    public Game g = new Game();
+
+
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -40,7 +43,7 @@ public class App extends Application {
     }
 
     private GridPane buildGrid(Stage stage){
-        stage.setTitle("Acquire");
+        stage.setTitle("Acquire by The INFO Boys");
         //Labels for Letters
         Label aLabel = new Label ("A");
         Label bLabel = new Label ("B");

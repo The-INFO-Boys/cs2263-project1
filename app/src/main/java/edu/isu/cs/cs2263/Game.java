@@ -29,14 +29,13 @@ public class Game implements System {
         Board = edu.isu.cs.cs2263.Board.getInstance();
         PlayerList.add(new Player(0,"Player 1"));
         PlayerList.add(new Player(1,"Player 2"));
-        HotelList.add(new Hotel(0,"Hotel 1",1));
-        HotelList.add(new Hotel(1,"Hotel 2",1));
-        HotelList.add(new Hotel(2,"Hotel 3",2));
-        HotelList.add(new Hotel(3,"Hotel 4",2));
-        HotelList.add(new Hotel(4,"Hotel 5",3));
-        HotelList.add(new Hotel(5,"Hotel 6",3));
-        HotelList.add(new Hotel(6,"Hotel 7",4));
-        HotelList.add(new Hotel(7,"Hotel 8",4));
+        HotelList.add(new Hotel(0,"Super 8",1));
+        HotelList.add(new Hotel(1,"Marriott",1));
+        HotelList.add(new Hotel(2,"La Quinta",2));
+        HotelList.add(new Hotel(3,"Holiday Inn",2));
+        HotelList.add(new Hotel(4,"Hampton Inn",2));
+        HotelList.add(new Hotel(5,"Red Lion",3));
+        HotelList.add(new Hotel(6,"Best Western",3));
     }
 
     //endregion
