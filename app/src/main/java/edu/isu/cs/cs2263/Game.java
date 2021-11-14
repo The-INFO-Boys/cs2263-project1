@@ -132,6 +132,16 @@ public class Game implements System {
         }
     }
 
+    public List<Hotel> getFoundedHotels(){
+        List<Hotel> retList = new ArrayList<>();
+        for(Hotel h: HotelList){
+            if(h.getFounded()){
+                retList.add(h);
+            }
+        }
+        return retList;
+    }
+
     @Override
     public List<Tile> playTile(Tile tile){
         List<Tile> tilesToReturn = new ArrayList<>();

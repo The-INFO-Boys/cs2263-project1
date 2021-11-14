@@ -36,6 +36,7 @@ public class App extends Application {
 
     public static Game g = new Game();
     public int currentPlayer = 0;
+    public int currentChoices = 1;
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -1307,7 +1308,8 @@ public class App extends Application {
                         mLabel.setText(" MONEY: $" + g.getPlayerList().get(currentPlayer).getMoney());
                         playButton.setText("Press the number of the tile\n you would like to play:");
 
-                        EventHandler<KeyEvent> oneKeyPressed = new EventHandler<KeyEvent>() {
+                        playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED,this);
+                        EventHandler<KeyEvent> KeyPressed = new EventHandler<KeyEvent>() {
                             @Override
                             public void handle(KeyEvent event) {
                                 if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 ||
@@ -1340,7 +1342,7 @@ public class App extends Application {
                                     }
 
                                     String playedTileS = playedTile.getRawRow() + playedTile.getRawColumn();
-                                    playButton.setText(g.getPlayerList().get(currentPlayer).getName() + " played Tile: " + playedTileS);
+                                    playButton.setText(g.getPlayerList().get(currentPlayer).getName() + " played Tile: " + playedTileS + "\nClick to continue");
                                     if (playedTileS.equals("A1")) {
                                         aOneLabel.setStyle("-fx-background-color: #000000");
                                         aOneLabel.setTextFill(Color.color(1, 1, 1));
@@ -1781,13 +1783,49 @@ public class App extends Application {
                                         iTwelveLabel.setStyle("-fx-background-color: #000000");
                                         iTwelveLabel.setTextFill(Color.color(1, 1, 1));
                                     }
-                                }
-                                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                                    playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                                    EventHandler<MouseEvent> clickToContinue = new EventHandler<MouseEvent>() {
+                                        @Override
+                                        public void handle(MouseEvent event) {
+                                            if(g.getFoundedHotels().size() > 0) {
+                                                playButton.setText("Please select what you would like to do:\n1) End Turn\n2) Buy Stock");
+                                                currentChoices = 2;
+                                            } else{
+                                                playButton.setText("Please select what you would like to do:\n1) End Turn");
+                                                currentChoices = 1;
+                                            }
+                                            if(currentPlayer == 0){
+                                                currentPlayer++;
+                                            } else if(currentPlayer == 1){
+                                                currentPlayer--;
+                                            }
+                                            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED,this);
+                                            EventHandler<KeyEvent> endChoice = new EventHandler<KeyEvent>() {
+                                                @Override
+                                                public void handle(KeyEvent event) {
+                                                    if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2) {
+                                                        if (currentChoices == 1) {
+                                                            if (event.getCode() == KeyCode.DIGIT1) {
+                                                                playButton.setText("It Worked");
+                                                            }
+                                                        } else if (currentChoices == 2) {
+                                                            if (event.getCode() == KeyCode.DIGIT1) {
 
+                                                            } else if (event.getCode() == KeyCode.DIGIT2) {
+
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            };
+                                            playButton.addEventFilter(KeyEvent.KEY_PRESSED,endChoice);
+                                        }
+                                    };
+                                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+                                }
                             }
                         };
-                        playButton.addEventFilter(KeyEvent.KEY_PRESSED,oneKeyPressed);
-
+                        playButton.addEventFilter(KeyEvent.KEY_PRESSED,KeyPressed);
                     }
                 };
                 playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playerSelectionContinueClicked);
