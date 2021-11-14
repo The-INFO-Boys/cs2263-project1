@@ -668,9 +668,9 @@ public class App extends Application {
         //Player Info
         Label pLabel = new Label("PLAYER INFO: Player #");
 
-        Label tLabel = new Label("TILES: 1.-- 2.-- 3.-- 4.-- 5.-- 6.--");
+        Label tLabel = new Label("TILES: 1.--- 2.--- 3.--- 4.--- 5.--- 6.---");
 
-        Label mLabel = new Label("MONEY: $----");
+        Label mLabel = new Label(" MONEY: $-----");
 
         Label infoLabel = new Label();
 
@@ -828,6 +828,7 @@ public class App extends Application {
         buttonPane.add(stocksButton, 5, 1);
         buttonPane.add(infoButton, 6, 1);
         buttonPane.add(pLabel, 2, 0);
+        buttonPane.setMinWidth(575);
         gp.add(buttonPane, 0, 16, 14, 2);
 
         //Handlers
@@ -1303,8 +1304,8 @@ public class App extends Application {
                         List<Tile> hand = g.getPlayersHand(currentPlayer);
                         pLabel.setText("PLAYER INFO: " + g.getPlayerList().get(currentPlayer).getName());
                         tLabel.setText("TILES: 1."+hand.get(0).getTileName()+" 2."+hand.get(1).getTileName()+" 3. "+hand.get(2).getTileName()+" 4."+hand.get(3).getTileName()+" 5."+hand.get(4).getTileName()+" 6."+hand.get(5).getTileName());
-                        mLabel.setText("MONEY: $" + g.getPlayerList().get(currentPlayer).getMoney());
-                        playButton.setText("Press the number of the tile you would like to play:");
+                        mLabel.setText(" MONEY: $" + g.getPlayerList().get(currentPlayer).getMoney());
+                        playButton.setText("Press the number of the tile\n you would like to play:");
 
                         EventHandler<KeyEvent> oneKeyPressed = new EventHandler<KeyEvent>() {
                             @Override
@@ -1781,6 +1782,8 @@ public class App extends Application {
                                         iTwelveLabel.setTextFill(Color.color(1, 1, 1));
                                     }
                                 }
+                                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+
                             }
                         };
                         playButton.addEventFilter(KeyEvent.KEY_PRESSED,oneKeyPressed);
