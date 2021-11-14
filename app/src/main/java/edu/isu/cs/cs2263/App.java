@@ -54,6 +54,7 @@ public class App extends Application {
         Label gLabel = new Label ("G");
         Label hLabel = new Label ("H");
         Label iLabel = new Label ("I");
+
         //Labels for Numbers
         Label oneLabel = new Label ("1");
         oneLabel.setMinWidth(25);
@@ -91,6 +92,7 @@ public class App extends Application {
         Label twelveLabel = new Label ("12");
         twelveLabel.setMinWidth(25);
         twelveLabel.setAlignment(Pos.CENTER);
+
         //Labels for Literally Everything
         Label aOneLabel = new Label("A1");
         aOneLabel.setMinSize(25,20);
@@ -539,6 +541,10 @@ public class App extends Application {
         Button hotelButton = new Button("Hotels");
         Button stocksButton = new Button("Stocks");
         Button infoButton = new Button("Info");
+        Button playButton = new Button("Play");
+        playButton.setStyle("-fx-background-color: #00FF00");
+
+
         //Player Info
         Label pLabel = new Label("PLAYER INFO: Player #");
 
