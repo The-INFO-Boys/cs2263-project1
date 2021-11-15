@@ -1111,7 +1111,7 @@ public class App extends Application {
                 Tile playedTile = null;
                 if (event.getCode() == KeyCode.DIGIT1) {
                     playedTile = g.getPlayerList().get(currentPlayer).getHand().get(0);
-                }
+                        }
                 if (event.getCode() == KeyCode.DIGIT2) {
                     playedTile = g.getPlayerList().get(currentPlayer).getHand().get(1);
                 }
@@ -1137,6 +1137,53 @@ public class App extends Application {
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
 
                 if(passableTiles.size() > 0){
+                    Color color;
+                    for(Tile t:g.getBoard().checkAdjacent(playedTile)){
+                        if(t.getHotel() != null) {
+                            if(t.getHotel().getID() == 0){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,1,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 1){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,0.5,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 2){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0,1,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 3){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0.5,0,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 4){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0,0.5,0.1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 5){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0.5,0.1,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 6){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,0,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                        }
+                    }
                     String textForPlay = "Pick a Hotel to Found:\n";
                     for (Hotel h: g.getFoundableHotels()){
                         textForPlay += h.getID() + "." + h.getName() + "\n";
@@ -1192,7 +1239,6 @@ public class App extends Application {
             }
         }
     };
-
     private void updateByString(String tilePlayed, Color color){
         if (tilePlayed.equals("A1")) {
             aOneLabel.setStyle("-fx-background-color: #000000");
@@ -2120,7 +2166,6 @@ public class App extends Application {
 
         }
     };
-
 }
 
     /*//Start App
