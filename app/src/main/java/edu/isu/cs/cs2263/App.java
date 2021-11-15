@@ -1137,7 +1137,11 @@ public class App extends Application {
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
 
                 if(passableTiles.size() > 0){
-                    playButton.setText("Pick a Hotel to Found:\n1.Super 8\n2.Marriott\n3.La Quinta\n4.Holiday Inn\n5.Hampton Inn\n6.Red Lion\n7.Best Western");
+                    String textForPlay = "Pick a Hotel to Found:\n";
+                    for (Hotel h: g.getFoundableHotels()){
+                        textForPlay += h.getID() + "." + h.getName() + "\n";
+                    }
+                    playButton.setText(textForPlay);
                     playButton.addEventFilter(KeyEvent.KEY_PRESSED,hotelToFound);
                 } else {
                     playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
@@ -1149,30 +1153,33 @@ public class App extends Application {
     EventHandler<KeyEvent> hotelToFound = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
-            if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 ||
-                    event.getCode() == KeyCode.DIGIT3 || event.getCode() == KeyCode.DIGIT4 ||
-                    event.getCode() == KeyCode.DIGIT5 || event.getCode() == KeyCode.DIGIT6 ||
-                    event.getCode() == KeyCode.DIGIT7){
+            if((event.getCode() == KeyCode.DIGIT0 && !g.getHotelList().get(0).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT1 && !g.getHotelList().get(1).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT2 && !g.getHotelList().get(2).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT3 && !g.getHotelList().get(3).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT4 && !g.getHotelList().get(4).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT5 && !g.getHotelList().get(5).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT6 && !g.getHotelList().get(6).getFounded())) {
                 Color color = null;
-                if(event.getCode() == KeyCode.DIGIT1){
+                if(event.getCode() == KeyCode.DIGIT0){
                     g.foundHotel(0,currentPlayer,passableTiles);
                     color = Color.color(1,1,0);
-                } else if(event.getCode() == KeyCode.DIGIT2){
+                } else if(event.getCode() == KeyCode.DIGIT1){
                     g.foundHotel(1,currentPlayer,passableTiles);
                     color = Color.color(1,0.5,0);
-                } else if(event.getCode() == KeyCode.DIGIT3){
+                } else if(event.getCode() == KeyCode.DIGIT2){
                     g.foundHotel(2,currentPlayer,passableTiles);
                     color = Color.color(0,1,1);
-                } else if(event.getCode() == KeyCode.DIGIT4){
+                } else if(event.getCode() == KeyCode.DIGIT3){
                     g.foundHotel(3,currentPlayer,passableTiles);
                     color = Color.color(0.5,0,1);
-                } else if(event.getCode() == KeyCode.DIGIT5){
+                } else if(event.getCode() == KeyCode.DIGIT4){
                     g.foundHotel(4,currentPlayer,passableTiles);
                     color = Color.color(0,0.5,0.1);
-                } else if(event.getCode() == KeyCode.DIGIT6){
+                } else if(event.getCode() == KeyCode.DIGIT5){
                     g.foundHotel(5,currentPlayer,passableTiles);
                     color = Color.color(0.5,0.1,0);
-                } else if(event.getCode() == KeyCode.DIGIT7){
+                } else if(event.getCode() == KeyCode.DIGIT6){
                     g.foundHotel(6,currentPlayer,passableTiles);
                     color = Color.color(1,0,1);
                 }
