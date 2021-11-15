@@ -194,6 +194,8 @@ public class Game implements System {
         }else {
             //Success
             Board.updateTile(tile,adjacentHotels.get(0));
+            tile.setHotel(adjacentHotels.get(0));
+            tilesToReturn.add(tile);
             return tilesToReturn;
         }
     }

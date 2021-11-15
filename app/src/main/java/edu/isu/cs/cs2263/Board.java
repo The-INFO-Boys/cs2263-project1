@@ -111,7 +111,7 @@ public class Board {
         this.board[tile.getColumn()][tile.getRow()].setPlaced();
     }
     public void updateTile(Tile tile, Hotel h){
-        tile.setHotel(h);
+        this.board[tile.getRow()][tile.getColumn()].setHotel(h);
     }
     public List<Hotel> checkPresentHotels(){
         List<Hotel> hotelList = new ArrayList<Hotel>();

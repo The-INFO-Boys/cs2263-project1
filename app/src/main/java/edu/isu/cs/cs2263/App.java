@@ -1211,9 +1211,59 @@ public class App extends Application {
                 updateByString(playedTileS,Color.color(1,1,1));
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
 
-                if(passableTiles.size() > 0){
+                if(passableTiles.size() == 1){
                     Color color;
-                    for(Tile t:g.getBoard().checkAdjacent(playedTile)){
+                    for(Tile t:passableTiles){
+                        if(t.getHotel() != null) {
+                            if(t.getHotel().getID() == 0){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,1,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 1){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,0.5,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 2){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0,1,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 3){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0.5,0,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 4){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0,0.5,0.1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 5){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0.5,0.1,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 6){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,0,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                        }
+                    }
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
+                }
+                else if(passableTiles.size() > 0){
+                    Color color;
+                    for(Tile t:passableTiles){
                         if(t.getHotel() != null) {
                             if(t.getHotel().getID() == 0){
                                 Hotel h = t.getHotel();
