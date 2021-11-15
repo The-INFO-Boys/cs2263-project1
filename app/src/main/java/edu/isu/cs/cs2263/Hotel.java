@@ -18,6 +18,10 @@ public class Hotel {
 
     //region Get & Set
 
+    public int getID(){
+        return ID;
+    }
+
     public boolean getFounded(){
         return Founded;
     }

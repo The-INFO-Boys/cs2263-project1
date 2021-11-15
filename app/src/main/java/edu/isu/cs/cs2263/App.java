@@ -1019,6 +1019,25 @@ public class App extends Application {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
                 g.loadGame(file.getAbsolutePath());
+                for(Tile t: g.getBoard().getTiles()){
+                    Color tileColor = Color.color(1,1,1);
+                    if(t.getHotel().getID() == 0){
+                        tileColor = Color.color(1,1,0);
+                    } else if(t.getHotel().getID() == 1){
+                        tileColor = Color.color(1,0,5);
+                    } else if(t.getHotel().getID() == 2){
+                        tileColor = Color.color(0,1,1);
+                    } else if(t.getHotel().getID() == 3){
+                        tileColor = Color.color(0.5,0,1);
+                    } else if(t.getHotel().getID() == 4){
+                        tileColor = Color.color(0,0.5,0.1);
+                    } else if(t.getHotel().getID() == 5){
+                        tileColor = Color.color(0.5,0.1,0);
+                    }else if(t.getHotel().getID() == 6){
+                        tileColor = Color.color(1,0,1);
+                    }
+                    updateByString((t.getRawRow() + t.getRawColumn()),tileColor);
+                }
             }
         });
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
