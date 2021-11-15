@@ -18,6 +18,8 @@ public class Hotel {
 
     //region Get & Set
 
+    public String getName(){return Name;}
+
     public int getID(){
         return ID;
     }
