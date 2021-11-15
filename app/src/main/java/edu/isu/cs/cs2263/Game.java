@@ -142,6 +142,10 @@ public class Game implements System {
         return retList;
     }
 
+    public void removeTile(Tile tile, int playerID){
+        PlayerList.get(playerID).removeTile(tile);
+    }
+
     @Override
     public List<Tile> playTile(Tile tile){
         List<Tile> tilesToReturn = new ArrayList<>();

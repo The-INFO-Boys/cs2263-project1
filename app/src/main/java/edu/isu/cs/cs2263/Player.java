@@ -32,7 +32,7 @@ public class Player {
         Tiles.add(e);
     }
 
-    public void removeTile(){};
+    public void removeTile(Tile e){Tiles.remove(e);};
 
     public List<Tile> getHand(){return Tiles;}
 

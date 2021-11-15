@@ -1108,28 +1108,25 @@ public class App extends Application {
                 Tile playedTile = null;
                 if (event.getCode() == KeyCode.DIGIT1) {
                     playedTile = g.getPlayerList().get(currentPlayer).getHand().get(0);
-                    g.playTile(playedTile);
                 }
                 if (event.getCode() == KeyCode.DIGIT2) {
                     playedTile = g.getPlayerList().get(currentPlayer).getHand().get(1);
-                    g.playTile(playedTile);
                 }
                 if (event.getCode() == KeyCode.DIGIT3) {
                     playedTile = g.getPlayerList().get(currentPlayer).getHand().get(2);
-                    g.playTile(playedTile);
                 }
                 if (event.getCode() == KeyCode.DIGIT4) {
                     playedTile = g.getPlayerList().get(currentPlayer).getHand().get(3);
-                    g.playTile(playedTile);
                 }
                 if (event.getCode() == KeyCode.DIGIT5) {
                     playedTile = g.getPlayerList().get(currentPlayer).getHand().get(4);
-                    g.playTile(playedTile);
                 }
                 if (event.getCode() == KeyCode.DIGIT6) {
                     playedTile = g.getPlayerList().get(currentPlayer).getHand().get(5);
-                    g.playTile(playedTile);
                 }
+
+                g.playTile(playedTile);
+                g.removeTile(playedTile,currentPlayer);
 
                 String playedTileS = playedTile.getRawRow() + playedTile.getRawColumn();
                 playButton.setText(g.getPlayerList().get(currentPlayer).getName() + " played Tile: " + playedTileS + "\nClick to continue");
