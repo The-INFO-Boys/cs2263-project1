@@ -33,6 +33,7 @@ import javafx.stage.Stage;
 
 import javax.swing.text.LabelView;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -1033,6 +1034,21 @@ public class App extends Application {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null)
                 g.loadGame(file.getAbsolutePath());
+        });
+        saveButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                FileChooser fileChooser1 = new FileChooser();
+                fileChooser1.setTitle("Save Game");
+                File file = fileChooser1.showSaveDialog(stage);
+                if(file != null){
+                    //try{
+                        g.saveGame(file.getAbsolutePath());
+                    //}catch (IOException ex){
+                        //System.out.println(ex.getMessage());
+                    //}
+                }
+            }
         });
         EventHandler<ActionEvent> foundHotel = new EventHandler<ActionEvent>() {
             @Override
