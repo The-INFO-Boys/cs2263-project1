@@ -27,6 +27,7 @@ public class App extends Application {
     Game g = new Game();
     int currentPlayer = 0;
     int currentChoices = 1;
+    int buyHotelStock;
     List<Tile> passableTiles;
 
     Label aOneLabel = new Label("A1");
@@ -1076,25 +1077,57 @@ public class App extends Application {
                     (event.getCode() == KeyCode.DIGIT6 && g.getHotelList().get(6).getAvailable().size() > 0)){
                 if(event.getCode() == KeyCode.DIGIT0){
                     playButton.setText("You chose to buy from " + g.getHotelList().get(0).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 0;
                 }
                 if(event.getCode() == KeyCode.DIGIT1){
                     playButton.setText("You chose to buy from " + g.getHotelList().get(1).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 1;
                 }
                 if(event.getCode() == KeyCode.DIGIT2){
                     playButton.setText("You chose to buy from " + g.getHotelList().get(2).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 2;
                 }
                 if(event.getCode() == KeyCode.DIGIT3){
                     playButton.setText("You chose to buy from " + g.getHotelList().get(3).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 3;
                 }
                 if(event.getCode() == KeyCode.DIGIT4){
                     playButton.setText("You chose to buy from " + g.getHotelList().get(4).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 4;
                 }
                 if(event.getCode() == KeyCode.DIGIT5){
                     playButton.setText("You chose to buy from " + g.getHotelList().get(5).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 5;
                 }
                 if(event.getCode() == KeyCode.DIGIT6){
                     playButton.setText("You chose to buy from " + g.getHotelList().get(6).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 6;
                 }
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED, buyChosenHotel);
+            }
+        }
+    };
+
+    EventHandler<KeyEvent> buyChosenHotel = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 || event.getCode() == KeyCode.DIGIT3){
+                int numBought = 0;
+                if(event.getCode() == KeyCode.DIGIT1){
+                    numBought = 1;
+                }
+                if(event.getCode() == KeyCode.DIGIT2){
+                    numBought = 2;
+
+                }
+                if(event.getCode() == KeyCode.DIGIT3){
+                    numBought = 3;
+                }
+                g.buyStock(currentPlayer,buyHotelStock,numBought);
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                playButton.setText("You bought " + numBought + " of \n" + g.getHotelList().get(buyHotelStock).getName() + "\n Click to Continue");
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
             }
         }
     };
