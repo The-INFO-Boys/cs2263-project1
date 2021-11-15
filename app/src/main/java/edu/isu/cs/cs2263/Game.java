@@ -179,6 +179,7 @@ public class Game implements System {
             return tilesToReturn;
         }else if(adjacentHotels.size() > 1){
             //Merge
+            //Currently Not Implemented
             return tilesToReturn;
         }else {
             //Success

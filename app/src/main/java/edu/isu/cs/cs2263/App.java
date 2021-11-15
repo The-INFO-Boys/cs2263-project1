@@ -1125,456 +1125,465 @@ public class App extends Application {
                     playedTile = g.getPlayerList().get(currentPlayer).getHand().get(5);
                 }
 
-                g.playTile(playedTile);
+                List<Tile> checkCase = g.playTile(playedTile);
                 g.removeTile(playedTile,currentPlayer);
 
                 String playedTileS = playedTile.getRawRow() + playedTile.getRawColumn();
                 playButton.setText(g.getPlayerList().get(currentPlayer).getName() + " played Tile: " + playedTileS + "\nClick to continue");
-                if (playedTileS.equals("A1")) {
-                    aOneLabel.setStyle("-fx-background-color: #000000");
-                    aOneLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("A2")) {
-                    aTwoLabel.setStyle("-fx-background-color: #000000");
-                    aTwoLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("A3")) {
-                    aThreeLabel.setStyle("-fx-background-color: #000000");
-                    aThreeLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("A4")) {
-                    aFourLabel.setStyle("-fx-background-color: #000000");
-                    aFourLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("A5")) {
-                    aFiveLabel.setStyle("-fx-background-color: #000000");
-                    aFiveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("A6")) {
-                    aSixLabel.setStyle("-fx-background-color: #000000");
-                    aSixLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("A7")) {
-                    aSevenLabel.setStyle("-fx-background-color: #000000");
-                    aSevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("A8")) {
-                    aEightLabel.setStyle("-fx-background-color: #000000");
-                    aEightLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("A9")) {
-                    aNineLabel.setStyle("-fx-background-color: #000000");
-                    aNineLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("A10")) {
-                    aTenLabel.setStyle("-fx-background-color: #000000");
-                    aTenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("A11")) {
-                    aElevenLabel.setStyle("-fx-background-color: #000000");
-                    aElevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("A12")) {
-                    aTwelveLabel.setStyle("-fx-background-color: #000000");
-                    aTwelveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-
-                if (playedTileS.equals("B1")) {
-                    bOneLabel.setStyle("-fx-background-color: #000000");
-                    bOneLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("B2")) {
-                    bTwoLabel.setStyle("-fx-background-color: #000000");
-                    bTwoLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("B3")) {
-                    bThreeLabel.setStyle("-fx-background-color: #000000");
-                    bThreeLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("B4")) {
-                    bFourLabel.setStyle("-fx-background-color: #000000");
-                    bFourLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("B5")) {
-                    bFiveLabel.setStyle("-fx-background-color: #000000");
-                    bFiveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("B6")) {
-                    bSixLabel.setStyle("-fx-background-color: #000000");
-                    bSixLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("B7")) {
-                    bSevenLabel.setStyle("-fx-background-color: #000000");
-                    bSevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("B8")) {
-                    bEightLabel.setStyle("-fx-background-color: #000000");
-                    bEightLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("B9")) {
-                    bNineLabel.setStyle("-fx-background-color: #000000");
-                    bNineLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("B10")) {
-                    bTenLabel.setStyle("-fx-background-color: #000000");
-                    bTenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("B11")) {
-                    bElevenLabel.setStyle("-fx-background-color: #000000");
-                    bElevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("B12")) {
-                    bTwelveLabel.setStyle("-fx-background-color: #000000");
-                    bTwelveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-
-                if (playedTileS.equals("C1")) {
-                    cOneLabel.setStyle("-fx-background-color: #000000");
-                    cOneLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("C2")) {
-                    cTwoLabel.setStyle("-fx-background-color: #000000");
-                    cTwoLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("C3")) {
-                    cThreeLabel.setStyle("-fx-background-color: #000000");
-                    cThreeLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("C4")) {
-                    cFourLabel.setStyle("-fx-background-color: #000000");
-                    cFourLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("C5")) {
-                    cFiveLabel.setStyle("-fx-background-color: #000000");
-                    cFiveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("C6")) {
-                    cSixLabel.setStyle("-fx-background-color: #000000");
-                    cSixLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("C7")) {
-                    cSevenLabel.setStyle("-fx-background-color: #000000");
-                    cSevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("C8")) {
-                    cEightLabel.setStyle("-fx-background-color: #000000");
-                    cEightLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("C9")) {
-                    cNineLabel.setStyle("-fx-background-color: #000000");
-                    cNineLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("C10")) {
-                    cTenLabel.setStyle("-fx-background-color: #000000");
-                    cTenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("C11")) {
-                    cElevenLabel.setStyle("-fx-background-color: #000000");
-                    cElevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("C12")) {
-                    cTwelveLabel.setStyle("-fx-background-color: #000000");
-                    cTwelveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-
-                if (playedTileS.equals("D1")) {
-                    dOneLabel.setStyle("-fx-background-color: #000000");
-                    dOneLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("D2")) {
-                    dTwoLabel.setStyle("-fx-background-color: #000000");
-                    dTwoLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("D3")) {
-                    dThreeLabel.setStyle("-fx-background-color: #000000");
-                    dThreeLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("D4")) {
-                    dFourLabel.setStyle("-fx-background-color: #000000");
-                    dFourLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("D5")) {
-                    dFiveLabel.setStyle("-fx-background-color: #000000");
-                    dFiveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("D6")) {
-                    dSixLabel.setStyle("-fx-background-color: #000000");
-                    dSixLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("D7")) {
-                    dSevenLabel.setStyle("-fx-background-color: #000000");
-                    dSevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("D8")) {
-                    dEightLabel.setStyle("-fx-background-color: #000000");
-                    dEightLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("D9")) {
-                    dNineLabel.setStyle("-fx-background-color: #000000");
-                    dNineLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("D10")) {
-                    dTenLabel.setStyle("-fx-background-color: #000000");
-                    dTenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("D11")) {
-                    dElevenLabel.setStyle("-fx-background-color: #000000");
-                    dElevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("D12")) {
-                    dTwelveLabel.setStyle("-fx-background-color: #000000");
-                    dTwelveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-
-                if (playedTileS.equals("E1")) {
-                    eOneLabel.setStyle("-fx-background-color: #000000");
-                    eOneLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("E2")) {
-                    eTwoLabel.setStyle("-fx-background-color: #000000");
-                    eTwoLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("E3")) {
-                    eThreeLabel.setStyle("-fx-background-color: #000000");
-                    eThreeLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("E4")) {
-                    eFourLabel.setStyle("-fx-background-color: #000000");
-                    eFourLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("E5")) {
-                    eFiveLabel.setStyle("-fx-background-color: #000000");
-                    eFiveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("E6")) {
-                    eSixLabel.setStyle("-fx-background-color: #000000");
-                    eSixLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("E7")) {
-                    eSevenLabel.setStyle("-fx-background-color: #000000");
-                    eSevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("E8")) {
-                    eEightLabel.setStyle("-fx-background-color: #000000");
-                    eEightLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("E9")) {
-                    eNineLabel.setStyle("-fx-background-color: #000000");
-                    eNineLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("E10")) {
-                    eTenLabel.setStyle("-fx-background-color: #000000");
-                    eTenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("E11")) {
-                    eElevenLabel.setStyle("-fx-background-color: #000000");
-                    eElevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("E12")) {
-                    eTwelveLabel.setStyle("-fx-background-color: #000000");
-                    eTwelveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-
-                if (playedTileS.equals("F1")) {
-                    fOneLabel.setStyle("-fx-background-color: #000000");
-                    fOneLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("F2")) {
-                    fTwoLabel.setStyle("-fx-background-color: #000000");
-                    fTwoLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("F3")) {
-                    fThreeLabel.setStyle("-fx-background-color: #000000");
-                    fThreeLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("F4")) {
-                    fFourLabel.setStyle("-fx-background-color: #000000");
-                    fFourLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("F5")) {
-                    fFiveLabel.setStyle("-fx-background-color: #000000");
-                    fFiveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("F6")) {
-                    fSixLabel.setStyle("-fx-background-color: #000000");
-                    fSixLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("F7")) {
-                    fSevenLabel.setStyle("-fx-background-color: #000000");
-                    fSevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("F8")) {
-                    fEightLabel.setStyle("-fx-background-color: #000000");
-                    fEightLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("F9")) {
-                    fNineLabel.setStyle("-fx-background-color: #000000");
-                    fNineLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("F10")) {
-                    fTenLabel.setStyle("-fx-background-color: #000000");
-                    fTenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("F11")) {
-                    fElevenLabel.setStyle("-fx-background-color: #000000");
-                    fElevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("F12")) {
-                    fTwelveLabel.setStyle("-fx-background-color: #000000");
-                    fTwelveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-
-                if (playedTileS.equals("G1")) {
-                    gOneLabel.setStyle("-fx-background-color: #000000");
-                    gOneLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("G2")) {
-                    gTwoLabel.setStyle("-fx-background-color: #000000");
-                    gTwoLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("G3")) {
-                    gThreeLabel.setStyle("-fx-background-color: #000000");
-                    gThreeLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("G4")) {
-                    gFourLabel.setStyle("-fx-background-color: #000000");
-                    gFourLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("G5")) {
-                    gFiveLabel.setStyle("-fx-background-color: #000000");
-                    gFiveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("G6")) {
-                    gSixLabel.setStyle("-fx-background-color: #000000");
-                    gSixLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("G7")) {
-                    gSevenLabel.setStyle("-fx-background-color: #000000");
-                    gSevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("G8")) {
-                    gEightLabel.setStyle("-fx-background-color: #000000");
-                    gEightLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("G9")) {
-                    gNineLabel.setStyle("-fx-background-color: #000000");
-                    gNineLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("G10")) {
-                    gTenLabel.setStyle("-fx-background-color: #000000");
-                    gTenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("G11")) {
-                    gElevenLabel.setStyle("-fx-background-color: #000000");
-                    gElevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("G12")) {
-                    gTwelveLabel.setStyle("-fx-background-color: #000000");
-                    gTwelveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-
-                if (playedTileS.equals("H1")) {
-                    hOneLabel.setStyle("-fx-background-color: #000000");
-                    hOneLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("H2")) {
-                    hTwoLabel.setStyle("-fx-background-color: #000000");
-                    hTwoLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("H3")) {
-                    hThreeLabel.setStyle("-fx-background-color: #000000");
-                    hThreeLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("H4")) {
-                    hFourLabel.setStyle("-fx-background-color: #000000");
-                    hFourLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("H5")) {
-                    hFiveLabel.setStyle("-fx-background-color: #000000");
-                    hFiveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("H6")) {
-                    hSixLabel.setStyle("-fx-background-color: #000000");
-                    hSixLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("H7")) {
-                    hSevenLabel.setStyle("-fx-background-color: #000000");
-                    hSevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("H8")) {
-                    hEightLabel.setStyle("-fx-background-color: #000000");
-                    hEightLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("H9")) {
-                    hNineLabel.setStyle("-fx-background-color: #000000");
-                    hNineLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("H10")) {
-                    hTenLabel.setStyle("-fx-background-color: #000000");
-                    hTenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("H11")) {
-                    hElevenLabel.setStyle("-fx-background-color: #000000");
-                    hElevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("H12")) {
-                    hTwelveLabel.setStyle("-fx-background-color: #000000");
-                    hTwelveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-
-                if (playedTileS.equals("I1")) {
-                    iOneLabel.setStyle("-fx-background-color: #000000");
-                    iOneLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("I2")) {
-                    iTwoLabel.setStyle("-fx-background-color: #000000");
-                    iTwoLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("I3")) {
-                    iThreeLabel.setStyle("-fx-background-color: #000000");
-                    iThreeLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("I4")) {
-                    iFourLabel.setStyle("-fx-background-color: #000000");
-                    iFourLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("I5")) {
-                    iFiveLabel.setStyle("-fx-background-color: #000000");
-                    iFiveLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("I6")) {
-                    iSixLabel.setStyle("-fx-background-color: #000000");
-                    iSixLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("I7")) {
-                    iSevenLabel.setStyle("-fx-background-color: #000000");
-                    iSevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("I8")) {
-                    iEightLabel.setStyle("-fx-background-color: #000000");
-                    iEightLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("I9")) {
-                    iNineLabel.setStyle("-fx-background-color: #000000");
-                    iNineLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("I10")) {
-                    iTenLabel.setStyle("-fx-background-color: #000000");
-                    iTenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("I11")) {
-                    iElevenLabel.setStyle("-fx-background-color: #000000");
-                    iElevenLabel.setTextFill(Color.color(1, 1, 1));
-                }
-                if (playedTileS.equals("I12")) {
-                    iTwelveLabel.setStyle("-fx-background-color: #000000");
-                    iTwelveLabel.setTextFill(Color.color(1, 1, 1));
-                }
+                updateByString(playedTileS);
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
+
+                if(checkCase.size() > 0){
+
+                }
+
                 playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
             }
         }
     };
+
+    private void updateByString(String tilePlayed){
+        if (tilePlayed.equals("A1")) {
+            aOneLabel.setStyle("-fx-background-color: #000000");
+            aOneLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("A2")) {
+            aTwoLabel.setStyle("-fx-background-color: #000000");
+            aTwoLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("A3")) {
+            aThreeLabel.setStyle("-fx-background-color: #000000");
+            aThreeLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("A4")) {
+            aFourLabel.setStyle("-fx-background-color: #000000");
+            aFourLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("A5")) {
+            aFiveLabel.setStyle("-fx-background-color: #000000");
+            aFiveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("A6")) {
+            aSixLabel.setStyle("-fx-background-color: #000000");
+            aSixLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("A7")) {
+            aSevenLabel.setStyle("-fx-background-color: #000000");
+            aSevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("A8")) {
+            aEightLabel.setStyle("-fx-background-color: #000000");
+            aEightLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("A9")) {
+            aNineLabel.setStyle("-fx-background-color: #000000");
+            aNineLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("A10")) {
+            aTenLabel.setStyle("-fx-background-color: #000000");
+            aTenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("A11")) {
+            aElevenLabel.setStyle("-fx-background-color: #000000");
+            aElevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("A12")) {
+            aTwelveLabel.setStyle("-fx-background-color: #000000");
+            aTwelveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+
+        if (tilePlayed.equals("B1")) {
+            bOneLabel.setStyle("-fx-background-color: #000000");
+            bOneLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("B2")) {
+            bTwoLabel.setStyle("-fx-background-color: #000000");
+            bTwoLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("B3")) {
+            bThreeLabel.setStyle("-fx-background-color: #000000");
+            bThreeLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("B4")) {
+            bFourLabel.setStyle("-fx-background-color: #000000");
+            bFourLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("B5")) {
+            bFiveLabel.setStyle("-fx-background-color: #000000");
+            bFiveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("B6")) {
+            bSixLabel.setStyle("-fx-background-color: #000000");
+            bSixLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("B7")) {
+            bSevenLabel.setStyle("-fx-background-color: #000000");
+            bSevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("B8")) {
+            bEightLabel.setStyle("-fx-background-color: #000000");
+            bEightLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("B9")) {
+            bNineLabel.setStyle("-fx-background-color: #000000");
+            bNineLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("B10")) {
+            bTenLabel.setStyle("-fx-background-color: #000000");
+            bTenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("B11")) {
+            bElevenLabel.setStyle("-fx-background-color: #000000");
+            bElevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("B12")) {
+            bTwelveLabel.setStyle("-fx-background-color: #000000");
+            bTwelveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+
+        if (tilePlayed.equals("C1")) {
+            cOneLabel.setStyle("-fx-background-color: #000000");
+            cOneLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("C2")) {
+            cTwoLabel.setStyle("-fx-background-color: #000000");
+            cTwoLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("C3")) {
+            cThreeLabel.setStyle("-fx-background-color: #000000");
+            cThreeLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("C4")) {
+            cFourLabel.setStyle("-fx-background-color: #000000");
+            cFourLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("C5")) {
+            cFiveLabel.setStyle("-fx-background-color: #000000");
+            cFiveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("C6")) {
+            cSixLabel.setStyle("-fx-background-color: #000000");
+            cSixLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("C7")) {
+            cSevenLabel.setStyle("-fx-background-color: #000000");
+            cSevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("C8")) {
+            cEightLabel.setStyle("-fx-background-color: #000000");
+            cEightLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("C9")) {
+            cNineLabel.setStyle("-fx-background-color: #000000");
+            cNineLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("C10")) {
+            cTenLabel.setStyle("-fx-background-color: #000000");
+            cTenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("C11")) {
+            cElevenLabel.setStyle("-fx-background-color: #000000");
+            cElevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("C12")) {
+            cTwelveLabel.setStyle("-fx-background-color: #000000");
+            cTwelveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+
+        if (tilePlayed.equals("D1")) {
+            dOneLabel.setStyle("-fx-background-color: #000000");
+            dOneLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("D2")) {
+            dTwoLabel.setStyle("-fx-background-color: #000000");
+            dTwoLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("D3")) {
+            dThreeLabel.setStyle("-fx-background-color: #000000");
+            dThreeLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("D4")) {
+            dFourLabel.setStyle("-fx-background-color: #000000");
+            dFourLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("D5")) {
+            dFiveLabel.setStyle("-fx-background-color: #000000");
+            dFiveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("D6")) {
+            dSixLabel.setStyle("-fx-background-color: #000000");
+            dSixLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("D7")) {
+            dSevenLabel.setStyle("-fx-background-color: #000000");
+            dSevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("D8")) {
+            dEightLabel.setStyle("-fx-background-color: #000000");
+            dEightLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("D9")) {
+            dNineLabel.setStyle("-fx-background-color: #000000");
+            dNineLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("D10")) {
+            dTenLabel.setStyle("-fx-background-color: #000000");
+            dTenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("D11")) {
+            dElevenLabel.setStyle("-fx-background-color: #000000");
+            dElevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("D12")) {
+            dTwelveLabel.setStyle("-fx-background-color: #000000");
+            dTwelveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+
+        if (tilePlayed.equals("E1")) {
+            eOneLabel.setStyle("-fx-background-color: #000000");
+            eOneLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("E2")) {
+            eTwoLabel.setStyle("-fx-background-color: #000000");
+            eTwoLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("E3")) {
+            eThreeLabel.setStyle("-fx-background-color: #000000");
+            eThreeLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("E4")) {
+            eFourLabel.setStyle("-fx-background-color: #000000");
+            eFourLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("E5")) {
+            eFiveLabel.setStyle("-fx-background-color: #000000");
+            eFiveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("E6")) {
+            eSixLabel.setStyle("-fx-background-color: #000000");
+            eSixLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("E7")) {
+            eSevenLabel.setStyle("-fx-background-color: #000000");
+            eSevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("E8")) {
+            eEightLabel.setStyle("-fx-background-color: #000000");
+            eEightLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("E9")) {
+            eNineLabel.setStyle("-fx-background-color: #000000");
+            eNineLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("E10")) {
+            eTenLabel.setStyle("-fx-background-color: #000000");
+            eTenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("E11")) {
+            eElevenLabel.setStyle("-fx-background-color: #000000");
+            eElevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("E12")) {
+            eTwelveLabel.setStyle("-fx-background-color: #000000");
+            eTwelveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+
+        if (tilePlayed.equals("F1")) {
+            fOneLabel.setStyle("-fx-background-color: #000000");
+            fOneLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("F2")) {
+            fTwoLabel.setStyle("-fx-background-color: #000000");
+            fTwoLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("F3")) {
+            fThreeLabel.setStyle("-fx-background-color: #000000");
+            fThreeLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("F4")) {
+            fFourLabel.setStyle("-fx-background-color: #000000");
+            fFourLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("F5")) {
+            fFiveLabel.setStyle("-fx-background-color: #000000");
+            fFiveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("F6")) {
+            fSixLabel.setStyle("-fx-background-color: #000000");
+            fSixLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("F7")) {
+            fSevenLabel.setStyle("-fx-background-color: #000000");
+            fSevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("F8")) {
+            fEightLabel.setStyle("-fx-background-color: #000000");
+            fEightLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("F9")) {
+            fNineLabel.setStyle("-fx-background-color: #000000");
+            fNineLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("F10")) {
+            fTenLabel.setStyle("-fx-background-color: #000000");
+            fTenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("F11")) {
+            fElevenLabel.setStyle("-fx-background-color: #000000");
+            fElevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("F12")) {
+            fTwelveLabel.setStyle("-fx-background-color: #000000");
+            fTwelveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+
+        if (tilePlayed.equals("G1")) {
+            gOneLabel.setStyle("-fx-background-color: #000000");
+            gOneLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("G2")) {
+            gTwoLabel.setStyle("-fx-background-color: #000000");
+            gTwoLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("G3")) {
+            gThreeLabel.setStyle("-fx-background-color: #000000");
+            gThreeLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("G4")) {
+            gFourLabel.setStyle("-fx-background-color: #000000");
+            gFourLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("G5")) {
+            gFiveLabel.setStyle("-fx-background-color: #000000");
+            gFiveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("G6")) {
+            gSixLabel.setStyle("-fx-background-color: #000000");
+            gSixLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("G7")) {
+            gSevenLabel.setStyle("-fx-background-color: #000000");
+            gSevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("G8")) {
+            gEightLabel.setStyle("-fx-background-color: #000000");
+            gEightLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("G9")) {
+            gNineLabel.setStyle("-fx-background-color: #000000");
+            gNineLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("G10")) {
+            gTenLabel.setStyle("-fx-background-color: #000000");
+            gTenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("G11")) {
+            gElevenLabel.setStyle("-fx-background-color: #000000");
+            gElevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("G12")) {
+            gTwelveLabel.setStyle("-fx-background-color: #000000");
+            gTwelveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+
+        if (tilePlayed.equals("H1")) {
+            hOneLabel.setStyle("-fx-background-color: #000000");
+            hOneLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("H2")) {
+            hTwoLabel.setStyle("-fx-background-color: #000000");
+            hTwoLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("H3")) {
+            hThreeLabel.setStyle("-fx-background-color: #000000");
+            hThreeLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("H4")) {
+            hFourLabel.setStyle("-fx-background-color: #000000");
+            hFourLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("H5")) {
+            hFiveLabel.setStyle("-fx-background-color: #000000");
+            hFiveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("H6")) {
+            hSixLabel.setStyle("-fx-background-color: #000000");
+            hSixLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("H7")) {
+            hSevenLabel.setStyle("-fx-background-color: #000000");
+            hSevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("H8")) {
+            hEightLabel.setStyle("-fx-background-color: #000000");
+            hEightLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("H9")) {
+            hNineLabel.setStyle("-fx-background-color: #000000");
+            hNineLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("H10")) {
+            hTenLabel.setStyle("-fx-background-color: #000000");
+            hTenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("H11")) {
+            hElevenLabel.setStyle("-fx-background-color: #000000");
+            hElevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("H12")) {
+            hTwelveLabel.setStyle("-fx-background-color: #000000");
+            hTwelveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+
+        if (tilePlayed.equals("I1")) {
+            iOneLabel.setStyle("-fx-background-color: #000000");
+            iOneLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("I2")) {
+            iTwoLabel.setStyle("-fx-background-color: #000000");
+            iTwoLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("I3")) {
+            iThreeLabel.setStyle("-fx-background-color: #000000");
+            iThreeLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("I4")) {
+            iFourLabel.setStyle("-fx-background-color: #000000");
+            iFourLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("I5")) {
+            iFiveLabel.setStyle("-fx-background-color: #000000");
+            iFiveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("I6")) {
+            iSixLabel.setStyle("-fx-background-color: #000000");
+            iSixLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("I7")) {
+            iSevenLabel.setStyle("-fx-background-color: #000000");
+            iSevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("I8")) {
+            iEightLabel.setStyle("-fx-background-color: #000000");
+            iEightLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("I9")) {
+            iNineLabel.setStyle("-fx-background-color: #000000");
+            iNineLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("I10")) {
+            iTenLabel.setStyle("-fx-background-color: #000000");
+            iTenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("I11")) {
+            iElevenLabel.setStyle("-fx-background-color: #000000");
+            iElevenLabel.setTextFill(Color.color(1, 1, 1));
+        }
+        if (tilePlayed.equals("I12")) {
+            iTwelveLabel.setStyle("-fx-background-color: #000000");
+            iTwelveLabel.setTextFill(Color.color(1, 1, 1));
+        }
+    }
 
     EventHandler<MouseEvent> playerSelectionContinueClicked = new EventHandler<MouseEvent>() {
         @Override
