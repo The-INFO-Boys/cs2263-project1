@@ -20,7 +20,7 @@ public class Tile {
         return row - 1;
     }
     public int getRawColumn(){return column;}
-    public Hotel getHotel() {return hotel;    }
+    public Hotel getHotel() {return hotel;}
     public boolean getPlaced(){
         return placed;
     }
