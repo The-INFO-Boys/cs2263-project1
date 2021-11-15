@@ -2,7 +2,7 @@
 
 This is a 2 player game of Acquire that is created using Java, JavaFX, and GitFlow.
 
-##Constitution
+## Constitution
 
 Team Members: David Lape, Robert Helms, and Fernando Larios.
 
