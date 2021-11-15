@@ -1082,7 +1082,11 @@ public class App extends Application {
                     playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
                 }
                 if(event.getCode() == KeyCode.DIGIT2 && currentChoices == 2){
-                    //Handle Buy Stock
+                    String foundHotel = "Enter the number of the hotel you would like to buy stock from:\n";
+                    for (Hotel h: g.getFoundedHotels()){
+                        foundHotel += h.getID() + "." + h.getName() + "\n";
+                    }
+                    playButton.setText(foundHotel);
                 }
             }
         }
