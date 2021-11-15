@@ -1046,6 +1046,7 @@ public class App extends Application {
                     g.getPlayersHand(0);
                     g.getPlayersHand(1);
                 }
+                //playButton.removeEventHandler(MouseEvent.MOUSE_CLICKED, startClicked);
             }
         });
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -1059,13 +1060,6 @@ public class App extends Application {
                 }
             }
         });
-        EventHandler<ActionEvent> foundHotel = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                //if()
-            }
-        };
-
         playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startClicked);
         return gp;
     }
