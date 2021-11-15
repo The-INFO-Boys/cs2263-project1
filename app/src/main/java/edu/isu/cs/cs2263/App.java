@@ -3,12 +3,2362 @@
  */
 package edu.isu.cs.cs2263;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+public class App extends Application {
+
+    Game g = new Game();
+    int currentPlayer = 0;
+    int currentChoices = 1;
+    int buyHotelStock;
+    List<Tile> passableTiles;
+
+    Label aOneLabel = new Label("A1");
+    Label aTwoLabel = new Label("A2");
+    Label aThreeLabel = new Label("A3");
+    Label aFourLabel = new Label("A4");
+    Label aFiveLabel = new Label("A5");
+    Label aSixLabel = new Label("A6");
+    Label aSevenLabel = new Label("A7");
+    Label aEightLabel = new Label("A8");
+    Label aNineLabel = new Label("A9");
+    Label aTenLabel = new Label("A10");
+    Label aElevenLabel = new Label("A11");
+    Label aTwelveLabel = new Label("A12");
+    Label bOneLabel = new Label("B1");
+    Label bTwoLabel = new Label("B2");
+    Label bThreeLabel = new Label("B3");
+    Label bFourLabel = new Label("B4");
+    Label bFiveLabel = new Label("B5");
+    Label bSixLabel = new Label("B6");
+    Label bSevenLabel = new Label("B7");
+    Label bEightLabel = new Label("B8");
+    Label bNineLabel = new Label("B9");
+    Label bTenLabel = new Label("B10");
+    Label bElevenLabel = new Label("B11");
+    Label bTwelveLabel = new Label("B12");
+    Label cOneLabel = new Label("C1");
+    Label cTwoLabel = new Label("C2");
+    Label cThreeLabel = new Label("C3");
+    Label cFourLabel = new Label("C4");
+    Label cFiveLabel = new Label("C5");
+    Label cSixLabel = new Label("C6");
+    Label cSevenLabel = new Label("C7");
+    Label cEightLabel = new Label("C8");
+    Label cNineLabel = new Label("C9");
+    Label cTenLabel = new Label("C10");
+    Label cElevenLabel = new Label("C11");
+    Label cTwelveLabel = new Label("C12");
+    Label dOneLabel = new Label("D1");
+    Label dTwoLabel = new Label("D2");
+    Label dThreeLabel = new Label("D3");
+    Label dFourLabel = new Label("D4");
+    Label dFiveLabel = new Label("D5");
+    Label dSixLabel = new Label("D6");
+    Label dSevenLabel = new Label("D7");
+    Label dEightLabel = new Label("D8");
+    Label dNineLabel = new Label("D9");
+    Label dTenLabel = new Label("D10");
+    Label dElevenLabel = new Label("D11");
+    Label dTwelveLabel = new Label("D12");
+    Label eOneLabel = new Label("E1");
+    Label eTwoLabel = new Label("E2");
+    Label eThreeLabel = new Label("E3");
+    Label eFourLabel = new Label("E4");
+    Label eFiveLabel = new Label("E5");
+    Label eSixLabel = new Label("E6");
+    Label eSevenLabel = new Label("E7");
+    Label eEightLabel = new Label("E8");
+    Label eNineLabel = new Label("E9");
+    Label eTenLabel = new Label("E10");
+    Label eElevenLabel = new Label("E11");
+    Label eTwelveLabel = new Label("E12");
+    Label fOneLabel = new Label("F1");
+    Label fTwoLabel = new Label("F2");
+    Label fThreeLabel = new Label("F3");
+    Label fFourLabel = new Label("F4");
+    Label fFiveLabel = new Label("F5");
+    Label fSixLabel = new Label("F6");
+    Label fSevenLabel = new Label("F7");
+    Label fEightLabel = new Label("F8");
+    Label fNineLabel = new Label("F9");
+    Label fTenLabel = new Label("F10");
+    Label fElevenLabel = new Label("F11");
+    Label fTwelveLabel = new Label("F12");
+    Label gOneLabel = new Label("G1");
+    Label gTwoLabel = new Label("G2");
+    Label gThreeLabel = new Label("G3");
+    Label gFourLabel = new Label("G4");
+    Label gFiveLabel = new Label("G5");
+    Label gSixLabel = new Label("G6");
+    Label gSevenLabel = new Label("G7");
+    Label gEightLabel = new Label("G8");
+    Label gNineLabel = new Label("G9");
+    Label gTenLabel = new Label("G10");
+    Label gElevenLabel = new Label("G11");
+    Label gTwelveLabel = new Label("G12");
+    Label hOneLabel = new Label("H1");
+    Label hTwoLabel = new Label("H2");
+    Label hThreeLabel = new Label("H3");
+    Label hFourLabel = new Label("H4");
+    Label hFiveLabel = new Label("H5");
+    Label hSixLabel = new Label("H6");
+    Label hSevenLabel = new Label("H7");
+    Label hEightLabel = new Label("H8");
+    Label hNineLabel = new Label("H9");
+    Label hTenLabel = new Label("H10");
+    Label hElevenLabel = new Label("H11");
+    Label hTwelveLabel = new Label("H12");
+    Label iOneLabel = new Label("I1");
+    Label iTwoLabel = new Label("I2");
+    Label iThreeLabel = new Label("I3");
+    Label iFourLabel = new Label("I4");
+    Label iFiveLabel = new Label("I5");
+    Label iSixLabel = new Label("I6");
+    Label iSevenLabel = new Label("I7");
+    Label iEightLabel = new Label("I8");
+    Label iNineLabel = new Label("I9");
+    Label iTenLabel = new Label("I10");
+    Label iElevenLabel = new Label("I11");
+    Label iTwelveLabel = new Label("I12");
+
+    Button loadButton = new Button("Load Game");
+    Button saveButton = new Button("Save Game");
+    Button hotelButton = new Button("Hotels");
+    Button stocksButton = new Button("Stocks");
+    Button infoButton = new Button("Info");
+    Button playButton = new Button("Play Game");
+
+    Label pLabel = new Label("PLAYER INFO: Player #");
+    Label tLabel = new Label("TILES: 1.--- 2.--- 3.--- 4.--- 5.--- 6.---");
+    Label mLabel = new Label(" MONEY: $-----");
+    Label infoLabel = new Label();
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Application.launch(args);
     }
+
+    public void start(Stage stage) throws Exception {
+        Scene sc = new Scene(buildGrid(stage));
+        stage.setScene(sc);
+        stage.show();
+    }
+
+    private GridPane buildGrid(Stage stage) {
+        stage.setTitle("Acquire by The INFO Boys");
+        //Labels for Letters
+        Label aLabel = new Label("A");
+        Label bLabel = new Label("B");
+        Label cLabel = new Label("C");
+        Label dLabel = new Label("D");
+        Label eLabel = new Label("E");
+        Label fLabel = new Label("F");
+        Label gLabel = new Label("G");
+        Label hLabel = new Label("H");
+        Label iLabel = new Label("I");
+
+        //Labels for Numbers
+        Label oneLabel = new Label("1");
+        oneLabel.setMinWidth(25);
+        oneLabel.setAlignment(Pos.CENTER);
+        Label twoLabel = new Label("2");
+        twoLabel.setMinWidth(25);
+        twoLabel.setAlignment(Pos.CENTER);
+        Label threeLabel = new Label("3");
+        threeLabel.setMinWidth(25);
+        threeLabel.setAlignment(Pos.CENTER);
+        Label fourLabel = new Label("4");
+        fourLabel.setMinWidth(25);
+        fourLabel.setAlignment(Pos.CENTER);
+        Label fiveLabel = new Label("5");
+        fiveLabel.setMinWidth(25);
+        fiveLabel.setAlignment(Pos.CENTER);
+        Label sixLabel = new Label("6");
+        sixLabel.setMinWidth(25);
+        sixLabel.setAlignment(Pos.CENTER);
+        Label sevenLabel = new Label("7");
+        sevenLabel.setMinWidth(25);
+        sevenLabel.setAlignment(Pos.CENTER);
+        Label eightLabel = new Label("8");
+        eightLabel.setMinWidth(25);
+        eightLabel.setAlignment(Pos.CENTER);
+        Label nineLabel = new Label("9");
+        nineLabel.setMinWidth(25);
+        nineLabel.setAlignment(Pos.CENTER);
+        Label tenLabel = new Label("10");
+        tenLabel.setMinWidth(25);
+        tenLabel.setAlignment(Pos.CENTER);
+        Label elevenLabel = new Label("11");
+        elevenLabel.setMinWidth(25);
+        elevenLabel.setAlignment(Pos.CENTER);
+        Label twelveLabel = new Label("12");
+        twelveLabel.setMinWidth(25);
+        twelveLabel.setAlignment(Pos.CENTER);
+
+        //Labels for Literally Everything
+        aOneLabel.setMinSize(25, 20);
+        aOneLabel.setAlignment(Pos.CENTER);
+        aOneLabel.setId("A1");
+        aOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        aTwoLabel.setMinSize(25, 20);
+        aTwoLabel.setAlignment(Pos.CENTER);
+        aTwoLabel.setId("A2");
+        aTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        aThreeLabel.setMinSize(25, 20);
+        aThreeLabel.setAlignment(Pos.CENTER);
+        aThreeLabel.setId("A3");
+        aThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+        aFourLabel.setMinSize(25, 20);
+        aFourLabel.setAlignment(Pos.CENTER);
+        aFourLabel.setId("A4");
+        aFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+        aFiveLabel.setMinSize(25, 20);
+        aFiveLabel.setAlignment(Pos.CENTER);
+        aFiveLabel.setId("A5");
+        aFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+        aSixLabel.setMinSize(25, 20);
+        aSixLabel.setAlignment(Pos.CENTER);
+        aSixLabel.setId("A6");
+        aSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+        aSevenLabel.setMinSize(25, 20);
+        aSevenLabel.setAlignment(Pos.CENTER);
+        aSevenLabel.setId("A7");
+        aSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+        aEightLabel.setMinSize(25, 20);
+        aEightLabel.setAlignment(Pos.CENTER);
+        aEightLabel.setId("A8");
+        aEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+        aNineLabel.setMinSize(25, 20);
+        aNineLabel.setAlignment(Pos.CENTER);
+        aNineLabel.setId("A9");
+        aNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+        aTenLabel.setMinSize(25, 20);
+        aTenLabel.setAlignment(Pos.CENTER);
+        aTenLabel.setId("A10");
+        aTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+        aElevenLabel.setMinSize(25, 20);
+        aElevenLabel.setAlignment(Pos.CENTER);
+        aElevenLabel.setId("A11");
+        aElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+        aTwelveLabel.setMinSize(25, 20);
+        aTwelveLabel.setAlignment(Pos.CENTER);
+        aTwelveLabel.setId("A12");
+        aTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        bOneLabel.setMinSize(25, 20);
+        bOneLabel.setAlignment(Pos.CENTER);
+        bOneLabel.setId("B1");
+        bOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        bTwoLabel.setMinSize(25, 20);
+        bTwoLabel.setAlignment(Pos.CENTER);
+        bTwoLabel.setId("B2");
+        bTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        bThreeLabel.setMinSize(25, 20);
+        bThreeLabel.setAlignment(Pos.CENTER);
+        bThreeLabel.setId("B3");
+        bThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        bFourLabel.setMinSize(25, 20);
+        bFourLabel.setAlignment(Pos.CENTER);
+        bFourLabel.setId("B4");
+        bFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        bFiveLabel.setMinSize(25, 20);
+        bFiveLabel.setAlignment(Pos.CENTER);
+        bFiveLabel.setId("B5");
+        bFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        bSixLabel.setMinSize(25, 20);
+        bSixLabel.setAlignment(Pos.CENTER);
+        bSixLabel.setId("B6");
+        bSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        bSevenLabel.setMinSize(25, 20);
+        bSevenLabel.setAlignment(Pos.CENTER);
+        bSevenLabel.setId("B7");
+        bSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        bEightLabel.setMinSize(25, 20);
+        bEightLabel.setAlignment(Pos.CENTER);
+        bEightLabel.setId("B8");
+        bEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        bNineLabel.setMinSize(25, 20);
+        bNineLabel.setAlignment(Pos.CENTER);
+        bNineLabel.setId("B9");
+        bNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        bTenLabel.setMinSize(25, 20);
+        bTenLabel.setAlignment(Pos.CENTER);
+        bTenLabel.setId("B10");
+        bTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        bElevenLabel.setMinSize(25, 20);
+        bElevenLabel.setAlignment(Pos.CENTER);
+        bElevenLabel.setId("B11");
+        bElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        bTwelveLabel.setMinSize(25, 20);
+        bTwelveLabel.setAlignment(Pos.CENTER);
+        bTwelveLabel.setId("B12");
+        bTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        cOneLabel.setMinSize(25, 20);
+        cOneLabel.setAlignment(Pos.CENTER);
+        cOneLabel.setId("C1");
+        cOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        cTwoLabel.setMinSize(25, 20);
+        cTwoLabel.setAlignment(Pos.CENTER);
+        cTwoLabel.setId("C2");
+        cTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        cThreeLabel.setMinSize(25, 20);
+        cThreeLabel.setAlignment(Pos.CENTER);
+        cThreeLabel.setId("C3");
+        cThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        cFourLabel.setMinSize(25, 20);
+        cFourLabel.setAlignment(Pos.CENTER);
+        cFourLabel.setId("C4");
+        cFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        cFiveLabel.setMinSize(25, 20);
+        cFiveLabel.setAlignment(Pos.CENTER);
+        cFiveLabel.setId("C5");
+        cFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        cSixLabel.setMinSize(25, 20);
+        cSixLabel.setAlignment(Pos.CENTER);
+        cSixLabel.setId("C6");
+        cSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        cSevenLabel.setMinSize(25, 20);
+        cSevenLabel.setAlignment(Pos.CENTER);
+        cSevenLabel.setId("C7");
+        cSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        cEightLabel.setMinSize(25, 20);
+        cEightLabel.setAlignment(Pos.CENTER);
+        cEightLabel.setId("C8");
+        cEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        cNineLabel.setMinSize(25, 20);
+        cNineLabel.setAlignment(Pos.CENTER);
+        cNineLabel.setId("C9");
+        cNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        cTenLabel.setMinSize(25, 20);
+        cTenLabel.setAlignment(Pos.CENTER);
+        cTenLabel.setId("C10");
+        cTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        cElevenLabel.setMinSize(25, 20);
+        cElevenLabel.setAlignment(Pos.CENTER);
+        cElevenLabel.setId("C11");
+        cElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        cTwelveLabel.setMinSize(25, 20);
+        cTwelveLabel.setAlignment(Pos.CENTER);
+        cTwelveLabel.setId("C12");
+        cTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        dOneLabel.setMinSize(25, 20);
+        dOneLabel.setAlignment(Pos.CENTER);
+        dOneLabel.setId("D1");
+        dOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        dTwoLabel.setMinSize(25, 20);
+        dTwoLabel.setAlignment(Pos.CENTER);
+        dTwoLabel.setId("D2");
+        dTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        dThreeLabel.setMinSize(25, 20);
+        dThreeLabel.setAlignment(Pos.CENTER);
+        dThreeLabel.setId("D3");
+        dThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        dFourLabel.setMinSize(25, 20);
+        dFourLabel.setAlignment(Pos.CENTER);
+        dFourLabel.setId("D4");
+        dFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        dFiveLabel.setMinSize(25, 20);
+        dFiveLabel.setAlignment(Pos.CENTER);
+        dFiveLabel.setId("D5");
+        dFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        dSixLabel.setMinSize(25, 20);
+        dSixLabel.setAlignment(Pos.CENTER);
+        dSixLabel.setId("D6");
+        dSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        dSevenLabel.setMinSize(25, 20);
+        dSevenLabel.setAlignment(Pos.CENTER);
+        dSevenLabel.setId("D7");
+        dSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        dEightLabel.setMinSize(25, 20);
+        dEightLabel.setAlignment(Pos.CENTER);
+        dEightLabel.setId("D8");
+        dEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        dNineLabel.setMinSize(25, 20);
+        dNineLabel.setAlignment(Pos.CENTER);
+        dNineLabel.setId("D9");
+        dNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        dTenLabel.setMinSize(25, 20);
+        dTenLabel.setAlignment(Pos.CENTER);
+        dTenLabel.setId("D10");
+        dTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        dElevenLabel.setMinSize(25, 20);
+        dElevenLabel.setAlignment(Pos.CENTER);
+        dElevenLabel.setId("D11");
+        dElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        dTwelveLabel.setMinSize(25, 20);
+        dTwelveLabel.setAlignment(Pos.CENTER);
+        dTwelveLabel.setId("D12");
+        dTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        eOneLabel.setMinSize(25, 20);
+        eOneLabel.setAlignment(Pos.CENTER);
+        eOneLabel.setId("E1");
+        eOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        eTwoLabel.setMinSize(25, 20);
+        eTwoLabel.setAlignment(Pos.CENTER);
+        eTwoLabel.setId("E2");
+        eTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        eThreeLabel.setMinSize(25, 20);
+        eThreeLabel.setAlignment(Pos.CENTER);
+        eThreeLabel.setId("E3");
+        eThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        eFourLabel.setMinSize(25, 20);
+        eFourLabel.setAlignment(Pos.CENTER);
+        eFourLabel.setId("E4");
+        eFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        eFiveLabel.setMinSize(25, 20);
+        eFiveLabel.setAlignment(Pos.CENTER);
+        eFiveLabel.setId("E5");
+        eFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        eSixLabel.setMinSize(25, 20);
+        eSixLabel.setAlignment(Pos.CENTER);
+        eSixLabel.setId("E6");
+        eSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        eSevenLabel.setMinSize(25, 20);
+        eSevenLabel.setAlignment(Pos.CENTER);
+        eSevenLabel.setId("E7");
+        eSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        eEightLabel.setMinSize(25, 20);
+        eEightLabel.setAlignment(Pos.CENTER);
+        eEightLabel.setId("E8");
+        eEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        eNineLabel.setMinSize(25, 20);
+        eNineLabel.setAlignment(Pos.CENTER);
+        eNineLabel.setId("E9");
+        eNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        eTenLabel.setMinSize(25, 20);
+        eTenLabel.setAlignment(Pos.CENTER);
+        eTenLabel.setId("E10");
+        eTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        eElevenLabel.setMinSize(25, 20);
+        eElevenLabel.setAlignment(Pos.CENTER);
+        eElevenLabel.setId("E11");
+        eElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        eTwelveLabel.setMinSize(25, 20);
+        eTwelveLabel.setAlignment(Pos.CENTER);
+        eTwelveLabel.setId("E12");
+        eTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        fOneLabel.setMinSize(25, 20);
+        fOneLabel.setAlignment(Pos.CENTER);
+        fOneLabel.setId("F1");
+        fOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        fTwoLabel.setMinSize(25, 20);
+        fTwoLabel.setAlignment(Pos.CENTER);
+        fTwoLabel.setId("F2");
+        fTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        fThreeLabel.setMinSize(25, 20);
+        fThreeLabel.setAlignment(Pos.CENTER);
+        fThreeLabel.setId("F3");
+        fThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        fFourLabel.setMinSize(25, 20);
+        fFourLabel.setAlignment(Pos.CENTER);
+        fFourLabel.setId("F4");
+        fFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        fFiveLabel.setMinSize(25, 20);
+        fFiveLabel.setAlignment(Pos.CENTER);
+        fFiveLabel.setId("F5");
+        fFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        fSixLabel.setMinSize(25, 20);
+        fSixLabel.setAlignment(Pos.CENTER);
+        fSixLabel.setId("F6");
+        fSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        fSevenLabel.setMinSize(25, 20);
+        fSevenLabel.setAlignment(Pos.CENTER);
+        fSevenLabel.setId("F7");
+        fSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        fEightLabel.setMinSize(25, 20);
+        fEightLabel.setAlignment(Pos.CENTER);
+        fEightLabel.setId("F8");
+        fEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        fNineLabel.setMinSize(25, 20);
+        fNineLabel.setAlignment(Pos.CENTER);
+        fNineLabel.setId("F9");
+        fNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        fTenLabel.setMinSize(25, 20);
+        fTenLabel.setAlignment(Pos.CENTER);
+        fTenLabel.setId("F10");
+        fTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        fElevenLabel.setMinSize(25, 20);
+        fElevenLabel.setAlignment(Pos.CENTER);
+        fElevenLabel.setId("F11");
+        fElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        fTwelveLabel.setMinSize(25, 20);
+        fTwelveLabel.setAlignment(Pos.CENTER);
+        fTwelveLabel.setId("F12");
+        fTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        gOneLabel.setMinSize(25, 20);
+        gOneLabel.setAlignment(Pos.CENTER);
+        gOneLabel.setId("G1");
+        gOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        gTwoLabel.setMinSize(25, 20);
+        gTwoLabel.setAlignment(Pos.CENTER);
+        gTwoLabel.setId("G2");
+        gTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        gThreeLabel.setMinSize(25, 20);
+        gThreeLabel.setAlignment(Pos.CENTER);
+        gThreeLabel.setId("G3");
+        gThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        gFourLabel.setMinSize(25, 20);
+        gFourLabel.setAlignment(Pos.CENTER);
+        gFourLabel.setId("G4");
+        gFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        gFiveLabel.setMinSize(25, 20);
+        gFiveLabel.setAlignment(Pos.CENTER);
+        gFiveLabel.setId("G5");
+        gFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        gSixLabel.setMinSize(25, 20);
+        gSixLabel.setAlignment(Pos.CENTER);
+        gSixLabel.setId("G6");
+        gSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        gSevenLabel.setMinSize(25, 20);
+        gSevenLabel.setAlignment(Pos.CENTER);
+        gSevenLabel.setId("G7");
+        gSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        gEightLabel.setMinSize(25, 20);
+        gEightLabel.setAlignment(Pos.CENTER);
+        gEightLabel.setId("G8");
+        gEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        gNineLabel.setMinSize(25, 20);
+        gNineLabel.setAlignment(Pos.CENTER);
+        gNineLabel.setId("G9");
+        gNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        gTenLabel.setMinSize(25, 20);
+        gTenLabel.setAlignment(Pos.CENTER);
+        gTenLabel.setId("G10");
+        gTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        gElevenLabel.setMinSize(25, 20);
+        gElevenLabel.setAlignment(Pos.CENTER);
+        gElevenLabel.setId("G11");
+        gElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        gTwelveLabel.setMinSize(25, 20);
+        gTwelveLabel.setAlignment(Pos.CENTER);
+        gTwelveLabel.setId("G12");
+        gTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        hOneLabel.setMinSize(25, 20);
+        hOneLabel.setAlignment(Pos.CENTER);
+        hOneLabel.setId("H1");
+        hOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        hTwoLabel.setMinSize(25, 20);
+        hTwoLabel.setAlignment(Pos.CENTER);
+        hTwoLabel.setId("H2");
+        hTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        hThreeLabel.setMinSize(25, 20);
+        hThreeLabel.setAlignment(Pos.CENTER);
+        hThreeLabel.setId("H3");
+        hThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        hFourLabel.setMinSize(25, 20);
+        hFourLabel.setAlignment(Pos.CENTER);
+        hFourLabel.setId("H4");
+        hFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        hFiveLabel.setMinSize(25, 20);
+        hFiveLabel.setAlignment(Pos.CENTER);
+        hFiveLabel.setId("H5");
+        hFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        hSixLabel.setMinSize(25, 20);
+        hSixLabel.setAlignment(Pos.CENTER);
+        hSixLabel.setId("H6");
+        hSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        hSevenLabel.setMinSize(25, 20);
+        hSevenLabel.setAlignment(Pos.CENTER);
+        hSevenLabel.setId("H7");
+        hSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        hEightLabel.setMinSize(25, 20);
+        hEightLabel.setAlignment(Pos.CENTER);
+        hEightLabel.setId("H8");
+        hEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        hNineLabel.setMinSize(25, 20);
+        hNineLabel.setAlignment(Pos.CENTER);
+        hNineLabel.setId("H9");
+        hNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        hTenLabel.setMinSize(25, 20);
+        hTenLabel.setAlignment(Pos.CENTER);
+        hTenLabel.setId("H10");
+        hTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        hElevenLabel.setMinSize(25, 20);
+        hElevenLabel.setAlignment(Pos.CENTER);
+        hElevenLabel.setId("H11");
+        hElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        hTwelveLabel.setMinSize(25, 20);
+        hTwelveLabel.setAlignment(Pos.CENTER);
+        hTwelveLabel.setId("H12");
+        hTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        iOneLabel.setMinSize(25, 20);
+        iOneLabel.setAlignment(Pos.CENTER);
+        iOneLabel.setId("I1");
+        iOneLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        iTwoLabel.setMinSize(25, 20);
+        iTwoLabel.setAlignment(Pos.CENTER);
+        iTwoLabel.setId("I2");
+        iTwoLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        iThreeLabel.setMinSize(25, 20);
+        iThreeLabel.setAlignment(Pos.CENTER);
+        iThreeLabel.setId("I3");
+        iThreeLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        iFourLabel.setMinSize(25, 20);
+        iFourLabel.setAlignment(Pos.CENTER);
+        iFourLabel.setId("I4");
+        iFourLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        iFiveLabel.setMinSize(25, 20);
+        iFiveLabel.setAlignment(Pos.CENTER);
+        iFiveLabel.setId("I5");
+        iFiveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        iSixLabel.setMinSize(25, 20);
+        iSixLabel.setAlignment(Pos.CENTER);
+        iSixLabel.setId("I6");
+        iSixLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        iSevenLabel.setMinSize(25, 20);
+        iSevenLabel.setAlignment(Pos.CENTER);
+        iSevenLabel.setId("I7");
+        iSevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        iEightLabel.setMinSize(25, 20);
+        iEightLabel.setAlignment(Pos.CENTER);
+        iEightLabel.setId("I8");
+        iEightLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        iNineLabel.setMinSize(25, 20);
+        iNineLabel.setAlignment(Pos.CENTER);
+        iNineLabel.setId("I9");
+        iNineLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        iTenLabel.setMinSize(25, 20);
+        iTenLabel.setAlignment(Pos.CENTER);
+        iTenLabel.setId("I10");
+        iTenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        iElevenLabel.setMinSize(25, 20);
+        iElevenLabel.setAlignment(Pos.CENTER);
+        iElevenLabel.setId("I11");
+        iElevenLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        iTwelveLabel.setMinSize(25, 20);
+        iTwelveLabel.setAlignment(Pos.CENTER);
+        iTwelveLabel.setId("I12");
+        iTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
+
+        //Buttons
+        playButton.setStyle("-fx-background-color: #00FF00");
+        playButton.setMinWidth(50);
+
+        GridPane gp = new GridPane();
+
+        //grid setup
+        gp.add(oneLabel, 1, 0);
+        gp.add(twoLabel, 2, 0);
+        gp.add(threeLabel, 3, 0);
+        gp.add(fourLabel, 4, 0);
+        gp.add(fiveLabel, 5, 0);
+        gp.add(sixLabel, 6, 0);
+        gp.add(sevenLabel, 7, 0);
+        gp.add(eightLabel, 8, 0);
+        gp.add(nineLabel, 9, 0);
+        gp.add(tenLabel, 10, 0);
+        gp.add(elevenLabel, 11, 0);
+        gp.add(twelveLabel, 12, 0);
+
+        gp.add(aLabel, 0, 1);
+        gp.add(aOneLabel, 1, 1);
+        gp.add(aTwoLabel, 2, 1);
+        gp.add(aThreeLabel, 3, 1);
+        gp.add(aFourLabel, 4, 1);
+        gp.add(aFiveLabel, 5, 1);
+        gp.add(aSixLabel, 6, 1);
+        gp.add(aSevenLabel, 7, 1);
+        gp.add(aEightLabel, 8, 1);
+        gp.add(aNineLabel, 9, 1);
+        gp.add(aTenLabel, 10, 1);
+        gp.add(aElevenLabel, 11, 1);
+        gp.add(aTwelveLabel, 12, 1);
+
+        gp.add(bLabel, 0, 2);
+        gp.add(bOneLabel, 1, 2);
+        gp.add(bTwoLabel, 2, 2);
+        gp.add(bThreeLabel, 3, 2);
+        gp.add(bFourLabel, 4, 2);
+        gp.add(bFiveLabel, 5, 2);
+        gp.add(bSixLabel, 6, 2);
+        gp.add(bSevenLabel, 7, 2);
+        gp.add(bEightLabel, 8, 2);
+        gp.add(bNineLabel, 9, 2);
+        gp.add(bTenLabel, 10, 2);
+        gp.add(bElevenLabel, 11, 2);
+        gp.add(bTwelveLabel, 12, 2);
+
+
+        gp.add(cLabel, 0, 3);
+        gp.add(cOneLabel, 1, 3);
+        gp.add(cTwoLabel, 2, 3);
+        gp.add(cThreeLabel, 3, 3);
+        gp.add(cFourLabel, 4, 3);
+        gp.add(cFiveLabel, 5, 3);
+        gp.add(cSixLabel, 6, 3);
+        gp.add(cSevenLabel, 7, 3);
+        gp.add(cEightLabel, 8, 3);
+        gp.add(cNineLabel, 9, 3);
+        gp.add(cTenLabel, 10, 3);
+        gp.add(cElevenLabel, 11, 3);
+        gp.add(cTwelveLabel, 12, 3);
+
+        gp.add(dLabel, 0, 4);
+        gp.add(dOneLabel, 1, 4);
+        gp.add(dTwoLabel, 2, 4);
+        gp.add(dThreeLabel, 3, 4);
+        gp.add(dFourLabel, 4, 4);
+        gp.add(dFiveLabel, 5, 4);
+        gp.add(dSixLabel, 6, 4);
+        gp.add(dSevenLabel, 7, 4);
+        gp.add(dEightLabel, 8, 4);
+        gp.add(dNineLabel, 9, 4);
+        gp.add(dTenLabel, 10, 4);
+        gp.add(dElevenLabel, 11, 4);
+        gp.add(dTwelveLabel, 12, 4);
+
+        gp.add(eLabel, 0, 5);
+        gp.add(eOneLabel, 1, 5);
+        gp.add(eTwoLabel, 2, 5);
+        gp.add(eThreeLabel, 3, 5);
+        gp.add(eFourLabel, 4, 5);
+        gp.add(eFiveLabel, 5, 5);
+        gp.add(eSixLabel, 6, 5);
+        gp.add(eSevenLabel, 7, 5);
+        gp.add(eEightLabel, 8, 5);
+        gp.add(eNineLabel, 9, 5);
+        gp.add(eTenLabel, 10, 5);
+        gp.add(eElevenLabel, 11, 5);
+        gp.add(eTwelveLabel, 12, 5);
+
+        gp.add(fLabel, 0, 6);
+        gp.add(fOneLabel, 1, 6);
+        gp.add(fTwoLabel, 2, 6);
+        gp.add(fThreeLabel, 3, 6);
+        gp.add(fFourLabel, 4, 6);
+        gp.add(fFiveLabel, 5, 6);
+        gp.add(fSixLabel, 6, 6);
+        gp.add(fSevenLabel, 7, 6);
+        gp.add(fEightLabel, 8, 6);
+        gp.add(fNineLabel, 9, 6);
+        gp.add(fTenLabel, 10, 6);
+        gp.add(fElevenLabel, 11, 6);
+        gp.add(fTwelveLabel, 12, 6);
+
+        gp.add(gLabel, 0, 7);
+        gp.add(gOneLabel, 1, 7);
+        gp.add(gTwoLabel, 2, 7);
+        gp.add(gThreeLabel, 3, 7);
+        gp.add(gFourLabel, 4, 7);
+        gp.add(gFiveLabel, 5, 7);
+        gp.add(gSixLabel, 6, 7);
+        gp.add(gSevenLabel, 7, 7);
+        gp.add(gEightLabel, 8, 7);
+        gp.add(gNineLabel, 9, 7);
+        gp.add(gTenLabel, 10, 7);
+        gp.add(gElevenLabel, 11, 7);
+        gp.add(gTwelveLabel, 12, 7);
+
+        gp.add(hLabel, 0, 8);
+        gp.add(hOneLabel, 1, 8);
+        gp.add(hTwoLabel, 2, 8);
+        gp.add(hThreeLabel, 3, 8);
+        gp.add(hFourLabel, 4, 8);
+        gp.add(hFiveLabel, 5, 8);
+        gp.add(hSixLabel, 6, 8);
+        gp.add(hSevenLabel, 7, 8);
+        gp.add(hEightLabel, 8, 8);
+        gp.add(hNineLabel, 9, 8);
+        gp.add(hTenLabel, 10, 8);
+        gp.add(hElevenLabel, 11, 8);
+        gp.add(hTwelveLabel, 12, 8);
+
+        gp.add(iLabel, 0, 9);
+        gp.add(iOneLabel, 1, 9);
+        gp.add(iTwoLabel, 2, 9);
+        gp.add(iThreeLabel, 3, 9);
+        gp.add(iFourLabel, 4, 9);
+        gp.add(iFiveLabel, 5, 9);
+        gp.add(iSixLabel, 6, 9);
+        gp.add(iSevenLabel, 7, 9);
+        gp.add(iEightLabel, 8, 9);
+        gp.add(iNineLabel, 9, 9);
+        gp.add(iTenLabel, 10, 9);
+        gp.add(iElevenLabel, 11, 9);
+        gp.add(iTwelveLabel, 12, 9);
+
+        gp.add(playButton, 13, 0, 1, 9);
+
+        GridPane buttonPane = new GridPane();
+        buttonPane.add(loadButton, 0, 1);
+        buttonPane.add(saveButton, 1, 1);
+        buttonPane.add(tLabel, 2, 1);
+        buttonPane.add(mLabel, 3, 1);
+        buttonPane.add(hotelButton, 4, 1);
+        buttonPane.add(stocksButton, 5, 1);
+        buttonPane.add(infoButton, 6, 1);
+        buttonPane.add(pLabel, 2, 0);
+        buttonPane.setMinWidth(575);
+        gp.add(buttonPane, 0, 16, 14, 2);
+
+        //Handlers
+        loadButton.setOnAction(event1 -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Save File");
+            File file = fileChooser.showOpenDialog(stage);
+            if (file != null) {
+                g.loadGame(file.getAbsolutePath());
+                for(Tile t: g.getBoard().getTiles()){
+                    Color tileColor = Color.color(1,1,1);
+                    if(t.getPlaced()) {
+                        if(t.getHotel() != null){
+                            if(t.getHotel().getID() == 0){
+                                tileColor = Color.color(1,1,0);
+                            } else if(t.getHotel().getID() == 1){
+                                tileColor = Color.color(1,0.5,0);
+                            } else if(t.getHotel().getID() == 2){
+                                tileColor = Color.color(0,1,1);
+                            } else if(t.getHotel().getID() == 3){
+                                tileColor = Color.color(0.5,0,1);
+                            } else if(t.getHotel().getID() == 4){
+                                tileColor = Color.color(0,0.5,0.1);
+                            } else if(t.getHotel().getID() == 5){
+                                tileColor = Color.color(0.5,0.1,0);
+                            }else if(t.getHotel().getID() == 6){
+                                tileColor = Color.color(1,0,1);
+                            }
+                        }
+                        updateByString((t.getRawRow() + t.getRawColumn()),tileColor);
+                    }
+                }
+                for(Player p: g.getPlayerList()){
+                    g.getPlayersHand(0);
+                    g.getPlayersHand(1);
+                }
+                //playButton.removeEventHandler(MouseEvent.MOUSE_CLICKED, startClicked);
+            }
+        });
+        saveButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Save Game");
+                File file = fileChooser.showSaveDialog(stage);
+                if(file != null){
+                        g.saveGame(file.getAbsolutePath());
+                }
+            }
+        });
+        playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startClicked);
+        return gp;
+    }
+
+    EventHandler<KeyEvent> chooseHotelToBuy = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if((event.getCode() == KeyCode.DIGIT0 && g.getHotelList().get(0).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT1 && g.getHotelList().get(1).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT2 && g.getHotelList().get(2).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT3 && g.getHotelList().get(3).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT4 && g.getHotelList().get(4).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT5 && g.getHotelList().get(5).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT6 && g.getHotelList().get(6).getAvailable().size() > 0)){
+                if(event.getCode() == KeyCode.DIGIT0){
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(0).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 0;
+                }
+                if(event.getCode() == KeyCode.DIGIT1){
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(1).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 1;
+                }
+                if(event.getCode() == KeyCode.DIGIT2){
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(2).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 2;
+                }
+                if(event.getCode() == KeyCode.DIGIT3){
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(3).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 3;
+                }
+                if(event.getCode() == KeyCode.DIGIT4){
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(4).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 4;
+                }
+                if(event.getCode() == KeyCode.DIGIT5){
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(5).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 5;
+                }
+                if(event.getCode() == KeyCode.DIGIT6){
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(6).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 6;
+                }
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED, buyChosenHotel);
+            }
+        }
+    };
+
+    EventHandler<KeyEvent> buyChosenHotel = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 || event.getCode() == KeyCode.DIGIT3){
+                int numBought = 0;
+                if(event.getCode() == KeyCode.DIGIT1){
+                    numBought = 1;
+                }
+                if(event.getCode() == KeyCode.DIGIT2){
+                    numBought = 2;
+
+                }
+                if(event.getCode() == KeyCode.DIGIT3){
+                    numBought = 3;
+                }
+                g.buyStock(currentPlayer,buyHotelStock,numBought);
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                playButton.setText("You bought " + numBought + " of \n" + g.getHotelList().get(buyHotelStock).getName() + "\n Click to Continue");
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
+            }
+        }
+    };
+
+    EventHandler<KeyEvent> endChoice = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if (event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2) {
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                if (event.getCode() == KeyCode.DIGIT1) {
+                    playButton.setText("Turn Ended\nClick to Continue");
+                    g.fillHand(0);
+                    g.fillHand(1);
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
+                }
+                if(event.getCode() == KeyCode.DIGIT2 && currentChoices == 2){
+                    String foundHotel = "Enter the number of the hotel you would like to buy stock from:\n";
+                    for (Hotel h: g.getFoundedHotels()){
+                        if(h.getAvailable().size() > 0) {
+                            foundHotel += h.getID() + "." + h.getName() + "\n";
+                        }
+                    }
+                    playButton.setText(foundHotel);
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToBuy);
+                }
+            }
+        }
+    };
+
+    EventHandler<MouseEvent> clickToContinue = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            if (g.getFoundedHotels().size() > 0) {
+                playButton.setText("Please select what you would like to do:\n1) End Turn\n2) Buy Stock");
+                currentChoices = 2;
+            } else {
+                playButton.setText("Please select what you would like to do:\n1) End Turn");
+                currentChoices = 1;
+            }
+            if (currentPlayer == 0) {
+                currentPlayer++;
+            } else if (currentPlayer == 1) {
+                currentPlayer--;
+            }
+            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
+            playButton.addEventFilter(KeyEvent.KEY_PRESSED, endChoice);
+        }
+    };
+
+    EventHandler<KeyEvent> KeyPressed = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if (event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 ||
+                    event.getCode() == KeyCode.DIGIT3 || event.getCode() == KeyCode.DIGIT4 ||
+                    event.getCode() == KeyCode.DIGIT5 || event.getCode() == KeyCode.DIGIT6) {
+                Tile playedTile = null;
+                if (event.getCode() == KeyCode.DIGIT1) {
+                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(0);
+                        }
+                if (event.getCode() == KeyCode.DIGIT2) {
+                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(1);
+                }
+                if (event.getCode() == KeyCode.DIGIT3) {
+                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(2);
+                }
+                if (event.getCode() == KeyCode.DIGIT4) {
+                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(3);
+                }
+                if (event.getCode() == KeyCode.DIGIT5) {
+                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(4);
+                }
+                if (event.getCode() == KeyCode.DIGIT6) {
+                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(5);
+                }
+
+                passableTiles = g.playTile(playedTile);
+                g.removeTile(playedTile,currentPlayer);
+
+                String playedTileS = playedTile.getRawRow() + playedTile.getRawColumn();
+                playButton.setText(g.getPlayerList().get(currentPlayer).getName() + " played Tile: " + playedTileS + "\nClick to continue");
+                updateByString(playedTileS,Color.color(1,1,1));
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
+
+                if(passableTiles.size() == 1){
+                    Color color;
+                    for(Tile t:passableTiles){
+                        if(t.getHotel() != null) {
+                            if(t.getHotel().getID() == 0){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,1,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 1){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,0.5,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 2){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0,1,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 3){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0.5,0,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 4){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0,0.5,0.1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 5){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0.5,0.1,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 6){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,0,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                        }
+                    }
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
+                }
+                else if(passableTiles.size() > 0){
+                    Color color;
+                    for(Tile t:passableTiles){
+                        if(t.getHotel() != null) {
+                            if(t.getHotel().getID() == 0){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,1,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 1){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,0.5,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 2){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0,1,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 3){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0.5,0,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 4){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0,0.5,0.1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 5){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0.5,0.1,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 6){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,0,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                        }
+                    }
+                    String textForPlay = "Pick a Hotel to Found:\n";
+                    for (Hotel h: g.getFoundableHotels()){
+                        textForPlay += h.getID() + "." + h.getName() + "\n";
+                    }
+                    playButton.setText(textForPlay);
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,hotelToFound);
+                } else {
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
+                }
+            }
+        }
+    };
+
+    EventHandler<KeyEvent> hotelToFound = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if((event.getCode() == KeyCode.DIGIT0 && !g.getHotelList().get(0).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT1 && !g.getHotelList().get(1).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT2 && !g.getHotelList().get(2).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT3 && !g.getHotelList().get(3).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT4 && !g.getHotelList().get(4).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT5 && !g.getHotelList().get(5).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT6 && !g.getHotelList().get(6).getFounded())) {
+                Color color = null;
+                if(event.getCode() == KeyCode.DIGIT0){
+                    g.foundHotel(0,currentPlayer,passableTiles);
+                    color = Color.color(1,1,0);
+                } else if(event.getCode() == KeyCode.DIGIT1){
+                    g.foundHotel(1,currentPlayer,passableTiles);
+                    color = Color.color(1,0.5,0);
+                } else if(event.getCode() == KeyCode.DIGIT2){
+                    g.foundHotel(2,currentPlayer,passableTiles);
+                    color = Color.color(0,1,1);
+                } else if(event.getCode() == KeyCode.DIGIT3){
+                    g.foundHotel(3,currentPlayer,passableTiles);
+                    color = Color.color(0.5,0,1);
+                } else if(event.getCode() == KeyCode.DIGIT4){
+                    g.foundHotel(4,currentPlayer,passableTiles);
+                    color = Color.color(0,0.5,0.1);
+                } else if(event.getCode() == KeyCode.DIGIT5){
+                    g.foundHotel(5,currentPlayer,passableTiles);
+                    color = Color.color(0.5,0.1,0);
+                } else if(event.getCode() == KeyCode.DIGIT6){
+                    g.foundHotel(6,currentPlayer,passableTiles);
+                    color = Color.color(1,0,1);
+                }
+                for (Tile t: passableTiles){
+                    updateByString((t.getRawRow() + t.getRawColumn()), color);
+                }
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                playButton.setText("Your hotel was founded\n and one stock was given to you,\nClick to Continue");
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+            }
+        }
+    };
+    private void updateByString(String tilePlayed, Color color){
+        if (tilePlayed.equals("A1")) {
+            aOneLabel.setStyle("-fx-background-color: #000000");
+            aOneLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("A2")) {
+            aTwoLabel.setStyle("-fx-background-color: #000000");
+            aTwoLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("A3")) {
+            aThreeLabel.setStyle("-fx-background-color: #000000");
+            aThreeLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("A4")) {
+            aFourLabel.setStyle("-fx-background-color: #000000");
+            aFourLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("A5")) {
+            aFiveLabel.setStyle("-fx-background-color: #000000");
+            aFiveLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("A6")) {
+            aSixLabel.setStyle("-fx-background-color: #000000");
+            aSixLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("A7")) {
+            aSevenLabel.setStyle("-fx-background-color: #000000");
+            aSevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("A8")) {
+            aEightLabel.setStyle("-fx-background-color: #000000");
+            aEightLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("A9")) {
+            aNineLabel.setStyle("-fx-background-color: #000000");
+            aNineLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("A10")) {
+            aTenLabel.setStyle("-fx-background-color: #000000");
+            aTenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("A11")) {
+            aElevenLabel.setStyle("-fx-background-color: #000000");
+            aElevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("A12")) {
+            aTwelveLabel.setStyle("-fx-background-color: #000000");
+            aTwelveLabel.setTextFill(color);
+        }
+
+        if (tilePlayed.equals("B1")) {
+            bOneLabel.setStyle("-fx-background-color: #000000");
+            bOneLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("B2")) {
+            bTwoLabel.setStyle("-fx-background-color: #000000");
+            bTwoLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("B3")) {
+            bThreeLabel.setStyle("-fx-background-color: #000000");
+            bThreeLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("B4")) {
+            bFourLabel.setStyle("-fx-background-color: #000000");
+            bFourLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("B5")) {
+            bFiveLabel.setStyle("-fx-background-color: #000000");
+            bFiveLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("B6")) {
+            bSixLabel.setStyle("-fx-background-color: #000000");
+            bSixLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("B7")) {
+            bSevenLabel.setStyle("-fx-background-color: #000000");
+            bSevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("B8")) {
+            bEightLabel.setStyle("-fx-background-color: #000000");
+            bEightLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("B9")) {
+            bNineLabel.setStyle("-fx-background-color: #000000");
+            bNineLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("B10")) {
+            bTenLabel.setStyle("-fx-background-color: #000000");
+            bTenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("B11")) {
+            bElevenLabel.setStyle("-fx-background-color: #000000");
+            bElevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("B12")) {
+            bTwelveLabel.setStyle("-fx-background-color: #000000");
+            bTwelveLabel.setTextFill(color);
+        }
+
+        if (tilePlayed.equals("C1")) {
+            cOneLabel.setStyle("-fx-background-color: #000000");
+            cOneLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("C2")) {
+            cTwoLabel.setStyle("-fx-background-color: #000000");
+            cTwoLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("C3")) {
+            cThreeLabel.setStyle("-fx-background-color: #000000");
+            cThreeLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("C4")) {
+            cFourLabel.setStyle("-fx-background-color: #000000");
+            cFourLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("C5")) {
+            cFiveLabel.setStyle("-fx-background-color: #000000");
+            cFiveLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("C6")) {
+            cSixLabel.setStyle("-fx-background-color: #000000");
+            cSixLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("C7")) {
+            cSevenLabel.setStyle("-fx-background-color: #000000");
+            cSevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("C8")) {
+            cEightLabel.setStyle("-fx-background-color: #000000");
+            cEightLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("C9")) {
+            cNineLabel.setStyle("-fx-background-color: #000000");
+            cNineLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("C10")) {
+            cTenLabel.setStyle("-fx-background-color: #000000");
+            cTenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("C11")) {
+            cElevenLabel.setStyle("-fx-background-color: #000000");
+            cElevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("C12")) {
+            cTwelveLabel.setStyle("-fx-background-color: #000000");
+            cTwelveLabel.setTextFill(color);
+        }
+
+        if (tilePlayed.equals("D1")) {
+            dOneLabel.setStyle("-fx-background-color: #000000");
+            dOneLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("D2")) {
+            dTwoLabel.setStyle("-fx-background-color: #000000");
+            dTwoLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("D3")) {
+            dThreeLabel.setStyle("-fx-background-color: #000000");
+            dThreeLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("D4")) {
+            dFourLabel.setStyle("-fx-background-color: #000000");
+            dFourLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("D5")) {
+            dFiveLabel.setStyle("-fx-background-color: #000000");
+            dFiveLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("D6")) {
+            dSixLabel.setStyle("-fx-background-color: #000000");
+            dSixLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("D7")) {
+            dSevenLabel.setStyle("-fx-background-color: #000000");
+            dSevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("D8")) {
+            dEightLabel.setStyle("-fx-background-color: #000000");
+            dEightLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("D9")) {
+            dNineLabel.setStyle("-fx-background-color: #000000");
+            dNineLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("D10")) {
+            dTenLabel.setStyle("-fx-background-color: #000000");
+            dTenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("D11")) {
+            dElevenLabel.setStyle("-fx-background-color: #000000");
+            dElevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("D12")) {
+            dTwelveLabel.setStyle("-fx-background-color: #000000");
+            dTwelveLabel.setTextFill(color);
+        }
+
+        if (tilePlayed.equals("E1")) {
+            eOneLabel.setStyle("-fx-background-color: #000000");
+            eOneLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("E2")) {
+            eTwoLabel.setStyle("-fx-background-color: #000000");
+            eTwoLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("E3")) {
+            eThreeLabel.setStyle("-fx-background-color: #000000");
+            eThreeLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("E4")) {
+            eFourLabel.setStyle("-fx-background-color: #000000");
+            eFourLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("E5")) {
+            eFiveLabel.setStyle("-fx-background-color: #000000");
+            eFiveLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("E6")) {
+            eSixLabel.setStyle("-fx-background-color: #000000");
+            eSixLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("E7")) {
+            eSevenLabel.setStyle("-fx-background-color: #000000");
+            eSevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("E8")) {
+            eEightLabel.setStyle("-fx-background-color: #000000");
+            eEightLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("E9")) {
+            eNineLabel.setStyle("-fx-background-color: #000000");
+            eNineLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("E10")) {
+            eTenLabel.setStyle("-fx-background-color: #000000");
+            eTenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("E11")) {
+            eElevenLabel.setStyle("-fx-background-color: #000000");
+            eElevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("E12")) {
+            eTwelveLabel.setStyle("-fx-background-color: #000000");
+            eTwelveLabel.setTextFill(color);
+        }
+
+        if (tilePlayed.equals("F1")) {
+            fOneLabel.setStyle("-fx-background-color: #000000");
+            fOneLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("F2")) {
+            fTwoLabel.setStyle("-fx-background-color: #000000");
+            fTwoLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("F3")) {
+            fThreeLabel.setStyle("-fx-background-color: #000000");
+            fThreeLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("F4")) {
+            fFourLabel.setStyle("-fx-background-color: #000000");
+            fFourLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("F5")) {
+            fFiveLabel.setStyle("-fx-background-color: #000000");
+            fFiveLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("F6")) {
+            fSixLabel.setStyle("-fx-background-color: #000000");
+            fSixLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("F7")) {
+            fSevenLabel.setStyle("-fx-background-color: #000000");
+            fSevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("F8")) {
+            fEightLabel.setStyle("-fx-background-color: #000000");
+            fEightLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("F9")) {
+            fNineLabel.setStyle("-fx-background-color: #000000");
+            fNineLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("F10")) {
+            fTenLabel.setStyle("-fx-background-color: #000000");
+            fTenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("F11")) {
+            fElevenLabel.setStyle("-fx-background-color: #000000");
+            fElevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("F12")) {
+            fTwelveLabel.setStyle("-fx-background-color: #000000");
+            fTwelveLabel.setTextFill(color);
+        }
+
+        if (tilePlayed.equals("G1")) {
+            gOneLabel.setStyle("-fx-background-color: #000000");
+            gOneLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("G2")) {
+            gTwoLabel.setStyle("-fx-background-color: #000000");
+            gTwoLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("G3")) {
+            gThreeLabel.setStyle("-fx-background-color: #000000");
+            gThreeLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("G4")) {
+            gFourLabel.setStyle("-fx-background-color: #000000");
+            gFourLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("G5")) {
+            gFiveLabel.setStyle("-fx-background-color: #000000");
+            gFiveLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("G6")) {
+            gSixLabel.setStyle("-fx-background-color: #000000");
+            gSixLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("G7")) {
+            gSevenLabel.setStyle("-fx-background-color: #000000");
+            gSevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("G8")) {
+            gEightLabel.setStyle("-fx-background-color: #000000");
+            gEightLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("G9")) {
+            gNineLabel.setStyle("-fx-background-color: #000000");
+            gNineLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("G10")) {
+            gTenLabel.setStyle("-fx-background-color: #000000");
+            gTenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("G11")) {
+            gElevenLabel.setStyle("-fx-background-color: #000000");
+            gElevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("G12")) {
+            gTwelveLabel.setStyle("-fx-background-color: #000000");
+            gTwelveLabel.setTextFill(color);
+        }
+
+        if (tilePlayed.equals("H1")) {
+            hOneLabel.setStyle("-fx-background-color: #000000");
+            hOneLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("H2")) {
+            hTwoLabel.setStyle("-fx-background-color: #000000");
+            hTwoLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("H3")) {
+            hThreeLabel.setStyle("-fx-background-color: #000000");
+            hThreeLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("H4")) {
+            hFourLabel.setStyle("-fx-background-color: #000000");
+            hFourLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("H5")) {
+            hFiveLabel.setStyle("-fx-background-color: #000000");
+            hFiveLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("H6")) {
+            hSixLabel.setStyle("-fx-background-color: #000000");
+            hSixLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("H7")) {
+            hSevenLabel.setStyle("-fx-background-color: #000000");
+            hSevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("H8")) {
+            hEightLabel.setStyle("-fx-background-color: #000000");
+            hEightLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("H9")) {
+            hNineLabel.setStyle("-fx-background-color: #000000");
+            hNineLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("H10")) {
+            hTenLabel.setStyle("-fx-background-color: #000000");
+            hTenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("H11")) {
+            hElevenLabel.setStyle("-fx-background-color: #000000");
+            hElevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("H12")) {
+            hTwelveLabel.setStyle("-fx-background-color: #000000");
+            hTwelveLabel.setTextFill(color);
+        }
+
+        if (tilePlayed.equals("I1")) {
+            iOneLabel.setStyle("-fx-background-color: #000000");
+            iOneLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("I2")) {
+            iTwoLabel.setStyle("-fx-background-color: #000000");
+            iTwoLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("I3")) {
+            iThreeLabel.setStyle("-fx-background-color: #000000");
+            iThreeLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("I4")) {
+            iFourLabel.setStyle("-fx-background-color: #000000");
+            iFourLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("I5")) {
+            iFiveLabel.setStyle("-fx-background-color: #000000");
+            iFiveLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("I6")) {
+            iSixLabel.setStyle("-fx-background-color: #000000");
+            iSixLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("I7")) {
+            iSevenLabel.setStyle("-fx-background-color: #000000");
+            iSevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("I8")) {
+            iEightLabel.setStyle("-fx-background-color: #000000");
+            iEightLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("I9")) {
+            iNineLabel.setStyle("-fx-background-color: #000000");
+            iNineLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("I10")) {
+            iTenLabel.setStyle("-fx-background-color: #000000");
+            iTenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("I11")) {
+            iElevenLabel.setStyle("-fx-background-color: #000000");
+            iElevenLabel.setTextFill(color);
+        }
+        if (tilePlayed.equals("I12")) {
+            iTwelveLabel.setStyle("-fx-background-color: #000000");
+            iTwelveLabel.setTextFill(color);
+        }
+    }
+
+    EventHandler<MouseEvent> playerSelectionContinueClicked = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            List<Tile> hand = g.getPlayersHand(currentPlayer);
+            pLabel.setText("PLAYER INFO: " + g.getPlayerList().get(currentPlayer).getName());
+            tLabel.setText("TILES: 1." + hand.get(0).getTileName() + " 2." + hand.get(1).getTileName() + " 3. " + hand.get(2).getTileName() + " 4." + hand.get(3).getTileName() + " 5." + hand.get(4).getTileName() + " 6." + hand.get(5).getTileName());
+            mLabel.setText(" MONEY: $" + g.getPlayerList().get(currentPlayer).getMoney());
+            List<Tile> tList = g.getBoard().getTiles();
+            List<Tile> hTlist1 = new ArrayList<Tile>();
+            List<Tile> hTlist2 = new ArrayList<Tile>();
+            List<Tile> hTlist3 = new ArrayList<Tile>();
+            List<Tile> hTlist4 = new ArrayList<Tile>();
+            List<Tile> hTlist5 = new ArrayList<Tile>();
+            List<Tile> hTlist6 = new ArrayList<Tile>();
+            List<Tile> hTlist7 = new ArrayList<Tile>();
+            for (Tile t : tList) {
+                if (t.getPlaced()) {
+                    List<Tile> pTList = new ArrayList<Tile>();
+                    pTList.add(t);
+                    for (Tile tile : pTList) {
+                        if (tile.getHotel() != null) {
+                            if (tile.getHotel().getID() == 0) {
+                                hTlist1.add(tile);
+                            } else if (tile.getHotel().getID() == 1) {
+                                hTlist2.add(tile);
+                            } else if (tile.getHotel().getID() == 2) {
+                                hTlist3.add(tile);
+                            } else if (tile.getHotel().getID() == 3) {
+                                hTlist4.add(tile);
+                            } else if (tile.getHotel().getID() == 4) {
+                                hTlist5.add(tile);
+                            } else if (tile.getHotel().getID() == 5) {
+                                hTlist6.add(tile);
+                            } else if (tile.getHotel().getID() == 6) {
+                                hTlist7.add(tile);
+                            }
+                        }
+                    }
+                }
+                if(hTlist1 !=null || hTlist2 !=null || hTlist3 !=null || hTlist4 !=null || hTlist5 !=null || hTlist6 !=null || hTlist7 !=null) {
+                    if (hTlist1.size() > 40 || hTlist2.size() > 40 || hTlist3.size() > 40 || hTlist4.size() > 40 || hTlist5.size() > 40 || hTlist6.size() > 40 || hTlist7.size() > 40) {
+                        playButton.setText("Hotel size limit reached.\n Ending game.");
+                        int p1 = g.getPlayerList().get(0).getMoney();
+                        int p2 = g.getPlayerList().get(1).getMoney();
+                        if (p1 > p2) {
+                            playButton.setText("Player 1 Wins!");
+                        } else if (p2 > p1) {
+                            playButton.setText("Player 2 Wins!");
+                        } else {
+                            playButton.setText("The game ends in a draw!");
+                        }
+                    }
+                }
+                playButton.setText("Press the number of the tile\n you would like to play:");
+
+                playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED, KeyPressed);
+            }
+        }
+    };
+
+    EventHandler<MouseEvent> startClicked = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            Tile player1 = g.drawTile();
+            g.playTile(player1);
+            Tile player2 = g.drawTile();
+            g.playTile(player2);
+            if (player1.getColumn() + player1.getRow() < player2.getColumn() + player2.getRow()) {
+                //Player 1 Tile was closer to 1A
+                playButton.setText("Player 1 drew a smaller tile " + player1.getRawRow() + String.valueOf(player1.getRawColumn()) + ",\n player 1 goes first,\n Click to continue.");
+            } else if (player1.getColumn() + player1.getRow() > player2.getColumn() + player2.getRow()) {
+                //Player 2 Tile was closer to 1A
+                currentPlayer = 1;
+                playButton.setText("Player 2 drew a smaller tile " + player2.getRawRow() + String.valueOf(player2.getRawColumn()) + ",\n player 2 goes first,\n Click to continue.");
+            } else if (player1.getColumn() + player1.getRow() == player2.getColumn() + player2.getRow()) {
+                //Equal tiles, Player 1 goes first
+                playButton.setText("Players drew equal tiles,\n player 1 goes first,\n Click to continue.");
+            }
+            playButton.setStyle("-fx-background-color: #DDDDDD");
+
+            String player1S = String.valueOf(player1.getRawRow()) + player1.getRawColumn();
+            String player2S = String.valueOf(player2.getRawRow()) + player2.getRawColumn();
+
+            if (player1S.equals("A1") || player2S.equals("A1")) {
+                aOneLabel.setStyle("-fx-background-color: #000000");
+                aOneLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("A2") || player2S.equals("A2")) {
+                aTwoLabel.setStyle("-fx-background-color: #000000");
+                aTwoLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("A3") || player2S.equals("A3")) {
+                aThreeLabel.setStyle("-fx-background-color: #000000");
+                aThreeLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("A4") || player2S.equals("A4")) {
+                aFourLabel.setStyle("-fx-background-color: #000000");
+                aFourLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("A5") || player2S.equals("A5")) {
+                aFiveLabel.setStyle("-fx-background-color: #000000");
+                aFiveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("A6") || player2S.equals("A6")) {
+                aSixLabel.setStyle("-fx-background-color: #000000");
+                aSixLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("A7") || player2S.equals("A7")) {
+                aSevenLabel.setStyle("-fx-background-color: #000000");
+                aSevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("A8") || player2S.equals("A8")) {
+                aEightLabel.setStyle("-fx-background-color: #000000");
+                aEightLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("A9") || player2S.equals("A9")) {
+                aNineLabel.setStyle("-fx-background-color: #000000");
+                aNineLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("A10") || player2S.equals("A10")) {
+                aTenLabel.setStyle("-fx-background-color: #000000");
+                aTenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("A11") || player2S.equals("A11")) {
+                aElevenLabel.setStyle("-fx-background-color: #000000");
+                aElevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("A12") || player2S.equals("A12")) {
+                aTwelveLabel.setStyle("-fx-background-color: #000000");
+                aTwelveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+
+            if (player1S.equals("B1") || player2S.equals("B1")) {
+                bOneLabel.setStyle("-fx-background-color: #000000");
+                bOneLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("B2") || player2S.equals("B2")) {
+                bTwoLabel.setStyle("-fx-background-color: #000000");
+                bTwoLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("B3") || player2S.equals("B3")) {
+                bThreeLabel.setStyle("-fx-background-color: #000000");
+                bThreeLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("B4") || player2S.equals("B4")) {
+                bFourLabel.setStyle("-fx-background-color: #000000");
+                bFourLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("B5") || player2S.equals("B5")) {
+                bFiveLabel.setStyle("-fx-background-color: #000000");
+                bFiveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("B6") || player2S.equals("B6")) {
+                bSixLabel.setStyle("-fx-background-color: #000000");
+                bSixLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("B7") || player2S.equals("B7")) {
+                bSevenLabel.setStyle("-fx-background-color: #000000");
+                bSevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("B8") || player2S.equals("B8")) {
+                bEightLabel.setStyle("-fx-background-color: #000000");
+                bEightLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("B9") || player2S.equals("B9")) {
+                bNineLabel.setStyle("-fx-background-color: #000000");
+                bNineLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("B10") || player2S.equals("B10")) {
+                bTenLabel.setStyle("-fx-background-color: #000000");
+                bTenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("B11") || player2S.equals("B11")) {
+                bElevenLabel.setStyle("-fx-background-color: #000000");
+                bElevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("B12") || player2S.equals("B12")) {
+                bTwelveLabel.setStyle("-fx-background-color: #000000");
+                bTwelveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+
+            if (player1S.equals("C1") || player2S.equals("C1")) {
+                cOneLabel.setStyle("-fx-background-color: #000000");
+                cOneLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("C2") || player2S.equals("C2")) {
+                cTwoLabel.setStyle("-fx-background-color: #000000");
+                cTwoLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("C3") || player2S.equals("C3")) {
+                cThreeLabel.setStyle("-fx-background-color: #000000");
+                cThreeLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("C4") || player2S.equals("C4")) {
+                cFourLabel.setStyle("-fx-background-color: #000000");
+                cFourLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("C5") || player2S.equals("C5")) {
+                cFiveLabel.setStyle("-fx-background-color: #000000");
+                cFiveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("C6") || player2S.equals("C6")) {
+                cSixLabel.setStyle("-fx-background-color: #000000");
+                cSixLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("C7") || player2S.equals("C7")) {
+                cSevenLabel.setStyle("-fx-background-color: #000000");
+                cSevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("C8") || player2S.equals("C8")) {
+                cEightLabel.setStyle("-fx-background-color: #000000");
+                cEightLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("C9") || player2S.equals("C9")) {
+                cNineLabel.setStyle("-fx-background-color: #000000");
+                cNineLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("C10") || player2S.equals("C10")) {
+                cTenLabel.setStyle("-fx-background-color: #000000");
+                cTenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("C11") || player2S.equals("C11")) {
+                cElevenLabel.setStyle("-fx-background-color: #000000");
+                cElevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("C12") || player2S.equals("C12")) {
+                cTwelveLabel.setStyle("-fx-background-color: #000000");
+                cTwelveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+
+            if (player1S.equals("D1") || player2S.equals("D1")) {
+                dOneLabel.setStyle("-fx-background-color: #000000");
+                dOneLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("D2") || player2S.equals("D2")) {
+                dTwoLabel.setStyle("-fx-background-color: #000000");
+                dTwoLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("D3") || player2S.equals("D3")) {
+                dThreeLabel.setStyle("-fx-background-color: #000000");
+                dThreeLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("D4") || player2S.equals("D4")) {
+                dFourLabel.setStyle("-fx-background-color: #000000");
+                dFourLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("D5") || player2S.equals("D5")) {
+                dFiveLabel.setStyle("-fx-background-color: #000000");
+                dFiveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("D6") || player2S.equals("D6")) {
+                dSixLabel.setStyle("-fx-background-color: #000000");
+                dSixLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("D7") || player2S.equals("D7")) {
+                dSevenLabel.setStyle("-fx-background-color: #000000");
+                dSevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("D8") || player2S.equals("D8")) {
+                dEightLabel.setStyle("-fx-background-color: #000000");
+                dEightLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("D9") || player2S.equals("D9")) {
+                dNineLabel.setStyle("-fx-background-color: #000000");
+                dNineLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("D10") || player2S.equals("D10")) {
+                dTenLabel.setStyle("-fx-background-color: #000000");
+                dTenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("D11") || player2S.equals("D11")) {
+                dElevenLabel.setStyle("-fx-background-color: #000000");
+                dElevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("D12") || player2S.equals("D12")) {
+                dTwelveLabel.setStyle("-fx-background-color: #000000");
+                dTwelveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+
+            if (player1S.equals("E1") || player2S.equals("E1")) {
+                eOneLabel.setStyle("-fx-background-color: #000000");
+                eOneLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("E2") || player2S.equals("E2")) {
+                eTwoLabel.setStyle("-fx-background-color: #000000");
+                eTwoLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("E3") || player2S.equals("E3")) {
+                eThreeLabel.setStyle("-fx-background-color: #000000");
+                eThreeLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("E4") || player2S.equals("E4")) {
+                eFourLabel.setStyle("-fx-background-color: #000000");
+                eFourLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("E5") || player2S.equals("E5")) {
+                eFiveLabel.setStyle("-fx-background-color: #000000");
+                eFiveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("E6") || player2S.equals("E6")) {
+                eSixLabel.setStyle("-fx-background-color: #000000");
+                eSixLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("E7") || player2S.equals("E7")) {
+                eSevenLabel.setStyle("-fx-background-color: #000000");
+                eSevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("E8") || player2S.equals("E8")) {
+                eEightLabel.setStyle("-fx-background-color: #000000");
+                eEightLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("E9") || player2S.equals("E9")) {
+                eNineLabel.setStyle("-fx-background-color: #000000");
+                eNineLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("E10") || player2S.equals("E10")) {
+                eTenLabel.setStyle("-fx-background-color: #000000");
+                eTenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("E11") || player2S.equals("E11")) {
+                eElevenLabel.setStyle("-fx-background-color: #000000");
+                eElevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("E12") || player2S.equals("E12")) {
+                eTwelveLabel.setStyle("-fx-background-color: #000000");
+                eTwelveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+
+            if (player1S.equals("F1") || player2S.equals("F1")) {
+                fOneLabel.setStyle("-fx-background-color: #000000");
+                fOneLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("F2") || player2S.equals("F2")) {
+                fTwoLabel.setStyle("-fx-background-color: #000000");
+                fTwoLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("F3") || player2S.equals("F3")) {
+                fThreeLabel.setStyle("-fx-background-color: #000000");
+                fThreeLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("F4") || player2S.equals("F4")) {
+                fFourLabel.setStyle("-fx-background-color: #000000");
+                fFourLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("F5") || player2S.equals("F5")) {
+                fFiveLabel.setStyle("-fx-background-color: #000000");
+                fFiveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("F6") || player2S.equals("F6")) {
+                fSixLabel.setStyle("-fx-background-color: #000000");
+                fSixLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("F7") || player2S.equals("F7")) {
+                fSevenLabel.setStyle("-fx-background-color: #000000");
+                fSevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("F8") || player2S.equals("F8")) {
+                fEightLabel.setStyle("-fx-background-color: #000000");
+                fEightLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("F9") || player2S.equals("F9")) {
+                fNineLabel.setStyle("-fx-background-color: #000000");
+                fNineLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("F10") || player2S.equals("F10")) {
+                fTenLabel.setStyle("-fx-background-color: #000000");
+                fTenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("F11") || player2S.equals("F11")) {
+                fElevenLabel.setStyle("-fx-background-color: #000000");
+                fElevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("F12") || player2S.equals("F12")) {
+                fTwelveLabel.setStyle("-fx-background-color: #000000");
+                fTwelveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+
+            if (player1S.equals("G1") || player2S.equals("G1")) {
+                gOneLabel.setStyle("-fx-background-color: #000000");
+                gOneLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("G2") || player2S.equals("G2")) {
+                gTwoLabel.setStyle("-fx-background-color: #000000");
+                gTwoLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("G3") || player2S.equals("G3")) {
+                gThreeLabel.setStyle("-fx-background-color: #000000");
+                gThreeLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("G4") || player2S.equals("G4")) {
+                gFourLabel.setStyle("-fx-background-color: #000000");
+                gFourLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("G5") || player2S.equals("G5")) {
+                gFiveLabel.setStyle("-fx-background-color: #000000");
+                gFiveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("G6") || player2S.equals("G6")) {
+                gSixLabel.setStyle("-fx-background-color: #000000");
+                gSixLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("G7") || player2S.equals("G7")) {
+                gSevenLabel.setStyle("-fx-background-color: #000000");
+                gSevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("G8") || player2S.equals("G8")) {
+                gEightLabel.setStyle("-fx-background-color: #000000");
+                gEightLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("G9") || player2S.equals("G9")) {
+                gNineLabel.setStyle("-fx-background-color: #000000");
+                gNineLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("G10") || player2S.equals("G10")) {
+                gTenLabel.setStyle("-fx-background-color: #000000");
+                gTenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("G11") || player2S.equals("G11")) {
+                gElevenLabel.setStyle("-fx-background-color: #000000");
+                gElevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("G12") || player2S.equals("G12")) {
+                gTwelveLabel.setStyle("-fx-background-color: #000000");
+                gTwelveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+
+            if (player1S.equals("H1") || player2S.equals("H1")) {
+                hOneLabel.setStyle("-fx-background-color: #000000");
+                hOneLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("H2") || player2S.equals("H2")) {
+                hTwoLabel.setStyle("-fx-background-color: #000000");
+                hTwoLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("H3") || player2S.equals("H3")) {
+                hThreeLabel.setStyle("-fx-background-color: #000000");
+                hThreeLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("H4") || player2S.equals("H4")) {
+                hFourLabel.setStyle("-fx-background-color: #000000");
+                hFourLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("H5") || player2S.equals("H5")) {
+                hFiveLabel.setStyle("-fx-background-color: #000000");
+                hFiveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("H6") || player2S.equals("H6")) {
+                hSixLabel.setStyle("-fx-background-color: #000000");
+                hSixLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("H7") || player2S.equals("H7")) {
+                hSevenLabel.setStyle("-fx-background-color: #000000");
+                hSevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("H8") || player2S.equals("H8")) {
+                hEightLabel.setStyle("-fx-background-color: #000000");
+                hEightLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("H9") || player2S.equals("H9")) {
+                hNineLabel.setStyle("-fx-background-color: #000000");
+                hNineLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("H10") || player2S.equals("H10")) {
+                hTenLabel.setStyle("-fx-background-color: #000000");
+                hTenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("H11") || player2S.equals("H11")) {
+                hElevenLabel.setStyle("-fx-background-color: #000000");
+                hElevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("H12") || player2S.equals("H12")) {
+                hTwelveLabel.setStyle("-fx-background-color: #000000");
+                hTwelveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+
+            if (player1S.equals("I1") || player2S.equals("I1")) {
+                iOneLabel.setStyle("-fx-background-color: #000000");
+                iOneLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("I2") || player2S.equals("I2")) {
+                iTwoLabel.setStyle("-fx-background-color: #000000");
+                iTwoLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("I3") || player2S.equals("I3")) {
+                iThreeLabel.setStyle("-fx-background-color: #000000");
+                iThreeLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("I4") || player2S.equals("I4")) {
+                iFourLabel.setStyle("-fx-background-color: #000000");
+                iFourLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("I5") || player2S.equals("I5")) {
+                iFiveLabel.setStyle("-fx-background-color: #000000");
+                iFiveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("I6") || player2S.equals("I6")) {
+                iSixLabel.setStyle("-fx-background-color: #000000");
+                iSixLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("I7") || player2S.equals("I7")) {
+                iSevenLabel.setStyle("-fx-background-color: #000000");
+                iSevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("I8") || player2S.equals("I8")) {
+                iEightLabel.setStyle("-fx-background-color: #000000");
+                iEightLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("I9") || player2S.equals("I9")) {
+                iNineLabel.setStyle("-fx-background-color: #000000");
+                iNineLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("I10") || player2S.equals("I10")) {
+                iTenLabel.setStyle("-fx-background-color: #000000");
+                iTenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("I11") || player2S.equals("I11")) {
+                iElevenLabel.setStyle("-fx-background-color: #000000");
+                iElevenLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            if (player1S.equals("I12") || player2S.equals("I12")) {
+                iTwelveLabel.setStyle("-fx-background-color: #000000");
+                iTwelveLabel.setTextFill(Color.color(1, 1, 1));
+            }
+            g.fillHand(0);
+            g.fillHand(1);
+            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
+            playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playerSelectionContinueClicked);
+
+        }
+    };
 }
+
+    /*//Start App
+        Game g = new Game();
+        int PlayerID = g.determineFirst();
+
+        //Play a Tile
+        Player p = new Player(99,"Free");
+        g.playTile(new Tile(1,1));
+        List<Tile> testFound = g.playTile(new Tile(2,1));
+        g.foundHotel(0, 0, testFound);
+        g.playTile(new Tile(1,2));
+
+        //Buy Stock
+        g.buyStock(1,0,3);
+
+        //Save Game
+        //g.saveGame("test.txt");
+
+        //Load Game
+        g.loadGame("test.txt");
+
+        Player pp = new Player(99,"Free");*/
