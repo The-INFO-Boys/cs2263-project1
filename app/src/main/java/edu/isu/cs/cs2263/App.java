@@ -1013,26 +1013,22 @@ public class App extends Application {
         gp.add(buttonPane, 0, 16, 14, 2);
 
         //Handlers
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Save File");
-
         loadButton.setOnAction(event1 -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Save File");
             File file = fileChooser.showOpenDialog(stage);
-            if (file != null)
+            if (file != null) {
                 g.loadGame(file.getAbsolutePath());
+            }
         });
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                FileChooser fileChooser1 = new FileChooser();
-                fileChooser1.setTitle("Save Game");
-                File file = fileChooser1.showSaveDialog(stage);
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Save Game");
+                File file = fileChooser.showSaveDialog(stage);
                 if(file != null){
-                    //try{
                         g.saveGame(file.getAbsolutePath());
-                    //}catch (IOException ex){
-                        //System.out.println(ex.getMessage());
-                    //}
                 }
             }
         });
