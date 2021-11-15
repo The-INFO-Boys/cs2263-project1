@@ -1158,7 +1158,9 @@ public class App extends Application {
                 for (Tile t: passableTiles){
                     updateByString((t.getRawRow() + t.getRawColumn()), color);
                 }
-
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                playButton.setText("Your hotel was founded\n and one stock was given to you,\nClick to Continue");
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
             }
         }
     };
