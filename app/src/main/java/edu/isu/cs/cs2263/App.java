@@ -19,6 +19,7 @@ import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -1764,10 +1765,57 @@ public class App extends Application {
             pLabel.setText("PLAYER INFO: " + g.getPlayerList().get(currentPlayer).getName());
             tLabel.setText("TILES: 1." + hand.get(0).getTileName() + " 2." + hand.get(1).getTileName() + " 3. " + hand.get(2).getTileName() + " 4." + hand.get(3).getTileName() + " 5." + hand.get(4).getTileName() + " 6." + hand.get(5).getTileName());
             mLabel.setText(" MONEY: $" + g.getPlayerList().get(currentPlayer).getMoney());
-            playButton.setText("Press the number of the tile\n you would like to play:");
+            List<Tile> tList = g.getBoard().getTiles();
+            List<Tile> hTlist1 = new ArrayList<Tile>();
+            List<Tile> hTlist2 = new ArrayList<Tile>();
+            List<Tile> hTlist3 = new ArrayList<Tile>();
+            List<Tile> hTlist4 = new ArrayList<Tile>();
+            List<Tile> hTlist5 = new ArrayList<Tile>();
+            List<Tile> hTlist6 = new ArrayList<Tile>();
+            List<Tile> hTlist7 = new ArrayList<Tile>();
+            for (Tile t : tList) {
+                if (t.getPlaced()) {
+                    List<Tile> pTList = new ArrayList<Tile>();
+                    pTList.add(t);
+                    for (Tile tile : pTList) {
+                        if (tile.getHotel() != null) {
+                            if (tile.getHotel().getID() == 0) {
+                                hTlist1.add(tile);
+                            } else if (tile.getHotel().getID() == 1) {
+                                hTlist2.add(tile);
+                            } else if (tile.getHotel().getID() == 2) {
+                                hTlist3.add(tile);
+                            } else if (tile.getHotel().getID() == 3) {
+                                hTlist4.add(tile);
+                            } else if (tile.getHotel().getID() == 4) {
+                                hTlist5.add(tile);
+                            } else if (tile.getHotel().getID() == 5) {
+                                hTlist6.add(tile);
+                            } else if (tile.getHotel().getID() == 6) {
+                                hTlist7.add(tile);
+                            }
+                        }
+                    }
+                }
+                if(hTlist1 !=null || hTlist2 !=null || hTlist3 !=null || hTlist4 !=null || hTlist5 !=null || hTlist6 !=null || hTlist7 !=null) {
+                    if (hTlist1.size() > 40 || hTlist2.size() > 40 || hTlist3.size() > 40 || hTlist4.size() > 40 || hTlist5.size() > 40 || hTlist6.size() > 40 || hTlist7.size() > 40) {
+                        playButton.setText("Hotel size limit reached.\n Ending game.");
+                        int p1 = g.getPlayerList().get(0).getMoney();
+                        int p2 = g.getPlayerList().get(1).getMoney();
+                        if (p1 > p2) {
+                            playButton.setText("Player 1 Wins!");
+                        } else if (p2 > p1) {
+                            playButton.setText("Player 2 Wins!");
+                        } else {
+                            playButton.setText("The game ends in a draw!");
+                        }
+                    }
+                }
+                playButton.setText("Press the number of the tile\n you would like to play:");
 
-            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
-            playButton.addEventFilter(KeyEvent.KEY_PRESSED, KeyPressed);
+                playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED, KeyPressed);
+            }
         }
     };
 
