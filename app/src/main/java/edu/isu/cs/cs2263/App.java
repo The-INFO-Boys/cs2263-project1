@@ -1571,31 +1571,31 @@ public class App extends Application {
                     (event.getCode() == KeyCode.DIGIT6 && g.getHotelList().get(5).getAvailable().size() > 0) && g.getHotelList().get(5).getFounded() ||
                     (event.getCode() == KeyCode.DIGIT7 && g.getHotelList().get(6).getAvailable().size() > 0) && g.getHotelList().get(6).getFounded()) {
                 if(event.getCode() == KeyCode.DIGIT1){
-                    playButton.setText("You chose to buy from " + g.getHotelList().get(0).getName() + "\nEnter an amount from one to three to buy:");
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(0).getName() + "\nEnter an amount from one to three to buy:\nNote: You can not buy more than 3 per turn");
                     buyHotelStock = 0;
                 }
                 if(event.getCode() == KeyCode.DIGIT2){
-                    playButton.setText("You chose to buy from " + g.getHotelList().get(1).getName() + "\nEnter an amount from one to three to buy:");
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(1).getName() + "\nEnter an amount from one to three to buy:\nNote: You can not buy more than 3 per turn");
                     buyHotelStock = 1;
                 }
                 if(event.getCode() == KeyCode.DIGIT3){
-                    playButton.setText("You chose to buy from " + g.getHotelList().get(2).getName() + "\nEnter an amount from one to three to buy:");
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(2).getName() + "\nEnter an amount from one to three to buy:\nNote: You can not buy more than 3 per turn");
                     buyHotelStock = 2;
                 }
                 if(event.getCode() == KeyCode.DIGIT4){
-                    playButton.setText("You chose to buy from " + g.getHotelList().get(3).getName() + "\nEnter an amount from one to three to buy:");
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(3).getName() + "\nEnter an amount from one to three to buy:\nNote: You can not buy more than 3 per turn");
                     buyHotelStock = 3;
                 }
                 if(event.getCode() == KeyCode.DIGIT5){
-                    playButton.setText("You chose to buy from " + g.getHotelList().get(4).getName() + "\nEnter an amount from one to three to buy:");
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(4).getName() + "\nEnter an amount from one to three to buy:\nNote: You can not buy more than 3 per turn");
                     buyHotelStock = 4;
                 }
                 if(event.getCode() == KeyCode.DIGIT6){
-                    playButton.setText("You chose to buy from " + g.getHotelList().get(5).getName() + "\nEnter an amount from one to three to buy:");
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(5).getName() + "\nEnter an amount from one to three to buy:\nNote: You can not buy more than 3 per turn");
                     buyHotelStock = 5;
                 }
                 if(event.getCode() == KeyCode.DIGIT7){
-                    playButton.setText("You chose to buy from " + g.getHotelList().get(6).getName() + "\nEnter an amount from one to three to buy:");
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(6).getName() + "\nEnter an amount from one to three to buy:\nNote: You can not buy more than 3 per turn");
                     buyHotelStock = 6;
                 }
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
