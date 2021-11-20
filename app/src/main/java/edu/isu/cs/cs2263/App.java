@@ -1558,38 +1558,38 @@ public class App extends Application {
     EventHandler<KeyEvent> chooseHotelToBuy = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
-            if((event.getCode() == KeyCode.DIGIT0 && g.getHotelList().get(0).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT1 && g.getHotelList().get(1).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT2 && g.getHotelList().get(2).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT3 && g.getHotelList().get(3).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT4 && g.getHotelList().get(4).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT5 && g.getHotelList().get(5).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT6 && g.getHotelList().get(6).getAvailable().size() > 0)){
-                if(event.getCode() == KeyCode.DIGIT0){
+            if((event.getCode() == KeyCode.DIGIT1 && g.getHotelList().get(0).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT2 && g.getHotelList().get(1).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT3 && g.getHotelList().get(2).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT4 && g.getHotelList().get(3).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT5 && g.getHotelList().get(4).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT6 && g.getHotelList().get(5).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT7 && g.getHotelList().get(6).getAvailable().size() > 0)){
+                if(event.getCode() == KeyCode.DIGIT1){
                     playButton.setText("You chose to buy from " + g.getHotelList().get(0).getName() + "\nEnter an amount from one to three to buy:");
                     buyHotelStock = 0;
                 }
-                if(event.getCode() == KeyCode.DIGIT1){
+                if(event.getCode() == KeyCode.DIGIT2){
                     playButton.setText("You chose to buy from " + g.getHotelList().get(1).getName() + "\nEnter an amount from one to three to buy:");
                     buyHotelStock = 1;
                 }
-                if(event.getCode() == KeyCode.DIGIT2){
+                if(event.getCode() == KeyCode.DIGIT3){
                     playButton.setText("You chose to buy from " + g.getHotelList().get(2).getName() + "\nEnter an amount from one to three to buy:");
                     buyHotelStock = 2;
                 }
-                if(event.getCode() == KeyCode.DIGIT3){
+                if(event.getCode() == KeyCode.DIGIT4){
                     playButton.setText("You chose to buy from " + g.getHotelList().get(3).getName() + "\nEnter an amount from one to three to buy:");
                     buyHotelStock = 3;
                 }
-                if(event.getCode() == KeyCode.DIGIT4){
+                if(event.getCode() == KeyCode.DIGIT5){
                     playButton.setText("You chose to buy from " + g.getHotelList().get(4).getName() + "\nEnter an amount from one to three to buy:");
                     buyHotelStock = 4;
                 }
-                if(event.getCode() == KeyCode.DIGIT5){
+                if(event.getCode() == KeyCode.DIGIT6){
                     playButton.setText("You chose to buy from " + g.getHotelList().get(5).getName() + "\nEnter an amount from one to three to buy:");
                     buyHotelStock = 5;
                 }
-                if(event.getCode() == KeyCode.DIGIT6){
+                if(event.getCode() == KeyCode.DIGIT7){
                     playButton.setText("You chose to buy from " + g.getHotelList().get(6).getName() + "\nEnter an amount from one to three to buy:");
                     buyHotelStock = 6;
                 }
@@ -1616,7 +1616,7 @@ public class App extends Application {
                     String foundHotel = "Enter the number of the hotel you would like to buy stock from:\n";
                     for (Hotel h: g.getFoundedHotels()){
                         if(h.getAvailable().size() > 0) {
-                            foundHotel += h.getID() + "." + h.getName() + "\n";
+                            foundHotel += (h.getID()+1) + "." + h.getName() + "\n";
                         }
                     }
                     playButton.setText(foundHotel);
@@ -1653,33 +1653,33 @@ public class App extends Application {
     EventHandler<KeyEvent> hotelToFound = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
-            if((event.getCode() == KeyCode.DIGIT0 && !g.getHotelList().get(0).getFounded()) ||
-                    (event.getCode() == KeyCode.DIGIT1 && !g.getHotelList().get(1).getFounded()) ||
-                    (event.getCode() == KeyCode.DIGIT2 && !g.getHotelList().get(2).getFounded()) ||
-                    (event.getCode() == KeyCode.DIGIT3 && !g.getHotelList().get(3).getFounded()) ||
-                    (event.getCode() == KeyCode.DIGIT4 && !g.getHotelList().get(4).getFounded()) ||
-                    (event.getCode() == KeyCode.DIGIT5 && !g.getHotelList().get(5).getFounded()) ||
-                    (event.getCode() == KeyCode.DIGIT6 && !g.getHotelList().get(6).getFounded())) {
+            if((event.getCode() == KeyCode.DIGIT1 && !g.getHotelList().get(0).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT2 && !g.getHotelList().get(1).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT3 && !g.getHotelList().get(2).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT4 && !g.getHotelList().get(3).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT5 && !g.getHotelList().get(4).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT6 && !g.getHotelList().get(5).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT7 && !g.getHotelList().get(6).getFounded())) {
                 Color color = null;
-                if(event.getCode() == KeyCode.DIGIT0){
+                if(event.getCode() == KeyCode.DIGIT1){
                     g.foundHotel(0,currentPlayer,passableTiles);
                     color = Color.color(1,1,0);
-                } else if(event.getCode() == KeyCode.DIGIT1){
+                } else if(event.getCode() == KeyCode.DIGIT2){
                     g.foundHotel(1,currentPlayer,passableTiles);
                     color = Color.color(1,0.5,0);
-                } else if(event.getCode() == KeyCode.DIGIT2){
+                } else if(event.getCode() == KeyCode.DIGIT3){
                     g.foundHotel(2,currentPlayer,passableTiles);
                     color = Color.color(0,1,1);
-                } else if(event.getCode() == KeyCode.DIGIT3){
+                } else if(event.getCode() == KeyCode.DIGIT4){
                     g.foundHotel(3,currentPlayer,passableTiles);
                     color = Color.color(0.5,0,1);
-                } else if(event.getCode() == KeyCode.DIGIT4){
+                } else if(event.getCode() == KeyCode.DIGIT5){
                     g.foundHotel(4,currentPlayer,passableTiles);
                     color = Color.color(0,0.5,0.1);
-                } else if(event.getCode() == KeyCode.DIGIT5){
+                } else if(event.getCode() == KeyCode.DIGIT6){
                     g.foundHotel(5,currentPlayer,passableTiles);
                     color = Color.color(0.5,0.1,0);
-                } else if(event.getCode() == KeyCode.DIGIT6){
+                } else if(event.getCode() == KeyCode.DIGIT7){
                     g.foundHotel(6,currentPlayer,passableTiles);
                     color = Color.color(1,0,1);
                 }
@@ -1829,7 +1829,7 @@ public class App extends Application {
                     }
                     String textForPlay = "Pick a Hotel to Found:\n";
                     for (Hotel h: g.getFoundableHotels()){
-                        textForPlay += h.getID() + "." + h.getName() + "\n";
+                        textForPlay += (h.getID()+1) + "." + h.getName() + "\n";
                     }
                     playButton.setText(textForPlay);
                     playButton.addEventFilter(KeyEvent.KEY_PRESSED,hotelToFound);
