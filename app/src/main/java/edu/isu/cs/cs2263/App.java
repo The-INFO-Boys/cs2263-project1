@@ -1084,318 +1084,6 @@ public class App extends Application {
 
     //Event Handlers
 
-    //region ChooseHotelToBuy -
-    EventHandler<KeyEvent> chooseHotelToBuy = new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            if((event.getCode() == KeyCode.DIGIT0 && g.getHotelList().get(0).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT1 && g.getHotelList().get(1).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT2 && g.getHotelList().get(2).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT3 && g.getHotelList().get(3).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT4 && g.getHotelList().get(4).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT5 && g.getHotelList().get(5).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT6 && g.getHotelList().get(6).getAvailable().size() > 0)){
-                if(event.getCode() == KeyCode.DIGIT0){
-                    playButton.setText("You chose to buy from " + g.getHotelList().get(0).getName() + "\nEnter an amount from one to three to buy:");
-                    buyHotelStock = 0;
-                }
-                if(event.getCode() == KeyCode.DIGIT1){
-                    playButton.setText("You chose to buy from " + g.getHotelList().get(1).getName() + "\nEnter an amount from one to three to buy:");
-                    buyHotelStock = 1;
-                }
-                if(event.getCode() == KeyCode.DIGIT2){
-                    playButton.setText("You chose to buy from " + g.getHotelList().get(2).getName() + "\nEnter an amount from one to three to buy:");
-                    buyHotelStock = 2;
-                }
-                if(event.getCode() == KeyCode.DIGIT3){
-                    playButton.setText("You chose to buy from " + g.getHotelList().get(3).getName() + "\nEnter an amount from one to three to buy:");
-                    buyHotelStock = 3;
-                }
-                if(event.getCode() == KeyCode.DIGIT4){
-                    playButton.setText("You chose to buy from " + g.getHotelList().get(4).getName() + "\nEnter an amount from one to three to buy:");
-                    buyHotelStock = 4;
-                }
-                if(event.getCode() == KeyCode.DIGIT5){
-                    playButton.setText("You chose to buy from " + g.getHotelList().get(5).getName() + "\nEnter an amount from one to three to buy:");
-                    buyHotelStock = 5;
-                }
-                if(event.getCode() == KeyCode.DIGIT6){
-                    playButton.setText("You chose to buy from " + g.getHotelList().get(6).getName() + "\nEnter an amount from one to three to buy:");
-                    buyHotelStock = 6;
-                }
-                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
-                playButton.addEventFilter(KeyEvent.KEY_PRESSED, buyChosenHotel);
-            }
-        }
-    };
-    //endregion
-
-    //region BuyChosenHotel -
-    EventHandler<KeyEvent> buyChosenHotel = new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 || event.getCode() == KeyCode.DIGIT3){
-                int numBought = 0;
-                if(event.getCode() == KeyCode.DIGIT1){
-                    numBought = 1;
-                }
-                if(event.getCode() == KeyCode.DIGIT2){
-                    numBought = 2;
-
-                }
-                if(event.getCode() == KeyCode.DIGIT3){
-                    numBought = 3;
-                }
-                g.buyStock(currentPlayer,buyHotelStock,numBought);
-                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
-                playButton.setText("You bought " + numBought + " of \n" + g.getHotelList().get(buyHotelStock).getName() + "\n Click to Continue");
-                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
-            }
-        }
-    };
-    //endregion
-
-    //region endChoice -
-    EventHandler<KeyEvent> endChoice = new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            if (event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2) {
-                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
-                if (event.getCode() == KeyCode.DIGIT1) {
-                    playButton.setText("Turn Ended\nClick to Continue");
-                    g.fillHand(0);
-                    g.fillHand(1);
-                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
-                }
-                if(event.getCode() == KeyCode.DIGIT2 && currentChoices == 2){
-                    String foundHotel = "Enter the number of the hotel you would like to buy stock from:\n";
-                    for (Hotel h: g.getFoundedHotels()){
-                        if(h.getAvailable().size() > 0) {
-                            foundHotel += h.getID() + "." + h.getName() + "\n";
-                        }
-                    }
-                    playButton.setText(foundHotel);
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToBuy);
-                }
-            }
-        }
-    };
-    //endregion
-
-    //region clickToContinue -
-    EventHandler<MouseEvent> clickToContinue = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
-            if (g.getFoundedHotels().size() > 0) {
-                playButton.setText("Please select what you would like to do:\n1) End Turn\n2) Buy Stock");
-                currentChoices = 2;
-            } else {
-                playButton.setText("Please select what you would like to do:\n1) End Turn");
-                currentChoices = 1;
-            }
-            if (currentPlayer == 0) {
-                currentPlayer++;
-            } else if (currentPlayer == 1) {
-                currentPlayer--;
-            }
-            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
-            playButton.addEventFilter(KeyEvent.KEY_PRESSED, endChoice);
-        }
-    };
-    //endregion
-
-    //region KeyPressed -
-    EventHandler<KeyEvent> KeyPressed = new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            if (event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 ||
-                    event.getCode() == KeyCode.DIGIT3 || event.getCode() == KeyCode.DIGIT4 ||
-                    event.getCode() == KeyCode.DIGIT5 || event.getCode() == KeyCode.DIGIT6) {
-                Tile playedTile = null;
-                if (event.getCode() == KeyCode.DIGIT1) {
-                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(0);
-                        }
-                if (event.getCode() == KeyCode.DIGIT2) {
-                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(1);
-                }
-                if (event.getCode() == KeyCode.DIGIT3) {
-                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(2);
-                }
-                if (event.getCode() == KeyCode.DIGIT4) {
-                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(3);
-                }
-                if (event.getCode() == KeyCode.DIGIT5) {
-                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(4);
-                }
-                if (event.getCode() == KeyCode.DIGIT6) {
-                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(5);
-                }
-
-                passableTiles = g.playTile(playedTile);
-                g.removeTile(playedTile,currentPlayer);
-
-                String playedTileS = playedTile.getRawRow() + playedTile.getRawColumn();
-                playButton.setText(g.getPlayerList().get(currentPlayer).getName() + " played Tile: " + playedTileS + "\nClick to continue");
-                updateByString(playedTileS,Color.color(1,1,1));
-                playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
-
-                if(passableTiles.size() == 1){
-                    Color color;
-                    for(Tile t:passableTiles){
-                        if(t.getHotel() != null) {
-                            if(t.getHotel().getID() == 0){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(1,1,0);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 1){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(1,0.5,0);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 2){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(0,1,1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 3){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(0.5,0,1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 4){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(0,0.5,0.1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 5){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(0.5,0.1,0);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 6){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(1,0,1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                        }
-                    }
-                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
-                }
-                else if(passableTiles.size() > 0){
-                    Color color;
-                    for(Tile t:passableTiles){
-                        if(t.getHotel() != null) {
-                            if(t.getHotel().getID() == 0){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(1,1,0);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 1){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(1,0.5,0);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 2){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(0,1,1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 3){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(0.5,0,1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 4){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(0,0.5,0.1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 5){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(0.5,0.1,0);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 6){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(1,0,1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                        }
-                    }
-                    String textForPlay = "Pick a Hotel to Found:\n";
-                    for (Hotel h: g.getFoundableHotels()){
-                        textForPlay += h.getID() + "." + h.getName() + "\n";
-                    }
-                    playButton.setText(textForPlay);
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,hotelToFound);
-                } else {
-                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
-                }
-            }
-        }
-    };
-    //endregion
-
-    //region HotelToFound -
-    EventHandler<KeyEvent> hotelToFound = new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            if((event.getCode() == KeyCode.DIGIT0 && !g.getHotelList().get(0).getFounded()) ||
-                    (event.getCode() == KeyCode.DIGIT1 && !g.getHotelList().get(1).getFounded()) ||
-                    (event.getCode() == KeyCode.DIGIT2 && !g.getHotelList().get(2).getFounded()) ||
-                    (event.getCode() == KeyCode.DIGIT3 && !g.getHotelList().get(3).getFounded()) ||
-                    (event.getCode() == KeyCode.DIGIT4 && !g.getHotelList().get(4).getFounded()) ||
-                    (event.getCode() == KeyCode.DIGIT5 && !g.getHotelList().get(5).getFounded()) ||
-                    (event.getCode() == KeyCode.DIGIT6 && !g.getHotelList().get(6).getFounded())) {
-                Color color = null;
-                if(event.getCode() == KeyCode.DIGIT0){
-                    g.foundHotel(0,currentPlayer,passableTiles);
-                    color = Color.color(1,1,0);
-                } else if(event.getCode() == KeyCode.DIGIT1){
-                    g.foundHotel(1,currentPlayer,passableTiles);
-                    color = Color.color(1,0.5,0);
-                } else if(event.getCode() == KeyCode.DIGIT2){
-                    g.foundHotel(2,currentPlayer,passableTiles);
-                    color = Color.color(0,1,1);
-                } else if(event.getCode() == KeyCode.DIGIT3){
-                    g.foundHotel(3,currentPlayer,passableTiles);
-                    color = Color.color(0.5,0,1);
-                } else if(event.getCode() == KeyCode.DIGIT4){
-                    g.foundHotel(4,currentPlayer,passableTiles);
-                    color = Color.color(0,0.5,0.1);
-                } else if(event.getCode() == KeyCode.DIGIT5){
-                    g.foundHotel(5,currentPlayer,passableTiles);
-                    color = Color.color(0.5,0.1,0);
-                } else if(event.getCode() == KeyCode.DIGIT6){
-                    g.foundHotel(6,currentPlayer,passableTiles);
-                    color = Color.color(1,0,1);
-                }
-                for (Tile t: passableTiles){
-                    updateByString((t.getRawRow() + t.getRawColumn()), color);
-                }
-                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
-                playButton.setText("Your hotel was founded\n and one stock was given to you,\nClick to Continue");
-                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
-            }
-        }
-    };
-    //endregion
-
     //region UpdateByString
     private void updateByString(String tilePlayed, Color color){
         if (tilePlayed.equals("A1")) {
@@ -1841,7 +1529,319 @@ public class App extends Application {
     }
     //endregion
 
-    //region PlayerSelectionContinueClicked -
+    //region BuyChosenHotel -                   7
+    EventHandler<KeyEvent> buyChosenHotel = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 || event.getCode() == KeyCode.DIGIT3){
+                int numBought = 0;
+                if(event.getCode() == KeyCode.DIGIT1){
+                    numBought = 1;
+                }
+                if(event.getCode() == KeyCode.DIGIT2){
+                    numBought = 2;
+
+                }
+                if(event.getCode() == KeyCode.DIGIT3){
+                    numBought = 3;
+                }
+                g.buyStock(currentPlayer,buyHotelStock,numBought);
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                playButton.setText("You bought " + numBought + " of \n" + g.getHotelList().get(buyHotelStock).getName() + "\n Click to Continue");
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
+            }
+        }
+    };
+    //endregion
+
+    //region ChooseHotelToBuy -                 6
+    EventHandler<KeyEvent> chooseHotelToBuy = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if((event.getCode() == KeyCode.DIGIT0 && g.getHotelList().get(0).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT1 && g.getHotelList().get(1).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT2 && g.getHotelList().get(2).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT3 && g.getHotelList().get(3).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT4 && g.getHotelList().get(4).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT5 && g.getHotelList().get(5).getAvailable().size() > 0) ||
+                    (event.getCode() == KeyCode.DIGIT6 && g.getHotelList().get(6).getAvailable().size() > 0)){
+                if(event.getCode() == KeyCode.DIGIT0){
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(0).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 0;
+                }
+                if(event.getCode() == KeyCode.DIGIT1){
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(1).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 1;
+                }
+                if(event.getCode() == KeyCode.DIGIT2){
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(2).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 2;
+                }
+                if(event.getCode() == KeyCode.DIGIT3){
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(3).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 3;
+                }
+                if(event.getCode() == KeyCode.DIGIT4){
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(4).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 4;
+                }
+                if(event.getCode() == KeyCode.DIGIT5){
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(5).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 5;
+                }
+                if(event.getCode() == KeyCode.DIGIT6){
+                    playButton.setText("You chose to buy from " + g.getHotelList().get(6).getName() + "\nEnter an amount from one to three to buy:");
+                    buyHotelStock = 6;
+                }
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED, buyChosenHotel);
+            }
+        }
+    };
+    //endregion 4
+
+    //region endChoice -                        5
+    EventHandler<KeyEvent> endChoice = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if (event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2) {
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                if (event.getCode() == KeyCode.DIGIT1) {
+                    playButton.setText("Turn Ended\nClick to Continue");
+                    g.fillHand(0);
+                    g.fillHand(1);
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
+                }
+                if(event.getCode() == KeyCode.DIGIT2 && currentChoices == 2){
+                    String foundHotel = "Enter the number of the hotel you would like to buy stock from:\n";
+                    for (Hotel h: g.getFoundedHotels()){
+                        if(h.getAvailable().size() > 0) {
+                            foundHotel += h.getID() + "." + h.getName() + "\n";
+                        }
+                    }
+                    playButton.setText(foundHotel);
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToBuy);
+                }
+            }
+        }
+    };
+    //endregion
+
+    //region clickToContinue -                  4
+    EventHandler<MouseEvent> clickToContinue = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            if (g.getFoundedHotels().size() > 0) {
+                playButton.setText("Please select what you would like to do:\n1) End Turn\n2) Buy Stock");
+                currentChoices = 2;
+            } else {
+                playButton.setText("Please select what you would like to do:\n1) End Turn");
+                currentChoices = 1;
+            }
+            if (currentPlayer == 0) {
+                currentPlayer++;
+            } else if (currentPlayer == 1) {
+                currentPlayer--;
+            }
+            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
+            playButton.addEventFilter(KeyEvent.KEY_PRESSED, endChoice);
+        }
+    };
+    //endregion
+
+    //region HotelToFound -                     3
+    EventHandler<KeyEvent> hotelToFound = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if((event.getCode() == KeyCode.DIGIT0 && !g.getHotelList().get(0).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT1 && !g.getHotelList().get(1).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT2 && !g.getHotelList().get(2).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT3 && !g.getHotelList().get(3).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT4 && !g.getHotelList().get(4).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT5 && !g.getHotelList().get(5).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT6 && !g.getHotelList().get(6).getFounded())) {
+                Color color = null;
+                if(event.getCode() == KeyCode.DIGIT0){
+                    g.foundHotel(0,currentPlayer,passableTiles);
+                    color = Color.color(1,1,0);
+                } else if(event.getCode() == KeyCode.DIGIT1){
+                    g.foundHotel(1,currentPlayer,passableTiles);
+                    color = Color.color(1,0.5,0);
+                } else if(event.getCode() == KeyCode.DIGIT2){
+                    g.foundHotel(2,currentPlayer,passableTiles);
+                    color = Color.color(0,1,1);
+                } else if(event.getCode() == KeyCode.DIGIT3){
+                    g.foundHotel(3,currentPlayer,passableTiles);
+                    color = Color.color(0.5,0,1);
+                } else if(event.getCode() == KeyCode.DIGIT4){
+                    g.foundHotel(4,currentPlayer,passableTiles);
+                    color = Color.color(0,0.5,0.1);
+                } else if(event.getCode() == KeyCode.DIGIT5){
+                    g.foundHotel(5,currentPlayer,passableTiles);
+                    color = Color.color(0.5,0.1,0);
+                } else if(event.getCode() == KeyCode.DIGIT6){
+                    g.foundHotel(6,currentPlayer,passableTiles);
+                    color = Color.color(1,0,1);
+                }
+                for (Tile t: passableTiles){
+                    updateByString((t.getRawRow() + t.getRawColumn()), color);
+                }
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                playButton.setText("Your hotel was founded\n and one stock was given to you,\nClick to Continue");
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+            }
+        }
+    };
+    //endregion
+
+    //region KeyPressed -                       2
+    EventHandler<KeyEvent> KeyPressed = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if (event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 ||
+                    event.getCode() == KeyCode.DIGIT3 || event.getCode() == KeyCode.DIGIT4 ||
+                    event.getCode() == KeyCode.DIGIT5 || event.getCode() == KeyCode.DIGIT6) {
+                Tile playedTile = null;
+                if (event.getCode() == KeyCode.DIGIT1) {
+                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(0);
+                }
+                if (event.getCode() == KeyCode.DIGIT2) {
+                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(1);
+                }
+                if (event.getCode() == KeyCode.DIGIT3) {
+                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(2);
+                }
+                if (event.getCode() == KeyCode.DIGIT4) {
+                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(3);
+                }
+                if (event.getCode() == KeyCode.DIGIT5) {
+                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(4);
+                }
+                if (event.getCode() == KeyCode.DIGIT6) {
+                    playedTile = g.getPlayerList().get(currentPlayer).getHand().get(5);
+                }
+
+                passableTiles = g.playTile(playedTile);
+                g.removeTile(playedTile,currentPlayer);
+
+                String playedTileS = playedTile.getRawRow() + playedTile.getRawColumn();
+                playButton.setText(g.getPlayerList().get(currentPlayer).getName() + " played Tile: " + playedTileS + "\nClick to continue");
+                updateByString(playedTileS,Color.color(1,1,1));
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
+
+                if(passableTiles.size() == 1){
+                    Color color;
+                    for(Tile t:passableTiles){
+                        if(t.getHotel() != null) {
+                            if(t.getHotel().getID() == 0){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,1,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 1){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,0.5,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 2){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0,1,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 3){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0.5,0,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 4){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0,0.5,0.1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 5){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0.5,0.1,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 6){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,0,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                        }
+                    }
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
+                }
+                else if(passableTiles.size() > 0){
+                    Color color;
+                    for(Tile t:passableTiles){
+                        if(t.getHotel() != null) {
+                            if(t.getHotel().getID() == 0){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,1,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 1){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,0.5,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 2){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0,1,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 3){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0.5,0,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 4){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0,0.5,0.1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 5){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(0.5,0.1,0);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                            if(t.getHotel().getID() == 6){
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                color = Color.color(1,0,1);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                        }
+                    }
+                    String textForPlay = "Pick a Hotel to Found:\n";
+                    for (Hotel h: g.getFoundableHotels()){
+                        textForPlay += h.getID() + "." + h.getName() + "\n";
+                    }
+                    playButton.setText(textForPlay);
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,hotelToFound);
+                } else {
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
+                }
+            }
+        }
+    };
+    //endregion
+
+    //region PlayerSelectionContinueClicked -   1
     EventHandler<MouseEvent> playerSelectionContinueClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -1904,7 +1904,7 @@ public class App extends Application {
     };
     //endregion
 
-    //region startClicked -
+    //region startClicked -                     0
     EventHandler<MouseEvent> startClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -1924,455 +1924,12 @@ public class App extends Application {
                 playButton.setText("Players drew equal tiles,\n player 1 goes first,\n Click to continue.");
             }
             playButton.setStyle("-fx-background-color: #DDDDDD");
-
-            String player1S = String.valueOf(player1.getRawRow()) + player1.getRawColumn();
-            String player2S = String.valueOf(player2.getRawRow()) + player2.getRawColumn();
-
-            if (player1S.equals("A1") || player2S.equals("A1")) {
-                aOneLabel.setStyle("-fx-background-color: #000000");
-                aOneLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("A2") || player2S.equals("A2")) {
-                aTwoLabel.setStyle("-fx-background-color: #000000");
-                aTwoLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("A3") || player2S.equals("A3")) {
-                aThreeLabel.setStyle("-fx-background-color: #000000");
-                aThreeLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("A4") || player2S.equals("A4")) {
-                aFourLabel.setStyle("-fx-background-color: #000000");
-                aFourLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("A5") || player2S.equals("A5")) {
-                aFiveLabel.setStyle("-fx-background-color: #000000");
-                aFiveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("A6") || player2S.equals("A6")) {
-                aSixLabel.setStyle("-fx-background-color: #000000");
-                aSixLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("A7") || player2S.equals("A7")) {
-                aSevenLabel.setStyle("-fx-background-color: #000000");
-                aSevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("A8") || player2S.equals("A8")) {
-                aEightLabel.setStyle("-fx-background-color: #000000");
-                aEightLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("A9") || player2S.equals("A9")) {
-                aNineLabel.setStyle("-fx-background-color: #000000");
-                aNineLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("A10") || player2S.equals("A10")) {
-                aTenLabel.setStyle("-fx-background-color: #000000");
-                aTenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("A11") || player2S.equals("A11")) {
-                aElevenLabel.setStyle("-fx-background-color: #000000");
-                aElevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("A12") || player2S.equals("A12")) {
-                aTwelveLabel.setStyle("-fx-background-color: #000000");
-                aTwelveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-
-            if (player1S.equals("B1") || player2S.equals("B1")) {
-                bOneLabel.setStyle("-fx-background-color: #000000");
-                bOneLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("B2") || player2S.equals("B2")) {
-                bTwoLabel.setStyle("-fx-background-color: #000000");
-                bTwoLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("B3") || player2S.equals("B3")) {
-                bThreeLabel.setStyle("-fx-background-color: #000000");
-                bThreeLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("B4") || player2S.equals("B4")) {
-                bFourLabel.setStyle("-fx-background-color: #000000");
-                bFourLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("B5") || player2S.equals("B5")) {
-                bFiveLabel.setStyle("-fx-background-color: #000000");
-                bFiveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("B6") || player2S.equals("B6")) {
-                bSixLabel.setStyle("-fx-background-color: #000000");
-                bSixLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("B7") || player2S.equals("B7")) {
-                bSevenLabel.setStyle("-fx-background-color: #000000");
-                bSevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("B8") || player2S.equals("B8")) {
-                bEightLabel.setStyle("-fx-background-color: #000000");
-                bEightLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("B9") || player2S.equals("B9")) {
-                bNineLabel.setStyle("-fx-background-color: #000000");
-                bNineLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("B10") || player2S.equals("B10")) {
-                bTenLabel.setStyle("-fx-background-color: #000000");
-                bTenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("B11") || player2S.equals("B11")) {
-                bElevenLabel.setStyle("-fx-background-color: #000000");
-                bElevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("B12") || player2S.equals("B12")) {
-                bTwelveLabel.setStyle("-fx-background-color: #000000");
-                bTwelveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-
-            if (player1S.equals("C1") || player2S.equals("C1")) {
-                cOneLabel.setStyle("-fx-background-color: #000000");
-                cOneLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("C2") || player2S.equals("C2")) {
-                cTwoLabel.setStyle("-fx-background-color: #000000");
-                cTwoLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("C3") || player2S.equals("C3")) {
-                cThreeLabel.setStyle("-fx-background-color: #000000");
-                cThreeLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("C4") || player2S.equals("C4")) {
-                cFourLabel.setStyle("-fx-background-color: #000000");
-                cFourLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("C5") || player2S.equals("C5")) {
-                cFiveLabel.setStyle("-fx-background-color: #000000");
-                cFiveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("C6") || player2S.equals("C6")) {
-                cSixLabel.setStyle("-fx-background-color: #000000");
-                cSixLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("C7") || player2S.equals("C7")) {
-                cSevenLabel.setStyle("-fx-background-color: #000000");
-                cSevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("C8") || player2S.equals("C8")) {
-                cEightLabel.setStyle("-fx-background-color: #000000");
-                cEightLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("C9") || player2S.equals("C9")) {
-                cNineLabel.setStyle("-fx-background-color: #000000");
-                cNineLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("C10") || player2S.equals("C10")) {
-                cTenLabel.setStyle("-fx-background-color: #000000");
-                cTenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("C11") || player2S.equals("C11")) {
-                cElevenLabel.setStyle("-fx-background-color: #000000");
-                cElevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("C12") || player2S.equals("C12")) {
-                cTwelveLabel.setStyle("-fx-background-color: #000000");
-                cTwelveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-
-            if (player1S.equals("D1") || player2S.equals("D1")) {
-                dOneLabel.setStyle("-fx-background-color: #000000");
-                dOneLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("D2") || player2S.equals("D2")) {
-                dTwoLabel.setStyle("-fx-background-color: #000000");
-                dTwoLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("D3") || player2S.equals("D3")) {
-                dThreeLabel.setStyle("-fx-background-color: #000000");
-                dThreeLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("D4") || player2S.equals("D4")) {
-                dFourLabel.setStyle("-fx-background-color: #000000");
-                dFourLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("D5") || player2S.equals("D5")) {
-                dFiveLabel.setStyle("-fx-background-color: #000000");
-                dFiveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("D6") || player2S.equals("D6")) {
-                dSixLabel.setStyle("-fx-background-color: #000000");
-                dSixLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("D7") || player2S.equals("D7")) {
-                dSevenLabel.setStyle("-fx-background-color: #000000");
-                dSevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("D8") || player2S.equals("D8")) {
-                dEightLabel.setStyle("-fx-background-color: #000000");
-                dEightLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("D9") || player2S.equals("D9")) {
-                dNineLabel.setStyle("-fx-background-color: #000000");
-                dNineLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("D10") || player2S.equals("D10")) {
-                dTenLabel.setStyle("-fx-background-color: #000000");
-                dTenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("D11") || player2S.equals("D11")) {
-                dElevenLabel.setStyle("-fx-background-color: #000000");
-                dElevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("D12") || player2S.equals("D12")) {
-                dTwelveLabel.setStyle("-fx-background-color: #000000");
-                dTwelveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-
-            if (player1S.equals("E1") || player2S.equals("E1")) {
-                eOneLabel.setStyle("-fx-background-color: #000000");
-                eOneLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("E2") || player2S.equals("E2")) {
-                eTwoLabel.setStyle("-fx-background-color: #000000");
-                eTwoLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("E3") || player2S.equals("E3")) {
-                eThreeLabel.setStyle("-fx-background-color: #000000");
-                eThreeLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("E4") || player2S.equals("E4")) {
-                eFourLabel.setStyle("-fx-background-color: #000000");
-                eFourLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("E5") || player2S.equals("E5")) {
-                eFiveLabel.setStyle("-fx-background-color: #000000");
-                eFiveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("E6") || player2S.equals("E6")) {
-                eSixLabel.setStyle("-fx-background-color: #000000");
-                eSixLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("E7") || player2S.equals("E7")) {
-                eSevenLabel.setStyle("-fx-background-color: #000000");
-                eSevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("E8") || player2S.equals("E8")) {
-                eEightLabel.setStyle("-fx-background-color: #000000");
-                eEightLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("E9") || player2S.equals("E9")) {
-                eNineLabel.setStyle("-fx-background-color: #000000");
-                eNineLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("E10") || player2S.equals("E10")) {
-                eTenLabel.setStyle("-fx-background-color: #000000");
-                eTenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("E11") || player2S.equals("E11")) {
-                eElevenLabel.setStyle("-fx-background-color: #000000");
-                eElevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("E12") || player2S.equals("E12")) {
-                eTwelveLabel.setStyle("-fx-background-color: #000000");
-                eTwelveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-
-            if (player1S.equals("F1") || player2S.equals("F1")) {
-                fOneLabel.setStyle("-fx-background-color: #000000");
-                fOneLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("F2") || player2S.equals("F2")) {
-                fTwoLabel.setStyle("-fx-background-color: #000000");
-                fTwoLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("F3") || player2S.equals("F3")) {
-                fThreeLabel.setStyle("-fx-background-color: #000000");
-                fThreeLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("F4") || player2S.equals("F4")) {
-                fFourLabel.setStyle("-fx-background-color: #000000");
-                fFourLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("F5") || player2S.equals("F5")) {
-                fFiveLabel.setStyle("-fx-background-color: #000000");
-                fFiveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("F6") || player2S.equals("F6")) {
-                fSixLabel.setStyle("-fx-background-color: #000000");
-                fSixLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("F7") || player2S.equals("F7")) {
-                fSevenLabel.setStyle("-fx-background-color: #000000");
-                fSevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("F8") || player2S.equals("F8")) {
-                fEightLabel.setStyle("-fx-background-color: #000000");
-                fEightLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("F9") || player2S.equals("F9")) {
-                fNineLabel.setStyle("-fx-background-color: #000000");
-                fNineLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("F10") || player2S.equals("F10")) {
-                fTenLabel.setStyle("-fx-background-color: #000000");
-                fTenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("F11") || player2S.equals("F11")) {
-                fElevenLabel.setStyle("-fx-background-color: #000000");
-                fElevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("F12") || player2S.equals("F12")) {
-                fTwelveLabel.setStyle("-fx-background-color: #000000");
-                fTwelveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-
-            if (player1S.equals("G1") || player2S.equals("G1")) {
-                gOneLabel.setStyle("-fx-background-color: #000000");
-                gOneLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("G2") || player2S.equals("G2")) {
-                gTwoLabel.setStyle("-fx-background-color: #000000");
-                gTwoLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("G3") || player2S.equals("G3")) {
-                gThreeLabel.setStyle("-fx-background-color: #000000");
-                gThreeLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("G4") || player2S.equals("G4")) {
-                gFourLabel.setStyle("-fx-background-color: #000000");
-                gFourLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("G5") || player2S.equals("G5")) {
-                gFiveLabel.setStyle("-fx-background-color: #000000");
-                gFiveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("G6") || player2S.equals("G6")) {
-                gSixLabel.setStyle("-fx-background-color: #000000");
-                gSixLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("G7") || player2S.equals("G7")) {
-                gSevenLabel.setStyle("-fx-background-color: #000000");
-                gSevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("G8") || player2S.equals("G8")) {
-                gEightLabel.setStyle("-fx-background-color: #000000");
-                gEightLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("G9") || player2S.equals("G9")) {
-                gNineLabel.setStyle("-fx-background-color: #000000");
-                gNineLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("G10") || player2S.equals("G10")) {
-                gTenLabel.setStyle("-fx-background-color: #000000");
-                gTenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("G11") || player2S.equals("G11")) {
-                gElevenLabel.setStyle("-fx-background-color: #000000");
-                gElevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("G12") || player2S.equals("G12")) {
-                gTwelveLabel.setStyle("-fx-background-color: #000000");
-                gTwelveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-
-            if (player1S.equals("H1") || player2S.equals("H1")) {
-                hOneLabel.setStyle("-fx-background-color: #000000");
-                hOneLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("H2") || player2S.equals("H2")) {
-                hTwoLabel.setStyle("-fx-background-color: #000000");
-                hTwoLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("H3") || player2S.equals("H3")) {
-                hThreeLabel.setStyle("-fx-background-color: #000000");
-                hThreeLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("H4") || player2S.equals("H4")) {
-                hFourLabel.setStyle("-fx-background-color: #000000");
-                hFourLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("H5") || player2S.equals("H5")) {
-                hFiveLabel.setStyle("-fx-background-color: #000000");
-                hFiveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("H6") || player2S.equals("H6")) {
-                hSixLabel.setStyle("-fx-background-color: #000000");
-                hSixLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("H7") || player2S.equals("H7")) {
-                hSevenLabel.setStyle("-fx-background-color: #000000");
-                hSevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("H8") || player2S.equals("H8")) {
-                hEightLabel.setStyle("-fx-background-color: #000000");
-                hEightLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("H9") || player2S.equals("H9")) {
-                hNineLabel.setStyle("-fx-background-color: #000000");
-                hNineLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("H10") || player2S.equals("H10")) {
-                hTenLabel.setStyle("-fx-background-color: #000000");
-                hTenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("H11") || player2S.equals("H11")) {
-                hElevenLabel.setStyle("-fx-background-color: #000000");
-                hElevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("H12") || player2S.equals("H12")) {
-                hTwelveLabel.setStyle("-fx-background-color: #000000");
-                hTwelveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-
-            if (player1S.equals("I1") || player2S.equals("I1")) {
-                iOneLabel.setStyle("-fx-background-color: #000000");
-                iOneLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("I2") || player2S.equals("I2")) {
-                iTwoLabel.setStyle("-fx-background-color: #000000");
-                iTwoLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("I3") || player2S.equals("I3")) {
-                iThreeLabel.setStyle("-fx-background-color: #000000");
-                iThreeLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("I4") || player2S.equals("I4")) {
-                iFourLabel.setStyle("-fx-background-color: #000000");
-                iFourLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("I5") || player2S.equals("I5")) {
-                iFiveLabel.setStyle("-fx-background-color: #000000");
-                iFiveLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("I6") || player2S.equals("I6")) {
-                iSixLabel.setStyle("-fx-background-color: #000000");
-                iSixLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("I7") || player2S.equals("I7")) {
-                iSevenLabel.setStyle("-fx-background-color: #000000");
-                iSevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("I8") || player2S.equals("I8")) {
-                iEightLabel.setStyle("-fx-background-color: #000000");
-                iEightLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("I9") || player2S.equals("I9")) {
-                iNineLabel.setStyle("-fx-background-color: #000000");
-                iNineLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("I10") || player2S.equals("I10")) {
-                iTenLabel.setStyle("-fx-background-color: #000000");
-                iTenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("I11") || player2S.equals("I11")) {
-                iElevenLabel.setStyle("-fx-background-color: #000000");
-                iElevenLabel.setTextFill(Color.color(1, 1, 1));
-            }
-            if (player1S.equals("I12") || player2S.equals("I12")) {
-                iTwelveLabel.setStyle("-fx-background-color: #000000");
-                iTwelveLabel.setTextFill(Color.color(1, 1, 1));
-            }
+            updateByString(String.valueOf(player1.getRawRow()) + player1.getRawColumn(), Color.color(1,1,1));
+            updateByString(String.valueOf(player2.getRawRow()) + player2.getRawColumn(), Color.color(1,1,1));
             g.fillHand(0);
             g.fillHand(1);
             playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
             playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playerSelectionContinueClicked);
-
         }
     };
     //endregion
