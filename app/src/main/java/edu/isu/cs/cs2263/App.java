@@ -25,12 +25,15 @@ import java.util.Objects;
 
 public class App extends Application {
 
+    //region Variables
     Game g = new Game();
     int currentPlayer = 0;
     int currentChoices = 1;
     int buyHotelStock;
     List<Tile> passableTiles;
+//endregion
 
+    //region Board Labels
     Label aOneLabel = new Label("A1");
     Label aTwoLabel = new Label("A2");
     Label aThreeLabel = new Label("A3");
@@ -139,18 +142,24 @@ public class App extends Application {
     Label iTenLabel = new Label("I10");
     Label iElevenLabel = new Label("I11");
     Label iTwelveLabel = new Label("I12");
+    //endregion
 
+    //region Buttons
     Button loadButton = new Button("Load Game");
     Button saveButton = new Button("Save Game");
     Button hotelButton = new Button("Hotels");
     Button stocksButton = new Button("Stocks");
     Button infoButton = new Button("Info");
     Button playButton = new Button("Play Game");
+//endregion
 
+    //region ButtonPane Labels
     Label pLabel = new Label("PLAYER INFO: Player #");
-    Label tLabel = new Label("TILES: 1.--- 2.--- 3.--- 4.--- 5.--- 6.---");
-    Label mLabel = new Label(" MONEY: $-----");
+    Label tLabel = new Label(" TILES: 1. ----  2. ----  3. ----  4. ----  5. ----  6. ----");
+    Label mLabel = new Label("\tMONEY: $------ ");
     Label infoLabel = new Label();
+    //endregion
+
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -164,7 +173,7 @@ public class App extends Application {
 
     private GridPane buildGrid(Stage stage) {
         stage.setTitle("Acquire by The INFO Boys");
-        //Labels for Letters
+        //region Labels for Letters
         Label aLabel = new Label("A");
         Label bLabel = new Label("B");
         Label cLabel = new Label("C");
@@ -174,8 +183,9 @@ public class App extends Application {
         Label gLabel = new Label("G");
         Label hLabel = new Label("H");
         Label iLabel = new Label("I");
+//endregion
 
-        //Labels for Numbers
+        //region Labels for Numbers
         Label oneLabel = new Label("1");
         oneLabel.setMinWidth(25);
         oneLabel.setAlignment(Pos.CENTER);
@@ -212,8 +222,9 @@ public class App extends Application {
         Label twelveLabel = new Label("12");
         twelveLabel.setMinWidth(25);
         twelveLabel.setAlignment(Pos.CENTER);
+        //endregion
 
-        //Labels for Literally Everything
+        //region Properties for board
         aOneLabel.setMinSize(25, 20);
         aOneLabel.setAlignment(Pos.CENTER);
         aOneLabel.setId("A1");
@@ -851,15 +862,15 @@ public class App extends Application {
         iTwelveLabel.setAlignment(Pos.CENTER);
         iTwelveLabel.setId("I12");
         iTwelveLabel.setBorder(new Border(new BorderStroke(Color.rgb(1, 1, 1), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+        //endregion
 
-
-        //Buttons
+        //region Button Properties
         playButton.setStyle("-fx-background-color: #00FF00");
         playButton.setMinWidth(50);
+        //endregion
 
+        //region GridPane
         GridPane gp = new GridPane();
-
-        //grid setup
         gp.add(oneLabel, 1, 0);
         gp.add(twoLabel, 2, 0);
         gp.add(threeLabel, 3, 0);
@@ -1005,16 +1016,19 @@ public class App extends Application {
         GridPane buttonPane = new GridPane();
         buttonPane.add(loadButton, 0, 1);
         buttonPane.add(saveButton, 1, 1);
+        tLabel.setMinWidth(250);
         buttonPane.add(tLabel, 2, 1);
+        mLabel.setMinWidth(50);
         buttonPane.add(mLabel, 3, 1);
         buttonPane.add(hotelButton, 4, 1);
         buttonPane.add(stocksButton, 5, 1);
         buttonPane.add(infoButton, 6, 1);
         buttonPane.add(pLabel, 2, 0);
-        buttonPane.setMinWidth(575);
+        buttonPane.setMinWidth(650);
         gp.add(buttonPane, 0, 16, 14, 2);
+        //endregion
 
-        //Handlers
+        //region Handlers
         loadButton.setOnAction(event1 -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Open Save File");
@@ -1063,9 +1077,14 @@ public class App extends Application {
             }
         });
         playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startClicked);
+        //endregion
+
         return gp;
     }
 
+    //Event Handlers
+
+    //region ChooseHotelToBuy -
     EventHandler<KeyEvent> chooseHotelToBuy = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
@@ -1109,7 +1128,9 @@ public class App extends Application {
             }
         }
     };
+    //endregion
 
+    //region BuyChosenHotel -
     EventHandler<KeyEvent> buyChosenHotel = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
@@ -1132,7 +1153,9 @@ public class App extends Application {
             }
         }
     };
+    //endregion
 
+    //region endChoice -
     EventHandler<KeyEvent> endChoice = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
@@ -1157,7 +1180,9 @@ public class App extends Application {
             }
         }
     };
+    //endregion
 
+    //region clickToContinue -
     EventHandler<MouseEvent> clickToContinue = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -1177,7 +1202,9 @@ public class App extends Application {
             playButton.addEventFilter(KeyEvent.KEY_PRESSED, endChoice);
         }
     };
+    //endregion
 
+    //region KeyPressed -
     EventHandler<KeyEvent> KeyPressed = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
@@ -1322,7 +1349,9 @@ public class App extends Application {
             }
         }
     };
+    //endregion
 
+    //region HotelToFound -
     EventHandler<KeyEvent> hotelToFound = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
@@ -1365,6 +1394,9 @@ public class App extends Application {
             }
         }
     };
+    //endregion
+
+    //region UpdateByString
     private void updateByString(String tilePlayed, Color color){
         if (tilePlayed.equals("A1")) {
             aOneLabel.setStyle("-fx-background-color: #000000");
@@ -1807,14 +1839,16 @@ public class App extends Application {
             iTwelveLabel.setTextFill(color);
         }
     }
+    //endregion
 
+    //region PlayerSelectionContinueClicked -
     EventHandler<MouseEvent> playerSelectionContinueClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             List<Tile> hand = g.getPlayersHand(currentPlayer);
             pLabel.setText("PLAYER INFO: " + g.getPlayerList().get(currentPlayer).getName());
-            tLabel.setText("TILES: 1." + hand.get(0).getTileName() + " 2." + hand.get(1).getTileName() + " 3. " + hand.get(2).getTileName() + " 4." + hand.get(3).getTileName() + " 5." + hand.get(4).getTileName() + " 6." + hand.get(5).getTileName());
-            mLabel.setText(" MONEY: $" + g.getPlayerList().get(currentPlayer).getMoney());
+            tLabel.setText(" TILES: 1. " + hand.get(0).getTileName() + "   2. " + hand.get(1).getTileName() + "   3. " + hand.get(2).getTileName() + "   4. " + hand.get(3).getTileName() + "   5. " + hand.get(4).getTileName() + "   6. " + hand.get(5).getTileName());
+            mLabel.setText("\tMONEY: $" + g.getPlayerList().get(currentPlayer).getMoney() + " ");
             List<Tile> tList = g.getBoard().getTiles();
             List<Tile> hTlist1 = new ArrayList<Tile>();
             List<Tile> hTlist2 = new ArrayList<Tile>();
@@ -1868,7 +1902,9 @@ public class App extends Application {
             }
         }
     };
+    //endregion
 
+    //region startClicked -
     EventHandler<MouseEvent> startClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -2339,26 +2375,5 @@ public class App extends Application {
 
         }
     };
+    //endregion
 }
-
-    /*//Start App
-        Game g = new Game();
-        int PlayerID = g.determineFirst();
-
-        //Play a Tile
-        Player p = new Player(99,"Free");
-        g.playTile(new Tile(1,1));
-        List<Tile> testFound = g.playTile(new Tile(2,1));
-        g.foundHotel(0, 0, testFound);
-        g.playTile(new Tile(1,2));
-
-        //Buy Stock
-        g.buyStock(1,0,3);
-
-        //Save Game
-        //g.saveGame("test.txt");
-
-        //Load Game
-        g.loadGame("test.txt");
-
-        Player pp = new Player(99,"Free");*/
