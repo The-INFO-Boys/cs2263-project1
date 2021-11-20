@@ -30,6 +30,7 @@ public class App extends Application {
     int currentPlayer = 0;
     int currentChoices = 1;
     int buyHotelStock;
+    int numberOfStockBought = 0;
     List<Tile> passableTiles;
 //endregion
 
@@ -160,7 +161,7 @@ public class App extends Application {
     Label infoLabel = new Label();
     //endregion
 
-
+    //region Start Methods
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -170,6 +171,7 @@ public class App extends Application {
         stage.setScene(sc);
         stage.show();
     }
+    //endregion
 
     private GridPane buildGrid(Stage stage) {
         stage.setTitle("Acquire by The INFO Boys");
@@ -1533,27 +1535,25 @@ public class App extends Application {
     EventHandler<KeyEvent> buyChosenHotel = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
-            if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 || event.getCode() == KeyCode.DIGIT3){
+            if((event.getCode() == KeyCode.DIGIT1 && numberOfStockBought < 3) || (event.getCode() == KeyCode.DIGIT2 && numberOfStockBought < 2) || (event.getCode() == KeyCode.DIGIT3 && numberOfStockBought == 0)){
                 int numBought = 0;
                 if(event.getCode() == KeyCode.DIGIT1){
                     numBought = 1;
+                    numberOfStockBought = numberOfStockBought + 1;
                 }
                 if(event.getCode() == KeyCode.DIGIT2){
                     numBought = 2;
+                    numberOfStockBought = numberOfStockBought + 2;
                 }
                 if(event.getCode() == KeyCode.DIGIT3){
                     numBought = 3;
+                    numberOfStockBought = numberOfStockBought + 3;
                 }
                 g.buyStock(currentPlayer,buyHotelStock,numBought);
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
                 playButton.setText("You bought " + numBought + " of \n" + g.getHotelList().get(buyHotelStock).getName() + "\n Click to Continue");
                 mLabel.setText("\tMONEY: $" + g.getPlayerList().get(currentPlayer).getMoney() + " ");
-                if (currentPlayer == 0) {
-                    currentPlayer++;
-                } else if (currentPlayer == 1) {
-                    currentPlayer--;
-                }
-                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
             }
         }
     };
@@ -1563,13 +1563,13 @@ public class App extends Application {
     EventHandler<KeyEvent> chooseHotelToBuy = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
-            if((event.getCode() == KeyCode.DIGIT1 && g.getHotelList().get(0).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT2 && g.getHotelList().get(1).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT3 && g.getHotelList().get(2).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT4 && g.getHotelList().get(3).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT5 && g.getHotelList().get(4).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT6 && g.getHotelList().get(5).getAvailable().size() > 0) ||
-                    (event.getCode() == KeyCode.DIGIT7 && g.getHotelList().get(6).getAvailable().size() > 0)){
+            if((event.getCode() == KeyCode.DIGIT1 && g.getHotelList().get(0).getAvailable().size() > 0 && g.getHotelList().get(0).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT2 && g.getHotelList().get(1).getAvailable().size() > 0 && g.getHotelList().get(1).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT3 && g.getHotelList().get(2).getAvailable().size() > 0 && g.getHotelList().get(2).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT4 && g.getHotelList().get(3).getAvailable().size() > 0 && g.getHotelList().get(3).getFounded()) ||
+                    (event.getCode() == KeyCode.DIGIT5 && g.getHotelList().get(4).getAvailable().size() > 0) && g.getHotelList().get(4).getFounded() ||
+                    (event.getCode() == KeyCode.DIGIT6 && g.getHotelList().get(5).getAvailable().size() > 0) && g.getHotelList().get(5).getFounded() ||
+                    (event.getCode() == KeyCode.DIGIT7 && g.getHotelList().get(6).getAvailable().size() > 0) && g.getHotelList().get(6).getFounded()) {
                 if(event.getCode() == KeyCode.DIGIT1){
                     playButton.setText("You chose to buy from " + g.getHotelList().get(0).getName() + "\nEnter an amount from one to three to buy:");
                     buyHotelStock = 0;
@@ -1613,6 +1613,7 @@ public class App extends Application {
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
                 if (event.getCode() == KeyCode.DIGIT1) {
                     playButton.setText("Turn Ended\nClick to Continue");
+                    numberOfStockBought = 0;
                     g.fillHand(0);
                     g.fillHand(1);
                     if (currentPlayer == 0) {
@@ -1641,7 +1642,7 @@ public class App extends Application {
     EventHandler<MouseEvent> clickToContinue = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            if (g.getFoundedHotels().size() > 0) {
+            if (g.getFoundedHotels().size() > 0 && numberOfStockBought < 3) {
                 playButton.setText("Please select what you would like to do:\n1) End Turn\n2) Buy Stock");
                 currentChoices = 2;
             } else {
