@@ -1540,7 +1540,6 @@ public class App extends Application {
                 }
                 if(event.getCode() == KeyCode.DIGIT2){
                     numBought = 2;
-
                 }
                 if(event.getCode() == KeyCode.DIGIT3){
                     numBought = 3;
@@ -1548,6 +1547,12 @@ public class App extends Application {
                 g.buyStock(currentPlayer,buyHotelStock,numBought);
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
                 playButton.setText("You bought " + numBought + " of \n" + g.getHotelList().get(buyHotelStock).getName() + "\n Click to Continue");
+                mLabel.setText("\tMONEY: $" + g.getPlayerList().get(currentPlayer).getMoney() + " ");
+                if (currentPlayer == 0) {
+                    currentPlayer++;
+                } else if (currentPlayer == 1) {
+                    currentPlayer--;
+                }
                 playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
             }
         }
@@ -1610,6 +1615,11 @@ public class App extends Application {
                     playButton.setText("Turn Ended\nClick to Continue");
                     g.fillHand(0);
                     g.fillHand(1);
+                    if (currentPlayer == 0) {
+                        currentPlayer++;
+                    } else if (currentPlayer == 1) {
+                        currentPlayer--;
+                    }
                     playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
                 }
                 if(event.getCode() == KeyCode.DIGIT2 && currentChoices == 2){
@@ -1637,11 +1647,6 @@ public class App extends Application {
             } else {
                 playButton.setText("Please select what you would like to do:\n1) End Turn");
                 currentChoices = 1;
-            }
-            if (currentPlayer == 0) {
-                currentPlayer++;
-            } else if (currentPlayer == 1) {
-                currentPlayer--;
             }
             playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
             playButton.addEventFilter(KeyEvent.KEY_PRESSED, endChoice);
