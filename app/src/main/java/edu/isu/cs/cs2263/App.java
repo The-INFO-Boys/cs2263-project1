@@ -29,6 +29,7 @@ public class App extends Application {
     Game g = new Game();
     int currentPlayer = 0;
     int currentChoices = 1;
+    int currentStep = 0;
     int buyHotelStock;
     int numberOfStockBought = 0;
     List<Tile> passableTiles;
@@ -1060,11 +1061,7 @@ public class App extends Application {
                         updateByString((t.getRawRow() + t.getRawColumn()),tileColor);
                     }
                 }
-                for(Player p: g.getPlayerList()){
-                    g.getPlayersHand(0);
-                    g.getPlayersHand(1);
-                }
-                //playButton.removeEventHandler(MouseEvent.MOUSE_CLICKED, startClicked);
+                skipPlay();
             }
         });
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -1085,6 +1082,33 @@ public class App extends Application {
     }
 
     //Event Handlers
+
+    //region SkipPlay
+
+    private void skipPlay(){
+        if(currentStep == 0){
+            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED,startClicked);
+        } else if(currentStep == 1){
+            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
+        } else if(currentStep == 2){
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED, KeyPressed);
+        } else if(currentStep == 3){
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED,hotelToFound);
+        } else if(currentStep == 4){
+            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
+        } else if(currentStep == 5){
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED,endChoice);
+        } else if(currentStep == 6){
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToBuy);
+        } else if(currentStep == 7){
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED,buyChosenHotel);
+        }
+        playButton.setText("Game Loaded\nClick to Continue");
+        playButton.setStyle("-fx-background-color: #DDDDDD");
+        playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
+    }
+
+    //endregion
 
     //region UpdateByString
     private void updateByString(String tilePlayed, Color color){
@@ -1554,6 +1578,7 @@ public class App extends Application {
                 playButton.setText("You bought " + numBought + " of \n" + g.getHotelList().get(buyHotelStock).getName() + "\n Click to Continue");
                 mLabel.setText("\tMONEY: $" + g.getPlayerList().get(currentPlayer).getMoney() + " ");
                 playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+                currentStep = 4;
             }
         }
     };
@@ -1600,6 +1625,7 @@ public class App extends Application {
                 }
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, buyChosenHotel);
+                currentStep++;
             }
         }
     };
@@ -1622,6 +1648,7 @@ public class App extends Application {
                         currentPlayer--;
                     }
                     playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
+                    currentStep = 1;
                 }
                 if(event.getCode() == KeyCode.DIGIT2 && currentChoices == 2){
                     String foundHotel = "Enter the number of the hotel you would like to buy stock from:\n";
@@ -1632,6 +1659,7 @@ public class App extends Application {
                     }
                     playButton.setText(foundHotel);
                     playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToBuy);
+                    currentStep++;
                 }
             }
         }
@@ -1651,6 +1679,7 @@ public class App extends Application {
             }
             playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
             playButton.addEventFilter(KeyEvent.KEY_PRESSED, endChoice);
+            currentStep++;
         }
     };
     //endregion
@@ -1695,6 +1724,7 @@ public class App extends Application {
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
                 playButton.setText("Your hotel was founded\n and one stock was given to you,\nClick to Continue");
                 playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+                currentStep++;
             }
         }
     };
@@ -1784,53 +1814,36 @@ public class App extends Application {
                         }
                     }
                     playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
+                    currentStep = currentStep + 2;
                 }
                 else if(passableTiles.size() > 0){
-                    Color color;
+                    Color color = null;
                     for(Tile t:passableTiles){
                         if(t.getHotel() != null) {
                             if(t.getHotel().getID() == 0){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
                                 color = Color.color(1,1,0);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
                             }
                             if(t.getHotel().getID() == 1){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
                                 color = Color.color(1,0.5,0);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
                             }
                             if(t.getHotel().getID() == 2){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
                                 color = Color.color(0,1,1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
                             }
                             if(t.getHotel().getID() == 3){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
                                 color = Color.color(0.5,0,1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
                             }
                             if(t.getHotel().getID() == 4){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
                                 color = Color.color(0,0.5,0.1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
                             }
                             if(t.getHotel().getID() == 5){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
                                 color = Color.color(0.5,0.1,0);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
                             }
                             if(t.getHotel().getID() == 6){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
                                 color = Color.color(1,0,1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
                             }
+                            Hotel h = t.getHotel();
+                            playedTile.setHotel(h);
+                            updateByString((t.getRawRow() + t.getRawColumn()), color);
                         }
                     }
                     String textForPlay = "Pick a Hotel to Found:\n";
@@ -1839,8 +1852,10 @@ public class App extends Application {
                     }
                     playButton.setText(textForPlay);
                     playButton.addEventFilter(KeyEvent.KEY_PRESSED,hotelToFound);
+                    currentStep++;
                 } else {
                     playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
+                    currentStep = currentStep + 2;
                 }
             }
         }
@@ -1905,6 +1920,7 @@ public class App extends Application {
 
                 playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, KeyPressed);
+                currentStep++;
             }
         }
     };
