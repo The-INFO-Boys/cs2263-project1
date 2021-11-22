@@ -21,7 +21,6 @@ import javafx.scene.layout.GridPane;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class App extends Application {
 
@@ -1075,6 +1074,37 @@ public class App extends Application {
                 }
             }
         });
+        hotelButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String sb = "Hotel";
+                sb += "\t\t\t";
+                sb += "Founded";
+                sb += "\t";
+                sb += "Size";
+                sb += "\t";
+                sb += "$/Stock";
+                sb += "\n";
+                for (Hotel h: g.getHotelList()) {
+                    sb += h.getName();
+                    if(h.getName().length() > 9) {
+                        sb += "\t\t";
+                    } else {
+                        sb += "\t\t\t";
+                    }
+                    sb += h.getFounded();
+                    sb += "\t\t";
+                    sb += g.getBoard().getHotelSize(h);
+                    sb += "\t";
+                    sb += "Value";
+                    sb += "\n";
+                }
+                sb += "\nClick to Return";
+                removeCurrentStep();
+                playButton.setText(sb);
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToReturn);
+            }
+        });
         playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startClicked);
         //endregion
 
@@ -1083,9 +1113,68 @@ public class App extends Application {
 
     //Event Handlers
 
-    //region SkipPlay
+    //region ReturnToPlay
 
+    EventHandler<MouseEvent> clickToReturn = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
+            if(currentStep == 1){
+                playButton.setText("Click to Continue:");
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
+            } else if(currentStep == 2){
+                playButton.setText("Press the number of the tile\n you would like to play:");
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED, KeyPressed);
+            } else if(currentStep == 3){
+                String textForPlay = "Pick a Hotel to Found:\n";
+                for (Hotel h: g.getFoundableHotels()){
+                    textForPlay += (h.getID()+1) + "." + h.getName() + "\n";
+                }
+                playButton.setText(textForPlay);
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED,hotelToFound);
+            } else if(currentStep == 4){
+                playButton.setText("Click to Continue:");
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+            } else if(currentStep == 5){
+                if (g.getFoundedHotels().size() > 0 && numberOfStockBought < 3) {
+                    playButton.setText("Please select what you would like to do:\n1) End Turn\n2) Buy Stock");
+                    currentChoices = 2;
+                } else {
+                    playButton.setText("Please select what you would like to do:\n1) End Turn");
+                    currentChoices = 1;
+                }
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED,endChoice);
+            } else if(currentStep == 6){
+                String foundHotel = "Enter the number of the hotel you would like to buy stock from:\n";
+                for (Hotel h: g.getFoundedHotels()){
+                    if(h.getAvailable().size() > 0) {
+                        foundHotel += (h.getID()+1) + "." + h.getName() + "\n";
+                    }
+                }
+                playButton.setText(foundHotel);
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToBuy);
+            } else if(currentStep == 7){
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED,buyChosenHotel);
+            } else{
+                playButton.setText("Something is broken: " + currentStep);
+            }
+        }
+    };
+
+    //endregion
+
+    //region SkipPlay
     private void skipPlay(){
+        removeCurrentStep();
+        playButton.setText("Game Loaded\nClick to Continue");
+        playButton.setStyle("-fx-background-color: #DDDDDD");
+        playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
+    }
+    //endregion
+
+    //region RemoveCurrentStep
+
+    private void removeCurrentStep(){
         if(currentStep == 0){
             playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED,startClicked);
         } else if(currentStep == 1){
@@ -1103,9 +1192,6 @@ public class App extends Application {
         } else if(currentStep == 7){
             playButton.removeEventFilter(KeyEvent.KEY_PRESSED,buyChosenHotel);
         }
-        playButton.setText("Game Loaded\nClick to Continue");
-        playButton.setStyle("-fx-background-color: #DDDDDD");
-        playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
     }
 
     //endregion
@@ -1952,6 +2038,7 @@ public class App extends Application {
             g.fillHand(1);
             playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
             playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playerSelectionContinueClicked);
+            currentStep++;
         }
     };
     //endregion

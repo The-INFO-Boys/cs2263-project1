@@ -121,6 +121,15 @@ public class Board {
         List<Hotel> hotelList = new ArrayList<Hotel>();
         return hotelList;
     }
+    public int getHotelSize(Hotel h){
+        int size = 0;
+        for (Tile t: getTiles()){
+            if(t.getHotel() != null && t.getHotel().getID() == h.getID()){
+                size++;
+            }
+        }
+        return size;
+    }
     //endregion
 }
 
