@@ -1101,7 +1101,7 @@ public class App extends Application {
                     sb += "\t\t";
                     sb += g.getBoard().getHotelSize(h);
                     sb += "\t";
-                    sb += "Value";
+                    sb += g.getStockPrice(h.getID());
                     sb += "\n";
                 }
                 sb += "\nClick to Return";
