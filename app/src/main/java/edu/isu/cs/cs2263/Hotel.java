@@ -18,6 +18,9 @@ public class Hotel {
 
     //region Get & Set
 
+
+    public int getTypeID() {return TypeID;}
+
     public String getName(){return Name;}
 
     public int getID(){

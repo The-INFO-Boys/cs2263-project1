@@ -12,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
@@ -1079,6 +1080,8 @@ public class App extends Application {
             public void handle(ActionEvent event) {
                 String sb = "Hotel";
                 sb += "\t\t\t";
+                sb += "Type";
+                sb += "\t\t";
                 sb += "Founded";
                 sb += "\t";
                 sb += "Size";
@@ -1092,6 +1095,8 @@ public class App extends Application {
                     } else {
                         sb += "\t\t\t";
                     }
+                    sb += h.getTypeID();
+                    sb += "\t\t";
                     sb += h.getFounded();
                     sb += "\t\t";
                     sb += g.getBoard().getHotelSize(h);
@@ -1123,6 +1128,29 @@ public class App extends Application {
                     sb += "\n";
                 }
                 sb += "\nClick to Return";
+                removeCurrentStep();
+                playButton.setText(sb);
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToReturn);
+            }
+        });
+        infoButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                playButton.setFont(new Font(9));
+                String sb = "";
+                sb += "|\t1\t|\t2\t|\t3\t|\t    $\t\t|\n";
+                sb += "=============================\n";
+                sb += "|\t2\t|\t-\t|\t-\t|\t$200\t\t|\n";
+                sb += "|\t3\t|\t2\t|\t-\t|\t$300\t\t|\n";
+                sb += "|\t4\t|\t3\t|\t2\t|\t$400\t\t|\n";
+                sb += "|\t5\t|\t4\t|\t3\t|\t$500\t\t|\n";
+                sb += "|\t6+\t|\t5\t|\t4\t|\t$600\t\t|\n";
+                sb += "|\t11+\t|\t6+\t|\t5\t|\t$700\t\t|\n";
+                sb += "|\t21+\t|\t11+\t|\t6+\t|\t$800\t\t|\n";
+                sb += "|\t31+\t|\t21+\t|\t11+\t|\t$900\t\t|\n";
+                sb += "|\t41+\t|\t31+\t|\t21+\t|\t$1000\t|\n";
+                sb += "|\t-\t|\t41+\t|\t31+\t|\t$1100\t|\n";
+                sb += "|\t-\t|\t-\t|\t41+\t|\t$1200\t|\n";
                 removeCurrentStep();
                 playButton.setText(sb);
                 playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToReturn);
@@ -1633,6 +1661,7 @@ public class App extends Application {
     EventHandler<MouseEvent> clickToReturn = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
+            playButton.setFont(Font.getDefault());
             playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
             if(currentStep == 0) {
                 playButton.setText("Play Game");
