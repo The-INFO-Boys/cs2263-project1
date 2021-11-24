@@ -1105,6 +1105,29 @@ public class App extends Application {
                 playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToReturn);
             }
         });
+        stocksButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String sb = "Hotel";
+                sb += "\t\t\t";
+                sb += "Num of Stock";
+                sb += "\n";
+                for (Hotel h: g.getHotelList()) {
+                    sb += h.getName();
+                    if(h.getName().length() > 9) {
+                        sb += "\t\t";
+                    } else {
+                        sb += "\t\t\t";
+                    }
+                    sb += h.ownedStock(currentPlayer);
+                    sb += "\n";
+                }
+                sb += "\nClick to Return";
+                removeCurrentStep();
+                playButton.setText(sb);
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToReturn);
+            }
+        });
         playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startClicked);
         //endregion
 

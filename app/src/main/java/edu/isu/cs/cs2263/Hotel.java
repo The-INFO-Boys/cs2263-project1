@@ -71,6 +71,16 @@ public class Hotel {
         StockList.set(stockID,updatedStock);
     }
 
+    public int ownedStock(int playerID){
+        int retNum = 0;
+        for(Stock s : StockList){
+            if(s.getPlayer() != null &&s.getPlayer().getID() == playerID){
+                retNum++;
+            }
+        }
+        return retNum;
+    }
+
     //endregion
 
     //region Private Methods
