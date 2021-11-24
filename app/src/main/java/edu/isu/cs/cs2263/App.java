@@ -32,7 +32,7 @@ public class App extends Application {
     int buyHotelStock;
     int numberOfStockBought = 0;
     List<Tile> passableTiles;
-//endregion
+    //endregion
 
     //region Board Labels
     Label aOneLabel = new Label("A1");
@@ -152,7 +152,7 @@ public class App extends Application {
     Button stocksButton = new Button("Stocks");
     Button infoButton = new Button("Info");
     Button playButton = new Button("Play Game");
-//endregion
+    //endregion
 
     //region ButtonPane Labels
     Label pLabel = new Label("PLAYER INFO: Player #");
@@ -185,7 +185,7 @@ public class App extends Application {
         Label gLabel = new Label("G");
         Label hLabel = new Label("H");
         Label iLabel = new Label("I");
-//endregion
+        //endregion
 
         //region Labels for Numbers
         Label oneLabel = new Label("1");
@@ -1111,63 +1111,12 @@ public class App extends Application {
         return gp;
     }
 
-    //Event Handlers
-
-    //region ReturnToPlay
-
-    EventHandler<MouseEvent> clickToReturn = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
-            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
-            if(currentStep == 1){
-                playButton.setText("Click to Continue:");
-                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
-            } else if(currentStep == 2){
-                playButton.setText("Press the number of the tile\n you would like to play:");
-                playButton.addEventFilter(KeyEvent.KEY_PRESSED, KeyPressed);
-            } else if(currentStep == 3){
-                String textForPlay = "Pick a Hotel to Found:\n";
-                for (Hotel h: g.getFoundableHotels()){
-                    textForPlay += (h.getID()+1) + "." + h.getName() + "\n";
-                }
-                playButton.setText(textForPlay);
-                playButton.addEventFilter(KeyEvent.KEY_PRESSED,hotelToFound);
-            } else if(currentStep == 4){
-                playButton.setText("Click to Continue:");
-                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
-            } else if(currentStep == 5){
-                if (g.getFoundedHotels().size() > 0 && numberOfStockBought < 3) {
-                    playButton.setText("Please select what you would like to do:\n1) End Turn\n2) Buy Stock");
-                    currentChoices = 2;
-                } else {
-                    playButton.setText("Please select what you would like to do:\n1) End Turn");
-                    currentChoices = 1;
-                }
-                playButton.addEventFilter(KeyEvent.KEY_PRESSED,endChoice);
-            } else if(currentStep == 6){
-                String foundHotel = "Enter the number of the hotel you would like to buy stock from:\n";
-                for (Hotel h: g.getFoundedHotels()){
-                    if(h.getAvailable().size() > 0) {
-                        foundHotel += (h.getID()+1) + "." + h.getName() + "\n";
-                    }
-                }
-                playButton.setText(foundHotel);
-                playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToBuy);
-            } else if(currentStep == 7){
-                playButton.addEventFilter(KeyEvent.KEY_PRESSED,buyChosenHotel);
-            } else{
-                playButton.setText("Something is broken: " + currentStep);
-            }
-        }
-    };
-
-    //endregion
+    //Private Methods
 
     //region SkipPlay
     private void skipPlay(){
         removeCurrentStep();
         playButton.setText("Game Loaded\nClick to Continue");
-        playButton.setStyle("-fx-background-color: #DDDDDD");
         playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
     }
     //endregion
@@ -1177,6 +1126,7 @@ public class App extends Application {
     private void removeCurrentStep(){
         if(currentStep == 0){
             playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED,startClicked);
+            playButton.setStyle("-fx-background-color: #DDDDDD");
         } else if(currentStep == 1){
             playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
         } else if(currentStep == 2){
@@ -1641,6 +1591,74 @@ public class App extends Application {
     }
     //endregion
 
+    //region IncreaseCurrentStep
+    private void increaseCurrentStep(int by){
+        currentStep = currentStep + by;
+    }
+    //endregion
+
+    //region ResetCurrentStep
+    private void setCurrentStep(int to){
+        currentStep = to;
+    }
+    //endregion
+
+    //Event Handlers
+
+    //region ReturnToPlay
+
+    EventHandler<MouseEvent> clickToReturn = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
+            if(currentStep == 0) {
+                playButton.setText("Play Game");
+                playButton.setStyle("-fx-background-color: #00FF00");
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,startClicked);
+            } else if(currentStep == 1){
+                playButton.setText("Click to Continue:");
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
+            } else if(currentStep == 2){
+                playButton.setText("Press the number of the tile\n you would like to play:");
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED, KeyPressed);
+            } else if(currentStep == 3){
+                String textForPlay = "Pick a Hotel to Found:\n";
+                for (Hotel h: g.getFoundableHotels()){
+                    textForPlay += (h.getID()+1) + "." + h.getName() + "\n";
+                }
+                playButton.setText(textForPlay);
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED,hotelToFound);
+            } else if(currentStep == 4){
+                playButton.setText("Click to Continue:");
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+            } else if(currentStep == 5){
+                if (g.getFoundedHotels().size() > 0 && numberOfStockBought < 3) {
+                    playButton.setText("Please select what you would like to do:\n1) End Turn\n2) Buy Stock");
+                    currentChoices = 2;
+                } else {
+                    playButton.setText("Please select what you would like to do:\n1) End Turn");
+                    currentChoices = 1;
+                }
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED,endChoice);
+            } else if(currentStep == 6){
+                String foundHotel = "Enter the number of the hotel you would like to buy stock from:\n";
+                for (Hotel h: g.getFoundedHotels()){
+                    if(h.getAvailable().size() > 0) {
+                        foundHotel += (h.getID()+1) + "." + h.getName() + "\n";
+                    }
+                }
+                playButton.setText(foundHotel);
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToBuy);
+            } else if(currentStep == 7){
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED,buyChosenHotel);
+            } else{
+                playButton.setText("Something is broken: " + currentStep);
+            }
+        }
+    };
+
+    //endregion
+
     //region BuyChosenHotel -                   7
     EventHandler<KeyEvent> buyChosenHotel = new EventHandler<KeyEvent>() {
         @Override
@@ -1664,7 +1682,7 @@ public class App extends Application {
                 playButton.setText("You bought " + numBought + " of \n" + g.getHotelList().get(buyHotelStock).getName() + "\n Click to Continue");
                 mLabel.setText("\tMONEY: $" + g.getPlayerList().get(currentPlayer).getMoney() + " ");
                 playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
-                currentStep = 4;
+                setCurrentStep(4);
             }
         }
     };
@@ -1711,11 +1729,11 @@ public class App extends Application {
                 }
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, buyChosenHotel);
-                currentStep++;
+                increaseCurrentStep(1);
             }
         }
     };
-    //endregion 4
+    //endregion
 
     //region endChoice -                        5
     EventHandler<KeyEvent> endChoice = new EventHandler<KeyEvent>() {
@@ -1734,7 +1752,7 @@ public class App extends Application {
                         currentPlayer--;
                     }
                     playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
-                    currentStep = 1;
+                    setCurrentStep(1);
                 }
                 if(event.getCode() == KeyCode.DIGIT2 && currentChoices == 2){
                     String foundHotel = "Enter the number of the hotel you would like to buy stock from:\n";
@@ -1745,7 +1763,7 @@ public class App extends Application {
                     }
                     playButton.setText(foundHotel);
                     playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToBuy);
-                    currentStep++;
+                    increaseCurrentStep(1);
                 }
             }
         }
@@ -1765,7 +1783,7 @@ public class App extends Application {
             }
             playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
             playButton.addEventFilter(KeyEvent.KEY_PRESSED, endChoice);
-            currentStep++;
+            increaseCurrentStep(1);
         }
     };
     //endregion
@@ -1810,7 +1828,7 @@ public class App extends Application {
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
                 playButton.setText("Your hotel was founded\n and one stock was given to you,\nClick to Continue");
                 playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
-                currentStep++;
+                increaseCurrentStep(1);
             }
         }
     };
@@ -1900,7 +1918,7 @@ public class App extends Application {
                         }
                     }
                     playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
-                    currentStep = currentStep + 2;
+                    increaseCurrentStep(2);
                 }
                 else if(passableTiles.size() > 0){
                     Color color = null;
@@ -1938,10 +1956,10 @@ public class App extends Application {
                     }
                     playButton.setText(textForPlay);
                     playButton.addEventFilter(KeyEvent.KEY_PRESSED,hotelToFound);
-                    currentStep++;
+                    increaseCurrentStep(1);
                 } else {
                     playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
-                    currentStep = currentStep + 2;
+                    increaseCurrentStep(2);
                 }
             }
         }
@@ -2006,8 +2024,8 @@ public class App extends Application {
 
                 playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, KeyPressed);
-                currentStep++;
             }
+            increaseCurrentStep(1);
         }
     };
     //endregion
@@ -2038,7 +2056,7 @@ public class App extends Application {
             g.fillHand(1);
             playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
             playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playerSelectionContinueClicked);
-            currentStep++;
+            increaseCurrentStep(1);
         }
     };
     //endregion
