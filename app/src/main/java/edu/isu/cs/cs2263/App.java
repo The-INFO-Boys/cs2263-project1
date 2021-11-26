@@ -1080,6 +1080,7 @@ public class App extends Application {
         hotelButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                playButton.setFont(Font.getDefault());
                 String sb = "Hotel";
                 sb += "\t\t\t";
                 sb += "Type";
@@ -1115,6 +1116,7 @@ public class App extends Application {
         stocksButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                playButton.setFont(Font.getDefault());
                 String sb = "Hotel";
                 sb += "\t\t\t";
                 sb += "Num of Stock";
