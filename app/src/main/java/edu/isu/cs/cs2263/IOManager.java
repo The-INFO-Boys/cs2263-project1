@@ -10,6 +10,12 @@ import java.util.Scanner;
 
 public class IOManager {
 
+    /**
+     *
+     * @param game
+     * @param fileLocation
+     */
+
     public void saveGame(Game game, String fileLocation){
         Gson gson = new Gson();
         try{

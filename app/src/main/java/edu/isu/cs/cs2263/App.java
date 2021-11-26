@@ -26,6 +26,10 @@ import java.util.List;
 
 public class App extends Application {
 
+    /**
+     *
+     */
+
     //region Variables
     Game g = new Game();
     int currentPlayer = 0;

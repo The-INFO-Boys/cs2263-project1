@@ -4,5 +4,10 @@ import java.util.Iterator;
 
 public interface StockArray {
 
+    /**
+     *
+     * @return
+     */
+
     Iterator Iterator();
 }

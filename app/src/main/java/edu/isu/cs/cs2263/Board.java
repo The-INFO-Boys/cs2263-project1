@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 public class Board {
 
+    /**
+     *
+     */
+
     //region private variables
 
     private Tile[][] board = setBoard();

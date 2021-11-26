@@ -3,7 +3,11 @@ package edu.isu.cs.cs2263;
 import java.util.List;
 
 public interface System {
-
+    /**
+     *
+     * @param Tile
+     * @return
+     */
     public List<Tile> playTile(Tile Tile);
 
     public void getStock(Stock Stock,Hotel Hotel);

@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 public class Hotel {
 
+    /**
+     *
+     */
+
     //region Private Variables
 
     private int ID;

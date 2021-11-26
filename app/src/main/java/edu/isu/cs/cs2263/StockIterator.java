@@ -2,6 +2,11 @@ package edu.isu.cs.cs2263;
 
 public interface StockIterator {
 
+    /**
+     *
+     * @return
+     */
+
     //get the next stock in the array
     Stock nextStock();
 

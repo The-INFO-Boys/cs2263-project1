@@ -6,6 +6,9 @@ import com.google.gson.*;
 
 public class Stock {
 
+    /**
+     *
+     */
     //region Private Variables
 
     private int ID;

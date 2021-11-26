@@ -2,6 +2,10 @@ package edu.isu.cs.cs2263;
 
 public class Tile {
 
+    /**
+     *
+     */
+
     //region Private Variables
 
     private int column;
