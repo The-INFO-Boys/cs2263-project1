@@ -19,6 +19,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class App extends Application {
     int currentStep = 0;
     int buyHotelStock;
     int numberOfStockBought = 0;
+    int playerWon;
     List<Tile> passableTiles;
     //endregion
 
@@ -1038,27 +1040,27 @@ public class App extends Application {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
                 g.loadGame(file.getAbsolutePath());
-                for(Tile t: g.getBoard().getTiles()){
-                    Color tileColor = Color.color(1,1,1);
-                    if(t.getPlaced()) {
-                        if(t.getHotel() != null){
-                            if(t.getHotel().getID() == 0){
-                                tileColor = Color.color(1,1,0);
-                            } else if(t.getHotel().getID() == 1){
-                                tileColor = Color.color(1,0.5,0);
-                            } else if(t.getHotel().getID() == 2){
-                                tileColor = Color.color(0,1,1);
-                            } else if(t.getHotel().getID() == 3){
-                                tileColor = Color.color(0.5,0,1);
-                            } else if(t.getHotel().getID() == 4){
-                                tileColor = Color.color(0,0.5,0.1);
-                            } else if(t.getHotel().getID() == 5){
-                                tileColor = Color.color(0.5,0.1,0);
-                            }else if(t.getHotel().getID() == 6){
-                                tileColor = Color.color(1,0,1);
+                for (Tile t : g.getBoard().getTiles()) {
+                    Color tileColor = Color.color(1, 1, 1);
+                    if (t.getPlaced()) {
+                        if (t.getHotel() != null) {
+                            if (t.getHotel().getID() == 0) {
+                                tileColor = Color.color(1, 1, 0);
+                            } else if (t.getHotel().getID() == 1) {
+                                tileColor = Color.color(1, 0.5, 0);
+                            } else if (t.getHotel().getID() == 2) {
+                                tileColor = Color.color(0, 1, 1);
+                            } else if (t.getHotel().getID() == 3) {
+                                tileColor = Color.color(0.5, 0, 1);
+                            } else if (t.getHotel().getID() == 4) {
+                                tileColor = Color.color(0, 0.5, 0.1);
+                            } else if (t.getHotel().getID() == 5) {
+                                tileColor = Color.color(0.5, 0.1, 0);
+                            } else if (t.getHotel().getID() == 6) {
+                                tileColor = Color.color(1, 0, 1);
                             }
                         }
-                        updateByString((t.getRawRow() + t.getRawColumn()),tileColor);
+                        updateByString((t.getRawRow() + t.getRawColumn()), tileColor);
                     }
                 }
                 skipPlay();
@@ -1070,8 +1072,8 @@ public class App extends Application {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Save Game");
                 File file = fileChooser.showSaveDialog(stage);
-                if(file != null){
-                        g.saveGame(file.getAbsolutePath());
+                if (file != null) {
+                    g.saveGame(file.getAbsolutePath());
                 }
             }
         });
@@ -1088,9 +1090,9 @@ public class App extends Application {
                 sb += "\t";
                 sb += "$/Stock";
                 sb += "\n";
-                for (Hotel h: g.getHotelList()) {
+                for (Hotel h : g.getHotelList()) {
                     sb += h.getName();
-                    if(h.getName().length() > 9) {
+                    if (h.getName().length() > 9) {
                         sb += "\t\t";
                     } else {
                         sb += "\t\t\t";
@@ -1107,7 +1109,7 @@ public class App extends Application {
                 sb += "\nClick to Return";
                 removeCurrentStep();
                 playButton.setText(sb);
-                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToReturn);
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToReturn);
             }
         });
         stocksButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -1117,9 +1119,9 @@ public class App extends Application {
                 sb += "\t\t\t";
                 sb += "Num of Stock";
                 sb += "\n";
-                for (Hotel h: g.getHotelList()) {
+                for (Hotel h : g.getHotelList()) {
                     sb += h.getName();
-                    if(h.getName().length() > 9) {
+                    if (h.getName().length() > 9) {
                         sb += "\t\t";
                     } else {
                         sb += "\t\t\t";
@@ -1130,7 +1132,7 @@ public class App extends Application {
                 sb += "\nClick to Return";
                 removeCurrentStep();
                 playButton.setText(sb);
-                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToReturn);
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToReturn);
             }
         });
         infoButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -1153,7 +1155,7 @@ public class App extends Application {
                 sb += "|\t-\t|\t-\t|\t41+\t|\t$1200\t|\n";
                 removeCurrentStep();
                 playButton.setText(sb);
-                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToReturn);
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToReturn);
             }
         });
         playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startClicked);
@@ -1165,40 +1167,40 @@ public class App extends Application {
     //Private Methods
 
     //region SkipPlay
-    private void skipPlay(){
+    private void skipPlay() {
         removeCurrentStep();
         playButton.setText("Game Loaded\nClick to Continue");
-        playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
+        playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playerSelectionContinueClicked);
     }
     //endregion
 
     //region RemoveCurrentStep
 
-    private void removeCurrentStep(){
-        if(currentStep == 0){
-            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED,startClicked);
+    private void removeCurrentStep() {
+        if (currentStep == 0) {
+            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, startClicked);
             playButton.setStyle("-fx-background-color: #DDDDDD");
-        } else if(currentStep == 1){
-            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
-        } else if(currentStep == 2){
+        } else if (currentStep == 1) {
+            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, playerSelectionContinueClicked);
+        } else if (currentStep == 2) {
             playButton.removeEventFilter(KeyEvent.KEY_PRESSED, KeyPressed);
-        } else if(currentStep == 3){
-            playButton.removeEventFilter(KeyEvent.KEY_PRESSED,hotelToFound);
-        } else if(currentStep == 4){
+        } else if (currentStep == 3) {
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED, hotelToFound);
+        } else if (currentStep == 4) {
             playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
-        } else if(currentStep == 5){
-            playButton.removeEventFilter(KeyEvent.KEY_PRESSED,endChoice);
-        } else if(currentStep == 6){
-            playButton.removeEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToBuy);
-        } else if(currentStep == 7){
-            playButton.removeEventFilter(KeyEvent.KEY_PRESSED,buyChosenHotel);
+        } else if (currentStep == 5) {
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED, endChoice);
+        } else if (currentStep == 6) {
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToBuy);
+        } else if (currentStep == 7) {
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED, buyChosenHotel);
         }
     }
 
     //endregion
 
     //region UpdateByString
-    private void updateByString(String tilePlayed, Color color){
+    private void updateByString(String tilePlayed, Color color) {
         if (tilePlayed.equals("A1")) {
             aOneLabel.setStyle("-fx-background-color: #000000");
             aOneLabel.setTextFill(color);
@@ -1643,13 +1645,13 @@ public class App extends Application {
     //endregion
 
     //region IncreaseCurrentStep
-    private void increaseCurrentStep(int by){
+    private void increaseCurrentStep(int by) {
         currentStep = currentStep + by;
     }
     //endregion
 
     //region ResetCurrentStep
-    private void setCurrentStep(int to){
+    private void setCurrentStep(int to) {
         currentStep = to;
     }
     //endregion
@@ -1663,27 +1665,27 @@ public class App extends Application {
         public void handle(MouseEvent event) {
             playButton.setFont(Font.getDefault());
             playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
-            if(currentStep == 0) {
+            if (currentStep == 0) {
                 playButton.setText("Play Game");
                 playButton.setStyle("-fx-background-color: #00FF00");
-                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,startClicked);
-            } else if(currentStep == 1){
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, startClicked);
+            } else if (currentStep == 1) {
                 playButton.setText("Click to Continue:");
-                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
-            } else if(currentStep == 2){
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playerSelectionContinueClicked);
+            } else if (currentStep == 2) {
                 playButton.setText("Press the number of the tile\n you would like to play:");
                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, KeyPressed);
-            } else if(currentStep == 3){
+            } else if (currentStep == 3) {
                 String textForPlay = "Pick a Hotel to Found:\n";
-                for (Hotel h: g.getFoundableHotels()){
-                    textForPlay += (h.getID()+1) + "." + h.getName() + "\n";
+                for (Hotel h : g.getFoundableHotels()) {
+                    textForPlay += (h.getID() + 1) + "." + h.getName() + "\n";
                 }
                 playButton.setText(textForPlay);
-                playButton.addEventFilter(KeyEvent.KEY_PRESSED,hotelToFound);
-            } else if(currentStep == 4){
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED, hotelToFound);
+            } else if (currentStep == 4) {
                 playButton.setText("Click to Continue:");
-                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
-            } else if(currentStep == 5){
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
+            } else if (currentStep == 5) {
                 if (g.getFoundedHotels().size() > 0 && numberOfStockBought < 3) {
                     playButton.setText("Please select what you would like to do:\n1) End Turn\n2) Buy Stock");
                     currentChoices = 2;
@@ -1691,19 +1693,29 @@ public class App extends Application {
                     playButton.setText("Please select what you would like to do:\n1) End Turn");
                     currentChoices = 1;
                 }
-                playButton.addEventFilter(KeyEvent.KEY_PRESSED,endChoice);
-            } else if(currentStep == 6){
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED, endChoice);
+            } else if (currentStep == 6) {
                 String foundHotel = "Enter the number of the hotel you would like to buy stock from:\n";
-                for (Hotel h: g.getFoundedHotels()){
-                    if(h.getAvailable().size() > 0) {
-                        foundHotel += (h.getID()+1) + "." + h.getName() + "\n";
+                for (Hotel h : g.getFoundedHotels()) {
+                    if (h.getAvailable().size() > 0) {
+                        foundHotel += (h.getID() + 1) + "." + h.getName() + "\n";
                     }
                 }
                 playButton.setText(foundHotel);
-                playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToBuy);
-            } else if(currentStep == 7){
-                playButton.addEventFilter(KeyEvent.KEY_PRESSED,buyChosenHotel);
-            } else{
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToBuy);
+            } else if (currentStep == 7) {
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED, buyChosenHotel);
+            } else if (currentStep == 99){
+                String sb = "Game Ended, Result:";
+                if(playerWon == 0){
+                    sb += " Players Tied";
+                } else if(playerWon == 1){
+                    sb += " Player 1 Won";
+                } else if(playerWon == 2){
+                    sb += " Player 2 Won";
+                }
+                playButton.setText(sb);
+            } else {
                 playButton.setText("Something is broken: " + currentStep);
             }
         }
@@ -1715,25 +1727,25 @@ public class App extends Application {
     EventHandler<KeyEvent> buyChosenHotel = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
-            if((event.getCode() == KeyCode.DIGIT1 && numberOfStockBought < 3) || (event.getCode() == KeyCode.DIGIT2 && numberOfStockBought < 2) || (event.getCode() == KeyCode.DIGIT3 && numberOfStockBought == 0)){
+            if ((event.getCode() == KeyCode.DIGIT1 && numberOfStockBought < 3) || (event.getCode() == KeyCode.DIGIT2 && numberOfStockBought < 2) || (event.getCode() == KeyCode.DIGIT3 && numberOfStockBought == 0)) {
                 int numBought = 0;
-                if(event.getCode() == KeyCode.DIGIT1){
+                if (event.getCode() == KeyCode.DIGIT1) {
                     numBought = 1;
                     numberOfStockBought = numberOfStockBought + 1;
                 }
-                if(event.getCode() == KeyCode.DIGIT2){
+                if (event.getCode() == KeyCode.DIGIT2) {
                     numBought = 2;
                     numberOfStockBought = numberOfStockBought + 2;
                 }
-                if(event.getCode() == KeyCode.DIGIT3){
+                if (event.getCode() == KeyCode.DIGIT3) {
                     numBought = 3;
                     numberOfStockBought = numberOfStockBought + 3;
                 }
-                g.buyStock(currentPlayer,buyHotelStock,numBought);
-                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                g.buyStock(currentPlayer, buyHotelStock, numBought);
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
                 playButton.setText("You bought " + numBought + " of \n" + g.getHotelList().get(buyHotelStock).getName() + "\n Click to Continue");
                 mLabel.setText("\tMONEY: $" + g.getPlayerList().get(currentPlayer).getMoney() + " ");
-                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
                 setCurrentStep(4);
             }
         }
@@ -1744,42 +1756,42 @@ public class App extends Application {
     EventHandler<KeyEvent> chooseHotelToBuy = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
-            if((event.getCode() == KeyCode.DIGIT1 && g.getHotelList().get(0).getAvailable().size() > 0 && g.getHotelList().get(0).getFounded()) ||
+            if ((event.getCode() == KeyCode.DIGIT1 && g.getHotelList().get(0).getAvailable().size() > 0 && g.getHotelList().get(0).getFounded()) ||
                     (event.getCode() == KeyCode.DIGIT2 && g.getHotelList().get(1).getAvailable().size() > 0 && g.getHotelList().get(1).getFounded()) ||
                     (event.getCode() == KeyCode.DIGIT3 && g.getHotelList().get(2).getAvailable().size() > 0 && g.getHotelList().get(2).getFounded()) ||
                     (event.getCode() == KeyCode.DIGIT4 && g.getHotelList().get(3).getAvailable().size() > 0 && g.getHotelList().get(3).getFounded()) ||
                     (event.getCode() == KeyCode.DIGIT5 && g.getHotelList().get(4).getAvailable().size() > 0) && g.getHotelList().get(4).getFounded() ||
                     (event.getCode() == KeyCode.DIGIT6 && g.getHotelList().get(5).getAvailable().size() > 0) && g.getHotelList().get(5).getFounded() ||
                     (event.getCode() == KeyCode.DIGIT7 && g.getHotelList().get(6).getAvailable().size() > 0) && g.getHotelList().get(6).getFounded()) {
-                if(event.getCode() == KeyCode.DIGIT1){
+                if (event.getCode() == KeyCode.DIGIT1) {
                     playButton.setText("You chose to buy from " + g.getHotelList().get(0).getName() + "\nEnter an amount from one to three to buy:\nNote: You can not buy more than 3 per turn");
                     buyHotelStock = 0;
                 }
-                if(event.getCode() == KeyCode.DIGIT2){
+                if (event.getCode() == KeyCode.DIGIT2) {
                     playButton.setText("You chose to buy from " + g.getHotelList().get(1).getName() + "\nEnter an amount from one to three to buy:\nNote: You can not buy more than 3 per turn");
                     buyHotelStock = 1;
                 }
-                if(event.getCode() == KeyCode.DIGIT3){
+                if (event.getCode() == KeyCode.DIGIT3) {
                     playButton.setText("You chose to buy from " + g.getHotelList().get(2).getName() + "\nEnter an amount from one to three to buy:\nNote: You can not buy more than 3 per turn");
                     buyHotelStock = 2;
                 }
-                if(event.getCode() == KeyCode.DIGIT4){
+                if (event.getCode() == KeyCode.DIGIT4) {
                     playButton.setText("You chose to buy from " + g.getHotelList().get(3).getName() + "\nEnter an amount from one to three to buy:\nNote: You can not buy more than 3 per turn");
                     buyHotelStock = 3;
                 }
-                if(event.getCode() == KeyCode.DIGIT5){
+                if (event.getCode() == KeyCode.DIGIT5) {
                     playButton.setText("You chose to buy from " + g.getHotelList().get(4).getName() + "\nEnter an amount from one to three to buy:\nNote: You can not buy more than 3 per turn");
                     buyHotelStock = 4;
                 }
-                if(event.getCode() == KeyCode.DIGIT6){
+                if (event.getCode() == KeyCode.DIGIT6) {
                     playButton.setText("You chose to buy from " + g.getHotelList().get(5).getName() + "\nEnter an amount from one to three to buy:\nNote: You can not buy more than 3 per turn");
                     buyHotelStock = 5;
                 }
-                if(event.getCode() == KeyCode.DIGIT7){
+                if (event.getCode() == KeyCode.DIGIT7) {
                     playButton.setText("You chose to buy from " + g.getHotelList().get(6).getName() + "\nEnter an amount from one to three to buy:\nNote: You can not buy more than 3 per turn");
                     buyHotelStock = 6;
                 }
-                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, buyChosenHotel);
                 increaseCurrentStep(1);
             }
@@ -1792,7 +1804,7 @@ public class App extends Application {
         @Override
         public void handle(KeyEvent event) {
             if (event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2) {
-                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
                 if (event.getCode() == KeyCode.DIGIT1) {
                     playButton.setText("Turn Ended\nClick to Continue");
                     numberOfStockBought = 0;
@@ -1803,18 +1815,18 @@ public class App extends Application {
                     } else if (currentPlayer == 1) {
                         currentPlayer--;
                     }
-                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,playerSelectionContinueClicked);
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, playerSelectionContinueClicked);
                     setCurrentStep(1);
                 }
-                if(event.getCode() == KeyCode.DIGIT2 && currentChoices == 2){
+                if (event.getCode() == KeyCode.DIGIT2 && currentChoices == 2) {
                     String foundHotel = "Enter the number of the hotel you would like to buy stock from:\n";
-                    for (Hotel h: g.getFoundedHotels()){
-                        if(h.getAvailable().size() > 0) {
-                            foundHotel += (h.getID()+1) + "." + h.getName() + "\n";
+                    for (Hotel h : g.getFoundedHotels()) {
+                        if (h.getAvailable().size() > 0) {
+                            foundHotel += (h.getID() + 1) + "." + h.getName() + "\n";
                         }
                     }
                     playButton.setText(foundHotel);
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToBuy);
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToBuy);
                     increaseCurrentStep(1);
                 }
             }
@@ -1844,7 +1856,7 @@ public class App extends Application {
     EventHandler<KeyEvent> hotelToFound = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
-            if((event.getCode() == KeyCode.DIGIT1 && !g.getHotelList().get(0).getFounded()) ||
+            if ((event.getCode() == KeyCode.DIGIT1 && !g.getHotelList().get(0).getFounded()) ||
                     (event.getCode() == KeyCode.DIGIT2 && !g.getHotelList().get(1).getFounded()) ||
                     (event.getCode() == KeyCode.DIGIT3 && !g.getHotelList().get(2).getFounded()) ||
                     (event.getCode() == KeyCode.DIGIT4 && !g.getHotelList().get(3).getFounded()) ||
@@ -1852,34 +1864,34 @@ public class App extends Application {
                     (event.getCode() == KeyCode.DIGIT6 && !g.getHotelList().get(5).getFounded()) ||
                     (event.getCode() == KeyCode.DIGIT7 && !g.getHotelList().get(6).getFounded())) {
                 Color color = null;
-                if(event.getCode() == KeyCode.DIGIT1){
-                    g.foundHotel(0,currentPlayer,passableTiles);
-                    color = Color.color(1,1,0);
-                } else if(event.getCode() == KeyCode.DIGIT2){
-                    g.foundHotel(1,currentPlayer,passableTiles);
-                    color = Color.color(1,0.5,0);
-                } else if(event.getCode() == KeyCode.DIGIT3){
-                    g.foundHotel(2,currentPlayer,passableTiles);
-                    color = Color.color(0,1,1);
-                } else if(event.getCode() == KeyCode.DIGIT4){
-                    g.foundHotel(3,currentPlayer,passableTiles);
-                    color = Color.color(0.5,0,1);
-                } else if(event.getCode() == KeyCode.DIGIT5){
-                    g.foundHotel(4,currentPlayer,passableTiles);
-                    color = Color.color(0,0.5,0.1);
-                } else if(event.getCode() == KeyCode.DIGIT6){
-                    g.foundHotel(5,currentPlayer,passableTiles);
-                    color = Color.color(0.5,0.1,0);
-                } else if(event.getCode() == KeyCode.DIGIT7){
-                    g.foundHotel(6,currentPlayer,passableTiles);
-                    color = Color.color(1,0,1);
+                if (event.getCode() == KeyCode.DIGIT1) {
+                    g.foundHotel(0, currentPlayer, passableTiles);
+                    color = Color.color(1, 1, 0);
+                } else if (event.getCode() == KeyCode.DIGIT2) {
+                    g.foundHotel(1, currentPlayer, passableTiles);
+                    color = Color.color(1, 0.5, 0);
+                } else if (event.getCode() == KeyCode.DIGIT3) {
+                    g.foundHotel(2, currentPlayer, passableTiles);
+                    color = Color.color(0, 1, 1);
+                } else if (event.getCode() == KeyCode.DIGIT4) {
+                    g.foundHotel(3, currentPlayer, passableTiles);
+                    color = Color.color(0.5, 0, 1);
+                } else if (event.getCode() == KeyCode.DIGIT5) {
+                    g.foundHotel(4, currentPlayer, passableTiles);
+                    color = Color.color(0, 0.5, 0.1);
+                } else if (event.getCode() == KeyCode.DIGIT6) {
+                    g.foundHotel(5, currentPlayer, passableTiles);
+                    color = Color.color(0.5, 0.1, 0);
+                } else if (event.getCode() == KeyCode.DIGIT7) {
+                    g.foundHotel(6, currentPlayer, passableTiles);
+                    color = Color.color(1, 0, 1);
                 }
-                for (Tile t: passableTiles){
+                for (Tile t : passableTiles) {
                     updateByString((t.getRawRow() + t.getRawColumn()), color);
                 }
-                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
                 playButton.setText("Your hotel was founded\n and one stock was given to you,\nClick to Continue");
-                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
                 increaseCurrentStep(1);
             }
         }
@@ -1914,7 +1926,7 @@ public class App extends Application {
                 }
 
                 passableTiles = g.playTile(playedTile);
-                if(passableTiles.size() != 0 && passableTiles.get(0).getRawColumn() == 99) {
+                if (passableTiles.size() != 0 && passableTiles.get(0).getRawColumn() == 99) {
                     playButton.setText("That tile is unplayable,\nEnter a different tyle to play:");
                 } else {
                     g.removeTile(playedTile, currentPlayer);
@@ -2024,65 +2036,51 @@ public class App extends Application {
     EventHandler<MouseEvent> playerSelectionContinueClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
+            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
             List<Tile> hand = g.getPlayersHand(currentPlayer);
             pLabel.setText("PLAYER INFO: " + g.getPlayerList().get(currentPlayer).getName());
             tLabel.setText(" TILES: 1. " + hand.get(0).getTileName() + "   2. " + hand.get(1).getTileName() + "   3. " + hand.get(2).getTileName() + "   4. " + hand.get(3).getTileName() + "   5. " + hand.get(4).getTileName() + "   6. " + hand.get(5).getTileName());
             mLabel.setText("\tMONEY: $" + g.getPlayerList().get(currentPlayer).getMoney() + " ");
-            List<Tile> tList = g.getBoard().getTiles();
-            List<Tile> hTlist1 = new ArrayList<Tile>();
-            List<Tile> hTlist2 = new ArrayList<Tile>();
-            List<Tile> hTlist3 = new ArrayList<Tile>();
-            List<Tile> hTlist4 = new ArrayList<Tile>();
-            List<Tile> hTlist5 = new ArrayList<Tile>();
-            List<Tile> hTlist6 = new ArrayList<Tile>();
-            List<Tile> hTlist7 = new ArrayList<Tile>();
-            for (Tile t : tList) {
-                if (t.getPlaced()) {
-                    List<Tile> pTList = new ArrayList<Tile>();
-                    pTList.add(t);
-                    for (Tile tile : pTList) {
-                        if (tile.getHotel() != null) {
-                            if (tile.getHotel().getID() == 0) {
-                                hTlist1.add(tile);
-                            } else if (tile.getHotel().getID() == 1) {
-                                hTlist2.add(tile);
-                            } else if (tile.getHotel().getID() == 2) {
-                                hTlist3.add(tile);
-                            } else if (tile.getHotel().getID() == 3) {
-                                hTlist4.add(tile);
-                            } else if (tile.getHotel().getID() == 4) {
-                                hTlist5.add(tile);
-                            } else if (tile.getHotel().getID() == 5) {
-                                hTlist6.add(tile);
-                            } else if (tile.getHotel().getID() == 6) {
-                                hTlist7.add(tile);
-                            }
-                        }
-                    }
+            boolean winCondition = false;
+            for (Hotel h : g.getHotelList()) {
+                if (g.getBoard().getHotelSize(h) > 40) {
+                    winCondition = true;
                 }
-                if(hTlist1 !=null || hTlist2 !=null || hTlist3 !=null || hTlist4 !=null || hTlist5 !=null || hTlist6 !=null || hTlist7 !=null) {
-                    if (hTlist1.size() > 40 || hTlist2.size() > 40 || hTlist3.size() > 40 || hTlist4.size() > 40 || hTlist5.size() > 40 || hTlist6.size() > 40 || hTlist7.size() > 40) {
-                        playButton.setText("Hotel size limit reached.\n Ending game.");
-                        int p1 = g.getPlayerList().get(0).getMoney();
-                        int p2 = g.getPlayerList().get(1).getMoney();
-                        if (p1 > p2) {
-                            playButton.setText("Player 1 Wins!");
-                        } else if (p2 > p1) {
-                            playButton.setText("Player 2 Wins!");
-                        } else {
-                            playButton.setText("The game ends in a draw!");
-                        }
-                    }
-                }
-                playButton.setText("Press the number of the tile\n you would like to play:");
-
-                playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
-                playButton.addEventFilter(KeyEvent.KEY_PRESSED, KeyPressed);
             }
-            increaseCurrentStep(1);
+            if (winCondition) {
+                int p1 = g.getPlayerList().get(0).getMoney();
+                int p2 = g.getPlayerList().get(1).getMoney();
+
+                for(Hotel h: g.getHotelList()){
+                    int stockPrice = g.getStockPrice(h.getID());
+                    for(Stock s : h.getStockList()){
+                        if(s.getPlayer().getID() == 0){
+                            p1 += stockPrice;
+                        } else if(s.getPlayer().getID() == 1){
+                            p2 += stockPrice;
+                        }
+                    }
+                }
+
+                if (p1 > p2) {
+                    playButton.setText("Player 1 Wins!");
+                    playerWon = 1;
+                } else if (p2 > p1) {
+                    playButton.setText("Player 2 Wins!");
+                    playerWon = 2;
+                } else {
+                    playButton.setText("The game ends in a draw!");
+                    playerWon = 0;
+                }
+                setCurrentStep(99);
+            } else {
+                playButton.setText("Press the number of the tile\n you would like to play:");
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED, KeyPressed);
+                increaseCurrentStep(1);
+            }
         }
     };
-    //endregion
+//endregion
 
     //region startClicked -                     0
     EventHandler<MouseEvent> startClicked = new EventHandler<MouseEvent>() {
@@ -2104,8 +2102,8 @@ public class App extends Application {
                 playButton.setText("Players drew equal tiles,\n player 1 goes first,\n Click to continue.");
             }
             playButton.setStyle("-fx-background-color: #DDDDDD");
-            updateByString(String.valueOf(player1.getRawRow()) + player1.getRawColumn(), Color.color(1,1,1));
-            updateByString(String.valueOf(player2.getRawRow()) + player2.getRawColumn(), Color.color(1,1,1));
+            updateByString(String.valueOf(player1.getRawRow()) + player1.getRawColumn(), Color.color(1, 1, 1));
+            updateByString(String.valueOf(player2.getRawRow()) + player2.getRawColumn(), Color.color(1, 1, 1));
             g.fillHand(0);
             g.fillHand(1);
             playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
