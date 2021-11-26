@@ -2044,6 +2044,14 @@ public class App extends Application {
             tLabel.setText(" TILES: 1. " + hand.get(0).getTileName() + "   2. " + hand.get(1).getTileName() + "   3. " + hand.get(2).getTileName() + "   4. " + hand.get(3).getTileName() + "   5. " + hand.get(4).getTileName() + "   6. " + hand.get(5).getTileName());
             mLabel.setText("\tMONEY: $" + g.getPlayerList().get(currentPlayer).getMoney() + " ");
             boolean winCondition = false;
+            for(Hotel h : g.getFoundedHotels()){
+                if(g.getBoard().getHotelSize(h) > 10){
+                    winCondition = true;
+                } else{
+                    winCondition = false;
+                    break;
+                }
+            }
             for (Hotel h : g.getHotelList()) {
                 if (g.getBoard().getHotelSize(h) > 40) {
                     winCondition = true;
