@@ -1914,104 +1914,106 @@ public class App extends Application {
                 }
 
                 passableTiles = g.playTile(playedTile);
-                g.removeTile(playedTile,currentPlayer);
-
-                String playedTileS = playedTile.getRawRow() + playedTile.getRawColumn();
-                playButton.setText(g.getPlayerList().get(currentPlayer).getName() + " played Tile: " + playedTileS + "\nClick to continue");
-                updateByString(playedTileS,Color.color(1,1,1));
-                playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
-
-                if(passableTiles.size() == 1){
-                    Color color;
-                    for(Tile t:passableTiles){
-                        if(t.getHotel() != null) {
-                            if(t.getHotel().getID() == 0){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(1,1,0);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 1){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(1,0.5,0);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 2){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(0,1,1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 3){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(0.5,0,1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 4){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(0,0.5,0.1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 5){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(0.5,0.1,0);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                            if(t.getHotel().getID() == 6){
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                color = Color.color(1,0,1);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                        }
-                    }
-                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
-                    increaseCurrentStep(2);
-                }
-                else if(passableTiles.size() > 0){
-                    Color color = null;
-                    for(Tile t:passableTiles){
-                        if(t.getHotel() != null) {
-                            if(t.getHotel().getID() == 0){
-                                color = Color.color(1,1,0);
-                            }
-                            if(t.getHotel().getID() == 1){
-                                color = Color.color(1,0.5,0);
-                            }
-                            if(t.getHotel().getID() == 2){
-                                color = Color.color(0,1,1);
-                            }
-                            if(t.getHotel().getID() == 3){
-                                color = Color.color(0.5,0,1);
-                            }
-                            if(t.getHotel().getID() == 4){
-                                color = Color.color(0,0.5,0.1);
-                            }
-                            if(t.getHotel().getID() == 5){
-                                color = Color.color(0.5,0.1,0);
-                            }
-                            if(t.getHotel().getID() == 6){
-                                color = Color.color(1,0,1);
-                            }
-                            Hotel h = t.getHotel();
-                            playedTile.setHotel(h);
-                            updateByString((t.getRawRow() + t.getRawColumn()), color);
-                        }
-                    }
-                    String textForPlay = "Pick a Hotel to Found:\n";
-                    for (Hotel h: g.getFoundableHotels()){
-                        textForPlay += (h.getID()+1) + "." + h.getName() + "\n";
-                    }
-                    playButton.setText(textForPlay);
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,hotelToFound);
-                    increaseCurrentStep(1);
+                if(passableTiles.size() != 0 && passableTiles.get(0).getRawColumn() == 99) {
+                    playButton.setText("That tile is unplayable,\nEnter a different tyle to play:");
                 } else {
-                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
-                    increaseCurrentStep(2);
+                    g.removeTile(playedTile, currentPlayer);
+                    String playedTileS = playedTile.getRawRow() + playedTile.getRawColumn();
+                    playButton.setText(g.getPlayerList().get(currentPlayer).getName() + " played Tile: " + playedTileS + "\nClick to continue");
+                    updateByString(playedTileS, Color.color(1, 1, 1));
+                    playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
+
+                    if (passableTiles.size() == 1) {
+                        Color color;
+                        for (Tile t : passableTiles) {
+                            if (t.getHotel() != null) {
+                                if (t.getHotel().getID() == 0) {
+                                    Hotel h = t.getHotel();
+                                    playedTile.setHotel(h);
+                                    color = Color.color(1, 1, 0);
+                                    updateByString((t.getRawRow() + t.getRawColumn()), color);
+                                }
+                                if (t.getHotel().getID() == 1) {
+                                    Hotel h = t.getHotel();
+                                    playedTile.setHotel(h);
+                                    color = Color.color(1, 0.5, 0);
+                                    updateByString((t.getRawRow() + t.getRawColumn()), color);
+                                }
+                                if (t.getHotel().getID() == 2) {
+                                    Hotel h = t.getHotel();
+                                    playedTile.setHotel(h);
+                                    color = Color.color(0, 1, 1);
+                                    updateByString((t.getRawRow() + t.getRawColumn()), color);
+                                }
+                                if (t.getHotel().getID() == 3) {
+                                    Hotel h = t.getHotel();
+                                    playedTile.setHotel(h);
+                                    color = Color.color(0.5, 0, 1);
+                                    updateByString((t.getRawRow() + t.getRawColumn()), color);
+                                }
+                                if (t.getHotel().getID() == 4) {
+                                    Hotel h = t.getHotel();
+                                    playedTile.setHotel(h);
+                                    color = Color.color(0, 0.5, 0.1);
+                                    updateByString((t.getRawRow() + t.getRawColumn()), color);
+                                }
+                                if (t.getHotel().getID() == 5) {
+                                    Hotel h = t.getHotel();
+                                    playedTile.setHotel(h);
+                                    color = Color.color(0.5, 0.1, 0);
+                                    updateByString((t.getRawRow() + t.getRawColumn()), color);
+                                }
+                                if (t.getHotel().getID() == 6) {
+                                    Hotel h = t.getHotel();
+                                    playedTile.setHotel(h);
+                                    color = Color.color(1, 0, 1);
+                                    updateByString((t.getRawRow() + t.getRawColumn()), color);
+                                }
+                            }
+                        }
+                        playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
+                        increaseCurrentStep(2);
+                    } else if (passableTiles.size() > 0) {
+                        Color color = null;
+                        for (Tile t : passableTiles) {
+                            if (t.getHotel() != null) {
+                                if (t.getHotel().getID() == 0) {
+                                    color = Color.color(1, 1, 0);
+                                }
+                                if (t.getHotel().getID() == 1) {
+                                    color = Color.color(1, 0.5, 0);
+                                }
+                                if (t.getHotel().getID() == 2) {
+                                    color = Color.color(0, 1, 1);
+                                }
+                                if (t.getHotel().getID() == 3) {
+                                    color = Color.color(0.5, 0, 1);
+                                }
+                                if (t.getHotel().getID() == 4) {
+                                    color = Color.color(0, 0.5, 0.1);
+                                }
+                                if (t.getHotel().getID() == 5) {
+                                    color = Color.color(0.5, 0.1, 0);
+                                }
+                                if (t.getHotel().getID() == 6) {
+                                    color = Color.color(1, 0, 1);
+                                }
+                                Hotel h = t.getHotel();
+                                playedTile.setHotel(h);
+                                updateByString((t.getRawRow() + t.getRawColumn()), color);
+                            }
+                        }
+                        String textForPlay = "Pick a Hotel to Found:\n";
+                        for (Hotel h : g.getFoundableHotels()) {
+                            textForPlay += (h.getID() + 1) + "." + h.getName() + "\n";
+                        }
+                        playButton.setText(textForPlay);
+                        playButton.addEventFilter(KeyEvent.KEY_PRESSED, hotelToFound);
+                        increaseCurrentStep(1);
+                    } else {
+                        playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
+                        increaseCurrentStep(2);
+                    }
                 }
             }
         }

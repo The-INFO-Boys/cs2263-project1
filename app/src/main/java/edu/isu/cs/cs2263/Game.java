@@ -205,7 +205,8 @@ public class Game implements System {
             }
         }
         if (adjacentTiles.size() > 0 && adjacentHotels.size() < 1 && hotelsFoundable.size() < 1) {
-            //Error - nothing to return
+            //Error - Return Fake Tile
+            tilesToReturn.add(new Tile(99,99));
             return tilesToReturn;
         }
         Board.placeTile(tile);
