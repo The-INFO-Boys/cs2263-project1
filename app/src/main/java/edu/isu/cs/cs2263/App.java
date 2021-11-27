@@ -2130,6 +2130,16 @@ public class App extends Application {
                         int value = g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
                         p1 += value / 2;
                         p2 += value / 2;
+                        if(((value / 2) % 1000) != 0){
+                            p1 += 250;
+                            p2 += 250;
+                        }
+                    } else if( player1Stock > player2Stock){
+                        p1 += g.getFirstBonus(h.getID());
+                        p2 += g.getSecondBonus(h.getID());
+                    } else if( player2Stock > player1Stock){
+                        p1 += g.getFirstBonus(h.getID());
+                        p2 += g.getSecondBonus(h.getID());
                     }
                 }
 
