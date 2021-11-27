@@ -2064,8 +2064,16 @@ public class App extends Application {
                                     }
 
                                 }
-                                //int hotelSize = g.getBoard().getHotelSize(h);
                             }
+
+                            String mergeText = "Choose a hotel to merge:\n";
+                            for (Hotel h: hotels) {
+                                mergeText += (h.getID() + 1) + "." + h.getName() + "\n";
+                            }
+                            playButton.setText(mergeText);
+                            playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToMerge);
+
+
                             String textForPlay = "Pick a Hotel to Found:\n";
                             for (Hotel h : g.getFoundableHotels()) {
                                 textForPlay += (h.getID() + 1) + "." + h.getName() + "\n";
@@ -2188,14 +2196,13 @@ public class App extends Application {
     EventHandler<KeyEvent> chooseHotelToMerge = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
-            String mergeText = "Choose a hotel to merge:\n";
-            for (Hotel h : hotels) {
-                mergeText += (h.getID() + 1) + "." + h.getName() + "\n";
+            if (event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 ||
+                    event.getCode() == KeyCode.DIGIT3 || event.getCode() == KeyCode.DIGIT4 ||
+                    event.getCode() == KeyCode.DIGIT5 || event.getCode() == KeyCode.DIGIT6) {
+
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
+                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
             }
-            playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
-            playButton.setText(mergeText);
-            //playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToMerge);
-            playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
         }
     };
     //endregion
