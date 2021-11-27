@@ -6,6 +6,10 @@ import java.util.Random;
 
 public class Game implements System {
 
+    /**
+     *This is a Java class for Game that implements the System interface.
+     */
+
     //region Private Variables
 
     private List<Player> PlayerList = new ArrayList<>();
@@ -205,7 +209,8 @@ public class Game implements System {
             }
         }
         if (adjacentTiles.size() > 0 && adjacentHotels.size() < 1 && hotelsFoundable.size() < 1) {
-            //Error - nothing to return
+            //Error - Return Fake Tile
+            tilesToReturn.add(new Tile(99,99));
             return tilesToReturn;
         }
         Board.placeTile(tile);

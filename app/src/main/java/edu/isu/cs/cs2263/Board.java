@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 public class Board {
 
+    /**
+     *This is a Java class for Board.
+     */
+
     //region private variables
 
     private Tile[][] board = setBoard();
@@ -111,7 +115,7 @@ public class Board {
         this.board[tile.getColumn()][tile.getRow()].setPlaced();
     }
     public void updateTile(Tile tile, Hotel h){
-        this.board[tile.getRow()][tile.getColumn()].setHotel(h);
+        this.board[tile.getColumn()][tile.getRow()].setHotel(h);
     }
     public List<Hotel> checkPresentHotels(){
         List<Hotel> hotelList = new ArrayList<Hotel>();

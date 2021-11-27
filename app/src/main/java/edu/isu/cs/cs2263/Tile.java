@@ -2,8 +2,14 @@ package edu.isu.cs.cs2263;
 
 public class Tile {
 
-    //region Private Variables
+    /**
+     *This is a Java class for Tile.
+     */
 
+    //region Private Variables
+    /**
+     * Represents Tile variables.
+     */
     private int column;
     private int row;
     private Hotel hotel = null;
@@ -13,6 +19,11 @@ public class Tile {
 
     //region Get & set
 
+    /**
+     * Getters and Setters used to find and place a tile
+     * on the board.
+     * @return
+     */
     public int getColumn(){
         return column - 1;
     }

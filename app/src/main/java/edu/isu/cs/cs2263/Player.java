@@ -5,6 +5,13 @@ import java.util.List;
 
 public class Player {
 
+    /**
+     *This is a Java class for Player.
+     */
+
+    /**
+     * Represents the variables for Player
+     */
     private int ID;
     private List<Tile> Tiles = new ArrayList<>();
     private String Name;
@@ -16,6 +23,12 @@ public class Player {
         Name = name;
     }
 
+    /**
+     * Getters and Setters for Player
+     * Finds the Player ID, gets their money.
+     * setMoney makes money a value.
+     * @return
+     */
     public int getID(){return ID;};
 
     public int getMoney(){
@@ -34,6 +47,10 @@ public class Player {
 
     public void removeTile(Tile e){Tiles.remove(e);};
 
+    /**
+     * getHand returns a list of tiles to player.
+     * @return
+     */
     public List<Tile> getHand(){return Tiles;}
 
     public void setHand(List<Tile> hand){Tiles = hand;}

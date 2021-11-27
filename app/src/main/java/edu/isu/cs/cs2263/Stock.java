@@ -6,8 +6,13 @@ import com.google.gson.*;
 
 public class Stock {
 
+    /**
+     *This is a Java class for Stock.
+     */
     //region Private Variables
-
+    /**
+     * Variables for Stock class.
+     */
     private int ID;
     private Player player = null;
 
@@ -15,6 +20,11 @@ public class Stock {
 
     //region Get & Set
 
+    /**
+     * Getters and Setters for Stock class.
+     * Finds the player and their ID and sets the value of the stock.
+     * @return
+     */
     public int getID(){return ID;}
     public Player getPlayer(){return  player;}
     public void setPlayer(Player value){player = value;}
@@ -23,6 +33,10 @@ public class Stock {
 
     //region Constructor
 
+    /**
+     * Constructor that sets an ID for stock.
+     * @param id
+     */
     public Stock(int id){
         ID = id;
     }
