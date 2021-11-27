@@ -2056,6 +2056,17 @@ public class App extends Application {
                             p2 += stockPrice;
                         }
                     }
+                    int player1Stock = h.ownedStock(0);
+                    int player2Stock = h.ownedStock(1);
+                    if(player1Stock > 0 && player2Stock == 0){
+                        p1 += g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
+                    } else if(player2Stock > 0 && player1Stock == 0){
+                        p2 += g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
+                    } else if(player1Stock == player2Stock){
+                        int value = g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
+                        p1 += value / 2;
+                        p2 += value / 2;
+                    }
                 }
 
                 if (p1 > p2) {

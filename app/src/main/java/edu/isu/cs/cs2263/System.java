@@ -20,9 +20,9 @@ public interface System {
 
     public void handleStock(int x, int y, int z);
 
-    public int getFirstBonus(int hotelID, int playerID);
+    public int getFirstBonus(int hotelID);
 
-    public int getSecondBonus(int hotelID, int playerID);
+    public int getSecondBonus(int hotelID);
 
 
 }

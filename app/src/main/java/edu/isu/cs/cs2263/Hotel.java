@@ -81,7 +81,7 @@ public class Hotel {
     public int ownedStock(int playerID){
         int retNum = 0;
         for(Stock s : StockList){
-            if(s.getPlayer() != null &&s.getPlayer().getID() == playerID){
+            if(s.getPlayer() != null && s.getPlayer().getID() == playerID){
                 retNum++;
             }
         }

@@ -297,7 +297,7 @@ public class Game implements System {
     }
 
     @Override
-    public int getFirstBonus(int hotelID, int playerID) {
+    public int getFirstBonus(int hotelID) {
         Hotel h = HotelList.get(hotelID);
         int hotelSize = Board.getHotelSize(h);
         int retValue = 0;
@@ -329,12 +329,11 @@ public class Game implements System {
                 retValue = retValue + 2000;
             }
         }
-        PlayerList.get(playerID).addMoney(retValue);
         return retValue;
     }
 
     @Override
-    public int getSecondBonus(int hotelID, int playerID) {
+    public int getSecondBonus(int hotelID) {
         Hotel h = HotelList.get(hotelID);
         int hotelSize = Board.getHotelSize(h);
         int retValue = 0;
@@ -366,7 +365,6 @@ public class Game implements System {
                 retValue = retValue + 1000;
             }
         }
-        PlayerList.get(playerID).addMoney(retValue);
         return retValue;
     }
 }
