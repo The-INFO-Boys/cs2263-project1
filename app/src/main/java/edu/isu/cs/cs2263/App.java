@@ -1913,7 +1913,7 @@ public class App extends Application {
     //endregion
 
     //region KeyPressed -                       2
-    EventHandler<KeyEvent> KeyPressed = new EventHandler<KeyEvent>() {
+    final EventHandler<KeyEvent> KeyPressed = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
             if (event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 ||
@@ -2060,28 +2060,27 @@ public class App extends Application {
                                     } else if (g.getBoard().getHotelSize(h) > g.getBoard().getHotelSize(hotels.get(x))) {
                                         LHotel = h.getID();
                                     } else if (LHotel == -1) {
+                                        String mergeText = "Choose a hotel to merge:\n";
+                                        for (Hotel h : hotels) {
+                                            mergeText += (h.getID() + 1) + "." + h.getName() + "\n";
+                                        }
+                                        playButton.setText(mergeText);
                                         playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToMerge);
                                     }
 
                                 }
                             }
 
-                            String mergeText = "Choose a hotel to merge:\n";
-                            for (Hotel h: hotels) {
-                                mergeText += (h.getID() + 1) + "." + h.getName() + "\n";
-                            }
-                            playButton.setText(mergeText);
-                            playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToMerge);
 
-
-                            String textForPlay = "Pick a Hotel to Found:\n";
-                            for (Hotel h : g.getFoundableHotels()) {
-                                textForPlay += (h.getID() + 1) + "." + h.getName() + "\n";
-                            }
-                            playButton.setText(textForPlay);
-                            playButton.addEventFilter(KeyEvent.KEY_PRESSED, hotelToFound);
-                            increaseCurrentStep(1);
                         }
+                        String textForPlay = "Pick a Hotel to Found:\n";
+                        for (Hotel h : g.getFoundableHotels()) {
+                            textForPlay += (h.getID() + 1) + "." + h.getName() + "\n";
+                        }
+                        playButton.setText(textForPlay);
+                        playButton.addEventFilter(KeyEvent.KEY_PRESSED, hotelToFound);
+                        increaseCurrentStep(1);
+
                     } else {
                         playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
                         increaseCurrentStep(2);
