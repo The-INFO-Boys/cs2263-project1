@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Board {
 
     /**
-     *
+     *This is a Java class for Board.
      */
 
     //region private variables

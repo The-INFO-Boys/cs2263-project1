@@ -7,7 +7,7 @@ import java.util.Random;
 public class Game implements System {
 
     /**
-     *
+     *This is a Java class for Game that implements the System interface.
      */
 
     //region Private Variables
