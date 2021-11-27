@@ -1942,7 +1942,7 @@ public class App extends Application {
                     playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
 
                     if (passableTiles.size() == 1) {
-                        Color color = Color.color(1,1,1);
+                        Color color = null;
                         for (Tile t : passableTiles) {
                             if (t.getHotel() != null) {
                                 Hotel h = t.getHotel();
