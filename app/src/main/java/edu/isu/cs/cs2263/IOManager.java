@@ -12,7 +12,7 @@ public class IOManager {
 
     /**
      *This is a Java class for IOManager.
-     *
+     *Handles Save and Load Game.
      * @param game
      * @param fileLocation
      */
