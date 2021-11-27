@@ -1153,7 +1153,7 @@ public class App extends Application {
                 playButton.setFont(new Font(9));
                 String sb = "";
                 sb += "|\t1\t|\t2\t|\t3\t|\t    $\t\t|\tMinor\t|\tMajor\t|\n";
-                sb += "===================================================\n";
+                sb += "================================================\n";
                 sb += "|\t2\t|\t-\t|\t-\t|\t$200\t\t|\t$2000\t|\t$1000\t|\n";
                 sb += "|\t3\t|\t2\t|\t-\t|\t$300\t\t|\t$3000\t|\t$1500\t|\n";
                 sb += "|\t4\t|\t3\t|\t2\t|\t$400\t\t|\t$4000\t|\t$2000\t|\n";
