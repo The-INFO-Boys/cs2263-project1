@@ -30,6 +30,10 @@ public class Player {
         Money = value;
     }
 
+    public void addMoney(int value){Money = Money + value;}
+
+    public void subtractMoney(int value){Money = Money - value;}
+
     public String getName(){return Name;}
 
     public void drawTile(Tile e){

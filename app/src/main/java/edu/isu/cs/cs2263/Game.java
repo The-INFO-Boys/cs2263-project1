@@ -241,7 +241,7 @@ public class Game implements System {
         Player p = PlayerList.get(playerID);
         int stockPrice = getStockPrice(hotelID);
         if (stockList.size() >= numOfStock && p.getMoney() >= (stockPrice * numOfStock)) {
-            p.setMoney(p.getMoney() - (numOfStock * stockPrice));
+            p.subtractMoney(numOfStock * stockPrice);
             int count = 0;
             for (Stock s : stockList) {
                 if (s.getPlayer() == null) {
@@ -297,7 +297,76 @@ public class Game implements System {
     }
 
     @Override
-    public void getBonus() {
-        //needs reference sheet to be properly put in place
+    public int getFirstBonus(int hotelID, int playerID) {
+        Hotel h = HotelList.get(hotelID);
+        int hotelSize = Board.getHotelSize(h);
+        int retValue = 0;
+        if(hotelSize < 2) {
+            retValue = 0;
+        } else if (hotelSize == 2) {
+            retValue = 2000;
+        } else if (hotelSize == 3) {
+            retValue = 3000;
+        } else if (hotelSize == 4) {
+            retValue = 4000;
+        } else if (hotelSize == 5) {
+            retValue = 5000;
+        } else if (hotelSize < 11) {
+            retValue = 6000;
+        } else if (hotelSize < 21) {
+            retValue = 7000;
+        } else if (hotelSize < 31) {
+            retValue = 8000;
+        } else if (hotelSize < 41) {
+            retValue = 9000;
+        } else if (hotelSize > 40) {
+            retValue = 10000;
+        }
+        if(hotelSize > 1) {
+            if (h.getTypeID() == 2) {
+                retValue = retValue + 1000;
+            } else if (h.getTypeID() == 3) {
+                retValue = retValue + 2000;
+            }
+        }
+        PlayerList.get(playerID).addMoney(retValue);
+        return retValue;
+    }
+
+    @Override
+    public int getSecondBonus(int hotelID, int playerID) {
+        Hotel h = HotelList.get(hotelID);
+        int hotelSize = Board.getHotelSize(h);
+        int retValue = 0;
+        if(hotelSize < 2) {
+            retValue = 0;
+        } else if (hotelSize == 2) {
+            retValue = 1000;
+        } else if (hotelSize == 3) {
+            retValue = 1500;
+        } else if (hotelSize == 4) {
+            retValue = 2000;
+        } else if (hotelSize == 5) {
+            retValue = 2500;
+        } else if (hotelSize < 11) {
+            retValue = 3000;
+        } else if (hotelSize < 21) {
+            retValue = 3500;
+        } else if (hotelSize < 31) {
+            retValue = 4000;
+        } else if (hotelSize < 41) {
+            retValue = 4500;
+        } else if (hotelSize > 40) {
+            retValue = 5000;
+        }
+        if(hotelSize > 1) {
+            if (h.getTypeID() == 2) {
+                retValue = retValue + 500;
+            } else if (h.getTypeID() == 3) {
+                retValue = retValue + 1000;
+            }
+        }
+        PlayerList.get(playerID).addMoney(retValue);
+        return retValue;
     }
 }
