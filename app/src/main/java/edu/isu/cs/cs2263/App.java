@@ -44,7 +44,7 @@ public class App extends Application {
     int numberOfStockBought = 0;
     int playerWon;
     List<Tile> passableTiles;
-    List<Hotel> hotels;
+    List<Hotel> hotels = new ArrayList<>();
     //endregion
 
     //region Board Labels
@@ -1983,41 +1983,9 @@ public class App extends Application {
                         increaseCurrentStep(2);
                     } else if (passableTiles.size() > 0) {
                         Color color = null;
-                        for (Tile t : passableTiles) {
-                            if (t.getHotel() != null) {
-                                if (t.getHotel().getID() == 0) {
-                                    color = Color.color(1, 1, 0);
-                                }
-                                if (t.getHotel().getID() == 1) {
-                                    color = Color.color(1, 0.5, 0);
-                                }
-                                if (t.getHotel().getID() == 2) {
-                                    color = Color.color(0, 1, 1);
-                                }
-                                if (t.getHotel().getID() == 3) {
-                                    color = Color.color(0.5, 0, 1);
-                                }
-                                if (t.getHotel().getID() == 4) {
-                                    color = Color.color(0, 0.5, 0.1);
-                                }
-                                if (t.getHotel().getID() == 5) {
-                                    color = Color.color(0.5, 0.1, 0);
-                                }
-                                if (t.getHotel().getID() == 6) {
-                                    color = Color.color(1, 0, 1);
-                                }
-                                Hotel h = t.getHotel();
-                                playedTile.setHotel(h);
-                                updateByString((t.getRawRow() + t.getRawColumn()), color);
-                            }
-                        }
-                        playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
-                        increaseCurrentStep(2);
-                    } else if (passableTiles.size() > 0) {
-                        Color color = null;
                         //List<Hotel> hotels = new ArrayList<>();
                         for (Tile t : passableTiles) {
-                            if (t.getHotel() != null && !passableTiles.contains(t.getHotel())) {
+                            if (t.getHotel() != null) {
                                 hotels.add(t.getHotel());
                             }
                         }
@@ -2048,7 +2016,15 @@ public class App extends Application {
                                     Hotel h = t.getHotel();
                                     playedTile.setHotel(h);
                                     updateByString((t.getRawRow() + t.getRawColumn()), color);
+
                                 }
+                                String textForPlay = "Pick a Hotel to Found:\n";
+                                for (Hotel h : g.getFoundableHotels()) {
+                                    textForPlay += (h.getID() + 1) + "." + h.getName() + "\n";
+                                }
+                                playButton.setText(textForPlay);
+                                playButton.addEventFilter(KeyEvent.KEY_PRESSED, hotelToFound);
+                                increaseCurrentStep(1);
                             }
                         } else if (hotels.size() > 0) {
                             int LHotel = -1;
@@ -2059,28 +2035,18 @@ public class App extends Application {
 
                                     } else if (g.getBoard().getHotelSize(h) > g.getBoard().getHotelSize(hotels.get(x))) {
                                         LHotel = h.getID();
-                                    } else if (LHotel == -1) {
-                                        String mergeText = "Choose a hotel to merge:\n";
-                                        for (Hotel h : hotels) {
-                                            mergeText += (h.getID() + 1) + "." + h.getName() + "\n";
-                                        }
-                                        playButton.setText(mergeText);
-                                        playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToMerge);
                                     }
-
                                 }
                             }
-
-
+                            if(LHotel == -1){
+                                String mergeText = "Choose a hotel to merge:\n";
+                                for (Hotel h : hotels) {
+                                    mergeText += (h.getID() + 1) + "." + h.getName() + "\n";
+                                }
+                                playButton.setText(mergeText);
+                                playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToMerge);
+                            }
                         }
-                        String textForPlay = "Pick a Hotel to Found:\n";
-                        for (Hotel h : g.getFoundableHotels()) {
-                            textForPlay += (h.getID() + 1) + "." + h.getName() + "\n";
-                        }
-                        playButton.setText(textForPlay);
-                        playButton.addEventFilter(KeyEvent.KEY_PRESSED, hotelToFound);
-                        increaseCurrentStep(1);
-
                     } else {
                         playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
                         increaseCurrentStep(2);
