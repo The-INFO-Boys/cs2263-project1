@@ -224,7 +224,7 @@ public class Game implements System {
             return tilesToReturn;
         } else if (adjacentHotels.size() > 1) {
             //Merge
-            //Currently Not Implemented
+            tilesToReturn.addAll(adjacentTiles);
             return tilesToReturn;
         } else {
             //Success
