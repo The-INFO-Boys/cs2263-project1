@@ -1719,13 +1719,13 @@ public class App extends Application {
                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToBuy);
             } else if (currentStep == 7) {
                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, buyChosenHotel);
-            } else if (currentStep == 99){
+            } else if (currentStep == 99) {
                 String sb = "Game Ended, Result:";
-                if(playerWon == 0){
+                if (playerWon == 0) {
                     sb += " Players Tied";
-                } else if(playerWon == 1){
+                } else if (playerWon == 1) {
                     sb += " Player 1 Won";
-                } else if(playerWon == 2){
+                } else if (playerWon == 2) {
                     sb += " Player 2 Won";
                 }
                 playButton.setText(sb);
@@ -2073,10 +2073,10 @@ public class App extends Application {
                             playButton.setText(textForPlay);
                             playButton.addEventFilter(KeyEvent.KEY_PRESSED, hotelToFound);
                             increaseCurrentStep(1);
-                        } else {
-                            playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
-                            increaseCurrentStep(2);
                         }
+                    } else {
+                        playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
+                        increaseCurrentStep(2);
                     }
                 }
             }
@@ -2094,10 +2094,10 @@ public class App extends Application {
             tLabel.setText(" TILES: 1. " + hand.get(0).getTileName() + "   2. " + hand.get(1).getTileName() + "   3. " + hand.get(2).getTileName() + "   4. " + hand.get(3).getTileName() + "   5. " + hand.get(4).getTileName() + "   6. " + hand.get(5).getTileName());
             mLabel.setText("\tMONEY: $" + g.getPlayerList().get(currentPlayer).getMoney() + " ");
             boolean winCondition = false;
-            for(Hotel h : g.getFoundedHotels()){
-                if(g.getBoard().getHotelSize(h) > 10){
+            for (Hotel h : g.getFoundedHotels()) {
+                if (g.getBoard().getHotelSize(h) > 10) {
                     winCondition = true;
-                } else{
+                } else {
                     winCondition = false;
                     break;
                 }
@@ -2111,22 +2111,22 @@ public class App extends Application {
                 int p1 = g.getPlayerList().get(0).getMoney();
                 int p2 = g.getPlayerList().get(1).getMoney();
 
-                for(Hotel h: g.getHotelList()){
+                for (Hotel h : g.getHotelList()) {
                     int stockPrice = g.getStockPrice(h.getID());
-                    for(Stock s : h.getStockList()){
-                        if(s.getPlayer().getID() == 0){
+                    for (Stock s : h.getStockList()) {
+                        if (s.getPlayer().getID() == 0) {
                             p1 += stockPrice;
-                        } else if(s.getPlayer().getID() == 1){
+                        } else if (s.getPlayer().getID() == 1) {
                             p2 += stockPrice;
                         }
                     }
                     int player1Stock = h.ownedStock(0);
                     int player2Stock = h.ownedStock(1);
-                    if(player1Stock > 0 && player2Stock == 0){
+                    if (player1Stock > 0 && player2Stock == 0) {
                         p1 += g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
-                    } else if(player2Stock > 0 && player1Stock == 0){
+                    } else if (player2Stock > 0 && player1Stock == 0) {
                         p2 += g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
-                    } else if(player1Stock == player2Stock){
+                    } else if (player1Stock == player2Stock) {
                         int value = g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
                         p1 += value / 2;
                         p2 += value / 2;
@@ -2189,13 +2189,13 @@ public class App extends Application {
         @Override
         public void handle(KeyEvent event) {
             String mergeText = "Choose a hotel to merge:\n";
-            for(Hotel h:hotels){
-                mergeText +=(h.getID()+1) + "." + h.getName() +"\n";
+            for (Hotel h : hotels) {
+                mergeText += (h.getID() + 1) + "." + h.getName() + "\n";
             }
-            playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
             playButton.setText(mergeText);
             //playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToMerge);
-            playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+            playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
         }
     };
     //endregion
