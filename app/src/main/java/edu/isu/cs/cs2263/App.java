@@ -2134,10 +2134,21 @@ public class App extends Application {
                         p1 += g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
                     } else if (player2Stock > 0 && player1Stock == 0) {
                         p2 += g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
-                    } else if (player1Stock == player2Stock) {
+                    } else if( player1Stock > player2Stock){
+                        p1 += g.getFirstBonus(h.getID());
+                        p2 += g.getSecondBonus(h.getID());
+                    } else if( player2Stock > player1Stock){
+                        p1 += g.getFirstBonus(h.getID());
+                        p2 += g.getSecondBonus(h.getID());
+                    } else {
+                        //Players Stock Equal (player1Stock == player2Stock)
                         int value = g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
                         p1 += value / 2;
                         p2 += value / 2;
+                        if (((value / 2) % 1000) != 0) {
+                            p1 += 250;
+                            p2 += 250;
+                        }
                     }
                 }
 
