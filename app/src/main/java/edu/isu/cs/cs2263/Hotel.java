@@ -12,6 +12,10 @@ public class Hotel {
 
     //region Private Variables
 
+    /**
+     *Represents the variables for the Hotel class.
+     */
+
     private int ID;
     private List<Stock> StockList;
     private boolean Founded = false;
@@ -22,6 +26,13 @@ public class Hotel {
 
     //region Get & Set
 
+    /**
+     *Getters and Setters for Hotel class.
+     *getName retrieves the Hotel name
+     *getID retrieves the Hotel ID
+     *getFounded is a boolean that determines if a hotel is founded or not
+     *getAvailable lists the available stock to purchase
+     */
 
     public int getTypeID() {return TypeID;}
 
@@ -53,6 +64,13 @@ public class Hotel {
 
     //region Constructor
 
+    /**
+     * Constructor for Hotel class that gets info from a hotel
+     * including ID, name, the typeID, and stock list.
+     * @param id
+     * @param name
+     * @param typeID
+     */
     public Hotel(int id, String name, int typeID){
         ID = id;
         Name = name;
@@ -66,6 +84,14 @@ public class Hotel {
     //endregion
 
     //region Public Method
+
+    /**
+     * Public methods for the Hotel class
+     * found method is a boolean that
+     * UpdateStock method finds the stockID and updates the stock list.
+     * @param p
+     * @return
+     */
     public boolean found(Player p){
         this.Founded = true;
         Stock stockToGive = getUnownedStock().get(0);
@@ -92,6 +118,11 @@ public class Hotel {
 
     //region Private Methods
 
+    /**
+     * Private methods for Hotel class.
+     * getUnownedStock method lists the unowned stocks and returns the list.
+     * @return
+     */
     private List<Stock> getUnownedStock(){
         List<Stock> UnownedStock = new ArrayList<>();
         for(Stock s : this.StockList){

@@ -11,7 +11,9 @@ public class Game implements System {
      */
 
     //region Private Variables
-
+    /**
+     * Represents the private variables for the Game class.
+     */
     private List<Player> PlayerList = new ArrayList<>();
     private Board Board;
     private List<Hotel> HotelList = new ArrayList<>();
@@ -21,6 +23,12 @@ public class Game implements System {
 
     //region Constructors
 
+    /**
+     * Constructor that
+     * @param pList
+     * @param b
+     * @param hList
+     */
     public Game(List<Player> pList, Board b, List<Hotel> hList) {
         PlayerList = pList;
         Board = b;
