@@ -14,6 +14,9 @@ public class Board {
 
     //region private variables
 
+    /**
+     * Represents private variables for Board class.
+     */
     private Tile[][] board = setBoard();
 
     //endregion
@@ -45,7 +48,12 @@ public class Board {
 
     //region private methods
 
-
+    /**
+     * Represents the private methods for Board class.
+     * getBoard retrieves board.
+     * setBoard sets up the game board itself.
+     * @return
+     */
     public Tile[][] getBoard() {
         return board;
     }
@@ -72,6 +80,19 @@ public class Board {
 
     //region public methods
 
+    /**
+     * Represents public methods for Hotel class.
+     * foundHotel method gets the tile list and founds a hotel on the board if the tiles are together.
+     * checkAdjacent method checks the board to see if there are any adjacent tiles
+     * on the board prior to a tile being placed.
+     * placeTile method places a tile on the board.
+     * updateTile method
+     * checkPresentHotels method checks the board for present hotels and returns a list of present hotels.
+     * getHotels method also checks the board hotels and returns a list.
+     * getHotelSize method finds a hotel and returns its size
+     * @param newHotel
+     * @param h
+     */
     public void foundHotel(List<Tile> newHotel, Hotel h){
         for(Tile t: newHotel){
             board[t.getColumn()][t.getRow()].setHotel(h);
