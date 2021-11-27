@@ -2029,11 +2029,10 @@ public class App extends Application {
                         } else if (hotels.size() > 0) {
                             int LHotel = -1;
                             for (Hotel h : hotels) {
-                                for (int x = 0; x < hotels.size(); x++) {
+                                for(Hotel m : hotels){
+                                    if(m.getID() == h.getID()){
 
-                                    if (x == h.getID()) {
-
-                                    } else if (g.getBoard().getHotelSize(h) > g.getBoard().getHotelSize(hotels.get(x))) {
+                                    } else if (g.getBoard().getHotelSize(h) > g.getBoard().getHotelSize(hotels.get(m.getID()))) {
                                         LHotel = h.getID();
                                     }
                                 }
