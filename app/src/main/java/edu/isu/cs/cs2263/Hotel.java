@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Hotel {
 
     /**
-     *
+     *This is a Java class for Hotel.
      */
 
     //region Private Variables

@@ -5,7 +5,8 @@ import java.util.Iterator;
 public interface StockArray {
 
     /**
-     *
+     *This is a Java interface class for StockArray.
+     * Implements an iterator that traverses through the arrays of stock.
      * @return
      */
 

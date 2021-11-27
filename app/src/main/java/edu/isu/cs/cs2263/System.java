@@ -4,6 +4,12 @@ import java.util.List;
 
 public interface System {
     /**
+     *A java interface class with methods.
+     * The getStock gets the stock for the hotel.
+     * The buyStock method gets the player's ID, the hotel's ID, and the
+     * amount of stock available to buy.
+     * The loadGame method loads in a game when the button is clicked.
+     * The saveGame method saves the current game when the button is clicked.
      *
      * @param Tile
      * @return

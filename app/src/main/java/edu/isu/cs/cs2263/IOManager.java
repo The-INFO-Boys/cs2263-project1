@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class IOManager {
 
     /**
+     *This is a Java class for IOManager.
      *
      * @param game
      * @param fileLocation
