@@ -74,6 +74,11 @@ public class Game implements System {
 
     //region private methods
 
+    /**
+     * Represents private methods for Game class
+     *
+     * @return
+     */
     public Tile drawTile() {
         Random r = new Random();
         int selection = r.nextInt(this.tileBag.size());
@@ -148,6 +153,13 @@ public class Game implements System {
 
     //region public methods
 
+    /**
+     * Represents the public methods for Game class.
+     *
+     * @param idHotel
+     * @param idPlayer
+     * @param newHotel
+     */
     public void foundHotel(int idHotel, int idPlayer, List<Tile> newHotel) {
         if (HotelList.get(idHotel).found(PlayerList.get(idPlayer))) {
             Board.foundHotel(newHotel, HotelList.get(idHotel));
