@@ -26,15 +26,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class App extends Application {
-
-//<<<<<<< HEAD
-    //region UI setup
-//=======
     /**
      *
      */
 
-//>>>>>>> d0eb1454f6ccf3a7c60fd0ff7fb0ef3b3652a8f8
+
     //region Variables
     Game g = new Game();
     int currentPlayer = 0;
@@ -42,6 +38,7 @@ public class App extends Application {
     int currentStep = 0;
     int buyHotelStock;
     int numberOfStockBought = 0;
+    int stockChoice;
     int playerWon;
     List<Tile> passableTiles;
     List<Hotel> hotels = new ArrayList<>();
@@ -2180,9 +2177,45 @@ public class App extends Application {
     };
     //endregion
 
-    //region handleStock
+    //region chooseHandleAction
+    EventHandler<KeyEvent> chooseHandleAction = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            //1 = Trade, 2 = Sell, 3 = Hold
+            if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 ||
+            event.getCode() == KeyCode.DIGIT3){
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                if(event.getCode() == KeyCode.DIGIT1){
+                    playButton.setText("How many stock would you like to trade? Press an even number less than 10");
+                    stockChoice = 1;
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle);
+                }
+                if(event.getCode() == KeyCode.DIGIT2){
+                    playButton.setText("How many stock would you like to sell? Press a number less than 10");
+                    stockChoice = 2;
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle);
 
+                }
+                if(event.getCode() == KeyCode.DIGIT3){
+                    playButton.setText("You held your remaining stock,\nClick to Continue");
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+                }
+            }
+        }
+    };
     //endregion
 
+    //region chooseNumToHandle
+    EventHandler<KeyEvent> chooseNumToHandle = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 ||
+                    event.getCode() == KeyCode.DIGIT3 || event.getCode() == KeyCode.DIGIT8 ||
+                    event.getCode() == KeyCode.DIGIT4 || event.getCode() == KeyCode.DIGIT5 ||
+                    event.getCode() == KeyCode.DIGIT6 || event.getCode() == KeyCode.DIGIT7 ||
+                    event.getCode() == KeyCode.DIGIT9){
+            }
+        }
+    };
     //endregion
 }
