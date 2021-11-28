@@ -302,7 +302,7 @@ public class Game implements System {
     }
 
     @Override
-    public void handleStock(int action, int amount, int playerID) {
+    public void handleStock(int action, int amount, int playerID, int hotelID) {
         // Action Keys
         // 1 = Trade
         // 2 = Sell

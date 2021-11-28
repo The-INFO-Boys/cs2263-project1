@@ -40,6 +40,7 @@ public class App extends Application {
     int numberOfStockBought = 0;
     int stockChoice;
     int playerWon;
+    int defunctHotel;
     List<Tile> passableTiles;
     List<Hotel> hotels = new ArrayList<>();
     //endregion
@@ -1176,6 +1177,18 @@ public class App extends Application {
 
     //region Private Methods
 
+    //region OtherPlayer
+
+    private int otherPlayer(){
+        if(currentPlayer == 0){
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    //endregion
+
     //region SkipPlay
     private void skipPlay() {
         removeCurrentStep();
@@ -2162,6 +2175,9 @@ public class App extends Application {
     };
     //endregion
 
+    //region Move Into Flow When Complete
+    //Add Steps Numbers, and add to loadButton and Equivelent methods and handlers
+
     //region Merge
     EventHandler<KeyEvent> chooseHotelToMerge = new EventHandler<KeyEvent>() {
         @Override
@@ -2186,18 +2202,44 @@ public class App extends Application {
             event.getCode() == KeyCode.DIGIT3){
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
                 if(event.getCode() == KeyCode.DIGIT1){
-                    playButton.setText("How many stock would you like to trade? Press an even number less than 10");
+                    playButton.setText("Player " + (currentPlayer + 1) + ":\nHow many stock would you like to trade?\nPress an even number from 2-8");
                     stockChoice = 1;
                     playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle);
                 }
                 if(event.getCode() == KeyCode.DIGIT2){
-                    playButton.setText("How many stock would you like to sell? Press a number less than 10");
+                    playButton.setText("Player " + (currentPlayer + 1) + ":\nHow many stock would you like to sell?\nEnter a number from 1-9");
                     stockChoice = 2;
                     playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle);
 
                 }
                 if(event.getCode() == KeyCode.DIGIT3){
-                    playButton.setText("You held your remaining stock,\nClick to Continue");
+                    playButton.setText("Player " + (currentPlayer + 1) + ":\nYou held your remaining stock,\nClick to Continue");
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+                }
+            }
+        }
+    };
+
+    EventHandler<KeyEvent> chooseHandleAction_otherPlayer = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            //1 = Trade, 2 = Sell, 3 = Hold
+            if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 ||
+                    event.getCode() == KeyCode.DIGIT3){
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                if(event.getCode() == KeyCode.DIGIT1){
+                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nHow many stock would you like to trade?\nPress an even number from 2-8");
+                    stockChoice = 1;
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle);
+                }
+                if(event.getCode() == KeyCode.DIGIT2){
+                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nHow many stock would you like to sell?\nEnter a number from 1-9");
+                    stockChoice = 2;
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle);
+
+                }
+                if(event.getCode() == KeyCode.DIGIT3){
+                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nYou held your remaining stock,\nClick to Continue");
                     playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
                 }
             }
@@ -2214,6 +2256,81 @@ public class App extends Application {
                     event.getCode() == KeyCode.DIGIT4 || event.getCode() == KeyCode.DIGIT5 ||
                     event.getCode() == KeyCode.DIGIT6 || event.getCode() == KeyCode.DIGIT7 ||
                     event.getCode() == KeyCode.DIGIT9){
+                int value = 0;
+                if(event.getCode() == KeyCode.DIGIT1){
+                    value = 1;
+                } else if(event.getCode() == KeyCode.DIGIT2){
+                    value = 2;
+                } else if(event.getCode() == KeyCode.DIGIT3){
+                    value = 3;
+                } else if(event.getCode() == KeyCode.DIGIT8){
+                    value = 8;
+                } else if(event.getCode() == KeyCode.DIGIT4){
+                    value = 4;
+                } else if(event.getCode() == KeyCode.DIGIT5){
+                    value = 5;
+                } else if(event.getCode() == KeyCode.DIGIT6){
+                    value = 6;
+                } else if(event.getCode() == KeyCode.DIGIT7){
+                    value = 7;
+                } else if(event.getCode() == KeyCode.DIGIT9){
+                    value = 9;
+                }
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                g.handleStock(stockChoice,value,currentPlayer,defunctHotel);
+                int ownedStock = g.getHotelList().get(defunctHotel).ownedStock(currentPlayer);
+                if(ownedStock > 0){
+                    playButton.setText("Player " + (currentPlayer + 1) + ":\nYou have " + ownedStock + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold");
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction);
+                } else if(g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) > 0){
+                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nYou have " + ownedStock + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold");
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction_otherPlayer);
+                } else {
+                    playButton.setText("Action Taken\nClick to Continue");
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+                }
+            }
+        }
+    };
+
+    EventHandler<KeyEvent> chooseNumToHandle_otherPlayer = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 ||
+                    event.getCode() == KeyCode.DIGIT3 || event.getCode() == KeyCode.DIGIT8 ||
+                    event.getCode() == KeyCode.DIGIT4 || event.getCode() == KeyCode.DIGIT5 ||
+                    event.getCode() == KeyCode.DIGIT6 || event.getCode() == KeyCode.DIGIT7 ||
+                    event.getCode() == KeyCode.DIGIT9){
+                int value = 0;
+                if(event.getCode() == KeyCode.DIGIT1){
+                    value = 1;
+                } else if(event.getCode() == KeyCode.DIGIT2){
+                    value = 2;
+                } else if(event.getCode() == KeyCode.DIGIT3){
+                    value = 3;
+                } else if(event.getCode() == KeyCode.DIGIT8){
+                    value = 8;
+                } else if(event.getCode() == KeyCode.DIGIT4){
+                    value = 4;
+                } else if(event.getCode() == KeyCode.DIGIT5){
+                    value = 5;
+                } else if(event.getCode() == KeyCode.DIGIT6){
+                    value = 6;
+                } else if(event.getCode() == KeyCode.DIGIT7){
+                    value = 7;
+                } else if(event.getCode() == KeyCode.DIGIT9){
+                    value = 9;
+                }
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                g.handleStock(stockChoice,value,otherPlayer(),defunctHotel);
+                int ownedStock = g.getHotelList().get(defunctHotel).ownedStock(otherPlayer());
+                if(ownedStock > 0){
+                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nYou have " + ownedStock + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold");
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction_otherPlayer);
+                } else {
+                    playButton.setText("Action Taken\nClick to Continue");
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+                }
             }
         }
     };
