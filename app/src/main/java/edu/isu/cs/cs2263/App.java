@@ -30,7 +30,7 @@ public class App extends Application {
      *
      */
 
-
+    //region UI
     //region Variables
     Game g = new Game();
     int currentPlayer = 0;
@@ -2038,10 +2038,12 @@ public class App extends Application {
                             }
                         } else if (hotels.size() > 0) {
                             int LHotel = -1;
+                            int SHotel = -1;
                             for (Hotel h : hotels) {
                                 for(Hotel m : hotels){
                                     if (m.getID() != h.getID() && g.getBoard().getHotelSize(h) > g.getBoard().getHotelSize(m)) {
                                         LHotel = h.getID();
+                                        SHotel = m.getID();
                                     }
                                 }
                             }
@@ -2052,6 +2054,8 @@ public class App extends Application {
                                 }
                                 playButton.setText(mergeText);
                                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToMerge);
+                            }else{
+                                g.merge(LHotel,SHotel);
                             }
                         }
                     } else {
@@ -2334,5 +2338,8 @@ public class App extends Application {
             }
         }
     };
+    //endregion
+    //endregion
+
     //endregion
 }
