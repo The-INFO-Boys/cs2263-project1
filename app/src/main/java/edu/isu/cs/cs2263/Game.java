@@ -159,11 +159,15 @@ public class Game implements System {
      * getFoundedHotels method returns a list of founded hotels.
      * getFoundableHotels method
      * removeTile
-     * buyStock
-     * loadGame
-     * saveGame
+     * playTile allows the player to play a tile from their hand. From there, the tile placed will either
+     * be placed successfully with nothing else happening, a hotel could be founded, a merge between hotels will start,
+     * or if a tile cannot be placed (like to found a hotel after max number of hotels have been founded) then the tile
+     * is returned with an error.
+     * buyStock allows the pplayer to buy stock and the price will depend on the hotel (size comes from hotel ID).
+     * loadGame loads in previous game state.
+     * saveGame saves current game state.
      * getStock
-     * handleStock
+     * handleStock gives the option to trade or sell stock.
      * getFirstBonus
      * getSecondBonus
      * @param idHotel
