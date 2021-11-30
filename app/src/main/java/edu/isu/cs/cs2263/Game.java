@@ -54,6 +54,11 @@ public class Game implements System {
 
     //region Get & Set
 
+    /**
+     * Getter and Setter methods for Game class.
+     * Gets tiles, a player list, the board, and hotel list.
+     * @return
+     */
     public List<Tile> getTileBag() {
         return tileBag;
     }
@@ -76,6 +81,12 @@ public class Game implements System {
 
     /**
      * Represents private methods for Game class
+     * drawTile draws a random tile from the board for the player.
+     * fillHand sets the players hands with tiles and keeps the hand with 6 tiles.
+     * getPlayersHand returns the current player's hand.
+     * countTiles ---
+     * tileInventory ---
+     * getStockPrice determines the stock price based off the hotel size.
      *
      * @return
      */
