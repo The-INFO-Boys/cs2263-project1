@@ -24,7 +24,7 @@ public class Game implements System {
     //region Constructors
 
     /**
-     * Constructor that
+     * Constructors that
      * @param pList
      * @param b
      * @param hList
@@ -155,7 +155,17 @@ public class Game implements System {
 
     /**
      * Represents the public methods for Game class.
-     *
+     * determineFirst method draws tiles and determines who goes first based off who is closest to 1A.
+     * getFoundedHotels method returns a list of founded hotels.
+     * getFoundableHotels method
+     * removeTile
+     * buyStock
+     * loadGame
+     * saveGame
+     * getStock
+     * handleStock
+     * getFirstBonus
+     * getSecondBonus
      * @param idHotel
      * @param idPlayer
      * @param newHotel
