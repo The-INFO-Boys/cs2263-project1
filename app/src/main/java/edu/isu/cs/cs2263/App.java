@@ -27,11 +27,14 @@ import java.util.List;
 
 public class App extends Application {
     /**
-     *
+     *This is a Java class for the main Application.
      */
 
     //region UI
     //region Variables
+    /**
+     * Represents variables for the UI.
+     */
     Game g = new Game();
     int currentPlayer = 0;
     int currentChoices = 1;
@@ -44,7 +47,9 @@ public class App extends Application {
     List<Tile> passableTiles;
     List<Hotel> hotels = new ArrayList<>();
     //endregion
-
+    /**
+     * Labels for the Board
+     */
     //region Board Labels
     Label aOneLabel = new Label("A1");
     Label aTwoLabel = new Label("A2");
@@ -157,6 +162,9 @@ public class App extends Application {
     //endregion
 
     //region Buttons
+    /**
+     * Buttons for the UI
+     */
     Button loadButton = new Button("Load Game");
     Button saveButton = new Button("Save Game");
     Button hotelButton = new Button("Hotels");
@@ -166,6 +174,9 @@ public class App extends Application {
     //endregion
 
     //region ButtonPane Labels
+    /**
+     * Labels for player info.
+     */
     Label pLabel = new Label("PLAYER INFO: Player #");
     Label tLabel = new Label(" TILES: 1. ----  2. ----  3. ----  4. ----  5. ----  6. ----");
     Label mLabel = new Label("\tMONEY: $------ ");
@@ -173,6 +184,11 @@ public class App extends Application {
     //endregion
 
     //region Start Methods
+
+    /**
+     * Methods to start the game
+     * @param args
+     */
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -184,6 +200,11 @@ public class App extends Application {
     }
     //endregion
 
+    /**
+     * GridPane contains the labels for the letters and numbers(position for the numbers as well).
+     * @param stage
+     * @return
+     */
     private GridPane buildGrid(Stage stage) {
         stage.setTitle("Acquire by The INFO Boys");
         //region Labels for Letters
@@ -238,6 +259,9 @@ public class App extends Application {
         //endregion
 
         //region Properties for board
+        /**
+         * Board properties, including the position and the tile colors.
+         */
         aOneLabel.setMinSize(25, 20);
         aOneLabel.setAlignment(Pos.CENTER);
         aOneLabel.setId("A1");
@@ -878,11 +902,17 @@ public class App extends Application {
         //endregion
 
         //region Button Properties
+        /**
+         * Properties for the buttons.
+         */
         playButton.setStyle("-fx-background-color: #00FF00");
         playButton.setMinWidth(50);
         //endregion
 
         //region GridPane
+        /**
+         * GridPane setup.
+         */
         GridPane gp = new GridPane();
         gp.add(oneLabel, 1, 0);
         gp.add(twoLabel, 2, 0);
@@ -1042,6 +1072,9 @@ public class App extends Application {
         //endregion
 
         //region Handlers
+        /**
+         * Event handlers for buttons
+         */
         loadButton.setOnAction(event1 -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Open Save File");
@@ -1179,6 +1212,10 @@ public class App extends Application {
 
     //region OtherPlayer
 
+    /**
+     * Other player variables
+     * @return
+     */
     private int otherPlayer(){
         if(currentPlayer == 0){
             return 1;
@@ -1223,6 +1260,12 @@ public class App extends Application {
     //endregion
 
     //region UpdateByString
+
+    /**
+     * Tile on Board gets updated if played.
+     * @param tilePlayed
+     * @param color
+     */
     private void updateByString(String tilePlayed, Color color) {
         if (tilePlayed.equals("A1")) {
             aOneLabel.setStyle("-fx-background-color: #000000");
