@@ -24,7 +24,7 @@ public class Game implements System {
     //region Constructors
 
     /**
-     * Constructors that
+     * Constructors that initialize the game with the player list, board, tiles, and hotel list.
      * @param pList
      * @param b
      * @param hList
@@ -85,7 +85,7 @@ public class Game implements System {
      * fillHand sets the players hands with tiles and keeps the hand with 6 tiles.
      * getPlayersHand returns the current player's hand.
      * countTiles ---
-     * tileInventory ---
+     * tileInventory is where the player draws tiles from.
      * getStockPrice determines the stock price based off the hotel size.
      *
      * @return
@@ -180,7 +180,7 @@ public class Game implements System {
      * getStock
      * handleStock gives the option to trade or sell stock.
      * getFirstBonus and getSecondBonus gives a bonus to the player based on their owned hotel size.
-     * merge ---
+     * merge happens when two chains connect. The smaller hotel merges into the larger one and the larger one remains.
      * @param idHotel
      * @param idPlayer
      * @param newHotel
