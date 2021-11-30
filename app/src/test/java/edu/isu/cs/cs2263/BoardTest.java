@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests in a test class for the Board class.
+ */
 class BoardTest {
     private Tile tile = new Tile(1,1);
     private String hotel;
