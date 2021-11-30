@@ -163,13 +163,13 @@ public class Game implements System {
      * be placed successfully with nothing else happening, a hotel could be founded, a merge between hotels will start,
      * or if a tile cannot be placed (like to found a hotel after max number of hotels have been founded) then the tile
      * is returned with an error.
-     * buyStock allows the pplayer to buy stock and the price will depend on the hotel (size comes from hotel ID).
+     * buyStock allows the player to buy stock and the price will depend on the hotel (size comes from hotel ID).
      * loadGame loads in previous game state.
      * saveGame saves current game state.
      * getStock
      * handleStock gives the option to trade or sell stock.
-     * getFirstBonus
-     * getSecondBonus
+     * getFirstBonus and getSecondBonus gives a bonus to the player based on their owned hotel size.
+     * merge ---
      * @param idHotel
      * @param idPlayer
      * @param newHotel
