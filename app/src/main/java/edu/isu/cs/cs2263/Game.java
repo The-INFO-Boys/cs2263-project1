@@ -332,11 +332,34 @@ public class Game implements System {
         // 1 = Trade
         // 2 = Sell
 
-        Hotel dh = HotelList.get(defuncthotelID);
-        Hotel sh = HotelList.get(superHotelID);
+        int count = 0;
+        List<Stock> dhStock = HotelList.get(defuncthotelID).getStockList();
+        List<Stock> shStock = HotelList.get(superHotelID).getAvailable();
+        if(action == 1 && amount % 2 == 1){
+            amount--;
+        }
+        for(Stock s : dhStock){
+            if(s.getPlayer().getID() == playerID){
+                s.setPlayer(null);
+                HotelList.get(defuncthotelID).UpdateStock(s.getID(),s);
+                count++;
+                if(count == amount){
+                    break;
+                }
+            }
+        }
         if (action == 1) {
+            count = 0;
+            for(Stock s : shStock){
+                s.setPlayer(PlayerList.get(playerID));
+                HotelList.get(superHotelID).UpdateStock(s.getID(),s);
+                count ++;
+                if(count == amount / 2){
+                    break;
+                }
+            }
         } else if (action == 2) {
-
+            PlayerList.get(playerID).addMoney((getStockPrice(defuncthotelID) * amount));
         } else {
             //Shouldnt get here
         }
