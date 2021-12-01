@@ -327,13 +327,14 @@ public class Game implements System {
     }
 
     @Override
-    public void handleStock(int action, int amount, int playerID, int hotelID) {
+    public void handleStock(int action, int amount, int playerID, int defuncthotelID, int superHotelID) {
         // Action Keys
         // 1 = Trade
         // 2 = Sell
 
+        Hotel dh = HotelList.get(defuncthotelID);
+        Hotel sh = HotelList.get(superHotelID);
         if (action == 1) {
-
         } else if (action == 2) {
 
         } else {

@@ -21,14 +21,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 import java.io.File;
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *This is a Java class for the main Application.
+ */
 public class App extends Application {
-    /**
-     *This is a Java class for the main Application.
-     */
 
     //region UI
     //region Variables
@@ -44,6 +43,7 @@ public class App extends Application {
     int stockChoice;
     int playerWon;
     int defunctHotel;
+    int superHotel;
     List<Tile> passableTiles;
     List<Hotel> hotels = new ArrayList<>();
     //endregion
@@ -2257,11 +2257,13 @@ public class App extends Application {
                     playButton.setText("Player " + (currentPlayer + 1) + ":\nHow many stock would you like to sell?\nEnter a number from 1-9");
                     stockChoice = 2;
                     playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle);
-
                 }
-                if(event.getCode() == KeyCode.DIGIT3){
+                if(event.getCode() == KeyCode.DIGIT3 && g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) == 0){
                     playButton.setText("Player " + (currentPlayer + 1) + ":\nYou held your remaining stock,\nClick to Continue");
                     playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+                } else {
+                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold");
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction_otherPlayer);
                 }
             }
         }
@@ -2277,13 +2279,12 @@ public class App extends Application {
                 if(event.getCode() == KeyCode.DIGIT1){
                     playButton.setText("Player " + (otherPlayer() + 1) + ":\nHow many stock would you like to trade?\nPress an even number from 2-8");
                     stockChoice = 1;
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle);
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle_otherPlayer);
                 }
                 if(event.getCode() == KeyCode.DIGIT2){
                     playButton.setText("Player " + (otherPlayer() + 1) + ":\nHow many stock would you like to sell?\nEnter a number from 1-9");
                     stockChoice = 2;
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle);
-
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle_otherPlayer);
                 }
                 if(event.getCode() == KeyCode.DIGIT3){
                     playButton.setText("Player " + (otherPlayer() + 1) + ":\nYou held your remaining stock,\nClick to Continue");
@@ -2324,7 +2325,7 @@ public class App extends Application {
                     value = 9;
                 }
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
-                g.handleStock(stockChoice,value,currentPlayer,defunctHotel);
+                g.handleStock(stockChoice,value,currentPlayer,defunctHotel,superHotel);
                 int ownedStock = g.getHotelList().get(defunctHotel).ownedStock(currentPlayer);
                 if(ownedStock > 0){
                     playButton.setText("Player " + (currentPlayer + 1) + ":\nYou have " + ownedStock + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold");
@@ -2369,7 +2370,7 @@ public class App extends Application {
                     value = 9;
                 }
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
-                g.handleStock(stockChoice,value,otherPlayer(),defunctHotel);
+                g.handleStock(stockChoice,value,otherPlayer(),defunctHotel,superHotel);
                 int ownedStock = g.getHotelList().get(defunctHotel).ownedStock(otherPlayer());
                 if(ownedStock > 0){
                     playButton.setText("Player " + (otherPlayer() + 1) + ":\nYou have " + ownedStock + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold");
