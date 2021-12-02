@@ -24,7 +24,7 @@ public interface System {
 
     public void saveGame(String filePath);
 
-    public void handleStock(int action, int amount, int playerID, int hotelID);
+    public void handleStock(int action, int amount, int playerID, int defunctHotelID, int superHotelID);
 
     public int getFirstBonus(int hotelID);
 
