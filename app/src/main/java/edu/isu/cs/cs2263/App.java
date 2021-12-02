@@ -2099,6 +2099,17 @@ public class App extends Application {
                                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToMerge);
                             }else{
                                 g.merge(LHotel,SHotel);
+                                playButton.setText("Hotels merged successfully\n");
+                                //for handlestock after merge
+                                List<Player> players = g.getPlayerList();
+                                for(Player p :players){
+                                    if(p.getID() == currentPlayer){
+                                        playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHandleAction);
+                                    }else{
+                                        playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHandleAction_otherPlayer);
+                                    }
+                                }
+
                             }
                         }
                     } else {
