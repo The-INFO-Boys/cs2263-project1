@@ -29,11 +29,12 @@ public class Game implements System {
      * @param b
      * @param hList
      */
-    public Game(List<Player> pList, Board b, List<Hotel> hList) {
+    public Game(List<Player> pList, Board b, List<Hotel> hList, List<Tile> tBag) {
+
         PlayerList = pList;
         Board = b;
         HotelList = hList;
-        tileBag = countTiles(pList, b);
+        tileBag = tBag;
     }
 
     public Game() {
