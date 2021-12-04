@@ -58,4 +58,7 @@ public class Player {
     public List<Tile> getHand(){return Tiles;}
 
     public void setHand(List<Tile> hand){Tiles = hand;}
+
+    public List<Tile> getTiles(){return Tiles;}
+
 }
