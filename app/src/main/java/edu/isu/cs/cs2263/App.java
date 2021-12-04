@@ -2138,7 +2138,7 @@ public class App extends Application {
                                             if (nHotelID  == 6) {
                                                 color = Color.color(1, 0, 1);
                                             }
-                                            updateByString((t.getRawRow() + t.getRawColumn()), color);
+                                            updateByString((t.getRawRow() + t.getRawColumn()), color,"-fx-background-color: #000000");
                                             t.setHotel(nHotel);
                                         }
                                     }
