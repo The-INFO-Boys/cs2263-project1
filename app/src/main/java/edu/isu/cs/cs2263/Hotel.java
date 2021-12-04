@@ -100,6 +100,10 @@ public class Hotel {
         return true;
     }
 
+    public void unFound(){
+        this.Founded = false;
+    }
+
     public void UpdateStock(int stockID, Stock updatedStock){
         StockList.set(stockID,updatedStock);
     }

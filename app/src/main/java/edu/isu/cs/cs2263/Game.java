@@ -452,7 +452,7 @@ public class Game implements System {
             }
             for(Hotel h:getFoundedHotels()){
                 if(h.getID()==h2.getID()){
-                    getFoundedHotels().remove(h2);
+                    HotelList.get(h2.getID()).unFound();
                 }
             }
             return h1.getID();
@@ -466,6 +466,7 @@ public class Game implements System {
             for(Hotel h:getFoundedHotels()){
                 if(h.getID()==h1.getID()){
                     getFoundedHotels().remove(h1);
+                    HotelList.get(h1.getID()).unFound();
                 }
             }
             return h2.getID();
