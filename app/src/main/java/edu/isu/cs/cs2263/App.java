@@ -2113,6 +2113,29 @@ public class App extends Application {
                             }else{
                                 g.merge(LHotel,SHotel);
                                 playButton.setText("Hotels merged successfully\n");
+                                for (Tile t : g.getBoard().getTiles()) {
+                                    Color tileColor = Color.color(1, 1, 1);
+                                    if (t.getPlaced()) {
+                                        if (t.getHotel() != null) {
+                                            if (t.getHotel().getID() == 0) {
+                                                tileColor = Color.color(1, 1, 0);
+                                            } else if (t.getHotel().getID() == 1) {
+                                                tileColor = Color.color(1, 0.5, 0);
+                                            } else if (t.getHotel().getID() == 2) {
+                                                tileColor = Color.color(0, 1, 1);
+                                            } else if (t.getHotel().getID() == 3) {
+                                                tileColor = Color.color(0.5, 0, 1);
+                                            } else if (t.getHotel().getID() == 4) {
+                                                tileColor = Color.color(0, 0.5, 0.1);
+                                            } else if (t.getHotel().getID() == 5) {
+                                                tileColor = Color.color(0.5, 0.1, 0);
+                                            } else if (t.getHotel().getID() == 6) {
+                                                tileColor = Color.color(1, 0, 1);
+                                            }
+                                        }
+                                        updateByString((t.getRawRow() + t.getRawColumn()), tileColor, "-fx-background-color: #000000");
+                                    }
+                                }
                                 //for handlestock after merge
                                 List<Player> players = g.getPlayerList();
                                 for(Player p :players){
