@@ -2046,7 +2046,6 @@ public class App extends Application {
                         increaseCurrentStep(2);
                     } else if (passableTiles.size() > 0) {
                         Color color = null;
-                        //List<Hotel> hotels = new ArrayList<>();
                         for (Tile t : passableTiles) {
                             if (t.getHotel() != null) {
                                 hotels.add(t.getHotel());
@@ -2090,6 +2089,7 @@ public class App extends Application {
                                 increaseCurrentStep(1);
                             }
                         } else if (hotels.size() > 0) {
+
                             int LHotel = -1;
                             int SHotel = -1;
                             for (Hotel h : hotels) {
@@ -2100,26 +2100,59 @@ public class App extends Application {
                                     }
                                 }
                             }
-                            if(LHotel == -1){
-                                String mergeText = "Choose a hotel to merge:\n";
-                                for (Hotel h : hotels) {
-                                    mergeText += (h.getID() + 1) + "." + h.getName() + "\n";
-                                }
-                                playButton.setText(mergeText);
-                                playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToMerge);
-                            }else{
-                                g.merge(LHotel,SHotel);
-                                playButton.setText("Hotels merged successfully\n");
-                                //for handlestock after merge
-                                List<Player> players = g.getPlayerList();
-                                for(Player p :players){
-                                    if(p.getID() == currentPlayer){
-                                        playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHandleAction);
-                                    }else{
-                                        playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHandleAction_otherPlayer);
+                            if( LHotel != SHotel) {
+                                if (LHotel == -1) {
+                                    String mergeText = "Choose a hotel to merge:\n";
+                                    for (Hotel h : hotels) {
+                                        mergeText += (h.getID() + 1) + "." + h.getName() + "\n";
+                                    }
+                                    playButton.setText(mergeText);
+                                    playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToMerge);
+                                } else {
+                                    Integer nHotelID = g.merge(LHotel, SHotel);
+                                    Hotel nHotel = hotels.get(nHotelID);
+                                    List<Tile> tiles = g.getBoard().getTiles();
+                                    for (Tile t : tiles) {
+                                        if (t.getHotel() == nHotel) {
+                                            if (nHotelID == 0) {
+                                                color = Color.color(1, 1, 0);
+                                            }
+                                            if (nHotelID  == 1) {
+                                                color = Color.color(1, 0.5, 0);
+                                            }
+                                            if (nHotelID  == 2) {
+                                                color = Color.color(0, 1, 1);
+                                            }
+                                            if (nHotelID  == 3) {
+                                                color = Color.color(0.5, 0, 1);
+                                            }
+                                            if (nHotelID  == 4) {
+                                                color = Color.color(0, 0.5, 0.1);
+                                            }
+                                            if (nHotelID  == 5) {
+                                                color = Color.color(0.5, 0.1, 0);
+                                            }
+                                            if (nHotelID  == 6) {
+                                                color = Color.color(1, 0, 1);
+                                            }
+                                            updateByString((t.getRawRow() + t.getRawColumn()), color);
+                                            t.setHotel(nHotel);
+                                        }
+                                    }
+                                    playButton.setText("Hotels merged successfully\n");
+                                    //for handlestock after merge
+                                    List<Player> players = g.getPlayerList();
+                                    for (Player p : players) {
+                                        if (p.getID() == currentPlayer) {
+                                            playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHandleAction);
+                                        } else {
+                                            playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHandleAction_otherPlayer);
+                                        }
                                     }
                                 }
-
+                            }else{
+                                playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
+                                increaseCurrentStep(2);
                             }
                         }
                     } else {
