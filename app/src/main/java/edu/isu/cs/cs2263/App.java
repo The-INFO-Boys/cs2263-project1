@@ -1295,7 +1295,7 @@ public class App extends Application {
             aSixLabel.setTextFill(textColor);
         }
         if (tilePlayed.equals("A7")) {
-            aSevenLabel.setStyle("-fx-background-text: #000000");
+            aSevenLabel.setStyle(backgroundColor);
             aSevenLabel.setTextFill(textColor);
         }
         if (tilePlayed.equals("A8")) {
