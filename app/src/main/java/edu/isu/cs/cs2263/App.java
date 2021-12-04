@@ -2003,6 +2003,16 @@ public class App extends Application {
                     playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
 
                     if (passableTiles.size() == 1) {
+
+                        List<Tile> adjacentTiles = g.getBoard().checkAdjacent(passableTiles.get(0));
+                        for(Tile t: adjacentTiles){
+                            if(t.getHotel() == null){
+                                g.getBoard().updateTile(t,passableTiles.get(0).getHotel());
+                                t.setHotel(passableTiles.get(0).getHotel());
+                                passableTiles.add(t);
+                            }
+                        }
+
                         Color color = null;
                         for (Tile t : passableTiles) {
                             if (t.getHotel() != null) {
