@@ -450,12 +450,22 @@ public class Game implements System {
                     t.setHotel(h1);
                 }
             }
+            for(Hotel h:getFoundedHotels()){
+                if(h.getID()==h2.getID()){
+                    getFoundedHotels().remove(h2);
+                }
+            }
             return h1.getID();
         //if Second Hotel is bigger
         }else if(h1Size < h2Size && h1Size != h2Size){
             for(Tile t:getBoard().getTiles()){
                 if(t.getHotel()== h1){
                     t.setHotel(h2);
+                }
+            }
+            for(Hotel h:getFoundedHotels()){
+                if(h.getID()==h1.getID()){
+                    getFoundedHotels().remove(h1);
                 }
             }
             return h2.getID();
