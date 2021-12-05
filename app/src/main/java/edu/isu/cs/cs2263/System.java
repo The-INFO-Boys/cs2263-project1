@@ -47,7 +47,7 @@ public interface System {
      * @param defunctHotelID ID for a hotel that is no longer founded.
      * @param superHotelID the ID for a super hotel
      */
-    public void handleStock(int action, int amount, int playerID, int defunctHotelID, int superHotelID);
+    public void handleStock(int action, int amount, int playerID, int defunctHotelID, int superHotelID, int defunctHotelSize);
 
     /**
      * getFirstBonus

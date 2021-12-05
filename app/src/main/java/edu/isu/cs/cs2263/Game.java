@@ -161,6 +161,40 @@ public class Game implements System {
         return retValue;
     }
 
+    public int getStockPrice(int hotelID, int hotelSize) {
+        Hotel h = HotelList.get(hotelID);
+        int retValue = 0;
+        if(hotelSize < 2) {
+            retValue = 0;
+        } else if (hotelSize == 2) {
+            retValue = 200;
+        } else if (hotelSize == 3) {
+            retValue = 300;
+        } else if (hotelSize == 4) {
+            retValue = 400;
+        } else if (hotelSize == 5) {
+            retValue = 500;
+        } else if (hotelSize < 11) {
+            retValue = 600;
+        } else if (hotelSize < 21) {
+            retValue = 700;
+        } else if (hotelSize < 31) {
+            retValue = 800;
+        } else if (hotelSize < 41) {
+            retValue = 900;
+        } else if (hotelSize > 40) {
+            retValue = 1000;
+        }
+        if(hotelSize > 1) {
+            if (h.getTypeID() == 2) {
+                retValue = retValue + 100;
+            } else if (h.getTypeID() == 3) {
+                retValue = retValue + 200;
+            }
+        }
+        return retValue;
+    }
+
     //endregion
 
     //region public methods
@@ -328,7 +362,7 @@ public class Game implements System {
     }
 
     @Override
-    public void handleStock(int action, int amount, int playerID, int defuncthotelID, int superHotelID) {
+    public void handleStock(int action, int amount, int playerID, int defuncthotelID, int superHotelID, int defunctHotelSize) {
         // Action Keys
         // 1 = Trade
         // 2 = Sell
@@ -360,7 +394,7 @@ public class Game implements System {
                 }
             }
         } else if (action == 2) {
-            PlayerList.get(playerID).addMoney((getStockPrice(defuncthotelID) * amount));
+            PlayerList.get(playerID).addMoney((getStockPrice(defuncthotelID,defunctHotelSize) * amount));
         } else {
             //Shouldnt get here
         }
@@ -440,9 +474,25 @@ public class Game implements System {
 
     public int merge(int hotelID1, int hotelID2){
         Hotel h1 = HotelList.get(hotelID1);
+        List<Tile> h1Tiles = new ArrayList<>();
         for(Tile t:getBoard().getTiles()){
             if(t.getHotel() != null && t.getHotel().getID() == hotelID2){
                 t.setHotel(h1);
+                h1Tiles.add(t);
+            } else if(t.getHotel() != null && t.getHotel().getID() == hotelID1){
+                h1Tiles.add(t);
+            }
+        }
+        for(Tile t: h1Tiles){
+            for(Tile aT : Board.checkAdjacent(t)){
+                if(aT.getHotel() == null){
+                    aT.setHotel(h1);
+                    for(Tile aAT : Board.checkAdjacent(aT)){
+                        if(aAT.getHotel() == null){
+                            aAT.setHotel(h1);
+                        }
+                    }
+                }
             }
         }
         HotelList.get(hotelID2).unFound();

@@ -21,6 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 import java.io.File;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,22 +36,48 @@ public class App extends Application {
      * Represents variables for the UI.
      */
     Game g = new Game();
+
+    //Current Player
     int currentPlayer = 0;
+
+    //Choices for Ending Turn
     int currentChoices = 1;
+
+    //GameState
     int currentStep = 0;
+
+    //HotelID of stock to buy
     int buyHotelStock;
+
+    //Number of Stock bought in a turn
     int numberOfStockBought = 0;
+
+    //Stock chosen to buy
     int stockChoice;
+
+    //winning player
     int playerWon;
+
+    //Defunct Hotel Size
+    int defunctHotelSize;
+
+    //Defunct Hotel for Merge
     int defunctHotel;
+
+    //Super Hotel for Merge
     int superHotel;
+
+
     List<Tile> passableTiles;
+
+    //Hotels Merging
     List<Hotel> hotels = new ArrayList<>();
     //endregion
+
+    //region Board Labels
     /**
      * Labels for the Board
      */
-    //region Board Labels
     Label aOneLabel = new Label("A1");
     Label aTwoLabel = new Label("A2");
     Label aThreeLabel = new Label("A3");
@@ -1261,10 +1288,10 @@ public class App extends Application {
 
     //endregion
 
+    //region SkipPlay
     /**
      * skipPlay continues the game after player clicks.
      */
-    //region SkipPlay
     private void skipPlay() {
         removeCurrentStep();
         playButton.setText("Game Loaded\nClick to Continue");
@@ -1284,12 +1311,22 @@ public class App extends Application {
         } else if (currentStep == 3) {
             playButton.removeEventFilter(KeyEvent.KEY_PRESSED, hotelToFound);
         } else if (currentStep == 4) {
-            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToMerge);
         } else if (currentStep == 5) {
-            playButton.removeEventFilter(KeyEvent.KEY_PRESSED, endChoice);
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction);
         } else if (currentStep == 6) {
-            playButton.removeEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToBuy);
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction_otherPlayer);
         } else if (currentStep == 7) {
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle);
+        } else if (currentStep == 8) {
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle_otherPlayer);
+        } else if (currentStep == 9) {
+            playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
+        } else if (currentStep == 10) {
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED, endChoice);
+        } else if (currentStep == 11) {
+            playButton.removeEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToBuy);
+        } else if (currentStep == 12) {
             playButton.removeEventFilter(KeyEvent.KEY_PRESSED, buyChosenHotel);
         }
     }
@@ -1748,17 +1785,38 @@ public class App extends Application {
     }
     //endregion
 
+    //region getColor
+    private Color getColor(Tile t){
+        Color color = null;
+        if (t.getHotel().getID() == 0) {
+            color = Color.color(1, 1, 0);
+        } else if (t.getHotel().getID() == 1) {
+            color = Color.color(1, 0.5, 0);
+        } else if (t.getHotel().getID() == 2) {
+            color = Color.color(0, 1, 1);
+        } else if (t.getHotel().getID() == 3) {
+            color = Color.color(0.5, 0, 1);
+        } else if (t.getHotel().getID() == 4) {
+            color = Color.color(0, 0.5, 0.1);
+        } else if (t.getHotel().getID() == 5) {
+            color = Color.color(0.5, 0.1, 0);
+        } else if (t.getHotel().getID() == 6) {
+            color = Color.color(1, 0, 1);
+        }
+        return color;
+    }
+    //endregion
+
     //region IncreaseCurrentStep
     private void increaseCurrentStep(int by) {
         currentStep = currentStep + by;
     }
     //endregion
 
-    //region ResetCurrentStep
+    //region setCurrentStep
     private void setCurrentStep(int to) {
         currentStep = to;
     }
-    //endregion
     //endregion
 
     //region Event Handlers
@@ -1791,9 +1849,50 @@ public class App extends Application {
                 playButton.setText(textForPlay);
                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, hotelToFound);
             } else if (currentStep == 4) {
+                String mergeText = "Choose a hotel to merge:\n";
+                for (Hotel h : hotels) {
+                    mergeText += (h.getID() + 1) + "." + h.getName() + "\n";
+                }
+                playButton.setText(mergeText);
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHotelToMerge);
+            } else if (currentStep == 5) {
+                String sb = "";
+                sb += "Player " + (currentPlayer + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) + " owned stock\nWould you like to:\n";
+                if(g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) > 1){
+                    sb += "1)Trade\n2)Sell\n3)Hold";
+                } else{
+                    sb += "2)Sell\n3)Hold";
+                }
+                playButton.setText(sb);
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction);
+            } else if (currentStep == 6) {
+                String sb = "";
+                sb += "Player " + (otherPlayer() + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) + " owned stock\nWould you like to:\n";
+                if(g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) > 1){
+                    sb += "1)Trade\n2)Sell\n3)Hold";
+                } else{
+                    sb += "2)Sell\n3)Hold";
+                }
+                playButton.setText(sb);
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction_otherPlayer);
+            } else if (currentStep == 7) {
+                if(stockChoice == 1){
+                    playButton.setText("Player " + (currentPlayer + 1) + ":\nHow many stock would you like to trade?\nPress an even number from 2-8");
+                } else if(stockChoice == 2){
+                    playButton.setText("Player " + (currentPlayer + 1) + ":\nHow many stock would you like to sell?\nEnter a number from 1-9");
+                }
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle);
+            } else if (currentStep == 8) {
+                if(stockChoice == 1){
+                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nHow many stock would you like to trade?\nPress an even number from 2-8");
+                } else if(stockChoice == 2){
+                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nHow many stock would you like to sell?\nEnter a number from 1-9");
+                }
+                playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle_otherPlayer);
+            } else if (currentStep == 9) {
                 playButton.setText("Click to Continue:");
                 playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
-            } else if (currentStep == 5) {
+            } else if (currentStep == 10) {
                 if (g.getFoundedHotels().size() > 0 && numberOfStockBought < 3) {
                     playButton.setText("Please select what you would like to do:\n1) End Turn\n2) Buy Stock");
                     currentChoices = 2;
@@ -1802,7 +1901,7 @@ public class App extends Application {
                     currentChoices = 1;
                 }
                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, endChoice);
-            } else if (currentStep == 6) {
+            } else if (currentStep == 11) {
                 String foundHotel = "Enter the number of the hotel you would like to buy stock from:\n";
                 for (Hotel h : g.getFoundedHotels()) {
                     if (h.getAvailable().size() > 0) {
@@ -1811,7 +1910,8 @@ public class App extends Application {
                 }
                 playButton.setText(foundHotel);
                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToBuy);
-            } else if (currentStep == 7) {
+            } else if (currentStep == 12) {
+                playButton.setText("You chose to buy from " + g.getHotelList().get(buyHotelStock).getName() + "\nEnter an amount from one to three to buy:\nNote: You can not buy more than 3 per turn");
                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, buyChosenHotel);
             } else if (currentStep == 99) {
                 String sb = "Game Ended, Result:";
@@ -1831,7 +1931,7 @@ public class App extends Application {
 
     //endregion
 
-    //region BuyChosenHotel -                   7
+    //region BuyChosenHotel -                   12
     EventHandler<KeyEvent> buyChosenHotel = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
@@ -1854,13 +1954,13 @@ public class App extends Application {
                 playButton.setText("You bought " + numBought + " of \n" + g.getHotelList().get(buyHotelStock).getName() + "\n Click to Continue");
                 mLabel.setText("\tMONEY: $" + g.getPlayerList().get(currentPlayer).getMoney() + " ");
                 playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
-                setCurrentStep(4);
+                setCurrentStep(9);
             }
         }
     };
     //endregion
 
-    //region ChooseHotelToBuy -                 6
+    //region ChooseHotelToBuy -                 11
     EventHandler<KeyEvent> chooseHotelToBuy = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
@@ -1907,7 +2007,7 @@ public class App extends Application {
     };
     //endregion
 
-    //region endChoice -                        5
+    //region endChoice -                        10
     EventHandler<KeyEvent> endChoice = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
@@ -1942,7 +2042,7 @@ public class App extends Application {
     };
     //endregion
 
-    //region clickToContinue -                  4
+    //region clickToContinue -                  9
     EventHandler<MouseEvent> clickToContinue = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -1956,6 +2056,294 @@ public class App extends Application {
             playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, this);
             playButton.addEventFilter(KeyEvent.KEY_PRESSED, endChoice);
             increaseCurrentStep(1);
+        }
+    };
+    //endregion
+
+    //region chooseNumToHandle_otherPlayer      8
+
+    EventHandler<KeyEvent> chooseNumToHandle_otherPlayer = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if((event.getCode() == KeyCode.DIGIT1 && g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) <= 1) ||
+                    (event.getCode() == KeyCode.DIGIT2 && g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) <= 2) ||
+                    (event.getCode() == KeyCode.DIGIT3 && g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) <= 3) ||
+                    (event.getCode() == KeyCode.DIGIT4 && g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) <= 4) ||
+                    (event.getCode() == KeyCode.DIGIT5 && g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) <= 5) ||
+                    (event.getCode() == KeyCode.DIGIT6 && g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) <= 6) ||
+                    (event.getCode() == KeyCode.DIGIT7 && g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) <= 7) ||
+                    (event.getCode() == KeyCode.DIGIT8 && g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) <= 8) ||
+                    (event.getCode() == KeyCode.DIGIT9 && g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) <= 9)){
+                int value = 0;
+                if(event.getCode() == KeyCode.DIGIT1){
+                    value = 1;
+                } else if(event.getCode() == KeyCode.DIGIT2){
+                    value = 2;
+                } else if(event.getCode() == KeyCode.DIGIT3){
+                    value = 3;
+                } else if(event.getCode() == KeyCode.DIGIT8){
+                    value = 8;
+                } else if(event.getCode() == KeyCode.DIGIT4){
+                    value = 4;
+                } else if(event.getCode() == KeyCode.DIGIT5){
+                    value = 5;
+                } else if(event.getCode() == KeyCode.DIGIT6){
+                    value = 6;
+                } else if(event.getCode() == KeyCode.DIGIT7){
+                    value = 7;
+                } else if(event.getCode() == KeyCode.DIGIT9){
+                    value = 9;
+                }
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                g.handleStock(stockChoice,value,otherPlayer(),defunctHotel,superHotel, defunctHotelSize);
+                if(g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) > 0){
+                    String sb = "";
+                    sb += "Player " + (otherPlayer() + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) + " owned stock\nWould you like to:\n";
+                    if(g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) > 1){
+                        sb += "1)Trade\n2)Sell\n3)Hold";
+                    } else {
+                        sb += "2)Sell\n3)Hold";
+                    }
+                    playButton.setText(sb);
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction_otherPlayer);
+                    setCurrentStep(6);
+                } else {
+                    playButton.setText("Action Taken\nClick to Continue");
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+                    increaseCurrentStep(1);
+                }
+            }
+        }
+    };
+
+    //endregion
+
+    //region chooseNumToHandle -                7
+    EventHandler<KeyEvent> chooseNumToHandle = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if((event.getCode() == KeyCode.DIGIT1 && g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) <= 1) ||
+                    (event.getCode() == KeyCode.DIGIT2 && g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) <= 2) ||
+                    (event.getCode() == KeyCode.DIGIT3 && g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) <= 3) ||
+                    (event.getCode() == KeyCode.DIGIT4 && g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) <= 4) ||
+                    (event.getCode() == KeyCode.DIGIT5 && g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) <= 5) ||
+                    (event.getCode() == KeyCode.DIGIT6 && g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) <= 6) ||
+                    (event.getCode() == KeyCode.DIGIT7 && g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) <= 7) ||
+                    (event.getCode() == KeyCode.DIGIT8 && g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) <= 8) ||
+                    (event.getCode() == KeyCode.DIGIT9 && g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) <= 9)) {
+                int value = 0;
+                if(event.getCode() == KeyCode.DIGIT1){
+                    value = 1;
+                } else if(event.getCode() == KeyCode.DIGIT2){
+                    value = 2;
+                } else if(event.getCode() == KeyCode.DIGIT3){
+                    value = 3;
+                } else if(event.getCode() == KeyCode.DIGIT8){
+                    value = 8;
+                } else if(event.getCode() == KeyCode.DIGIT4){
+                    value = 4;
+                } else if(event.getCode() == KeyCode.DIGIT5){
+                    value = 5;
+                } else if(event.getCode() == KeyCode.DIGIT6){
+                    value = 6;
+                } else if(event.getCode() == KeyCode.DIGIT7){
+                    value = 7;
+                } else if(event.getCode() == KeyCode.DIGIT9){
+                    value = 9;
+                }
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                g.handleStock(stockChoice,value,currentPlayer,defunctHotel,superHotel,defunctHotelSize);
+                String sb = "";
+                if(g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) > 0){
+                    sb += "Player " + (currentPlayer + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) + " owned stock\nWould you like to:\n";
+                    if(g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) > 1){
+                        sb += "1)Trade\n2)Sell\n3)Hold";
+                    } else {
+                        sb += "2)Sell\n3)Hold";
+                    }
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction);
+                    setCurrentStep(5);
+                } else if(g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) > 0){
+                    sb += "Player " + (otherPlayer() + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) + " owned stock\nWould you like to:\n";
+                    if(g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) > 1){
+                        sb += "1)Trade\n2)Sell\n3)Hold";
+                    } else {
+                        sb += "2)Sell\n3)Hold";
+                    }
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction_otherPlayer);
+                    setCurrentStep(6);
+                } else {
+                    sb += "Action Taken\nClick to Continue";
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+                    increaseCurrentStep(2);
+                }
+                playButton.setText(sb);
+            }
+        }
+    };
+    //endregion
+
+    //region chooseHandleAction_otherPlayer     6
+
+    EventHandler<KeyEvent> chooseHandleAction_otherPlayer = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            //1 = Trade, 2 = Sell, 3 = Hold
+            if((event.getCode() == KeyCode.DIGIT1 && g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) > 1) || event.getCode() == KeyCode.DIGIT2 ||
+                    event.getCode() == KeyCode.DIGIT3){
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                if(event.getCode() == KeyCode.DIGIT1){
+                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nHow many stock would you like to trade?\nPress an even number from 2-8");
+                    stockChoice = 1;
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle_otherPlayer);
+                    increaseCurrentStep(2);
+                }
+                if(event.getCode() == KeyCode.DIGIT2){
+                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nHow many stock would you like to sell?\nEnter a number from 1-9");
+                    stockChoice = 2;
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle_otherPlayer);
+                    increaseCurrentStep(2);
+                }
+                if(event.getCode() == KeyCode.DIGIT3){
+                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nYou held your remaining stock,\nClick to Continue");
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+                    increaseCurrentStep(3);
+
+                }
+            }
+        }
+    };
+
+    //endregion
+
+    //region chooseHandleAction -               5
+    EventHandler<KeyEvent> chooseHandleAction = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            //1 = Trade, 2 = Sell, 3 = Hold
+            if((event.getCode() == KeyCode.DIGIT1 && g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) > 1) || event.getCode() == KeyCode.DIGIT2 ||
+                    event.getCode() == KeyCode.DIGIT3){
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                if(event.getCode() == KeyCode.DIGIT1){
+                    playButton.setText("Player " + (currentPlayer + 1) + ":\nHow many stock would you like to trade?\nPress an even number from 2-8");
+                    stockChoice = 1;
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle);
+                    increaseCurrentStep(2);
+                }
+                else if(event.getCode() == KeyCode.DIGIT2){
+                    playButton.setText("Player " + (currentPlayer + 1) + ":\nHow many stock would you like to sell?\nEnter a number from 1-9");
+                    stockChoice = 2;
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle);
+                    increaseCurrentStep(2);
+                }
+                else if(event.getCode() == KeyCode.DIGIT3 && g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) == 0){
+                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nYou held your remaining stock,\nClick to Continue");
+                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
+                    increaseCurrentStep(4);
+                } else {
+                    String sb = "";
+                    sb += "Player " + (otherPlayer() + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) + " owned stock\nWould you like to:\n";
+                    if(g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) > 1){
+                        sb += "1)Trade\n2)Sell\n3)Hold";
+                    } else{
+                        sb += "2)Sell\n3)Hold";
+                    }
+                    playButton.setText(sb);
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction_otherPlayer);
+                    increaseCurrentStep(1);
+                }
+            }
+        }
+    };
+    //endregion
+
+    //region chooseHotelToMerge -               4
+    EventHandler<KeyEvent> chooseHotelToMerge = new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if ((event.getCode() == KeyCode.DIGIT1 && (hotels.get(0).getID() == 0 || hotels.get(1).getID() == 0)) ||
+                    (event.getCode() == KeyCode.DIGIT2 && (hotels.get(0).getID() == 1 || hotels.get(1).getID() == 1)) ||
+                    (event.getCode() == KeyCode.DIGIT3 && (hotels.get(0).getID() == 2 || hotels.get(1).getID() == 2)) ||
+                    (event.getCode() == KeyCode.DIGIT4 && (hotels.get(0).getID() == 3 || hotels.get(1).getID() == 3)) ||
+                    (event.getCode() == KeyCode.DIGIT5 && (hotels.get(0).getID() == 4 || hotels.get(1).getID() == 4)) ||
+                    (event.getCode() == KeyCode.DIGIT6 && (hotels.get(0).getID() == 5 || hotels.get(1).getID() == 5)) ||
+                    (event.getCode() == KeyCode.DIGIT7 && (hotels.get(0).getID() == 6 || hotels.get(1).getID() == 6))) {
+                if(event.getCode() == KeyCode.DIGIT1){
+                    if(superHotel != 0){
+                        defunctHotel = superHotel;
+                    }
+                    superHotel = 0;
+                }
+                if(event.getCode() == KeyCode.DIGIT2){
+                    if(superHotel != 1){
+                        defunctHotel = superHotel;
+                    }
+                    superHotel = 1;
+                }
+                if(event.getCode() == KeyCode.DIGIT3){
+                    if(superHotel != 2){
+                        defunctHotel = superHotel;
+                    }
+                    superHotel = 2;
+                }
+                if(event.getCode() == KeyCode.DIGIT4){
+                    if(superHotel != 3){
+                        defunctHotel = superHotel;
+                    }
+                    superHotel = 3;
+                }
+                if(event.getCode() == KeyCode.DIGIT5){
+                    if(superHotel != 4){
+                        defunctHotel = superHotel;
+                    }
+                    superHotel = 4;
+                }
+                if(event.getCode() == KeyCode.DIGIT6){
+                    if(superHotel != 5){
+                        defunctHotel = superHotel;
+                    }
+                    superHotel = 5;
+                }
+                if(event.getCode() == KeyCode.DIGIT7){
+                    if(superHotel != 6){
+                        defunctHotel = superHotel;
+                    }
+                    superHotel = 6;
+                }
+                defunctHotelSize = g.getBoard().getHotelSize(g.getHotelList().get(defunctHotel));
+                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
+                g.merge(superHotel,defunctHotel);
+                for (Tile t : g.getBoard().getTiles()) {
+                    Color tileColor = Color.color(1, 1, 1);
+                    if (t.getPlaced()) {
+                        if (t.getHotel() != null) {
+                            tileColor = getColor(t);
+                        }
+                        updateByString((t.getRawRow() + t.getRawColumn()), tileColor, "-fx-background-color: #000000");
+                    }
+                }
+                String sb = "";
+                if(g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) > 0) {
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHandleAction);
+                    increaseCurrentStep(1);
+                    sb += "Player " + (currentPlayer + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) + " owned stock\nWould you like to:\n";
+                    if(g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) > 1){
+                        sb += "1)Trade\n2)Sell\n3)Hold";
+                    } else{
+                        sb += "2)Sell\n3)Hold";
+                    }
+                } else {
+                    playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHandleAction_otherPlayer);
+                    increaseCurrentStep(2);
+                    sb += "Player " + (otherPlayer() + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) + " owned stock\nWould you like to:\n";
+                    if(g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) > 1){
+                        sb += "1)Trade\n2)Sell\n3)Hold";
+                    } else{
+                        sb += "2)Sell\n3)Hold";
+                    }
+                }
+                playButton.setText(sb);
+            }
         }
     };
     //endregion
@@ -2000,7 +2388,7 @@ public class App extends Application {
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED, this);
                 playButton.setText("Your hotel was founded\n and one stock was given to you,\nClick to Continue");
                 playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
-                increaseCurrentStep(1);
+                increaseCurrentStep(6);
             }
         }
     };
@@ -2059,32 +2447,12 @@ public class App extends Application {
                             if (t.getHotel() != null) {
                                 Hotel h = t.getHotel();
                                 playedTile.setHotel(h);
-                                if (t.getHotel().getID() == 0) {
-                                    color = Color.color(1, 1, 0);
-                                }
-                                if (t.getHotel().getID() == 1) {
-                                    color = Color.color(1, 0.5, 0);
-                                }
-                                if (t.getHotel().getID() == 2) {
-                                    color = Color.color(0, 1, 1);
-                                }
-                                if (t.getHotel().getID() == 3) {
-                                    color = Color.color(0.5, 0, 1);
-                                }
-                                if (t.getHotel().getID() == 4) {
-                                    color = Color.color(0, 0.5, 0.1);
-                                }
-                                if (t.getHotel().getID() == 5) {
-                                    color = Color.color(0.5, 0.1, 0);
-                                }
-                                if (t.getHotel().getID() == 6) {
-                                    color = Color.color(1, 0, 1);
-                                }
+                                color = getColor(t);
                                 updateByString((t.getRawRow() + t.getRawColumn()), color,"-fx-background-color: #000000");
                             }
                         }
                         playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
-                        increaseCurrentStep(2);
+                        increaseCurrentStep(7);
                     } else if (passableTiles.size() > 0) {
                         Color color = null;
                         //List<Hotel> hotels = new ArrayList<>();
@@ -2096,27 +2464,7 @@ public class App extends Application {
                         if (hotels.size() == 0) {
                             for (Tile t : passableTiles) {
                                 if (t.getHotel() != null) {
-                                    if (t.getHotel().getID() == 0) {
-                                        color = Color.color(1, 1, 0);
-                                    }
-                                    if (t.getHotel().getID() == 1) {
-                                        color = Color.color(1, 0.5, 0);
-                                    }
-                                    if (t.getHotel().getID() == 2) {
-                                        color = Color.color(0, 1, 1);
-                                    }
-                                    if (t.getHotel().getID() == 3) {
-                                        color = Color.color(0.5, 0, 1);
-                                    }
-                                    if (t.getHotel().getID() == 4) {
-                                        color = Color.color(0, 0.5, 0.1);
-                                    }
-                                    if (t.getHotel().getID() == 5) {
-                                        color = Color.color(0.5, 0.1, 0);
-                                    }
-                                    if (t.getHotel().getID() == 6) {
-                                        color = Color.color(1, 0, 1);
-                                    }
+                                    color = getColor(t);
                                     Hotel h = t.getHotel();
                                     playedTile.setHotel(h);
                                     updateByString((t.getRawRow() + t.getRawColumn()), color,"-fx-background-color: #000000");
@@ -2151,6 +2499,7 @@ public class App extends Application {
                                 }
                                 playButton.setText(mergeText);
                                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToMerge);
+                                increaseCurrentStep(2);
                             }else{
                                 int mergedHotelID = g.merge(LHotel,SHotel);
                                 superHotel = mergedHotelID;
@@ -2160,21 +2509,7 @@ public class App extends Application {
                                     Color tileColor = Color.color(1, 1, 1);
                                     if (t.getPlaced()) {
                                         if (t.getHotel() != null) {
-                                            if (t.getHotel().getID() == 0) {
-                                                tileColor = Color.color(1, 1, 0);
-                                            } else if (t.getHotel().getID() == 1) {
-                                                tileColor = Color.color(1, 0.5, 0);
-                                            } else if (t.getHotel().getID() == 2) {
-                                                tileColor = Color.color(0, 1, 1);
-                                            } else if (t.getHotel().getID() == 3) {
-                                                tileColor = Color.color(0.5, 0, 1);
-                                            } else if (t.getHotel().getID() == 4) {
-                                                tileColor = Color.color(0, 0.5, 0.1);
-                                            } else if (t.getHotel().getID() == 5) {
-                                                tileColor = Color.color(0.5, 0.1, 0);
-                                            } else if (t.getHotel().getID() == 6) {
-                                                tileColor = Color.color(1, 0, 1);
-                                            }
+                                            tileColor = getColor(t);
                                         }
                                         updateByString((t.getRawRow() + t.getRawColumn()), tileColor, "-fx-background-color: #000000");
                                     }
@@ -2182,17 +2517,29 @@ public class App extends Application {
                                 String sb = "";
                                 if(g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) > 0) {
                                     playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHandleAction);
-                                    sb += "Player " + (currentPlayer + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold";
+                                    increaseCurrentStep(3);
+                                    sb += "Player " + (currentPlayer + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) + " owned stock\nWould you like to:\n";
+                                    if(g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) > 1){
+                                        sb += "1)Trade\n2)Sell\n3)Hold";
+                                    } else{
+                                        sb += "2)Sell\n3)Hold";
+                                    }
                                 } else {
                                     playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHandleAction_otherPlayer);
-                                    sb += "Player " + (otherPlayer() + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold";
+                                    increaseCurrentStep(4);
+                                    sb += "Player " + (otherPlayer() + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) + " owned stock\nWould you like to:\n";
+                                    if(g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) > 1){
+                                        sb += "1)Trade\n2)Sell\n3)Hold";
+                                    } else{
+                                        sb += "2)Sell\n3)Hold";
+                                    }
                                 }
                                 playButton.setText(sb);
                             }
                         }
                     } else {
                         playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToContinue);
-                        increaseCurrentStep(2);
+                        increaseCurrentStep(7);
                     }
                 }
             }
@@ -2309,233 +2656,5 @@ public class App extends Application {
             increaseCurrentStep(1);
         }
     };
-    //endregion
-
-    //region Move Into Flow When Complete
-    //Add Steps Numbers, and add to loadButton and Equivelent methods and handlers
-
-    //region Merge
-    EventHandler<KeyEvent> chooseHotelToMerge = new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            if ((event.getCode() == KeyCode.DIGIT1 && (hotels.get(0).getID() == 0 || hotels.get(1).getID() == 0)) ||
-                    (event.getCode() == KeyCode.DIGIT2 && (hotels.get(0).getID() == 1 || hotels.get(1).getID() == 1)) ||
-                    (event.getCode() == KeyCode.DIGIT3 && (hotels.get(0).getID() == 2 || hotels.get(1).getID() == 2)) ||
-                    (event.getCode() == KeyCode.DIGIT4 && (hotels.get(0).getID() == 3 || hotels.get(1).getID() == 3)) ||
-                    (event.getCode() == KeyCode.DIGIT5 && (hotels.get(0).getID() == 4 || hotels.get(1).getID() == 4)) ||
-                    (event.getCode() == KeyCode.DIGIT6 && (hotels.get(0).getID() == 5 || hotels.get(1).getID() == 5)) ||
-                    (event.getCode() == KeyCode.DIGIT7 && (hotels.get(0).getID() == 6 || hotels.get(1).getID() == 6))) {
-                if(event.getCode() == KeyCode.DIGIT1){
-                    defunctHotel = superHotel;
-                    superHotel = 0;
-                }
-                if(event.getCode() == KeyCode.DIGIT2){
-                    defunctHotel = superHotel;
-                    superHotel = 1;
-                }
-                if(event.getCode() == KeyCode.DIGIT3){
-                    defunctHotel = superHotel;
-                    superHotel = 2;
-                }
-                if(event.getCode() == KeyCode.DIGIT4){
-                    defunctHotel = superHotel;
-                    superHotel = 3;
-                }
-                if(event.getCode() == KeyCode.DIGIT5){
-                    defunctHotel = superHotel;
-                    superHotel = 4;
-                }
-                if(event.getCode() == KeyCode.DIGIT6){
-                    defunctHotel = superHotel;
-                    superHotel = 5;
-                }
-                if(event.getCode() == KeyCode.DIGIT7){
-                    defunctHotel = superHotel;
-                    superHotel = 6;
-                }
-                playButton.setText("The superHotel is: " + superHotel + "\nThe defunctHotel is: " + defunctHotel);
-                g.merge(superHotel,defunctHotel);
-                for (Tile t : g.getBoard().getTiles()) {
-                    Color tileColor = Color.color(1, 1, 1);
-                    if (t.getPlaced()) {
-                        if (t.getHotel() != null) {
-                            if (t.getHotel().getID() == 0) {
-                                tileColor = Color.color(1, 1, 0);
-                            } else if (t.getHotel().getID() == 1) {
-                                tileColor = Color.color(1, 0.5, 0);
-                            } else if (t.getHotel().getID() == 2) {
-                                tileColor = Color.color(0, 1, 1);
-                            } else if (t.getHotel().getID() == 3) {
-                                tileColor = Color.color(0.5, 0, 1);
-                            } else if (t.getHotel().getID() == 4) {
-                                tileColor = Color.color(0, 0.5, 0.1);
-                            } else if (t.getHotel().getID() == 5) {
-                                tileColor = Color.color(0.5, 0.1, 0);
-                            } else if (t.getHotel().getID() == 6) {
-                                tileColor = Color.color(1, 0, 1);
-                            }
-                        }
-                        updateByString((t.getRawRow() + t.getRawColumn()), tileColor, "-fx-background-color: #000000");
-                    }
-                }
-                String sb = "";
-                /*if(g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) > 0) {
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHandleAction);
-                    sb += "Player " + (currentPlayer + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold";
-                } else {
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHandleAction_otherPlayer);
-                    sb += "Player " + (otherPlayer() + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold";
-                }
-                playButton.setText(sb);*/
-            }
-        }
-    };
-    //endregion
-
-    //region chooseHandleAction
-    EventHandler<KeyEvent> chooseHandleAction = new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            //1 = Trade, 2 = Sell, 3 = Hold
-            if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 ||
-            event.getCode() == KeyCode.DIGIT3){
-                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
-                if(event.getCode() == KeyCode.DIGIT1){
-                    playButton.setText("Player " + (currentPlayer + 1) + ":\nHow many stock would you like to trade?\nPress an even number from 2-8");
-                    stockChoice = 1;
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle);
-                }
-                else if(event.getCode() == KeyCode.DIGIT2){
-                    playButton.setText("Player " + (currentPlayer + 1) + ":\nHow many stock would you like to sell?\nEnter a number from 1-9");
-                    stockChoice = 2;
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle);
-                }
-                else if(event.getCode() == KeyCode.DIGIT3 && g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) == 0){
-                    playButton.setText("Player " + (currentPlayer + 1) + ":\nYou held your remaining stock,\nClick to Continue");
-                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
-                } else {
-                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold");
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction_otherPlayer);
-                }
-            }
-        }
-    };
-
-    EventHandler<KeyEvent> chooseHandleAction_otherPlayer = new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            //1 = Trade, 2 = Sell, 3 = Hold
-            if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 ||
-                    event.getCode() == KeyCode.DIGIT3){
-                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
-                if(event.getCode() == KeyCode.DIGIT1){
-                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nHow many stock would you like to trade?\nPress an even number from 2-8");
-                    stockChoice = 1;
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle_otherPlayer);
-                }
-                if(event.getCode() == KeyCode.DIGIT2){
-                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nHow many stock would you like to sell?\nEnter a number from 1-9");
-                    stockChoice = 2;
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseNumToHandle_otherPlayer);
-                }
-                if(event.getCode() == KeyCode.DIGIT3){
-                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nYou held your remaining stock,\nClick to Continue");
-                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
-                }
-            }
-        }
-    };
-    //endregion
-
-    //region chooseNumToHandle
-    EventHandler<KeyEvent> chooseNumToHandle = new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 ||
-                    event.getCode() == KeyCode.DIGIT3 || event.getCode() == KeyCode.DIGIT8 ||
-                    event.getCode() == KeyCode.DIGIT4 || event.getCode() == KeyCode.DIGIT5 ||
-                    event.getCode() == KeyCode.DIGIT6 || event.getCode() == KeyCode.DIGIT7 ||
-                    event.getCode() == KeyCode.DIGIT9){
-                int value = 0;
-                if(event.getCode() == KeyCode.DIGIT1){
-                    value = 1;
-                } else if(event.getCode() == KeyCode.DIGIT2){
-                    value = 2;
-                } else if(event.getCode() == KeyCode.DIGIT3){
-                    value = 3;
-                } else if(event.getCode() == KeyCode.DIGIT8){
-                    value = 8;
-                } else if(event.getCode() == KeyCode.DIGIT4){
-                    value = 4;
-                } else if(event.getCode() == KeyCode.DIGIT5){
-                    value = 5;
-                } else if(event.getCode() == KeyCode.DIGIT6){
-                    value = 6;
-                } else if(event.getCode() == KeyCode.DIGIT7){
-                    value = 7;
-                } else if(event.getCode() == KeyCode.DIGIT9){
-                    value = 9;
-                }
-                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
-                g.handleStock(stockChoice,value,currentPlayer,defunctHotel,superHotel);
-                int ownedStock = g.getHotelList().get(defunctHotel).ownedStock(currentPlayer);
-                if(ownedStock > 0){
-                    playButton.setText("Player " + (currentPlayer + 1) + ":\nYou have " + ownedStock + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold");
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction);
-                } else if(g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) > 0){
-                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nYou have " + ownedStock + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold");
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction_otherPlayer);
-                } else {
-                    playButton.setText("Action Taken\nClick to Continue");
-                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
-                }
-            }
-        }
-    };
-
-    EventHandler<KeyEvent> chooseNumToHandle_otherPlayer = new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            if(event.getCode() == KeyCode.DIGIT1 || event.getCode() == KeyCode.DIGIT2 ||
-                    event.getCode() == KeyCode.DIGIT3 || event.getCode() == KeyCode.DIGIT8 ||
-                    event.getCode() == KeyCode.DIGIT4 || event.getCode() == KeyCode.DIGIT5 ||
-                    event.getCode() == KeyCode.DIGIT6 || event.getCode() == KeyCode.DIGIT7 ||
-                    event.getCode() == KeyCode.DIGIT9){
-                int value = 0;
-                if(event.getCode() == KeyCode.DIGIT1){
-                    value = 1;
-                } else if(event.getCode() == KeyCode.DIGIT2){
-                    value = 2;
-                } else if(event.getCode() == KeyCode.DIGIT3){
-                    value = 3;
-                } else if(event.getCode() == KeyCode.DIGIT8){
-                    value = 8;
-                } else if(event.getCode() == KeyCode.DIGIT4){
-                    value = 4;
-                } else if(event.getCode() == KeyCode.DIGIT5){
-                    value = 5;
-                } else if(event.getCode() == KeyCode.DIGIT6){
-                    value = 6;
-                } else if(event.getCode() == KeyCode.DIGIT7){
-                    value = 7;
-                } else if(event.getCode() == KeyCode.DIGIT9){
-                    value = 9;
-                }
-                playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
-                g.handleStock(stockChoice,value,otherPlayer(),defunctHotel,superHotel);
-                int ownedStock = g.getHotelList().get(defunctHotel).ownedStock(otherPlayer());
-                if(ownedStock > 0){
-                    playButton.setText("Player " + (otherPlayer() + 1) + ":\nYou have " + ownedStock + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold");
-                    playButton.addEventFilter(KeyEvent.KEY_PRESSED,chooseHandleAction_otherPlayer);
-                } else {
-                    playButton.setText("Action Taken\nClick to Continue");
-                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED,clickToContinue);
-                }
-            }
-        }
-    };
-    //endregion
-    //endregion
-
     //endregion
 }
