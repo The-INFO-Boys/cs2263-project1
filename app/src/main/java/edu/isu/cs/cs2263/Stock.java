@@ -22,11 +22,21 @@ public class Stock {
 
     /**
      * Getters and Setters for Stock class.
-     * Finds the player and their ID and sets the value of the stock.
-     * @return
+     * getID finds the stock ID.
+     * @return the stock ID.
      */
     public int getID(){return ID;}
+
+    /**
+     * getPlayer finds the player.
+     * @return the current player.
+     */
     public Player getPlayer(){return  player;}
+
+    /**
+     * setPlayer sets the value of a stock based on the player's stock.
+     * @param value the value of purchasable stock based on the player's currently owned stock
+     */
     public void setPlayer(Player value){player = value;}
 
     //endregion
@@ -35,7 +45,7 @@ public class Stock {
 
     /**
      * Constructor that sets an ID for stock.
-     * @param id
+     * @param id all of the IDs for stocks.
      */
     public Stock(int id){
         ID = id;

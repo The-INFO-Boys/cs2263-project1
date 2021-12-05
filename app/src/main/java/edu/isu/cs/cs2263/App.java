@@ -186,7 +186,8 @@ public class App extends Application {
     //region Start Methods
 
     /**
-     * Methods to start the game
+     * Methods to start the game.
+     * scene/stage sets up the game.
      * @param args
      */
     public static void main(String[] args) {
@@ -201,12 +202,16 @@ public class App extends Application {
     //endregion
 
     /**
-     * GridPane contains the labels for the letters and numbers(position for the numbers as well).
-     * @param stage
-     * @return
+     * GridPane contains the labels for the letters and numbers (position for the numbers as well).
+     * setTitle is what is shown at the top of the window when the game is opened.
+     * @param stage the stage where the board will be
+     * @return gp GridPane is returned
      */
     private GridPane buildGrid(Stage stage) {
         stage.setTitle("Acquire by The INFO Boys");
+        /**
+         * aLabel-iLabel set up labels for the letter portion of the grid.
+         */
         //region Labels for Letters
         Label aLabel = new Label("A");
         Label bLabel = new Label("B");
@@ -218,7 +223,9 @@ public class App extends Application {
         Label hLabel = new Label("H");
         Label iLabel = new Label("I");
         //endregion
-
+        /**
+         * oneLabel-twelveLabel sets up labels and sets up their position for the numeric portion of the grid.
+         */
         //region Labels for Numbers
         Label oneLabel = new Label("1");
         oneLabel.setMinWidth(25);
@@ -261,6 +268,9 @@ public class App extends Application {
         //region Properties for board
         /**
          * Board properties, including the position and the tile colors.
+         * setMinSize sets the size of the tile on the board.
+         * setAlignment sets up the position of the tile ID to be in the center.
+         * setBorder sets the color for a placed tile to be black (non-hotel tiles).
          */
         aOneLabel.setMinSize(25, 20);
         aOneLabel.setAlignment(Pos.CENTER);
@@ -912,6 +922,7 @@ public class App extends Application {
         //region GridPane
         /**
          * GridPane setup.
+         * columnIndex and rowIndex both determine the position of the labels based off what number is in each index.
          */
         GridPane gp = new GridPane();
         gp.add(oneLabel, 1, 0);
@@ -1053,9 +1064,16 @@ public class App extends Application {
         gp.add(iTenLabel, 10, 9);
         gp.add(iElevenLabel, 11, 9);
         gp.add(iTwelveLabel, 12, 9);
-
+        /**
+         * playButton is setup like the other labels, but includes colspan and rowspan to also position it.
+         */
         gp.add(playButton, 13, 0, 1, 9);
-
+        /**
+         * buttonPane is the bottom portion of the window that holds the button information.
+         * tLabel is the label for player tiles.
+         * mLabel is the label for player money.
+         * columnIndex and rowIndex used for positioning.
+         */
         GridPane buttonPane = new GridPane();
         buttonPane.add(loadButton, 0, 1);
         buttonPane.add(saveButton, 1, 1);
@@ -1073,7 +1091,8 @@ public class App extends Application {
 
         //region Handlers
         /**
-         * Event handlers for buttons
+         * Handlers for buttons
+         * loadButton handler loads in a game if button is pressed.
          */
         loadButton.setOnAction(event1 -> {
             FileChooser fileChooser = new FileChooser();
@@ -1107,6 +1126,9 @@ public class App extends Application {
                 skipPlay();
             }
         });
+        /**
+         * saveButton saves the current game played.
+         */
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -1118,6 +1140,10 @@ public class App extends Application {
                 }
             }
         });
+        /**
+         * hotelButton pulls up a hotel list containing info on if a hotel is founded, its size, and
+         * stock value. Exits when clicked.
+         */
         hotelButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -1154,6 +1180,9 @@ public class App extends Application {
                 playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToReturn);
             }
         });
+        /**
+         * stocksButton gets the hotel list and displays the number of stocks owned by a player.
+         */
         stocksButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -1178,6 +1207,9 @@ public class App extends Application {
                 playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, clickToReturn);
             }
         });
+        /**
+         * infoButton displays prices.
+         */
         infoButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -1226,6 +1258,9 @@ public class App extends Application {
 
     //endregion
 
+    /**
+     * skipPlay continues the game after player clicks.
+     */
     //region SkipPlay
     private void skipPlay() {
         removeCurrentStep();
@@ -1235,7 +1270,6 @@ public class App extends Application {
     //endregion
 
     //region RemoveCurrentStep
-
     private void removeCurrentStep() {
         if (currentStep == 0) {
             playButton.removeEventFilter(MouseEvent.MOUSE_CLICKED, startClicked);
@@ -1263,6 +1297,7 @@ public class App extends Application {
 
     /**
      * Tile on Board gets updated if played.
+     * updateByString method updates spot on board if tile is placed.
      * @param tilePlayed
      * @param color
      */
@@ -1726,7 +1761,10 @@ public class App extends Application {
     //region Event Handlers
 
     //region ReturnToPlay
-
+    /**
+     * Event Handlers for App.
+     * clickToReturn
+     */
     EventHandler<MouseEvent> clickToReturn = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {

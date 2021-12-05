@@ -51,13 +51,16 @@ public class Board {
     /**
      * Represents the private methods for Board class.
      * getBoard retrieves board.
-     * setBoard sets up the game board itself.
-     * @return
+     * @return the board itself.
      */
     public Tile[][] getBoard() {
         return board;
     }
 
+    /**
+     * setBoard sets up the game board itself.
+     * @return the board being set up.
+     */
     private Tile[][] setBoard(){
         Tile[][] tileBoard = new Tile [12][9];
         for(int x = 0; x < 12; x++){
@@ -68,6 +71,10 @@ public class Board {
         return tileBoard;
     }
 
+    /**
+     * getTiles retrieves a list of tiles from the board.
+     * @return a list of tiles pulled from the board.
+     */
     public List<Tile> getTiles(){
         List<Tile> retList = new ArrayList<>();
         for(int x = 0; x < 12; x++){
@@ -82,16 +89,9 @@ public class Board {
 
     /**
      * Represents public methods for Hotel class.
-     * foundHotel method gets the tile list and founds a hotel on the board if the tiles are together.
-     * checkAdjacent method checks the board to see if there are any adjacent tiles
-     * on the board prior to a tile being placed.
-     * placeTile method places a tile on the board.
-     * updateTile method
-     * checkPresentHotels method checks the board for present hotels and returns a list of present hotels.
-     * getHotels method also checks the board hotels and returns a list.
-     * getHotelSize method finds a hotel and returns its size
-     * @param newHotel
-     * @param h
+     * foundHotel method gets the tile list and founds a new hotel on the board if the tiles are together.
+     * @param newHotel the new hotel to found.
+     * @param h the hotel from list of hotels.
      */
     public void foundHotel(List<Tile> newHotel, Hotel h){
         for(Tile t: newHotel){
@@ -99,6 +99,12 @@ public class Board {
         }
     }
 
+    /**
+     * checkAdjacent method checks the board to see if there are any adjacent tiles
+     * on the board prior to a tile being placed.
+     * @param tile the tiles currently played on the board.
+     * @return tile list.
+     */
     public List<Tile> checkAdjacent(Tile tile){
         List<Tile> tileList = new ArrayList<>();
         Tile north = null;
@@ -132,12 +138,23 @@ public class Board {
         return tileList;
     }
 
+    /**
+     * placeTile method places a tile on the board.
+     * updateTIle method updates the tile on the board.
+     * @param tile
+     */
     public void placeTile(Tile tile){
         this.board[tile.getColumn()][tile.getRow()].setPlaced();
     }
     public void updateTile(Tile tile, Hotel h){
         this.board[tile.getColumn()][tile.getRow()].setHotel(h);
     }
+
+    /**
+     * checkPresentHotels method checks the board for present hotels and returns a list of present hotels.
+     * getHotels method also checks the board hotels and returns a list.
+     * @return hotelList
+     */
     public List<Hotel> checkPresentHotels(){
         List<Hotel> hotelList = new ArrayList<Hotel>();
         return hotelList;
@@ -146,6 +163,12 @@ public class Board {
         List<Hotel> hotelList = new ArrayList<Hotel>();
         return hotelList;
     }
+
+    /**
+     * getHotelSize method finds a hotel and returns its size.
+     * @param h the hotels on the board
+     * @return the size of hotel(s) that was found
+     */
     public int getHotelSize(Hotel h){
         int size = 0;
         for (Tile t: getTiles()){
