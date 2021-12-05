@@ -2319,18 +2319,18 @@ public class App extends Application {
                 int player1Stock = h.ownedStock(0);
                 int player2Stock = h.ownedStock(1);
                 if (player1Stock > 0 && player2Stock == 0) {
-                    p1 += g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
+                    p1 += g.getFirstBonus(h.getID(),defunctHotelSize) + g.getSecondBonus(h.getID(),defunctHotelSize);
                 } else if (player2Stock > 0 && player1Stock == 0) {
-                    p2 += g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
+                    p2 += g.getFirstBonus(h.getID(),defunctHotelSize) + g.getSecondBonus(h.getID(),defunctHotelSize);
                 } else if( player1Stock > player2Stock){
-                    p1 += g.getFirstBonus(h.getID());
-                    p2 += g.getSecondBonus(h.getID());
+                    p1 += g.getFirstBonus(h.getID(),defunctHotelSize);
+                    p2 += g.getSecondBonus(h.getID(),defunctHotelSize);
                 } else if( player2Stock > player1Stock){
-                    p1 += g.getFirstBonus(h.getID());
-                    p2 += g.getSecondBonus(h.getID());
+                    p1 += g.getFirstBonus(h.getID(),defunctHotelSize);
+                    p2 += g.getSecondBonus(h.getID(),defunctHotelSize);
                 } else {
                     //Players Stock Equal (player1Stock == player2Stock)
-                    int value = g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
+                    int value = g.getFirstBonus(h.getID(),defunctHotelSize) + g.getSecondBonus(h.getID(),defunctHotelSize);
                     p1 += value / 2;
                     p2 += value / 2;
                     if (((value / 2) % 1000) != 0) {
@@ -2528,27 +2528,28 @@ public class App extends Application {
                                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToMerge);
                                 increaseCurrentStep(2);
                             }else{
+                                Hotel h = g.getHotelList().get(defunctHotel);
+                                defunctHotelSize = g.getBoard().getHotelSize(h);
                                 int mergedHotelID = g.merge(LHotel,SHotel);
                                 superHotel = mergedHotelID;
                                 defunctHotel = SHotel;
-                                Hotel h = g.getHotelList().get(defunctHotel);
                                 int p1 = 0;
                                 int p2 = 0;
                                 int player1Stock = h.ownedStock(0);
                                 int player2Stock = h.ownedStock(1);
                                 if (player1Stock > 0 && player2Stock == 0) {
-                                    p1 += g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
+                                    p1 += g.getFirstBonus(h.getID(),defunctHotelSize) + g.getSecondBonus(h.getID(),defunctHotelSize);
                                 } else if (player2Stock > 0 && player1Stock == 0) {
-                                    p2 += g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
+                                    p2 += g.getFirstBonus(h.getID(),defunctHotelSize) + g.getSecondBonus(h.getID(),defunctHotelSize);
                                 } else if( player1Stock > player2Stock){
-                                    p1 += g.getFirstBonus(h.getID());
-                                    p2 += g.getSecondBonus(h.getID());
+                                    p1 += g.getFirstBonus(h.getID(),defunctHotelSize);
+                                    p2 += g.getSecondBonus(h.getID(),defunctHotelSize);
                                 } else if( player2Stock > player1Stock){
-                                    p1 += g.getFirstBonus(h.getID());
-                                    p2 += g.getSecondBonus(h.getID());
+                                    p1 += g.getFirstBonus(h.getID(),defunctHotelSize);
+                                    p2 += g.getSecondBonus(h.getID(),defunctHotelSize);
                                 } else {
                                     //Players Stock Equal (player1Stock == player2Stock)
-                                    int value = g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
+                                    int value = g.getFirstBonus(h.getID(),defunctHotelSize) + g.getSecondBonus(h.getID(),defunctHotelSize);
                                     p1 += value / 2;
                                     p2 += value / 2;
                                     if (((value / 2) % 1000) != 0) {
