@@ -115,9 +115,16 @@ public class Hotel {
     }
 
     /**
-     * UpdateStock method finds the stockID and updates the stock list.
-     * @param stockID goes through all the stock IDs.
-     * @param updatedStock updates the stock via stockID
+     * unFound unfounds a hotel.
+     */
+    public void unFound(){
+        this.Founded = false;
+    }
+
+    /**
+     * updateStock
+     * @param stockID looks through all the stock IDs
+     * @param updatedStock goes through and updates any necessary stocks.
      */
     public void UpdateStock(int stockID, Stock updatedStock){
         StockList.set(stockID,updatedStock);

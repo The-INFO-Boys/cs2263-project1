@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class BoardTest {
     private Tile tile = new Tile(1,1);
-    private String hotel;
+    private Hotel hotel;
 
     @Test void boardHasACheckAdjacent(){
         Board classUnderTest = Board.getInstance();
@@ -25,11 +25,6 @@ class BoardTest {
     }
     @Test void boardHasACheckHotelSize(){
         Board classUnderTest = Board.getInstance();
-        //assertNotNull(classUnderTest.checkHotelSize(hotel));
+        assertEquals(classUnderTest.getHotelSize(hotel), 0);
     }
-    @Test void boardHasAGiveBonus(){
-        Board classUnderTest = Board.getInstance();
-        //assertNotNull(classUnderTest.giveBonus());
-    }
-
 }

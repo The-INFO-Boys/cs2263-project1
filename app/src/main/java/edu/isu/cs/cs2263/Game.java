@@ -29,11 +29,12 @@ public class Game implements System {
      * @param b
      * @param hList
      */
-    public Game(List<Player> pList, Board b, List<Hotel> hList) {
+    public Game(List<Player> pList, Board b, List<Hotel> hList, List<Tile> tBag) {
+
         PlayerList = pList;
         Board = b;
         HotelList = hList;
-        tileBag = countTiles(pList, b);
+        tileBag = tBag;
     }
 
     public Game() {
@@ -449,12 +450,23 @@ public class Game implements System {
                     t.setHotel(h1);
                 }
             }
+            for(Hotel h:getFoundedHotels()){
+                if(h.getID()==h2.getID()){
+                    HotelList.get(h2.getID()).unFound();
+                }
+            }
             return h1.getID();
         //if Second Hotel is bigger
         }else if(h1Size < h2Size && h1Size != h2Size){
             for(Tile t:getBoard().getTiles()){
                 if(t.getHotel()== h1){
                     t.setHotel(h2);
+                }
+            }
+            for(Hotel h:getFoundedHotels()){
+                if(h.getID()==h1.getID()){
+                    getFoundedHotels().remove(h1);
+                    HotelList.get(h1.getID()).unFound();
                 }
             }
             return h2.getID();

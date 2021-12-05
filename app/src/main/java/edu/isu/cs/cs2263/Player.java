@@ -94,4 +94,7 @@ public class Player {
      * @param hand the list of tiles currently in player's hand.
      */
     public void setHand(List<Tile> hand){Tiles = hand;}
+
+    public List<Tile> getTiles(){return Tiles;}
+
 }
