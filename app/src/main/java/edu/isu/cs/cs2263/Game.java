@@ -328,7 +328,16 @@ public class Game implements System {
         List<Hotel> adjacentHotels = new ArrayList<>();
         List<Hotel> hotelsFoundable = new ArrayList<>();
         for (Tile t : adjacentTiles) {
-            if (t.getHotel() != null && !adjacentHotels.contains(t.getHotel())) {
+            boolean notThere = true;
+            if(adjacentTiles.size() > 0) {
+                for (Hotel h : adjacentHotels) {
+                    if (t.getHotel() != null && t.getHotel().getID() == h.getID()) {
+                        notThere = false;
+                        break;
+                    }
+                }
+            }
+            if (notThere && t.getHotel() != null && !adjacentHotels.contains(t.getHotel())) {
                 adjacentHotels.add(t.getHotel());
             }
         }

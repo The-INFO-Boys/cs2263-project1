@@ -2528,6 +2528,8 @@ public class App extends Application {
                                 playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHotelToMerge);
                                 increaseCurrentStep(2);
                             }else{
+                                defunctHotel = SHotel;
+                                superHotel = LHotel;
                                 Hotel h = g.getHotelList().get(defunctHotel);
                                 defunctHotelSize = g.getBoard().getHotelSize(h);
                                 int mergedHotelID = g.merge(LHotel,SHotel);
@@ -2618,8 +2620,12 @@ public class App extends Application {
             defunctHotel = -1;
             defunctHotelSize = 0;
             superHotel = -1;
-            hotels.clear();
-            passableTiles.clear();
+            if(hotels != null && hotels.size() > 0) {
+                hotels.clear();
+            }
+            if(passableTiles != null && passableTiles.size() > 0) {
+                passableTiles.clear();
+            }
 
             for (Hotel h : g.getFoundedHotels()) {
                 if (g.getBoard().getHotelSize(h) > 10) {
