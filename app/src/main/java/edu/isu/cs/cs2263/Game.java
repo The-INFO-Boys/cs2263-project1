@@ -490,7 +490,7 @@ public class Game implements System {
     }
 
     /**
-     * getFirstBonus/is determined by the size of the hotel on the board
+     * getFirstBonus is determined by the size of the hotel on the board
      * @param hotelID the ID for the hotel
      * @return the bonus for the player
      */
@@ -530,6 +530,12 @@ public class Game implements System {
         return retValue;
     }
 
+    /**
+     * getFirstBonus is determined by the size of the hotel on the board
+     * @param hotelID goes through the IDs of the hotels
+     * @param hotelSize goes through each hotel founded and finds its size
+     * @return the bonus for the player
+     */
     public int getFirstBonus(int hotelID, int hotelSize) {
         Hotel h = HotelList.get(hotelID);
         int retValue = 0;
@@ -564,6 +570,11 @@ public class Game implements System {
         return retValue;
     }
 
+    /**
+     * getSecondBonus is determined by the size of the hotel on the board
+     * @param hotelID the ID for the hotel
+     * @return the second bonus for the player
+     */
     @Override
     public int getSecondBonus(int hotelID) {
         Hotel h = HotelList.get(hotelID);
@@ -600,6 +611,12 @@ public class Game implements System {
         return retValue;
     }
 
+    /**
+     * getSecondBonus is determined by the size of the hotel on the board
+     * @param hotelID goes through the IDs of the hotels
+     * @param hotelSize goes through each hotel founded and finds its size
+     * @return the second bonus for the player
+     */
     public int getSecondBonus(int hotelID, int hotelSize) {
         Hotel h = HotelList.get(hotelID);
         int retValue = 0;
@@ -634,6 +651,12 @@ public class Game implements System {
         return retValue;
     }
 
+    /**
+     * merge is what handles two hotels that connect and one gets overtaken
+     * @param hotelID1 one of the hotels involved with the merge
+     * @param hotelID2 the other hotel involved with the merge
+     * @return the merged hotel
+     */
     public int merge(int hotelID1, int hotelID2){
         Hotel h1 = HotelList.get(hotelID1);
         List<Tile> h1Tiles = new ArrayList<>();
