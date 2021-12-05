@@ -131,9 +131,9 @@ public class Tile {
     //region Constructor
 
     /**
-     * Tile is a constructor that creates
-     * @param vColumn
-     * @param vRow
+     * Tile is where the tile will be placed
+     * @param vColumn the available columns
+     * @param vRow the available rows
      */
     public Tile(int vColumn, int vRow){
         column = vColumn;
