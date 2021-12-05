@@ -25,9 +25,9 @@ public class Game implements System {
 
     /**
      * Constructors that initialize the game with the player list, board, tiles, and hotel list.
-     * @param pList
-     * @param b
-     * @param hList
+     * @param pList list of players
+     * @param b the board
+     * @param hList list of hotels
      */
     public Game(List<Player> pList, Board b, List<Hotel> hList, List<Tile> tBag) {
 
@@ -36,6 +36,7 @@ public class Game implements System {
         HotelList = hList;
         tileBag = tBag;
     }
+
 
     public Game() {
         tileBag = tileInventory();
@@ -56,22 +57,34 @@ public class Game implements System {
     //region Get & Set
 
     /**
-     * Getter and Setter methods for Game class.
-     * Gets tiles, a player list, the board, and hotel list.
-     * @return
+     * Getters/Setters
+     * getTileBag gets all the possible tiles
+     * @return all the tiles in a "bag"
      */
     public List<Tile> getTileBag() {
         return tileBag;
     }
 
+    /**
+     * getPlayerList retrieves the player list
+     * @return list of players
+     */
     public List<Player> getPlayerList() {
         return PlayerList;
     }
 
+    /**
+     * getBoard retrieves the board
+     * @return the board
+     */
     public Board getBoard() {
         return Board;
     }
 
+    /**
+     * getHotelList reteives the hotel list
+     * @return the list of hotels
+     */
     public List<Hotel> getHotelList() {
         return HotelList;
     }
@@ -83,13 +96,7 @@ public class Game implements System {
     /**
      * Represents private methods for Game class
      * drawTile draws a random tile from the board for the player.
-     * fillHand sets the players hands with tiles and keeps the hand with 6 tiles.
-     * getPlayersHand returns the current player's hand.
-     * countTiles ---
-     * tileInventory is where the player draws tiles from.
-     * getStockPrice determines the stock price based off the hotel size.
-     *
-     * @return
+     * @return the tile
      */
     public Tile drawTile() {
         Random r = new Random();
@@ -99,6 +106,10 @@ public class Game implements System {
         return t;
     }
 
+    /**
+     * fillHand sets the players hands with tiles and keeps the hand with 6 tiles.
+     * @param playerID goes through the player list via playerID
+     */
     public void fillHand(int playerID) {
         List<Tile> playerHand = PlayerList.get(playerID).getHand();
         while (playerHand.size() != 6) {
@@ -107,15 +118,30 @@ public class Game implements System {
         PlayerList.get(playerID).setHand(playerHand);
     }
 
+    /**
+     * getPlayersHand returns the current player's hand.
+     * @param playerID goes through the player list via playerID
+     * @return the player list with the hand of tiles
+     */
     public List<Tile> getPlayersHand(int playerID) {
         return PlayerList.get(playerID).getHand();
     }
 
+    /**
+     * countTiles counts the tiles from the player that are on the board
+     * @param pList list of players
+     * @param b the board
+     * @return list of undrawn tiles
+     */
     private List<Tile> countTiles(List<Player> pList, Board b) {
         List<Tile> undrawnTiles = new ArrayList<>();
         return undrawnTiles;
     }
 
+    /**
+     * tileInventory is where the player draws tiles from.
+     * @return retList
+     */
     private List<Tile> tileInventory() {
         List<Tile> retList = new ArrayList<>();
         for (int x = 0; x < 12; x++) {
@@ -126,6 +152,11 @@ public class Game implements System {
         return retList;
     }
 
+    /**
+     * getStockPrice determines the stock price based off the hotel size.
+     * @param hotelID goes through all the hotel IDs
+     * @return retValue
+     */
     public int getStockPrice(int hotelID) {
         Hotel h = HotelList.get(hotelID);
         int hotelSize = Board.getHotelSize(h);
@@ -161,6 +192,11 @@ public class Game implements System {
         return retValue;
     }
 
+    /**
+     * getStockPrice determines the stock price based off the hotel size.
+     * @param hotelID goes through all the hotel IDs
+     * @return retValue
+     */
     public int getStockPrice(int hotelID, int hotelSize) {
         Hotel h = HotelList.get(hotelID);
         int retValue = 0;
@@ -203,8 +239,6 @@ public class Game implements System {
      * Represents the public methods for Game class.
      * determineFirst method draws tiles and determines who goes first based off who is closest to 1A.
      * getFoundedHotels method returns a list of founded hotels.
-     * getFoundableHotels method
-     * removeTile
      * playTile allows the player to play a tile from their hand. From there, the tile placed will either
      * be placed successfully with nothing else happening, a hotel could be founded, a merge between hotels will start,
      * or if a tile cannot be placed (like to found a hotel after max number of hotels have been founded) then the tile
@@ -226,6 +260,10 @@ public class Game implements System {
         }
     }
 
+    /**
+     * determineFirst method draws tiles and determines who goes first based off who is closest to 1A.
+     * @return the playerlist with the ID of the tile and where it was placed
+     */
     public int determineFirst() {
         Tile player1 = drawTile();
         playTile(player1);
@@ -246,6 +284,10 @@ public class Game implements System {
         }
     }
 
+    /**
+     * getFoundedHotels method returns a list of founded hotels.
+     * @return retList
+     */
     public List<Hotel> getFoundedHotels() {
         List<Hotel> retList = new ArrayList<>();
         for (Hotel h : HotelList) {
@@ -256,6 +298,10 @@ public class Game implements System {
         return retList;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Hotel> getFoundableHotels() {
         List<Hotel> retList = new ArrayList<>();
         for (Hotel h : HotelList) {
@@ -270,6 +316,11 @@ public class Game implements System {
         PlayerList.get(playerID).removeTile(tile);
     }
 
+    /**
+     * playTile allows the player to play a tile from their hand. From there, the tile placed will either
+     * @param tile All the Tiles on the board
+     * @return tilesToReturn
+     */
     @Override
     public List<Tile> playTile(Tile tile) {
         List<Tile> tilesToReturn = new ArrayList<>();
@@ -315,6 +366,13 @@ public class Game implements System {
         }
     }
 
+    /**
+     * buyStock to see if stock is available to purchase
+     * @param playerID the ID from any player's playing
+     * @param hotelID the ID from any available founded hotel.
+     * @param numOfStock the number of stock available to buy.
+     * @return boolean
+     */
     @Override
     public boolean buyStock(int playerID, int hotelID, int numOfStock) {
         List<Stock> stockList = HotelList.get(hotelID).getAvailable();
@@ -338,6 +396,10 @@ public class Game implements System {
         return false;
     }
 
+    /**
+     * loadGame loads in previous game state using IOManager
+     * @param filePath the location where the previous game state is stored.
+     */
     @Override
     public void loadGame(String filePath) {
         IOManager ioManager = new IOManager();
@@ -348,6 +410,10 @@ public class Game implements System {
         this.Board = temp.Board;
     }
 
+    /**
+     * saveGame goes to the IOManager to find the saved game state
+     * @param filePath the location where the current game state will be stored.
+     */
     @Override
     public void saveGame(String filePath) {
         IOManager ioManager = new IOManager();
@@ -356,11 +422,25 @@ public class Game implements System {
 
     //endregion
 
+    /**
+     * getStock gets the stock from hotel
+     * @param Stock all the stock for a hotel.
+     * @param Hotel all the hotels available.
+     */
     @Override
     public void getStock(Stock Stock, Hotel Hotel) {
         //Did not find in Use Case
     }
 
+    /**
+     * handleStock is how the player chooses to handle their stock
+     * @param action what to do with stock (buy/sell)
+     * @param amount the amount of stock
+     * @param playerID the player(s) ID
+     * @param defuncthotelID
+     * @param superHotelID the ID for a super hotel
+     * @param defunctHotelSize
+     */
     @Override
     public void handleStock(int action, int amount, int playerID, int defuncthotelID, int superHotelID, int defunctHotelSize) {
         // Action Keys
@@ -400,6 +480,11 @@ public class Game implements System {
         }
     }
 
+    /**
+     * getFirstBonus/is determined by the size of the hotel on the board
+     * @param hotelID the ID for the hotel
+     * @return the bonus for the player
+     */
     @Override
     public int getFirstBonus(int hotelID) {
         Hotel h = HotelList.get(hotelID);
