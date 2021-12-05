@@ -11,12 +11,14 @@ import java.util.Scanner;
 public class IOManager {
 
     /**
-     *This is a Java class for IOManager.
-     *Handles Save and Load Game.
-     * @param game
-     * @param fileLocation
+     * This is a Java class for IOManager.
      */
 
+    /**
+     * saveGame saves the current game state.
+     * @param game the current game state (tiles, player info, etc.)
+     * @param fileLocation wherever the player decides to store the game state.
+     */
     public void saveGame(Game game, String fileLocation){
         Gson gson = new Gson();
         try{
@@ -30,6 +32,11 @@ public class IOManager {
         }catch (Exception e){}
     }
 
+    /**
+     * loadGame loads in a previous game state.
+     * @param fileLocation wherever the game state was saved
+     * @return previous game state
+     */
     public Game loadGame(String fileLocation){
         Game retGame = null;
         Gson gson = new Gson();
