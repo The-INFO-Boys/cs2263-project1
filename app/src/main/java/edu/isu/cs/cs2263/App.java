@@ -2280,13 +2280,13 @@ public class App extends Application {
     EventHandler<KeyEvent> chooseHotelToMerge = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {
-            if ((event.getCode() == KeyCode.DIGIT1 && hotels.contains(g.getHotelList().get(0))) ||
-                    (event.getCode() == KeyCode.DIGIT2 && hotels.contains(g.getHotelList().get(1))) ||
-                    (event.getCode() == KeyCode.DIGIT3 && hotels.contains(g.getHotelList().get(2))) ||
-                    (event.getCode() == KeyCode.DIGIT4 && hotels.contains(g.getHotelList().get(3))) ||
-                    (event.getCode() == KeyCode.DIGIT5 && hotels.contains(g.getHotelList().get(4))) ||
-                    (event.getCode() == KeyCode.DIGIT6 && hotels.contains(g.getHotelList().get(5))) ||
-                    (event.getCode() == KeyCode.DIGIT7 && hotels.contains(g.getHotelList().get(6)))) {
+            if ((event.getCode() == KeyCode.DIGIT1 && (hotels.get(0).getID() == 0 || hotels.get(1).getID() == 0)) ||
+                    (event.getCode() == KeyCode.DIGIT2 && (hotels.get(0).getID() == 1 || hotels.get(1).getID() == 1)) ||
+                    (event.getCode() == KeyCode.DIGIT3 && (hotels.get(0).getID() == 2 || hotels.get(1).getID() == 2)) ||
+                    (event.getCode() == KeyCode.DIGIT4 && (hotels.get(0).getID() == 3 || hotels.get(1).getID() == 3)) ||
+                    (event.getCode() == KeyCode.DIGIT5 && (hotels.get(0).getID() == 4 || hotels.get(1).getID() == 4)) ||
+                    (event.getCode() == KeyCode.DIGIT6 && (hotels.get(0).getID() == 5 || hotels.get(1).getID() == 5)) ||
+                    (event.getCode() == KeyCode.DIGIT7 && (hotels.get(0).getID() == 6 || hotels.get(1).getID() == 6))) {
                 if(event.getCode() == KeyCode.DIGIT1){
                     defunctHotel = superHotel;
                     superHotel = 0;
@@ -2341,15 +2341,14 @@ public class App extends Application {
                     }
                 }
                 String sb = "";
-                if(g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) > 0) {
+                /*if(g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) > 0) {
                     playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHandleAction);
                     sb += "Player " + (currentPlayer + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(currentPlayer) + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold";
                 } else {
                     playButton.addEventFilter(KeyEvent.KEY_PRESSED, chooseHandleAction_otherPlayer);
                     sb += "Player " + (otherPlayer() + 1) + ":\nYou have " + g.getHotelList().get(defunctHotel).ownedStock(otherPlayer()) + " owned stock\nWould you like to:\n1)Trade\n2)Sell\n3)Hold";
-
                 }
-                playButton.setText(sb);
+                playButton.setText(sb);*/
             }
         }
     };

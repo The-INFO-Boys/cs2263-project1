@@ -440,39 +440,12 @@ public class Game implements System {
 
     public int merge(int hotelID1, int hotelID2){
         Hotel h1 = HotelList.get(hotelID1);
-        Hotel h2 = HotelList.get(hotelID2);
-        int h1Size = Board.getHotelSize(h1);
-        int h2Size = Board.getHotelSize(h2);
-        //if First Hotel is bigger
-        if(h1Size > h2Size && h1Size != h2Size){
-            for(Tile t:getBoard().getTiles()){
-                if(t.getHotel()== h2){
-                    t.setHotel(h1);
-                }
+        for(Tile t:getBoard().getTiles()){
+            if(t.getHotel() != null && t.getHotel().getID() == hotelID2){
+                t.setHotel(h1);
             }
-            for(Hotel h:getFoundedHotels()){
-                if(h.getID()==h2.getID()){
-                    HotelList.get(h2.getID()).unFound();
-                }
-            }
-            return h1.getID();
-        //if Second Hotel is bigger
-        }else if(h1Size < h2Size && h1Size != h2Size){
-            for(Tile t:getBoard().getTiles()){
-                if(t.getHotel()== h1){
-                    t.setHotel(h2);
-                }
-            }
-            for(Hotel h:getFoundedHotels()){
-                if(h.getID()==h1.getID()){
-                    getFoundedHotels().remove(h1);
-                    HotelList.get(h1.getID()).unFound();
-                }
-            }
-            return h2.getID();
-        //default return first hotel
-        }else{
-            return h1.getID();
         }
+        HotelList.get(hotelID2).unFound();
+        return hotelID1;
     }
 }
