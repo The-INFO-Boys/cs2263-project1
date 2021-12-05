@@ -1,3 +1,36 @@
+# [v1.1.0]
+
+## Added:
+
+- Better Dialog for Dialog Popups
+
+- Extra Win Condition
+
+- Fail Case for PlayTile
+
+- Added Methods to Get Bonuses
+
+## Changed:
+
+- Overhauled JavaDoc all across the project
+
+- Removed excess code
+
+- Fixed Merge
+
+- Bug Fixes in Various Classes
+
+- Removed Excess Loop 
+
+- Styling
+
+- Added Functionality to Remove a Founded Hotel On Merge
+
+
+
+
+
+
 # [v1.0.0]
 
 ## Added:
