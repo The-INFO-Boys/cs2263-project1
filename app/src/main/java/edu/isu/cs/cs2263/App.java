@@ -2313,6 +2313,33 @@ public class App extends Application {
                 defunctHotelSize = g.getBoard().getHotelSize(g.getHotelList().get(defunctHotel));
                 playButton.removeEventFilter(KeyEvent.KEY_PRESSED,this);
                 g.merge(superHotel,defunctHotel);
+                Hotel h = g.getHotelList().get(defunctHotel);
+                int p1 = 0;
+                int p2 = 0;
+                int player1Stock = h.ownedStock(0);
+                int player2Stock = h.ownedStock(1);
+                if (player1Stock > 0 && player2Stock == 0) {
+                    p1 += g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
+                } else if (player2Stock > 0 && player1Stock == 0) {
+                    p2 += g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
+                } else if( player1Stock > player2Stock){
+                    p1 += g.getFirstBonus(h.getID());
+                    p2 += g.getSecondBonus(h.getID());
+                } else if( player2Stock > player1Stock){
+                    p1 += g.getFirstBonus(h.getID());
+                    p2 += g.getSecondBonus(h.getID());
+                } else {
+                    //Players Stock Equal (player1Stock == player2Stock)
+                    int value = g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
+                    p1 += value / 2;
+                    p2 += value / 2;
+                    if (((value / 2) % 1000) != 0) {
+                        p1 += 250;
+                        p2 += 250;
+                    }
+                }
+                g.getPlayerList().get(0).addMoney(p1);
+                g.getPlayerList().get(1).addMoney(p2);
                 for (Tile t : g.getBoard().getTiles()) {
                     Color tileColor = Color.color(1, 1, 1);
                     if (t.getPlaced()) {
@@ -2504,6 +2531,33 @@ public class App extends Application {
                                 int mergedHotelID = g.merge(LHotel,SHotel);
                                 superHotel = mergedHotelID;
                                 defunctHotel = SHotel;
+                                Hotel h = g.getHotelList().get(defunctHotel);
+                                int p1 = 0;
+                                int p2 = 0;
+                                int player1Stock = h.ownedStock(0);
+                                int player2Stock = h.ownedStock(1);
+                                if (player1Stock > 0 && player2Stock == 0) {
+                                    p1 += g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
+                                } else if (player2Stock > 0 && player1Stock == 0) {
+                                    p2 += g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
+                                } else if( player1Stock > player2Stock){
+                                    p1 += g.getFirstBonus(h.getID());
+                                    p2 += g.getSecondBonus(h.getID());
+                                } else if( player2Stock > player1Stock){
+                                    p1 += g.getFirstBonus(h.getID());
+                                    p2 += g.getSecondBonus(h.getID());
+                                } else {
+                                    //Players Stock Equal (player1Stock == player2Stock)
+                                    int value = g.getFirstBonus(h.getID()) + g.getSecondBonus(h.getID());
+                                    p1 += value / 2;
+                                    p2 += value / 2;
+                                    if (((value / 2) % 1000) != 0) {
+                                        p1 += 250;
+                                        p2 += 250;
+                                    }
+                                }
+                                g.getPlayerList().get(0).addMoney(p1);
+                                g.getPlayerList().get(1).addMoney(p2);
                                 g.getBoard().updateTile(playedTile,g.getHotelList().get(mergedHotelID));
                                 for (Tile t : g.getBoard().getTiles()) {
                                     Color tileColor = Color.color(1, 1, 1);
@@ -2557,6 +2611,15 @@ public class App extends Application {
             tLabel.setText(" TILES: 1. " + hand.get(0).getTileName() + "   2. " + hand.get(1).getTileName() + "   3. " + hand.get(2).getTileName() + "   4. " + hand.get(3).getTileName() + "   5. " + hand.get(4).getTileName() + "   6. " + hand.get(5).getTileName());
             mLabel.setText("\tMONEY: $" + g.getPlayerList().get(currentPlayer).getMoney() + " ");
             boolean winCondition = false;
+            buyHotelStock = 0;
+            numberOfStockBought = 0;
+            stockChoice = 0;
+            defunctHotel = -1;
+            defunctHotelSize = 0;
+            superHotel = -1;
+            hotels.clear();
+            passableTiles.clear();
+
             for (Hotel h : g.getFoundedHotels()) {
                 if (g.getBoard().getHotelSize(h) > 10) {
                     winCondition = true;
