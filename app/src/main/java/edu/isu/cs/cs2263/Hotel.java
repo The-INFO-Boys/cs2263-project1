@@ -6,7 +6,15 @@ import java.util.ArrayList;
 
 public class Hotel {
 
+    /**
+     *This is a Java class for Hotel.
+     */
+
     //region Private Variables
+
+    /**
+     *Represents the variables for the Hotel class.
+     */
 
     private int ID;
     private List<Stock> StockList;
@@ -18,16 +26,42 @@ public class Hotel {
 
     //region Get & Set
 
+    /**
+     *Getters and Setters for Hotel class.
+     */
+
+    /**
+     * getTypeID retrieves the TypeID for hotel
+     * @return TypeID
+     */
+    public int getTypeID() {return TypeID;}
+
+    /**
+     * getName retrieves the Hotel name
+     * @return the hotel name.
+     */
     public String getName(){return Name;}
 
+    /**
+     * getID retrieves the Hotel ID
+     * @return the hotel ID
+     */
     public int getID(){
         return ID;
     }
 
+    /**
+     * getFounded is a boolean that determines if a hotel is founded or not
+     * @return boolean on if hotel is founded or not.
+     */
     public boolean getFounded(){
         return Founded;
     }
 
+    /**
+     * getAvailable lists the available stock to purchase
+     * @return list of available stock.
+     */
     public List<Stock> getAvailable(){
         List<Stock> availableStock = new ArrayList<>();
         for(Stock s : StockList){
@@ -46,6 +80,12 @@ public class Hotel {
 
     //region Constructor
 
+    /**
+     * Constructor for Hotel class that gets info from a hotel
+     * including ID, name, the typeID, and stock list.
+     * @param id the hotel ID.
+     * @param name the name(s) for a hotel.
+     */
     public Hotel(int id, String name, int typeID){
         ID = id;
         Name = name;
@@ -59,6 +99,13 @@ public class Hotel {
     //endregion
 
     //region Public Method
+
+    /**
+     * Public methods for the Hotel class
+     * found method is a boolean that determines if a hotel is founded or not.
+     * @param p the players playing.
+     * @return hotel is founded.
+     */
     public boolean found(Player p){
         this.Founded = true;
         Stock stockToGive = getUnownedStock().get(0);
@@ -67,14 +114,46 @@ public class Hotel {
         return true;
     }
 
+    /**
+     * unFound unfounds a hotel.
+     */
+    public void unFound(){
+        this.Founded = false;
+    }
+
+    /**
+     * updateStock
+     * @param stockID looks through all the stock IDs
+     * @param updatedStock goes through and updates any necessary stocks.
+     */
     public void UpdateStock(int stockID, Stock updatedStock){
         StockList.set(stockID,updatedStock);
+    }
+
+    /**
+     * ownedStock
+     * @param playerID the players playing.
+     * @return the number of owned stock.
+     */
+    public int ownedStock(int playerID){
+        int retNum = 0;
+        for(Stock s : StockList){
+            if(s.getPlayer() != null && s.getPlayer().getID() == playerID){
+                retNum++;
+            }
+        }
+        return retNum;
     }
 
     //endregion
 
     //region Private Methods
 
+    /**
+     * Private methods for Hotel class.
+     * getUnownedStock method lists the unowned stocks and returns the list.
+     * @return list of unowned stock.
+     */
     private List<Stock> getUnownedStock(){
         List<Stock> UnownedStock = new ArrayList<>();
         for(Stock s : this.StockList){

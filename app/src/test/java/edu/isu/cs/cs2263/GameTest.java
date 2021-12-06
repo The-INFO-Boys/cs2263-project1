@@ -8,6 +8,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Tests in a test class for Game class.
+ */
 class GameTest {
     Tile tile = new Tile(1,1);
     @Test
